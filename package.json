@@ -4,11 +4,18 @@
     "version": "1.2.1",
     "unity": "2022.3",
     "description": "YのL - Editor provides you tools to help you on your developing progress.",
-    "keywords": [
+    "keywords": 
+    [
         "yunasawa",
         "editor",
         "window"
     ],
     "category": "Editor",
-    "dependencies": {}
+    "dependencies": {},
+    "author": 
+    {
+        "name": "Yunasawa",
+        "email": "yunasawa200@gmail.com",
+        "url": "https://github.com/Yunasawa"
+    }
 }
