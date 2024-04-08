@@ -12,7 +12,6 @@
 
 .Background
 {
-	background-image: url("project://database/Assets/Plugins/Yunasawa の Library/YのL - Editor/Textures/Styles/Switch Toggle/Shadowed/Shadowed - Background.png");
 	-unity-background-image-tint-color: #1f1f1f; /*#BC2626;*/
 	border-radius: 10px;
 

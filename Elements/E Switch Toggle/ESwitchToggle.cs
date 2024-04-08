@@ -22,6 +22,7 @@ public class ESwitchToggle : Button
 
         Toggle = new Image().AddClass("Toggle").EnableClass(Enable, "Toggle_Enable");
         Background = new Image().AddClass("Background").EnableClass(Enable, "Background_Enable").AddElements(Toggle);
+        Background.SetBackgroundImage(EAddress.FolderPath + "Textures/Styles/Switch Toggle/Shadowed/Shadowed - Background.png");
 
         this.clicked += Switch;
         this.AddElements(Background);
