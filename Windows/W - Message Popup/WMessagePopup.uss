@@ -1,0 +1,21 @@
+.Main
+{
+	background-color: #1f1f1f;
+	border-radius: 5px;
+	border-color: transparent;
+
+	justify-content: center;
+}
+
+.Message
+{
+	background-color: transparent;
+	border-radius: 5px;
+	border-color: transparent;
+
+	-unity-font-definition: var(--font-nightmare-pills);
+	-unity-font-style: bold;
+	font-size: 15px;
+
+	align-self: center;
+}

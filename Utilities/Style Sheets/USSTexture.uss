@@ -1,0 +1,4 @@
+﻿:root
+{
+	--icon-animation: url("");
+}

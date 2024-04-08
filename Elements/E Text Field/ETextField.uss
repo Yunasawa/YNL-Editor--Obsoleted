@@ -1,0 +1,25 @@
+﻿#Root
+{
+	background-color: #2A2A2A;
+	height: 25px;
+
+	border-color: transparent;
+	border-width: 0px;
+	border-radius: 5px;
+}
+
+#Field > TextInput
+{
+	background-color: #1f1f1f;
+	border-color: transparent;
+	border-radius: 2.5px;
+
+	-unity-font-definition: var(--font-nightmare-pills);
+	-unity-font-style: bold;
+	font-size: 15px;
+
+	margin-left: 150px;
+	padding-left: 7.5px;
+
+	height: 23.5px;
+}

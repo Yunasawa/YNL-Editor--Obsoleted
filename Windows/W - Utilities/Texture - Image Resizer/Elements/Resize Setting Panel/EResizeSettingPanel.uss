@@ -1,0 +1,137 @@
+.Main
+{
+	background-color: #2a2a2a;
+	border-width: 0px;
+	border-radius: 10px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+
+	height: 59%;
+
+	margin: 10px;
+	margin-top: -2.5px;
+	margin-bottom: 0px;
+
+	padding: 0px;
+}
+
+.TagPanel
+{
+	background-color: #4f4f4f;
+
+	width: 100%;
+	height: 50px;
+
+	margin: 0px;
+
+	flex-direction: row;
+}
+
+.Tag
+{
+	background-color: #2a2a2a;
+	background-size: auto;
+	-unity-background-image-tint-color: #ffffff;
+
+	border-radius: 0px;
+	border-width: 0px;
+
+	width: 50%;
+	height: 50px;
+
+	margin: 0px;
+
+	transition-property: background-color, -unity-background-image-tint-color;
+	transition-duration: 0.2s;
+}
+.Tag_Disable
+{
+	background-color: #1f1f1f;
+	-unity-background-image-tint-color: #3E3F3E;
+}
+
+.Size > TextInput
+{
+	background-color: #1f1f1f;
+	border-color: transparent;
+	border-width: 1px;
+
+	width: 70px;
+	height: 20px;
+
+	margin-top: 2.5px;
+
+	-unity-font-definition: var(--font-nightmare-pills);
+	-unity-font-style: bold;
+	font-size: 15px;
+
+	position: relative
+}
+.Size:hover > TextInput
+{
+	border-color: #5f5f5f;
+}
+.Width
+{
+	margin-left: 19.5px;
+	margin-top: 10px;
+}
+.Height
+{
+	margin-left: 15px;
+}
+
+.SizePanel
+{
+	background-color: transparent;
+
+	flex-direction: row;
+}
+
+.SizeLabel
+{
+	margin-left: 10px;
+
+	/*-unity-font-definition: var(--font-nightmare-pills);*/
+	-unity-font-style: bold;
+	font-size: 13px;
+}
+
+.EnlargeIfSmallerPanel
+{
+	background-color: transparent;
+
+	height: 20px;
+
+	margin-top: 20px;
+
+	padding-top: 0px;
+
+	flex-direction: row;
+}
+.EnlargeIfSmallerSwitch
+{
+	left: 135px;
+
+	position: absolute;
+}
+
+
+.KeepAspectRatioPanel
+{
+	background-color: transparent;
+
+	height: 20px;
+
+	margin-top: 5px;
+
+	padding-top: 0px;
+
+	flex-direction: row;
+}
+.KeepAspectRatioSwitch
+{
+	left: 135px;
+
+	position: absolute;
+}

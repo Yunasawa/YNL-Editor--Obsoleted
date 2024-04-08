@@ -1,0 +1,46 @@
+.Main
+{
+	width: 100%;
+	height: 100%;
+
+	margin: 0px;
+}
+
+.Background
+{
+	background-color: transparent;
+	border-color: transparent;
+
+	width: 100%;
+	height: 100%;
+
+	margin: 0px;
+}
+
+.Grid
+{
+	background-color: transparent;
+
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.Scroll
+{
+	background-color: transparent;
+}
+
+.Box
+{
+	background-color: transparent;
+	border-color: #ffffff;
+	border-width: 1px;
+
+	width: 200px;
+	height: 300px;
+
+	margin: 5px;
+
+	background-size: contain;
+}

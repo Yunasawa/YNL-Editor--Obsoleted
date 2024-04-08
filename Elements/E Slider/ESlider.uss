@@ -1,0 +1,47 @@
+.Main
+{
+	height: 30px;
+
+	justify-content: center;
+}
+
+.Slider
+{
+	margin-left: 10px;
+	margin-right: 10px;
+
+	top: -2.5px;
+}
+
+.Dragger
+{
+	background-color: #151515;
+	border-width: 0px;
+	border-radius: 2.5px;
+
+	height: 20px;
+
+	margin-top: -8.5px;
+}
+
+.Tracker
+{
+	background-color: #252525;
+
+	height: 5px;
+}
+
+.Label
+{
+	width: 25%;
+
+	-unity-font-definition: var(--font-nightmare-pills);
+	-unity-font-style: bold;
+
+	margin-left: 5px;
+	top: 11px;
+
+	align-self: flex-start;
+
+	position: absolute;
+}

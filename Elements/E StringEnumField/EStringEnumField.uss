@@ -1,0 +1,41 @@
+.Main
+{
+	background-color: transparent;
+	border-width: 0px;
+
+	height: 20px;
+
+	flex-direction: row;
+}
+
+.Label
+{
+	width: 120px;
+
+	margin-left: 0px;
+}
+
+.Popup
+{
+	background-color: #1f1f1f;
+	border-width: 0.5px;
+	border-color: #3f3f3f;
+	border-radius: 0px;
+
+	height: 100%;
+
+	margin-left: 2.5px;
+	margin-right: -1.5px;
+
+	flex-grow: 1;
+}
+
+.Popup > .unity-base-field__input
+{
+	background-color: #1f1f1f;
+	border-width: 0px;
+	border-color: #3a3a3a;
+	border-radius: 0px;
+
+	flex-grow: 1;
+}

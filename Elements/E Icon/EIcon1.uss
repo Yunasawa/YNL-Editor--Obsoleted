@@ -1,0 +1,55 @@
+.Background
+{
+	background-color: #191919;
+
+	width: 35px;
+	height: 35px;
+
+	border-top-left-radius: 5px;
+	border-top-right-radius: 12.5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 12.5px;
+
+	margin-left: 7.5px;
+    margin-right: 10px;
+    margin-top: 10px;
+
+	justify-content: center;
+
+	flex-shrink: 0;
+
+	transition-property: rotate, width;
+	transition-duration: 0.25s;
+
+	position: absolute;
+}
+
+.Background:hover
+{
+
+}
+
+.Image
+{
+	-unity-background-image-tint-color: #4bc9ba;
+
+	width: 25px;
+	height: 25px;
+
+	margin-left: 5px;
+
+	flex-shrink: 0;
+
+	align-self: flex-start;
+
+	transition-property: width, height, rotate, align-self;
+	transition-duration: 0.25s;
+}
+
+.Image:hover
+{
+	width: 30px;
+	height: 30px;
+
+	rotate: -10deg;
+}

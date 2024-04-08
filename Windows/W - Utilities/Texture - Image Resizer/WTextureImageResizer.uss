@@ -1,0 +1,151 @@
+﻿.main-root
+{
+	width: 100%;
+	height: 100%;
+}
+
+.title-panel
+{
+	background-color: #2A2A2A;
+	border-color: transparent;
+
+	border-radius: 0px;
+
+	margin-left: 100px;
+
+	width: 100%;
+	height: 75px;
+
+	top: -1px;
+
+	position: absolute;
+}
+
+.property-panel
+{
+	background-color: #333333;
+
+	width: 200px;
+	height: 100%;
+
+	margin-left: 50px;
+
+	position: absolute;
+
+	transition-property: width, margin-left;
+	transition-duration: 0.25s;
+
+	padding-bottom: 75px;
+
+	flex-direction: column;
+}
+
+.handler-window
+{
+	-unity-background-image-tint-color: #565656;
+	background-image: url("project://database/Assets/Plugins/Yunasawa の Library/YのL - Editor/Textures/Background/Background 6.png");
+	background-size: auto;
+	border-color: transparent;
+	
+	width: 100%;
+	height: 100%;
+
+	flex-direction: row;
+
+	padding-top: 77px;
+}
+
+.main-window
+{
+	background-color: transparent;
+	position: relative;
+
+	margin-top: 150px;
+	margin-left: 252px;
+	margin-right: 1.5px;
+	margin-bottom: 153px;
+
+	flex-grow: 1;
+
+	width: 100%;
+	height: 100%;
+
+	align-self: center;
+
+	transition-property: margin-left;
+	transition-duration: 0.25s;
+
+	flex-direction: column;
+}
+
+.image-grid
+{
+	background-color: transparent;
+
+	height: 100%;
+}
+
+.image-box
+{
+	background-color: transparent;
+	background-size: contain;
+
+	border-color: #ffffff;
+	border-width: 1px;
+
+	width: 200px;
+	height: 200px;
+
+	margin: 5px;
+
+	transition-property: position;
+	transition-duration: 0.25s;
+}
+
+.slider
+{
+	background-color: transparent;
+
+	width: 100%;
+
+	position: absolute;
+
+	margin-top: 45px;
+
+	top: 100%;
+}
+
+.clear-button
+{
+	background-color: #1F1F1F;
+	border-color: transparent;
+
+	height: 30px;
+
+	margin: 10px;
+	margin-top: 7.5px;
+
+	justify-content: center;
+
+	transition-property: background-color;
+	transition-duration: 0.25s;
+
+}
+.clear-button:hover
+{
+	border-color: #5F5F5F;
+}
+
+.clear-label
+{
+	-unity-font-definition: var(--font-nightmare-pills);
+	-unity-font-style: bold;
+	font-size: 13px;
+
+	transition-property: font-size;
+	transition-duration: 0.25s;
+}
+.clear-label:hover
+{
+	font-size: 15px;
+}

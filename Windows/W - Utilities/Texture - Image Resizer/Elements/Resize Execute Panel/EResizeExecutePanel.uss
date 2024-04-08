@@ -1,0 +1,95 @@
+.Main
+{
+	background-color: #262626;
+	border-width: 0px;
+	border-radius: 10px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+
+	height: 39%;
+
+	margin: 10px;
+	margin-top: 0px;
+
+	padding: 0px;
+
+	flex-direction: column;
+}
+
+.Execute
+{
+	background-color: #1a1a1a;
+	border-width: 0px;
+	border-radius: 0px;
+
+	width: 100%;
+	height: 40px;
+
+	margin-top: -40px;
+
+	position: absolute;
+	top: 100%;
+
+	-unity-font-definition: var(--font-nightmare-pills);
+	-unity-font-style: bold;
+	font-size: 20px;
+
+	align-self: center;
+
+	transition-property: font-size, background-color;
+	transition-duration: 0.25s;
+}
+.Execute:hover
+{
+	background-color: #111111;
+
+
+	font-size: 25px;
+}
+
+.Label
+{
+	margin-left: 10px;
+
+	/*-unity-font-definition: var(--font-nightmare-pills);*/
+	-unity-font-style: bold;
+	font-size: 13px;
+}
+
+.ReplaceOldImagePanel
+{
+	background-color: transparent;
+
+	height: 20px;
+
+	margin-top: 20px;
+
+	padding-top: 0px;
+
+	flex-direction: row;
+}
+.ReplaceOldImageSwitch
+{
+	left: 135px;
+
+	position: absolute;
+}
+
+.SaveAsACopyPanel
+{
+	background-color: transparent;
+
+	height: 20px;
+
+	margin-top: 5px;
+
+	padding-top: 0px;
+
+	flex-direction: row;	
+}
+.SaveAsACopySwitch
+{
+	left: 135px;
+
+	position: absolute;
+}

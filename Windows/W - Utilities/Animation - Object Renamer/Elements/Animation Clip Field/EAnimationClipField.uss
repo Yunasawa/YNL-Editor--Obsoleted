@@ -1,0 +1,33 @@
+.e-animation-clip-field__color
+{
+	background-color: #00FA9A;
+
+	width: 7.5px;
+	height: 20px;
+
+	margin-left: -10px;
+	top: -0.5px;
+
+	position: absolute;
+
+	align-self: flex-start;
+}
+
+.e-animation-clip-field__clip
+{
+	width: 100%;
+
+	top: -1.5px;
+	right: 2.5px;
+
+	align-self: flex-end;
+}
+
+.e-animation-clip-field__field
+{
+	background-color: transparent;
+	border-color: transparent;
+	height: 26px;
+	border-radius: 0px;
+	padding-right: 0px;
+}

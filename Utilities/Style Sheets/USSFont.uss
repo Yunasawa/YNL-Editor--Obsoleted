@@ -1,0 +1,4 @@
+﻿:root
+{
+	--font-nightmare-pills: url("project://database/Assets/Plugins/Yunasawa の Library/YのL - Editor/Sources/Fonts/Font Assets/Nightmare Pills SDF.asset");
+}

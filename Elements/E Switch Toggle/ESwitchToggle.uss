@@ -1,0 +1,50 @@
+﻿.Main
+{
+	background-color: transparent;
+	border-width: 0px;
+
+	width: 35px;
+	height: 20px;
+
+	padding: 0px;
+	margin: 0px;
+}
+
+.Background
+{
+	background-image: url("project://database/Assets/Plugins/Yunasawa の Library/YのL - Editor/Textures/Styles/Switch Toggle/Shadowed/Shadowed - Background.png");
+	-unity-background-image-tint-color: #1f1f1f; /*#BC2626;*/
+	border-radius: 10px;
+
+	width: 35px;
+	height: 20px;
+
+	transition-property: -unity-background-image-tint-color;
+	transition-duration: 0.25s;
+}
+.Background_Enable
+{
+	-unity-background-image-tint-color: #5F5F5F; /*#008E57;*/
+}
+
+.Toggle
+{
+	background-color: #2A2A2A;
+
+	border-radius: 10px;
+
+	width: 15px;
+	height: 15px;
+
+	left: 0px;
+
+	margin-top: 2.5px;
+	margin-left: 2.5px;
+
+	transition-property: left;
+	transition-duration: 0.15s;
+}
+.Toggle_Enable
+{
+	left: 15px;
+}

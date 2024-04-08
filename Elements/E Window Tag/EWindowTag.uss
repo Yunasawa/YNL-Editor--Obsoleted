@@ -1,0 +1,100 @@
+﻿.background
+{
+	background-color: transparent;
+
+	width: 35px;
+	height: 35px;
+
+	border-radius: 5px;
+	border-color: transparent;
+
+	margin-left: 7.5px;
+    margin-right: 10px;
+    margin-top: 10px;
+
+	justify-content: center;
+
+	flex-shrink: 0;
+
+	transition-property: rotate, width;
+	transition-duration: 0.25s;
+
+	position: absolute;
+}
+.background__hover
+{
+	background-color: #242424;
+	border-color: #242424;
+}
+
+
+.icon
+{
+	-unity-background-image-tint-color: #B8B8B8;
+
+	width: 25px;
+	height: 25px;
+
+	margin-left: -2px;
+
+	flex-shrink: 0;
+
+	align-self: flex-start;
+
+	transition-property: width, height, rotate, margin-top, margin-left, -unity-background-image-tint-color;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-out-sine;
+}
+.icon__hover
+{
+	width: 40px;
+	height: 40px;
+
+	margin-left: -10px;
+	margin-top: 20px;
+
+	rotate: -30deg;
+}
+
+.title
+{
+	color: transparent;
+
+	margin-left: 35px;
+	top: 5px;
+
+	font-size: 13px;
+	-unity-font-style: bold;
+	-unity-font-definition: var(--font-nightmare-pills);
+
+	position: absolute;
+
+	transition-property: color, font-size;
+	transition-duration: 0.25s;
+}
+.title__hover
+{
+	font-size: 15px;
+}
+
+.subtitle
+{
+	color: #5e5e5e;
+
+	margin-left: 35px;
+	top: 20px;
+
+	font-size: 10px;
+	-unity-font-style: bold;
+	-unity-font-definition: var(--font-nightmare-pills);
+
+	position: absolute;
+
+	transition-property: color, font-size, margin-left, top;
+	transition-duration: 0.25s;
+}
+.subtitle__hover
+{
+	margin-left: 40px;
+	top: 21px;
+}
