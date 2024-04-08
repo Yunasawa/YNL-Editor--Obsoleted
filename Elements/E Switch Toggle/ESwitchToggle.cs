@@ -5,7 +5,7 @@ using YNL.Editor.Utilities;
 
 public class ESwitchToggle : Button
 {
-    public const string _styleSheet = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Elements/E Switch Toggle/ESwitchToggle.uss";
+    public const string _styleSheet = EAddress.FolderPath + "Elements/E Switch Toggle/ESwitchToggle.uss";
 
     public bool Enable = false;
 

@@ -6,7 +6,7 @@ using YNL.Editor.Utilities;
 
 public class EStringEnumField : VisualElement
 {
-    private const string _styleSheet = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Elements/E StringEnumField/EStringEnumField.uss";
+    private const string _styleSheet = EAddress.FolderPath + "Elements/E StringEnumField/EStringEnumField.uss";
 
     public Label Label;
     public PopupField<string> Popup;

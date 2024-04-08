@@ -6,7 +6,7 @@ using YNL.Editor.Utilities;
 
 public class ELine : Image
 {
-    private const string USS_StyleSheet = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Elements/E Line/ELine.uss";
+    private const string USS_StyleSheet = EAddress.FolderPath + "Elements/E Line/ELine.uss";
 
     public ELine(ELineMode mode) : base()
     {

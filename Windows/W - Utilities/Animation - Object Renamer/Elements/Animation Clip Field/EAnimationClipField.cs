@@ -6,7 +6,7 @@ using YNL.Editor.Utilities;
 
 public class EAnimationClipField : Button
 {
-    private const string USS_StyleSheet = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Windows/W - Utilities/Animation - Object Renamer/Elements/Animation Clip Field/EAnimationClipField.uss";
+    private const string USS_StyleSheet = EAddress.FolderPath + "Windows/W - Utilities/Animation - Object Renamer/Elements/Animation Clip Field/EAnimationClipField.uss";
 
     private const string _uss_field = "e-animation-clip-field__field";
     private const string _uss_color = "e-animation-clip-field__color";

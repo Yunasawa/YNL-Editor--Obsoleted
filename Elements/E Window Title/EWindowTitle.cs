@@ -6,7 +6,7 @@ using YNL.Editor.Utilities;
 
 public class EWindowTitle : VisualElement
 {
-    private const string USS_StyleSheet = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Elements/E Window Title/EWindowTitle.uss";
+    private const string USS_StyleSheet = EAddress.FolderPath + "Elements/E Window Title/EWindowTitle.uss";
 
     private const string _uss_panel = "panel";
     private const string _uss_icon = "icon";

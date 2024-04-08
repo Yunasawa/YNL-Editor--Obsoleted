@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 
 public class WMessagePopup : EditorWindow
 {
-    private const string _styleSheet = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Windows/W - Message Popup/WMessagePopup.uss";
+    private const string _styleSheet = EAddress.FolderPath + "Windows/W - Message Popup/WMessagePopup.uss";
 
     private static string _message = "This is not available";
     private static GUIStyle messageStyle = null;

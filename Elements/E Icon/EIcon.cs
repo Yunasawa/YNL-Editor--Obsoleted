@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class EIcon : VisualElement
 {
-    private const string USS_StyleSheet = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Scripts/Elements/E Icon/EIcon1.uss";
+    private const string USS_StyleSheet = EAddress.FolderPath + "Scripts/Elements/E Icon/EIcon1.uss";
 
     private static readonly string USS_Background = "Background";
     private static readonly string USS_Image = "Image";
@@ -21,7 +21,7 @@ public class EIcon : VisualElement
         Background.AddToClassList(USS_Background);
 
         Image = new();
-        Image.style.backgroundImage = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Plugins/Yunasawa の Library/YのL - Editor/Textures/Running Guy.png");
+        Image.style.backgroundImage = AssetDatabase.LoadAssetAtPath<Texture2D>(EAddress.FolderPath + "Textures/Running Guy.png");
         Image.AddToClassList(USS_Image);
 
         Background.Add(Image);

@@ -4,7 +4,7 @@ using YNL.Editor.Utilities;
 
 public class EInputNamePanel : Button
 {
-    private const string USS_StyleSheet = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Windows/W - Utilities/Animation - Object Renamer/Elements/Input Name Panel/EInputNamePanel.uss";
+    private const string USS_StyleSheet = EAddress.FolderPath + "Windows/W - Utilities/Animation - Object Renamer/Elements/Input Name Panel/EInputNamePanel.uss";
 
     public Label OriginLabel;
     public TextField OriginField;

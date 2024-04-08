@@ -6,7 +6,7 @@ using YNL.Editor.Utilities;
 
 public class EAssetField<T> : Button where T : Object
 {
-    private const string USS_StyleSheet = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Elements/E ObjectField/EObjectField.uss";
+    private const string USS_StyleSheet = EAddress.FolderPath + "Elements/E ObjectField/EObjectField.uss";
 
     private const string _uss_root = "root";
     private const string _uss_background = "background";

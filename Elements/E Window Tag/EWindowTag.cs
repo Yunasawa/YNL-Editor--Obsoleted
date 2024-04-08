@@ -7,7 +7,7 @@ using YNL.Editor.Utilities;
 
 public class EWindowTag : VisualElement
 {
-    private const string USS_StyleSheet = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Elements/E Window Tag/EWindowTag.uss";
+    private const string USS_StyleSheet = EAddress.FolderPath + "Elements/E Window Tag/EWindowTag.uss";
 
     private static readonly string USS_Background = "background";
     private static readonly string USS_BackgroundHover = "background__hover";

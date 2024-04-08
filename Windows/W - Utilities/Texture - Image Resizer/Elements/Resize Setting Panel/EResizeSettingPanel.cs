@@ -7,8 +7,8 @@ namespace YNL.Editor.Window.Texture.ImageResizer
 {
     public class EResizeSettingPanel : Button
     {
-        private const string _styleSheet = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Windows/W - Utilities/Texture - Image Resizer/Elements/Resize Setting Panel/EResizeSettingPanel.uss";
-        private const string _texturePath = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Textures/Windows/Texture Center/";
+        private const string _styleSheet = EAddress.FolderPath + "Windows/W - Utilities/Texture - Image Resizer/Elements/Resize Setting Panel/EResizeSettingPanel.uss";
+        private const string _texturePath = EAddress.FolderPath + "Textures/Windows/Texture Center/";
 
         public Image TagPanel;
         public Button PixelResizeTag;

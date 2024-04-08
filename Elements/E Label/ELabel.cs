@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class ELabel : VisualElement
 {
-    private const string USS_StyleSheet = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Scripts/Elements/E Label/ELabel1.uss";
+    private const string USS_StyleSheet = EAddress.FolderPath + "Scripts/Elements/E Label/ELabel1.uss";
 
     private static readonly string USS_Container = "Container";
     private static readonly string USS_Background = "Background";
@@ -36,7 +36,7 @@ public class ELabel : VisualElement
 
         BackgroundIcon = new();
         BackgroundIcon.AddToClassList(USS_BackgroundIcon);
-        BackgroundIcon.style.backgroundImage = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Plugins/Yunasawa の Library/YのL - Editor/Textures/Running Guy.png");
+        BackgroundIcon.style.backgroundImage = AssetDatabase.LoadAssetAtPath<Texture2D>(EAddress.FolderPath + "Textures/Running Guy.png");
         _background.Add(BackgroundIcon);
 
         Label = new("Animation");

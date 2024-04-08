@@ -13,8 +13,8 @@ using YNL.Editor.Extensions;
 public class WAnimationObjectRenamer_Visual : VisualElement
 {
     #region ▶ Editor Constants
-    private const string _windowPath = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Windows";
-    private const string _texturePath = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Textures/Windows/Animation Center/";
+    private const string _windowPath = EAddress.FolderPath + "Windows";
+    private const string _texturePath = EAddress.FolderPath + "Textures/Windows/Animation Center/";
 
     private const string _crackingBonePNG = _texturePath + "Cracking Bone.png";
 
@@ -22,7 +22,7 @@ public class WAnimationObjectRenamer_Visual : VisualElement
     private const string _windowSubtitle = "Quickly change or swap your animation objects' name";
     #endregion
     #region ▶ Style Sheets
-    private const string _uss_Main = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Windows/W - Utilities/Animation - Object Renamer/WAnimationObjectRenamer.uss";
+    private const string _uss_Main = EAddress.FolderPath + "Windows/W - Utilities/Animation - Object Renamer/WAnimationObjectRenamer.uss";
     #endregion
     #region ▶ Visual Elements
     private EWindowTitle _windowTitlePanel;

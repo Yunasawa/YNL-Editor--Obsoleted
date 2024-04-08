@@ -9,7 +9,7 @@ namespace YNL.Editor.Window.Texture
     public class WUtilitiesCenter : EditorWindow
     {
         #region ▶ Editor Asset Fields/Properties
-        private const string _windowIconPath = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Textures/Windows/Utilities Center/Editor Window Icon.png";
+        private const string _windowIconPath = EAddress.FolderPath + "Textures/Windows/Utilities Center/Editor Window Icon.png";
         #endregion
 
         #region ▶ Visual Elements
@@ -45,12 +45,12 @@ namespace YNL.Editor.Window.Texture
 
         public void CreateGUI()
         {
-            Texture2D windowIcon = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Plugins/Yunasawa の Library/YのL - Editor/Textures/Windows/Utilities Center/Editor Icon.png");
+            Texture2D windowIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(EAddress.FolderPath + "Textures/Windows/Utilities Center/Editor Icon.png");
             
-            Texture2D textureImageResizerIcon = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Plugins/Yunasawa の Library/YのL - Editor/Textures/Windows/Texture Center/Image Resizer Icon.png");
-            Texture2D animationObjectRenamerIcon = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Plugins/Yunasawa の Library/YのL - Editor/Textures/Windows/Animation Center/Cracking Bone.png");
+            Texture2D textureImageResizerIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(EAddress.FolderPath + "Textures/Windows/Texture Center/Image Resizer Icon.png");
+            Texture2D animationObjectRenamerIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(EAddress.FolderPath + "Textures/Windows/Animation Center/Cracking Bone.png");
             
-            Texture2D waitIcon = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Plugins/Yunasawa の Library/YのL - Editor/Textures/Icon/Time1.png");
+            Texture2D waitIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(EAddress.FolderPath + "Textures/Icon/Time1.png");
 
             WindowTagPanel = new(windowIcon, "Editor Utilities", "Center", _tagPanelWidth, new EWindowTag[]
             {

@@ -6,7 +6,7 @@ using YNL.Editor.Utilities;
 
 public class EClipNameField : Button
 {
-    private const string USS_StyleSheet = "Assets/Plugins/Yunasawa の Library/YのL - Editor/Windows/W - Utilities/Animation - Object Renamer/Elements/Root Name Panel/EClipNameField.uss";
+    private const string USS_StyleSheet = EAddress.FolderPath + "Windows/W - Utilities/Animation - Object Renamer/Elements/Root Name Panel/EClipNameField.uss";
 
     public VisualElement ColorContainer;
     public VisualElement ObjectContainer;
