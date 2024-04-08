@@ -1,0 +1,4 @@
+﻿:root
+{
+	--font-nightmare-pills: resource("Fonts/Font Assets/Nightmare Pills SDF");
+}

@@ -6,7 +6,7 @@ using YNL.Editor.Utilities;
 
 public class ESlider : VisualElement
 {
-    private const string _styleSheet = EAddress.FolderPath + "Elements/E Slider/ESlider.uss";
+    private const string _styleSheet = "Style Sheets/Elements/ESlider";
 
     public Slider Slider;
 

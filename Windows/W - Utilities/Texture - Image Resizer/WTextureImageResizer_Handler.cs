@@ -36,7 +36,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
                 string[] guids = AssetDatabase.FindAssets("t:Texture2D", new[] { path });
                 foreach (var guid in guids)
                 {
-                    Texture2D texture = AssetDatabase.LoadAssetAtPath<Texture2D>(AssetDatabase.GUIDToAssetPath(guid));
+                    Texture2D texture = Resources.Load<Texture2D>(AssetDatabase.GUIDToAssetPath(guid));
                     Textures.AddDistinct(texture);
                 }
             }

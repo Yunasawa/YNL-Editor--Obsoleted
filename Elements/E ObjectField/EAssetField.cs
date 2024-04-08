@@ -6,7 +6,7 @@ using YNL.Editor.Utilities;
 
 public class EAssetField<T> : Button where T : Object
 {
-    private const string USS_StyleSheet = EAddress.FolderPath + "Elements/E ObjectField/EObjectField.uss";
+    private const string USS_StyleSheet = "Style Sheets/Elements/EObjectField";
 
     private const string _uss_root = "root";
     private const string _uss_background = "background";

@@ -4,7 +4,7 @@ using YNL.Editor.Utilities;
 
 public class ETextField : Image
 {
-    private const string USS_StyleSheet = EAddress.FolderPath + "Elements/E Text Field/ETextField.uss";
+    private const string USS_StyleSheet = "Style Sheets/Elements/ETextField";
 
     private const string _uss_field = "field";
     private const string _uss_color = "color";

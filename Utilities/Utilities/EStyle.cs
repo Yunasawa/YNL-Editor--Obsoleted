@@ -86,7 +86,7 @@ namespace YNL.Editor.Utilities
         public static T AddStyle<T>(this T element, params string[] stylePaths) where T : VisualElement
         {
 #if UNITY_EDITOR
-            foreach (var stylePath in stylePaths) element.AddStyle(AssetDatabase.LoadAssetAtPath<StyleSheet>(stylePath));
+            foreach (var stylePath in stylePaths) element.AddStyle(Resources.Load<StyleSheet>(stylePath));
 #endif
             return element;
         }
@@ -105,7 +105,7 @@ namespace YNL.Editor.Utilities
 #if UNITY_EDITOR
             foreach (var stylePath in stylePaths)
             {
-                StyleSheet style = AssetDatabase.LoadAssetAtPath<StyleSheet>(stylePath);
+                StyleSheet style = Resources.Load<StyleSheet>(stylePath);
                 for (int i = 0; i < element.styleSheets.count; i++)
                 {
                     if (element.styleSheets[i].name == style.name) element.styleSheets.Remove(element.styleSheets[i]);
@@ -406,7 +406,7 @@ namespace YNL.Editor.Utilities
 #if UNITY_EDITOR
         public static T SetBackgroundImage<T>(this T target, string path) where T : VisualElement
         {
-            target.style.backgroundImage = new StyleBackground(AssetDatabase.LoadAssetAtPath<Texture2D>(path));
+            target.style.backgroundImage = new StyleBackground(Resources.Load<Texture2D>(path));
             return target;
         }
 #endif

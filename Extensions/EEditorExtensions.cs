@@ -72,7 +72,7 @@ public static class EEditorExtension
         return output;
     }
     public static bool IsNullOrEmpty(this string input) => input == null || input == "" || input.Length < 1 ? true : false;
-    public static T LoadAsset<T>(this string path) where T : UnityEngine.Object => AssetDatabase.LoadAssetAtPath<T>(path);
+    public static T LoadAsset<T>(this string path) where T : UnityEngine.Object => Resources.Load<T>(path);
     public static Color Normalize(this Color color) => new Color(color.r / 255, color.g / 255, color.b / 255, 1);
     public static string ToHex(this Color color) => $"#{(int)(color.r * 255):X2}{(int)(color.g * 255):X2}{(int)(color.b * 255):X2}";
     public static int ToInt(this string input)

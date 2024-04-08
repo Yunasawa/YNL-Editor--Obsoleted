@@ -7,8 +7,8 @@ namespace YNL.Editor.Window.Texture.ImageResizer
 {
     public class EResizeSettingPanel : Button
     {
-        private const string _styleSheet = EAddress.FolderPath + "Windows/W - Utilities/Texture - Image Resizer/Elements/Resize Setting Panel/EResizeSettingPanel.uss";
-        private const string _texturePath = EAddress.FolderPath + "Textures/Windows/Texture Center/";
+        private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Texture - Image Resizer/EResizeSettingPanel";
+        private const string _texturePath = "Textures/Windows/Texture Center/";
 
         public Image TagPanel;
         public Button PixelResizeTag;
@@ -33,9 +33,9 @@ namespace YNL.Editor.Window.Texture.ImageResizer
         {
             this.AddStyle(_styleSheet, EAddress.USSFont).AddClass("Main");
 
-            PixelResizeTag = new Button().AddClass("Tag").SetBackgroundImage(_texturePath + "Pixel Resize.png");
+            PixelResizeTag = new Button().AddClass("Tag").SetBackgroundImage(_texturePath + "Pixel Resize");
             PixelResizeTag.clicked += () => SwitchTag(true);
-            PercentResizeTag = new Button().AddClass("Tag").SetBackgroundImage(_texturePath + "Percent Resize.png");
+            PercentResizeTag = new Button().AddClass("Tag").SetBackgroundImage(_texturePath + "Percent Resize");
             PercentResizeTag.clicked += () => SwitchTag(false);
 
             Width = new TextField().AddClass("Size", "Width").SetText("...");

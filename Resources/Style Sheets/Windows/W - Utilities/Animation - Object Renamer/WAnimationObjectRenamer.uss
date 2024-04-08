@@ -1,0 +1,155 @@
+﻿.RootWindow
+{
+	width: 100%;
+	height: 100%;
+}
+
+.PropertyPanel
+{
+	background-color: #333333;
+
+	width: 100px;
+	height: 100%;
+
+	margin-left: 50px;
+
+	position: absolute;
+
+	transition-property: width, margin-left;
+	transition-duration: 0.25s;
+
+	padding-bottom: 75px;
+}
+
+.AnimatorPanel
+{
+	background-color: #2d2d2d;
+
+	border-color: transparent;
+	border-radius: 5px;
+
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+
+	max-width: 200%;
+	height: 53px;
+}
+
+.ClipsScroll
+{
+	background-color: transparent;
+
+	margin-top: 25px;
+
+	position: absolute;
+
+	justify-content: flex-start;
+
+	align-self: center;
+
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-bottom: 30px;
+	padding-top: 5px;
+}
+
+.ClipsPanel
+{
+	background-color: #2d2d2d;
+
+	border-color: transparent;
+	border-radius: 5px;
+
+	margin-top: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
+	bottom: 0px;
+
+	max-width: 200%;
+	min-height: 100%;
+}
+
+.AnimatorField
+{
+	top: 15px;
+}
+
+.HandlerWindow
+{
+	-unity-background-image-tint-color: #565656;
+	background-image: resource("Textures/Backgrounds/Background 6");
+	background-size: auto;
+	border-color: transparent;
+	
+	width: 100%;
+	height: 100%;
+
+	flex-direction: row;
+
+	padding-top: 77px;
+}
+
+.ClipsTitle
+{
+	font-size: 15px;
+	-unity-font-style: bold;
+	-unity-font-definition: var(--font-nightmare-pills);
+
+	margin-top: 7.5px;
+
+	position: absolute;
+	align-self: flex-start;
+}
+
+.AnimatorTitle
+{
+	font-size: 15px;
+	-unity-font-style: bold;
+	-unity-font-definition: var(--font-nightmare-pills);
+
+	margin-top: 7.5px;
+
+	position: absolute;
+	align-self: flex-start;
+}
+
+.TitlePanel
+{
+	background-color: #2A2A2A;
+	border-color: transparent;
+
+	border-radius: 0px;
+
+	margin-left: 0px;
+
+	width: 100%;
+	height: 75px;
+
+	top: -1px;
+
+	position: absolute;
+}
+
+.MainWindow
+{
+	background-color: transparent;
+	position: relative;
+
+	margin-top: 150px;
+	margin-left: 152px;
+	margin-right: 1.5px;
+	margin-bottom: 153px;
+
+	flex-grow: 1;
+
+	width: 100%;
+	height: 100%;
+
+	align-self: center;
+
+	transition-property: margin-left;
+	transition-duration: 0.25s;
+
+	flex-direction: column;
+}

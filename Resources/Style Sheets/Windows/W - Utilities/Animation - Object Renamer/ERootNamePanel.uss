@@ -1,0 +1,116 @@
+﻿#Root
+{
+	background-color: #353535;
+
+	border-color: transparent;
+	border-width: 0px;
+	border-radius: 5px;
+
+	margin: 10px;
+	padding: 0px;
+
+	flex-shrink: 1;
+}
+
+#TitleBackground
+{
+	background-color: #1E1E1E;
+
+	width: 100%;
+	height: 30px;
+
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+
+	flex-direction: row;
+
+	position: absolute;
+}
+
+.Line
+{
+	margin-left: 35px;
+
+	height: 20px;
+
+	position: absolute;
+}
+
+#TagIcon
+{
+	width: 20px;
+	height: 20px;
+
+	background-image: resource("Textures/Icons/Target");
+	-unity-background-image-tint-color: #C4FDFF;
+
+	margin-left: 7.5px;
+
+	align-self: center;
+
+	position: absolute;
+
+	transition-property: width, height, margin-left;
+	transition-duration: 0.25s;
+}
+#TagIcon:hover
+{
+	width: 25px;
+	height: 25px;
+
+	margin-left: 5px;
+}
+
+#Label
+{
+	-unity-font-definition: var(--font-nightmare-pills);
+	-unity-font-style: bold;
+	color: #C4FDFF;
+	font-size: 13px;
+
+	margin-left: 45px;
+
+	align-self: center;
+
+	position: absolute;
+
+	transition-property: font-size;
+	transition-duration: 0.25s;
+}
+#Label:hover
+{
+	font-size: 14px;
+}
+
+#ClipPanel
+{
+	background-color: transparent;
+
+	position: relative;
+
+	margin-left: 0px;
+	margin: 5px;
+	margin-top: 40px;
+
+	justify-content: center;
+}
+
+.Board
+{
+	background-color: transparent;
+	color: #fda4ba;
+
+	width: 75%;
+	height: 30px;
+	
+	-unity-font-definition: var(--font-nightmare-pills);
+	font-size: 20px;
+	-unity-font-style: bold;
+
+	/*
+	background-image: url("project://database/Assets/Test/404_2");
+	background-size: 100%;
+	*/
+
+	align-self: center;
+}

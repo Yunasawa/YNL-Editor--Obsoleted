@@ -5,7 +5,7 @@ using YNL.Editor.Utilities;
 
 public class ESwitchToggle : Button
 {
-    public const string _styleSheet = EAddress.FolderPath + "Elements/E Switch Toggle/ESwitchToggle.uss";
+    public const string _styleSheet = "Style Sheets/Elements/ESwitchToggle";
 
     public bool Enable = false;
 
@@ -22,7 +22,7 @@ public class ESwitchToggle : Button
 
         Toggle = new Image().AddClass("Toggle").EnableClass(Enable, "Toggle_Enable");
         Background = new Image().AddClass("Background").EnableClass(Enable, "Background_Enable").AddElements(Toggle);
-        Background.SetBackgroundImage(EAddress.FolderPath + "Textures/Styles/Switch Toggle/Shadowed/Shadowed - Background.png");
+        Background.SetBackgroundImage("Textures/Styles/Switch Toggle/Shadowed/Shadowed - Background");
 
         this.clicked += Switch;
         this.AddElements(Background);

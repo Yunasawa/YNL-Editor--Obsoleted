@@ -7,7 +7,7 @@ using YNL.Editor.Window.Texture.ImageResizer;
 
 public class EImageDisplayer : Image
 {
-    private const string _styleSheet = EAddress.FolderPath + "Windows/W - Utilities/Texture - Image Resizer/Elements/Image Displayer/EImageDisplayer.uss";
+    private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Texture - Image Resizer/EImageDisplayer";
 
     public EInteractableAssetsField<Object> Background;
     public Image Grid;

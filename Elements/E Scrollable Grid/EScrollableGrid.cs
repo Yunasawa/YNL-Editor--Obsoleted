@@ -4,7 +4,7 @@ using YNL.Editor.Utilities;
 
 public class EScrollableGrid : VisualElement
 {
-    private const string _styleSheet = EAddress.FolderPath + "Elements/E Scrollable Grid/EScrollableGrid.uss";
+    private const string _styleSheet = "Style Sheets/Elements/EScrollableGrid";
 
     public ScrollView Scroll;
     public VisualElement Grid;

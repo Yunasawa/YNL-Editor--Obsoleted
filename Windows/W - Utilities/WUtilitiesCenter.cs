@@ -9,7 +9,7 @@ namespace YNL.Editor.Window.Texture
     public class WUtilitiesCenter : EditorWindow
     {
         #region ▶ Editor Asset Fields/Properties
-        private const string _windowIconPath = EAddress.FolderPath + "Textures/Windows/Utilities Center/Editor Window Icon.png";
+        private const string _windowIconPath = "Textures/Windows/Utilities Center/Editor Window Icon.png";
         #endregion
 
         #region ▶ Visual Elements
@@ -30,7 +30,7 @@ namespace YNL.Editor.Window.Texture
         public static void ShowWindow()
         {
             WUtilitiesCenter window = GetWindow<WUtilitiesCenter>("Editor Utilities Center");
-            Texture2D texture = AssetDatabase.LoadAssetAtPath<Texture2D>(_windowIconPath);
+            Texture2D texture = Resources.Load<Texture2D>(_windowIconPath);
 
             window.titleContent.image = texture;
             window.maxSize = new Vector2(800, 500);
@@ -45,12 +45,12 @@ namespace YNL.Editor.Window.Texture
 
         public void CreateGUI()
         {
-            Texture2D windowIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(EAddress.FolderPath + "Textures/Windows/Utilities Center/Editor Icon.png");
+            Texture2D windowIcon = Resources.Load<Texture2D>("Textures/Windows/Utilities Center/Editor Icon");
             
-            Texture2D textureImageResizerIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(EAddress.FolderPath + "Textures/Windows/Texture Center/Image Resizer Icon.png");
-            Texture2D animationObjectRenamerIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(EAddress.FolderPath + "Textures/Windows/Animation Center/Cracking Bone.png");
+            Texture2D textureImageResizerIcon = Resources.Load<Texture2D>("Textures/Windows/Texture Center/Image Resizer Icon");
+            Texture2D animationObjectRenamerIcon = Resources.Load<Texture2D>("Textures/Windows/Animation Center/Cracking Bone");
             
-            Texture2D waitIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(EAddress.FolderPath + "Textures/Icon/Time1.png");
+            Texture2D waitIcon = Resources.Load<Texture2D>("Textures/Icon/Time1");
 
             WindowTagPanel = new(windowIcon, "Editor Utilities", "Center", _tagPanelWidth, new EWindowTag[]
             {

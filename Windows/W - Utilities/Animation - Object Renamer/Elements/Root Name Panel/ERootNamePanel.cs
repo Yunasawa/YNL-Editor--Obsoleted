@@ -4,7 +4,7 @@ using YNL.Editor.Utilities;
 
 public class ERootNamePanel : Button
 {
-    private const string USS_StyleSheet = EAddress.FolderPath + "Windows/W - Utilities/Animation - Object Renamer/Elements/Root Name Panel/ERootNamePanel.uss";
+    private const string USS_StyleSheet = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/ERootNamePanel";
 
     public Image TitleBackground;
     public Image TagIcon;

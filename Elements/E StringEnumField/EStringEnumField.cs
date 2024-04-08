@@ -6,7 +6,7 @@ using YNL.Editor.Utilities;
 
 public class EStringEnumField : VisualElement
 {
-    private const string _styleSheet = EAddress.FolderPath + "Elements/E StringEnumField/EStringEnumField.uss";
+    private const string _styleSheet = "Style Sheets/Elements/EStringEnumField";
 
     public Label Label;
     public PopupField<string> Popup;

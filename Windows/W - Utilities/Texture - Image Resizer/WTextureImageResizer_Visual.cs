@@ -10,7 +10,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
     public class WTextureImageResizer_Visual : VisualElement
     {
         #region ▶ Editor Constants
-        private const string _windowIcon = EAddress.FolderPath + "Textures/Windows/Texture Center/Image Resizer Icon.png";
+        private const string _windowIcon = "Textures/Windows/Texture Center/Image Resizer Icon.png";
         private const string _windowTitle = "Texture - Image Resizer";
         private const string _windowSubtitle = "Resize your images quickly and flexibly";
         #endregion
@@ -20,7 +20,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
         public float ImageWidth => _slider.Slider.value.Map(new(0, 10), _propertyPanelWidth);
         #endregion
         #region ▶ Style Sheets
-        private const string _uss_Main = EAddress.FolderPath + "Windows/W - Utilities/Texture - Image Resizer/WTextureImageResizer.uss";
+        private const string _uss_Main = "Style Sheets/Windows/W - Utilities/Texture - Image Resizer/WTextureImageResizer";
         #endregion
         #region ▶ Visual Elements
         private WTextureImageResizer_Main _main;

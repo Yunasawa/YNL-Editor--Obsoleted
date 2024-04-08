@@ -7,7 +7,7 @@ using YNL.Editor.Utilities;
 
 public class EWindowTagPanel : EInteractableImage
 {
-    private const string _uss_StyleSheet = EAddress.FolderPath + "Elements/E Window Tag/EWindowTagPanel.uss";
+    private const string _uss_StyleSheet = "Style Sheets/Elements/EWindowTagPanel";
 
     private static readonly string _uss_panelBackground = "panel-background";
     private static readonly string _uss_titleBackground = "title-background";

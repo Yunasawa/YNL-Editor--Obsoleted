@@ -1,0 +1,194 @@
+﻿#Root
+{
+	background-color: #303030;
+	height: 85px;
+
+	border-color: transparent;
+	border-width: 0px;
+	border-radius: 5px;
+
+	margin: 10px;
+	padding: 0px;
+}
+
+.GeneralField > TextInput
+{
+	background-color: #242424;
+
+	border-width: 1.5px;
+	border-color: transparent;
+	border-radius: 2.5px;
+
+	-unity-font-definition: var(--font-nightmare-pills);
+	-unity-font-style: bold;
+	font-size: 13px;
+
+	margin-left: 150px;
+	margin-right: 37.5px;
+
+	padding-left: 7.5px;
+
+	height: 20px;
+}
+.GeneralField:hover > TextInput
+{
+	border-color: #515151;
+	border-width: 1px;
+}
+.GeneralField:focus > TextInput
+{
+	border-color: #4D9893;
+	border-width: 1px;
+}
+
+#OriginField > TextInput
+{
+	margin-top: 5px;
+}
+
+#NewField > TextInput
+{
+	margin-top: 2.5px;
+}
+
+#TitleBackground
+{
+	background-color: #1E1E1E;
+
+	width: 100%;
+	height: 30px;
+
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+
+	flex-direction: row;
+}
+
+.Line
+{
+	margin-left: 35px;
+
+	height: 20px;
+
+	position: absolute;
+}
+
+#TagIcon
+{
+	width: 20px;
+	height: 20px;
+
+	background-image: resource("Textures/Icons/Tag");
+	-unity-background-image-tint-color: #C4FDFF;
+
+	margin-left: 7.5px;
+
+	align-self: center;
+
+	position: absolute;
+
+	transition-property: width, height, margin-left;
+	transition-duration: 0.25s;
+}
+#TagIcon:hover
+{
+	width: 25px;
+	height: 25px;
+
+	margin-left: 5px;
+}
+
+#Label
+{
+	-unity-font-definition: var(--font-nightmare-pills);
+	-unity-font-style: bold;
+	color: #C4FDFF;
+	font-size: 13px;
+
+	margin-left: 45px;
+
+	align-self: center;
+
+	position: absolute;
+
+	transition-property: font-size;
+	transition-duration: 0.25s;
+}
+#Label:hover
+{
+	font-size: 14px;
+}
+
+#OriginLabel
+{
+	-unity-font-definition: var(--font-nightmare-pills);
+	-unity-font-style: bold;
+	font-size: 13px;
+
+	position: absolute;
+
+	margin-top: 40px;
+	margin-left: 10px;
+}
+
+#NewLabel
+{
+	-unity-font-definition: var(--font-nightmare-pills);
+	-unity-font-style: bold;
+	font-size: 13px;
+
+	position: absolute;
+
+	margin-top: 62.5px;
+	margin-left: 10px;
+}
+
+.SwapButton
+{
+	background-color: #1d1d1d;
+
+	border-width: 2px;
+	border-color: transparent;
+
+	width: 30px;
+	height: 45px;
+
+	margin-top: 35px;
+	right: 2.5px;
+
+	align-self: flex-end;
+
+	justify-content: center;
+
+	position: absolute;
+
+	transition-property: background-color;
+	transition-duration: 0.25s;
+}
+.SwapButton__hover
+{
+	background-color: #242424;
+}
+
+.SwapIcon
+{
+	width: 20px;
+	height: 20px;
+
+	background-image: resource("Textures/Icons/Return1");
+	-unity-background-image-tint-color: #848484;
+
+	align-self: center;
+
+	rotate: 90deg;
+
+	transition-property: width, height, rotate;
+	transition-duration: 0.25s;
+}
+.SwapIcon__hover
+{
+	width: 25px;
+	height: 25px;
+
+	rotate: 110deg;
+}
