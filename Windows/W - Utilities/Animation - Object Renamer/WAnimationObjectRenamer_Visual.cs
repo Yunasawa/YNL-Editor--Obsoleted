@@ -19,7 +19,7 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
         private const string _windowPath = "Style Sheets/Windows";
         private const string _texturePath = "Textures/Windows/Animation Center/";
 
-        private const string _crackingBonePNG = _texturePath + "Cracking Bone.png";
+        private const string _crackingBonePNG = _texturePath + "Cracking Bone";
 
         private const string _windowTitle = "Animation - Object Renamer";
         private const string _windowSubtitle = "Quickly change or swap your animation objects' name";

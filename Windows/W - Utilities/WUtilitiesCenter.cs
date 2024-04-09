@@ -12,7 +12,7 @@ namespace YNL.Editor.Window
     public class WUtilitiesCenter : EditorWindow
     {
         #region ▶ Editor Asset Fields/Properties
-        private const string _windowIconPath = "Textures/Windows/Utilities Center/Editor Window Icon.png";
+        private const string _windowIconPath = "Textures/Windows/Utilities Center/Editor Window Icon";
         #endregion
 
         #region ▶ Visual Elements
