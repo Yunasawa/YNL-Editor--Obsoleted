@@ -1,9 +1,9 @@
-﻿{
+{
     "name": "com.yunasawa.ynl.editor",
-    "displayName": "YのL - Editor",
+    "displayName": "YNL - Editor",
     "version": "1.2.1",
     "unity": "2022.3",
-    "description": "YのL - Editor provides you tools to help you on your developing progress.",
+    "description": "YNL - Editor provides you tools to help you on your developing progress.",
     "keywords": 
     [
         "yunasawa",
