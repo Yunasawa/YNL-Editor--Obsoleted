@@ -24,8 +24,33 @@ Contact us: <kbd> yunasawa200@gmail.com </kbd>
 </ul>
 <h2><div id="installation"> ★ Installation </div></h2>
 
-You can install the package via Git URL: <kbd>https://github.com/Yunasawa/YNL-Editor</kbd> <br>
-Here is how you can do it: <a href="https://docs.unity3d.com/2019.3/Documentation/Manual/upm-ui-giturl.html"> How to install a package via Git URL</a>
+<h3><i>Install from Git URL</i></h3>
+Git URL:
+
+```
+https://github.com/Yunasawa/YNL-Editor
+```
+
+Here is how you can do it: <a href="https://docs.unity3d.com/2019.3/Documentation/Manual/upm-ui-giturl.html"> How to install a package via Git URL </a>
+
+<h3><i>Install from OpenUPM</i></h3>
+
+You can add UPM Scrope like this:
+
+```
+Name: Yunasawa.Library.Editor
+URL: https://package.openupm.com
+Scope(s): com.yunasawa.ynl.editor
+```
+
+Here is how you can do it: <a href="https://openupm.com/docs/getting-started.html#installing-a-upm-package"> How to register a UPM scope(s) </a>
+
+After you register the scope, you can add the package by name: 
+```
+com.yunasawa.ynl.editor
+```
+
+<h3><i>Install done </i></h3>
 
 After you install the package, you can open the window like this:
 <img width="100%" src="https://github.com/Yunasawa/YNL-Editor/assets/113672166/083a8fd7-f6cc-4679-a81b-03b1a6a08aba" alt="version">
