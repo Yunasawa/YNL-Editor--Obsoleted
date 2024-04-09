@@ -27,10 +27,10 @@ Here is how you can do it: <a href="https://docs.unity3d.com/2019.3/Documentatio
 
 <h2><div id="features"> ★ Features </div></h2>
 
-<h3> Animation - Object Renamer (Editor Window) </h3>
+<h3> 🎬 Animation - Object Renamer (Editor Window) </h3>
 <i> Description: A tool that helps you to rename or swap objects/roots in animation(s) without copying key frames one by one. </i>
 <img src="https://github.com/Yunasawa/YNL-Editor/assets/113672166/7d2dfafa-0f5e-42e6-b972-bf277f24e6b2" alt="version">
 
-<h3> Texture - Image Resizer (Editor Window) </h3>
+<h3> 🌅 Texture - Image Resizer (Editor Window) </h3>
 <i> Description: A tool that helps you resize (upsize/downsize) image(s) right inside Unity editor. </i>
 <img src="https://github.com/Yunasawa/YNL-Editor/assets/113672166/146b7452-fdd2-4f37-aacb-5ea26eb65962" alt="version">
