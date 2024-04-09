@@ -1,6 +1,13 @@
 <h1><div align="center"> Yunasawa の Library - Editor </div></h1>
 <h4><div align="center"><i> An editor library provides you tools to improve your developing experiments. </i></div></h4>
 
+<p align="center">
+ <img src="https://img.shields.io/badge/Script-DOCUMENTATION-blue.svg" alt="script">
+ <img src="https://img.shields.io/badge/Yunasawa No Library-Editor-008F64">
+ <img src="https://img.shields.io/badge/Author-Yunasawa Studio-purple.svg" alt="email">
+  <img src="https://img.shields.io/badge/Version-2022.3-orange.svg" alt="version">
+</p>
+
 <h2> ★ About </h2>
 
 A product made by Yunasawa Studio, those will be helpful tools that solve your several problems can appear in your developing progress. <br>
