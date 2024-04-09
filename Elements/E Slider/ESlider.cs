@@ -4,37 +4,40 @@ using UnityEngine.UIElements;
 using YNL.Editor.Extensions;
 using YNL.Editor.Utilities;
 
-public class ESlider : VisualElement
+namespace YNL.Editor.UIElement
 {
-    private const string _styleSheet = "Style Sheets/Elements/ESlider";
-
-    public Slider Slider;
-
-    private MinMax _range;
-
-    public Action<float> OnValueChanged;
-
-    public ESlider(MinMax range) : base()
+    public class ESlider : VisualElement
     {
-        _range = range;
+        private const string _styleSheet = "Style Sheets/Elements/ESlider";
 
-        this.AddStyle(_styleSheet, EAddress.USSFont).AddClass("Main");
+        public Slider Slider;
 
-        Slider = new Slider().AddClass("Slider");
-        Slider.Q("unity-dragger").AddClass("Dragger");
-        Slider.Q("unity-dragger-border").RemoveFromHierarchy();
-        Slider.Q("unity-tracker").AddClass("Tracker");
+        private MinMax _range;
 
-        Label label = new Label("Size").AddClass("Label");
+        public Action<float> OnValueChanged;
 
-        this.AddElements(Slider);
+        public ESlider(MinMax range) : base()
+        {
+            _range = range;
 
-        Slider.RegisterValueChangedCallback(ValueChanged);
-    }
+            this.AddStyle(_styleSheet, EAddress.USSFont).AddClass("Main");
 
-    public void ValueChanged(ChangeEvent<float> evt)
-    {
-        OnValueChanged?.Invoke(Slider.value.Map(new(0, 10), _range));
+            Slider = new Slider().AddClass("Slider");
+            Slider.Q("unity-dragger").AddClass("Dragger");
+            Slider.Q("unity-dragger-border").RemoveFromHierarchy();
+            Slider.Q("unity-tracker").AddClass("Tracker");
+
+            Label label = new Label("Size").AddClass("Label");
+
+            this.AddElements(Slider);
+
+            Slider.RegisterValueChangedCallback(ValueChanged);
+        }
+
+        public void ValueChanged(ChangeEvent<float> evt)
+        {
+            OnValueChanged?.Invoke(Slider.value.Map(new(0, 10), _range));
+        }
     }
 }
 #endif

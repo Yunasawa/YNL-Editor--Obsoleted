@@ -2,25 +2,28 @@
 using UnityEngine.UIElements;
 using YNL.Editor.Utilities;
 
-public class EScrollableGrid : VisualElement
+namespace YNL.Editor.UIElement
 {
-    private const string _styleSheet = "Style Sheets/Elements/EScrollableGrid";
-
-    public ScrollView Scroll;
-    public VisualElement Grid;
-
-    public EScrollableGrid() : base()
+    public class EScrollableGrid : VisualElement
     {
-        Grid = new VisualElement().AddClass("Grid");
-        Scroll = new ScrollView().AddClass("Scroll").AddElements(Grid);
+        private const string _styleSheet = "Style Sheets/Elements/EScrollableGrid";
 
-        this.AddStyle(_styleSheet).AddClass("Main").AddElements(Scroll);
-    }
+        public ScrollView Scroll;
+        public VisualElement Grid;
 
-    public void AddItems(params VisualElement[] items) => Grid.AddElements(items);
-    public void ClearItems()
-    {
-        Grid.RemoveAllElements();
+        public EScrollableGrid() : base()
+        {
+            Grid = new VisualElement().AddClass("Grid");
+            Scroll = new ScrollView().AddClass("Scroll").AddElements(Grid);
+
+            this.AddStyle(_styleSheet).AddClass("Main").AddElements(Scroll);
+        }
+
+        public void AddItems(params VisualElement[] items) => Grid.AddElements(items);
+        public void ClearItems()
+        {
+            Grid.RemoveAllElements();
+        }
     }
 }
 #endif

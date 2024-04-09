@@ -1,22 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿#if UNITY_EDITOR
 using UnityEngine.UIElements;
 using YNL.Editor.Utilities;
 
-public class ELine : Image
+namespace YNL.Editor.UIElement
 {
-    private const string USS_StyleSheet = "Style Sheets/Elements/ELine";
-
-    public ELine(ELineMode mode) : base()
+    public class ELine : Image
     {
-        this.AddStyle(USS_StyleSheet);
-        if (mode == ELineMode.Horizontal) this.SetName("Horizontal");
-        if (mode == ELineMode.Vertical) this.SetName("Vertical");
+        private const string USS_StyleSheet = "Style Sheets/Elements/ELine";
+
+        public ELine(ELineMode mode) : base()
+        {
+            this.AddStyle(USS_StyleSheet);
+            if (mode == ELineMode.Horizontal) this.SetName("Horizontal");
+            if (mode == ELineMode.Vertical) this.SetName("Vertical");
+        }
+    }
+
+    public enum ELineMode
+    {
+        Vertical, Horizontal
     }
 }
-
-public enum ELineMode
-{
-    Vertical, Horizontal
-}
+#endif

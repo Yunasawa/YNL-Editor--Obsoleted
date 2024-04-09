@@ -139,7 +139,7 @@
 	width: 10px;
 	height: 10px;
 
-	background-image: url("project://database/Assets/Test/Icons/Target Icon");
+	background-image: resource("Textures/Icons/Target Icon");
 
 	align-self: center;
 

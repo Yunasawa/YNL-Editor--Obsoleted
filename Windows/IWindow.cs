@@ -1,6 +1,9 @@
-public interface IWindow
+namespace YNL.Editor.Window
 {
-    virtual void OnSelectionChange() { }
-    virtual void CreateGUI() { }
-    virtual void OnGUI() { }
+    public interface IWindow
+    {
+        virtual void OnSelectionChange() { }
+        virtual void CreateGUI() { }
+        virtual void OnGUI() { }
+    }
 }

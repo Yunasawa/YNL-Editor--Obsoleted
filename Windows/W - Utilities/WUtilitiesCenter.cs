@@ -1,10 +1,13 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
+using YNL.Editor.Extensions;
+using YNL.Editor.UIElement;
 using YNL.Editor.Utilities;
 using YNL.Editor.Window.Texture.ImageResizer;
+using YNL.Editor.Window.Animation.ObjectRenamer;
 
-namespace YNL.Editor.Window.Texture
+namespace YNL.Editor.Window
 {
     public class WUtilitiesCenter : EditorWindow
     {
@@ -50,7 +53,7 @@ namespace YNL.Editor.Window.Texture
             Texture2D textureImageResizerIcon = Resources.Load<Texture2D>("Textures/Windows/Texture Center/Image Resizer Icon");
             Texture2D animationObjectRenamerIcon = Resources.Load<Texture2D>("Textures/Windows/Animation Center/Cracking Bone");
             
-            Texture2D waitIcon = Resources.Load<Texture2D>("Textures/Icon/Time1");
+            Texture2D waitIcon = Resources.Load<Texture2D>("Textures/Icons/Time1");
 
             WindowTagPanel = new(windowIcon, "Editor Utilities", "Center", _tagPanelWidth, new EWindowTag[]
             {

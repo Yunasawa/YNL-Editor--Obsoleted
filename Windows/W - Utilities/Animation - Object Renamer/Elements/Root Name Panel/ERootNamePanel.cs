@@ -1,44 +1,48 @@
 ﻿#if UNITY_EDITOR
 using UnityEngine.UIElements;
+using YNL.Editor.UIElement;
 using YNL.Editor.Utilities;
 
-public class ERootNamePanel : Button
+namespace YNL.Editor.Window.Animation.ObjectRenamer
 {
-    private const string USS_StyleSheet = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/ERootNamePanel";
-
-    public Image TitleBackground;
-    public Image TagIcon;
-    public ELine Line;
-    public Label Title;
-    public ScrollView ClipPanel;
-    public Label Board;
-
-    public ERootNamePanel() : base()
+    public class ERootNamePanel : Button
     {
-        this.AddStyle(USS_StyleSheet, EAddress.USSFont).SetName("Root");
+        private const string USS_StyleSheet = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/ERootNamePanel";
 
-        TagIcon = new Image().SetName("TagIcon");
-        Line = new ELine(ELineMode.Vertical).AddClass("Line");
-        Title = new Label("Referenced objects full path").SetName("Label");
-        TitleBackground = new Image().SetName("TitleBackground").AddElements(TagIcon, Line, Title);
+        public Image TitleBackground;
+        public Image TagIcon;
+        public ELine Line;
+        public Label Title;
+        public ScrollView ClipPanel;
+        public Label Board;
 
-        ClipPanel = new ScrollView().SetName("ClipPanel");
+        public ERootNamePanel() : base()
+        {
+            this.AddStyle(USS_StyleSheet, EAddress.USSFont).SetName("Root");
 
-        AddBoard("No animation clip found!");
+            TagIcon = new Image().SetName("TagIcon");
+            Line = new ELine(ELineMode.Vertical).AddClass("Line");
+            Title = new Label("Referenced objects full path").SetName("Label");
+            TitleBackground = new Image().SetName("TitleBackground").AddElements(TagIcon, Line, Title);
 
-        this.AddElements(TitleBackground, ClipPanel);
-    }
+            ClipPanel = new ScrollView().SetName("ClipPanel");
 
-    public void AddClipItem(EClipNameField field)
-    {
-        ClipPanel.AddElements(field);
-    }
+            AddBoard("No animation clip found!");
 
-    public void ClearAllClipItem() => ClipPanel.RemoveAllElements();
-    public void AddBoard(string text)
-    {
-        Board = new Label().SetText(text).AddClass("Board");
-        ClipPanel.AddElements(Board);
+            this.AddElements(TitleBackground, ClipPanel);
+        }
+
+        public void AddClipItem(EClipNameField field)
+        {
+            ClipPanel.AddElements(field);
+        }
+
+        public void ClearAllClipItem() => ClipPanel.RemoveAllElements();
+        public void AddBoard(string text)
+        {
+            Board = new Label().SetText(text).AddClass("Board");
+            ClipPanel.AddElements(Board);
+        }
     }
 }
 #endif

@@ -1,35 +1,39 @@
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
+using YNL.Editor.Extensions;
 
-public class WPopupWindow<T> : EditorWindow where T : WPopupWindow<T>
+namespace YNL.Editor.Window
 {
-    private static T _instance;
 
-    public static void Open(params object[] parameters)
+    public class WPopupWindow<T> : EditorWindow where T : WPopupWindow<T>
     {
-        T window = CreateInstance<T>();
-        if (!_instance.IsNull())
+        private static T _instance;
+
+        public static void Open(params object[] parameters)
         {
-            if (!_instance != window) _instance.Close();
+            T window = CreateInstance<T>();
+            if (!_instance.IsNull())
+            {
+                if (!_instance != window) _instance.Close();
+            }
+            _instance = window;
+
+            Vector2 mousePos = GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
+            _instance.position = new Rect(mousePos.x, mousePos.y, 300, 200);
+
+            _instance.ShowPopup();
+            _instance.Initialize(parameters);
         }
-        _instance = window;
 
-        Vector2 mousePos = GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
-        _instance.position = new Rect(mousePos.x, mousePos.y, 300, 200);
+        private void OnLostFocus()
+        {
+            _instance.Close();
+        }
 
-        _instance.ShowPopup();
-        _instance.Initialize(parameters);
+        protected virtual void Initialize(params object[] parameters) { }
+
+        protected virtual void CreateVirtual() { }
     }
-
-    private void OnLostFocus()
-    {
-        _instance.Close();
-    }
-
-    protected virtual void Initialize(params object[] parameters) { }
-
-    protected virtual void CreateVirtual() { }
 }
 #endif

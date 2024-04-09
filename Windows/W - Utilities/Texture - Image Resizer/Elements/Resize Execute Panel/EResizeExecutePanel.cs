@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using UnityEngine.UIElements;
+using YNL.Editor.UIElement;
 using YNL.Editor.Utilities;
 
 namespace YNL.Editor.Window.Texture.ImageResizer

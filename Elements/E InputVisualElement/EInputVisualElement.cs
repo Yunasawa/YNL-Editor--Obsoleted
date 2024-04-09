@@ -1,11 +1,14 @@
 using UnityEngine.UIElements;
 
-public class EInputVisualElement : VisualElement, INotifyValueChanged<object>
+namespace YNL.Editor.UIElement
 {
-    public object value { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
-    public void SetValueWithoutNotify(object newValue)
+    public class EInputVisualElement : VisualElement, INotifyValueChanged<object>
     {
-        throw new System.NotImplementedException();
+        public object value { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+        public void SetValueWithoutNotify(object newValue)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

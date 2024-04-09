@@ -1,6 +1,8 @@
+#if UNITY_EDITOR
 using System;
 using System.Reflection;
 using UnityEngine.UIElements;
+using YNL.Editor.Extensions;
 
 namespace YNL.Editor.Utilities
 {
@@ -95,9 +97,5 @@ namespace YNL.Editor.Utilities
             return element;
         }
     }
-
-    public enum ABC
-    {
-        One, Two, Three, Four
-    }
 }
+#endif

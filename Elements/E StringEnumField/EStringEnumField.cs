@@ -1,39 +1,43 @@
-﻿using System;
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 using YNL.Editor.Utilities;
+using YNL.Editor.Extensions;
 
-public class EStringEnumField : VisualElement
+namespace YNL.Editor.UIElement
 {
-    private const string _styleSheet = "Style Sheets/Elements/EStringEnumField";
-
-    public Label Label;
-    public PopupField<string> Popup;
-
-    public Action<string> SelectionChanged;
-
-    public EStringEnumField(string label, List<string> options, Action<string> selectionChanged = null, string defaultOption = "")
+    public class EStringEnumField : VisualElement
     {
-        SelectionChanged = selectionChanged;
-        options.Insert(0, "_");
+        private const string _styleSheet = "Style Sheets/Elements/EStringEnumField";
 
-        this.AddStyle(_styleSheet).AddClass("Main");
+        public Label Label;
+        public PopupField<string> Popup;
 
-        Label = new Label(label).AddClass("Label");
+        public Action<string> SelectionChanged;
 
-        Popup = new PopupField<string>(options, 0).AddClass("Popup");
-        if (!options.Contains(defaultOption) || defaultOption.IsNullOrEmpty()) Popup.value = options[0];
-        else Popup.value = options[options.IndexOf(defaultOption)];
-        Popup.RegisterValueChangedCallback(OnValueChanged);
+        public EStringEnumField(string label, List<string> options, Action<string> selectionChanged = null, string defaultOption = "")
+        {
+            SelectionChanged = selectionChanged;
+            options.Insert(0, "_");
 
-        Add(Label);
-        Add(Popup);
-    }
+            this.AddStyle(_styleSheet).AddClass("Main");
 
-    private void OnValueChanged(ChangeEvent<string> evt)
-    {
-        SelectionChanged?.Invoke(Popup.value);
+            Label = new Label(label).AddClass("Label");
+
+            Popup = new PopupField<string>(options, 0).AddClass("Popup");
+            if (!options.Contains(defaultOption) || defaultOption.IsNullOrEmpty()) Popup.value = options[0];
+            else Popup.value = options[options.IndexOf(defaultOption)];
+            Popup.RegisterValueChangedCallback(OnValueChanged);
+
+            Add(Label);
+            Add(Popup);
+        }
+
+        private void OnValueChanged(ChangeEvent<string> evt)
+        {
+            SelectionChanged?.Invoke(Popup.value);
+        }
     }
 }
 #endif

@@ -1,30 +1,34 @@
 #if UNITY_EDITOR
 using UnityEditor;
+using YNL.Editor.UIElement;
 
-[System.Serializable]
-public class WAnimationObjectRenamer_Main : IWindow
+namespace YNL.Editor.Window.Animation.ObjectRenamer
 {
-    public EditorWindow Root;
-
-    public WAnimationObjectRenamer_Visual Visual;
-    public WAnimationObjectRenamer_Handler Handler;
-
-    public WAnimationObjectRenamer_Main(EditorWindow root, EWindowTagPanel tagPanel)
+    [System.Serializable]
+    public class WAnimationObjectRenamer_Main : IWindow
     {
-        Root = root;
+        public EditorWindow Root;
 
-        Handler = new(this);
-        Visual = new(tagPanel, this);
-    }
+        public WAnimationObjectRenamer_Visual Visual;
+        public WAnimationObjectRenamer_Handler Handler;
 
-    public void OnGUI()
-    {
-        Handler.OnGUI();
-    }
+        public WAnimationObjectRenamer_Main(EditorWindow root, EWindowTagPanel tagPanel)
+        {
+            Root = root;
 
-    public void OnSelectionChange()
-    {
-        Handler.OnSelectionChange();
+            Handler = new(this);
+            Visual = new(tagPanel, this);
+        }
+
+        public void OnGUI()
+        {
+            Handler.OnGUI();
+        }
+
+        public void OnSelectionChange()
+        {
+            Handler.OnSelectionChange();
+        }
     }
 }
 #endif

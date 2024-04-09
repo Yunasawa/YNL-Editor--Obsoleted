@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editor.Utilities;
+using YNL.Editor.Extensions;
 
 namespace YNL.Editor.Window.Texture.ImageResizer
 {
