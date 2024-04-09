@@ -23,6 +23,10 @@ Contact us: <kbd> yunasawa200@gmail.com </kbd>
 You can install the package via Git URL: <kbd>https://github.com/Yunasawa/YNL-Editor</kbd> <br>
 Here is how you can do it: <a href="https://docs.unity3d.com/2019.3/Documentation/Manual/upm-ui-giturl.html"> How to install a package via Git URL</a>
 
+After you install the package, you can open the window like this:
+<img width="100%" src="https://github.com/Yunasawa/YNL-Editor/assets/113672166/083a8fd7-f6cc-4679-a81b-03b1a6a08aba" alt="version">
+
+
 <!-- <h2> Tutorials </h2> -->
 
 <h2><div id="features"> ★ Features </div></h2>
