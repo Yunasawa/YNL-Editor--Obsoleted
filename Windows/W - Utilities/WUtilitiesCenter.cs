@@ -6,6 +6,8 @@ using YNL.Editor.UIElement;
 using YNL.Editor.Utilities;
 using YNL.Editor.Window.Texture.ImageResizer;
 using YNL.Editor.Window.Animation.ObjectRenamer;
+using Unity.Plastic.Newtonsoft.Json.Bson;
+using System;
 
 namespace YNL.Editor.Window
 {
@@ -57,9 +59,9 @@ namespace YNL.Editor.Window
 
             WindowTagPanel = new(windowIcon, "Editor Utilities", "Center", _tagPanelWidth, new EWindowTag[]
             {
-            new EWindowTag(textureImageResizerIcon, "Image Resizer", "Texture", Color.white, _tagPanelWidth - 15, () => SwitchWindow(WUtilitiesWindowType.TextureImageResizer)),
-            new EWindowTag(animationObjectRenamerIcon, "Object Renamer", "Animation", Color.white, _tagPanelWidth - 15, () => SwitchWindow(WUtilitiesWindowType.AnimationObjectRenamer)),
-            new EWindowTag(waitIcon, "Coming Soon", "", Color.white, _tagPanelWidth - 15, () => SwitchWindow(WUtilitiesWindowType.C))
+            new EWindowTag(textureImageResizerIcon, "Image Resizer", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.TextureImageResizer)),
+            new EWindowTag(animationObjectRenamerIcon, "Object Renamer", "Animation", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.AnimationObjectRenamer)),
+            new EWindowTag(waitIcon, "Coming Soon", "", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.C))
             });
 
             ImageResizerWindow = new WTextureImageResizer_Main(this, WindowTagPanel);
@@ -80,15 +82,22 @@ namespace YNL.Editor.Window
             switch (windowTag)
             {
                 case WUtilitiesWindowType.TextureImageResizer:
-                    _selectedWindow = ImageResizerWindow;
+                    SwitchWindow(ImageResizerWindow);
                     rootVisualElement.Add(ImageResizerWindow.Visual);
                     break;
                 case WUtilitiesWindowType.AnimationObjectRenamer:
-                    _selectedWindow = ObjectRenamerWindow;
+                    SwitchWindow(ObjectRenamerWindow);
                     rootVisualElement.Add(ObjectRenamerWindow.Visual);
                     break;
             }
             rootVisualElement.Add(WindowTagPanel);
+        }
+        
+        private void SwitchWindow(IWindow window)
+        {
+            if (!_selectedWindow.IsNull()) WindowTagPanel.Tutorial.clicked -= _selectedWindow.OpenInstruction;
+            _selectedWindow = window;
+            WindowTagPanel.Tutorial.clicked += _selectedWindow.OpenInstruction;
         }
     }
 

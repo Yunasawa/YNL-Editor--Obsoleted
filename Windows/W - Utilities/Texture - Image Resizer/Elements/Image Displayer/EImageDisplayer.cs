@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using YNL.Editor.Extensions;
 using YNL.Editor.UIElement;
 using YNL.Editor.Utilities;
 
@@ -34,6 +35,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
 
             foreach (var texture in textures)
             {
+                MDebug.Custom("Image", texture.IsNull() ? "is null" : texture.name);
                 EImageBox imageBox = new EImageBox(texture, newSize).SetSize(width, width * 1.5f);
                 Grid.AddElements(imageBox);
                 if (keepAspectRatio) imageBox.SetNewAspectedSize((int)newSize.x, true);

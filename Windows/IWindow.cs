@@ -5,5 +5,7 @@ namespace YNL.Editor.Window
         virtual void OnSelectionChange() { }
         virtual void CreateGUI() { }
         virtual void OnGUI() { }
+
+        virtual void OpenInstruction() { }
     }
 }

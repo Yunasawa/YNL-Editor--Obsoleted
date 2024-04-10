@@ -2,6 +2,7 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using YNL.Editor.Extensions;
 using YNL.Editor.UIElement;
 
 namespace YNL.Editor.Window.Texture.ImageResizer
@@ -33,8 +34,10 @@ namespace YNL.Editor.Window.Texture.ImageResizer
             Handler.OnGUI();
         }
 
-        public void OnSelectionChange()
+        public void OpenInstruction()
         {
+
+            WTextureImageResizer_Instruction.Open(660, 500, WPopupPivot.BottomLeft);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 using YNL.Editor.Extensions;
 using YNL.Editor.Utilities;
@@ -23,6 +24,12 @@ namespace YNL.Editor.UIElement
         public Image Icon = new Image();
         public Label Title = new Label();
         public Label Subtitle = new Label();
+        public ScrollView Scroll = new ScrollView();
+
+        public Image TutorialBackground = new Image();
+        public Button Tutorial = new Button();
+        public Image TutorialIcon = new Image();
+        public Label TutorialLabel = new Label("Instruction");
 
         public EWindowTag[] Tags = new EWindowTag[0];
 
@@ -39,15 +46,24 @@ namespace YNL.Editor.UIElement
 
             TitleBackground.AddClass(_uss_titleBackground).AddElements(Icon, Title, Subtitle);
 
-            this.AddClass(_uss_panelBackground).AddElements(TitleBackground).AddSpace(0, 100);
+            TutorialIcon.AddClass("TutorialIcon");
+            TutorialLabel.AddClass("TutorialLabel");
+            Tutorial.AddClass("Tutorial").AddElements(TutorialIcon, TutorialLabel);
+            TutorialBackground.AddClass("TutorialBackground").AddElements(Tutorial);
+
+            this.AddClass(_uss_panelBackground).AddElements(TitleBackground, TutorialBackground).AddSpace(0, 100);
 
             Tags = tags;
 
+            Scroll.AddClass("Scroll");
+
             foreach (var tag in Tags)
             {
-                this.AddElements(tag).AddSpace(0, 45);
+                Scroll.AddElements(tag).AddSpace(0, 45);
                 tag.OnClick += () => SelectTag(tag, false);
             }
+
+            this.AddElements(Scroll);
 
             SelectTag(Tags[_selectedTag], true);
 
@@ -62,6 +78,10 @@ namespace YNL.Editor.UIElement
             Title.EnableClass(true, _uss_titleHover);
             Subtitle.EnableClass(true, _uss_subtitleHover);
 
+            Tutorial.EnableClass(true, "Tutorial".Custom("Enter"));
+            TutorialIcon.EnableClass(true, "TutorialIcon".Custom("Enter"));
+            TutorialLabel.EnableClass(true, "TutorialLabel".Custom("Enter"));
+
             foreach (var tag in Tags) tag.OnExpand();
         }
         public override void PointerExit()
@@ -71,6 +91,10 @@ namespace YNL.Editor.UIElement
             Icon.EnableClass(false, _uss_iconHover);
             Title.EnableClass(false, _uss_titleHover);
             Subtitle.EnableClass(false, _uss_subtitleHover);
+
+            Tutorial.EnableClass(false, "Tutorial".Custom("Enter"));
+            TutorialIcon.EnableClass(false, "TutorialIcon".Custom("Enter"));
+            TutorialLabel.EnableClass(false, "TutorialLabel".Custom("Enter"));
 
             foreach (var tag in Tags) tag.OnCollape();
         }

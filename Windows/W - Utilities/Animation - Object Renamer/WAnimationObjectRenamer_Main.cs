@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using UnityEditor;
+using YNL.Editor.Extensions;
 using YNL.Editor.UIElement;
 
 namespace YNL.Editor.Window.Animation.ObjectRenamer
@@ -28,6 +29,11 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
         public void OnSelectionChange()
         {
             Handler.OnSelectionChange();
+        }
+
+        public void OpenInstruction()
+        {
+            WAnimationObjectRenamer_Instruction.Open(660, 500, WPopupPivot.BottomLeft);
         }
     }
 }

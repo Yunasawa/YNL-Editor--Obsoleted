@@ -1,0 +1,24 @@
+.Main
+{
+	background-color: #1f1f1f;
+	border-width: 1px;
+	border-color: #4f4f4f;
+
+	width: 100%;
+	height: 100%;
+}
+
+.Image
+{
+	background-image: resource("Textures/Windows/Texture Center/Instruction Popup");
+
+	width: 100%;
+	height: 1123px;
+}
+
+.Scroll
+{
+	width: 100%;
+	height: 100%;
+	flex-grow: 1;
+}

@@ -25,6 +25,12 @@ namespace YNL.Editor.Window.Texture.ImageResizer
 
         public EImageBox(Texture2D image, Vector2 newSize) : base()
         {
+            if (image.IsNull())
+            {
+                MDebug.Notify("Image not found, something is wrong!");
+                return;
+            }
+
             AssignedImage = image;
             NewAssignedSize = newSize;
 
@@ -38,7 +44,6 @@ namespace YNL.Editor.Window.Texture.ImageResizer
                 WTextureImageResizer_Main.OnRemoveImage?.Invoke(AssignedImage); 
             };
 
-            if (image.IsNull()) MDebug.Notify("NULL");
             Name = new Button().AddClass("Name").SetText(image.name);
             Name.clicked += () => EditorGUIUtility.PingObject(image);
 

@@ -10,7 +10,7 @@ namespace YNL.Editor.Window
     {
         private static T _instance;
 
-        public static void Open(params object[] parameters)
+        public static void Open(int width = 300, int height = 200, WPopupPivot pivot = WPopupPivot.TopLeft, params object[] parameters)
         {
             T window = CreateInstance<T>();
             if (!_instance.IsNull())
@@ -20,10 +20,12 @@ namespace YNL.Editor.Window
             _instance = window;
 
             Vector2 mousePos = GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
-            _instance.position = new Rect(mousePos.x, mousePos.y, 300, 200);
+            if (pivot == WPopupPivot.TopLeft) _instance.position = new Rect(mousePos.x, mousePos.y, width, height);
+            if (pivot == WPopupPivot.BottomLeft) _instance.position = new Rect(mousePos.x, mousePos.y - height, width, height);
 
             _instance.ShowPopup();
             _instance.Initialize(parameters);
+            _instance.CreateUI();
         }
 
         private void OnLostFocus()
@@ -32,8 +34,12 @@ namespace YNL.Editor.Window
         }
 
         protected virtual void Initialize(params object[] parameters) { }
+        protected virtual void CreateUI() { }
+    }
 
-        protected virtual void CreateVirtual() { }
+    public enum WPopupPivot
+    {
+        TopLeft, BottomLeft,
     }
 }
 #endif
