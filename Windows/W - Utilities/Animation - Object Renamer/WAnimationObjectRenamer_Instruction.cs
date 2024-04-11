@@ -1,5 +1,5 @@
+#if UNITY_EDITOR
 using UnityEngine.UIElements;
-using YNL.Editor.Extensions;
 using YNL.Editor.Utilities;
 using YNL.Editor.Window;
 
@@ -21,3 +21,4 @@ public class WAnimationObjectRenamer_Instruction : WPopupWindow<WAnimationObject
         this.rootVisualElement.AddElements(Scroll);
     }
 }
+#endif
