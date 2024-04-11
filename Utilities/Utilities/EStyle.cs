@@ -234,7 +234,7 @@ namespace YNL.Editor.Utilities
         #region X Element Style - Background Color
 
         public static T SetBackgroundColor<T>(this T element, string hex) where T : VisualElement
-            => element.SetBackgroundColor(hex.ToColor());
+            => element.SetBackgroundColor(EEditorExtension.ToColor(hex));
         public static T SetBackgroundColor<T>(this T element, Color color) where T : VisualElement
         {
             element.style.backgroundColor = color;
@@ -447,7 +447,7 @@ namespace YNL.Editor.Utilities
             return element;
         }
         public static T SetColor<T>(this T element, string hex) where T : VisualElement
-            => element.SetColor(hex.ToColor());
+            => element.SetColor(EEditorExtension.ToColor(hex));
 
         /// <summary>
         /// Get the color used when drawing the text of an element

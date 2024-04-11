@@ -4,6 +4,8 @@ namespace YNL.Editor.Extensions
 {
     public static class CColor
     {
+        public static Color Normalize(this Color color) => new Color(color.r / 255, color.g / 255, color.b / 255, 1);
+
         #region 🎨 Green Color
         public static Color MediumSpringGreen = new Color(0, 250, 154).Normalize(); //#00FA9A
         public static Color Lime = new Color(174, 243, 89).Normalize(); //#AEF359
