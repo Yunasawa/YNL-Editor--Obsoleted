@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if UNITY_EDITOR
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -234,7 +235,7 @@ namespace YNL.Editor.Utilities
         #region X Element Style - Background Color
 
         public static T SetBackgroundColor<T>(this T element, string hex) where T : VisualElement
-            => element.SetBackgroundColor(EEditorExtension.ToColor(hex));
+            => element.SetBackgroundColor(hex.ToColor());
         public static T SetBackgroundColor<T>(this T element, Color color) where T : VisualElement
         {
             element.style.backgroundColor = color;
@@ -447,7 +448,7 @@ namespace YNL.Editor.Utilities
             return element;
         }
         public static T SetColor<T>(this T element, string hex) where T : VisualElement
-            => element.SetColor(EEditorExtension.ToColor(hex));
+            => element.SetColor(hex.ToColor());
 
         /// <summary>
         /// Get the color used when drawing the text of an element
@@ -578,3 +579,4 @@ namespace YNL.Editor.Utilities
         }
     }
 }
+#endif
