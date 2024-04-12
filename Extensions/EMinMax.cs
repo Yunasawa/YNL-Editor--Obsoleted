@@ -1,19 +1,20 @@
+#if UNITY_EDITOR
 namespace YNL.Editor.Extensions
 {
     [System.Serializable]
-    public struct MinMax
+    public struct EMinMax
     {
         public float Min;
         public float Max;
-        public MinMaxType Type;
+        public EMinMaxType Type;
 
-        public MinMax(MinMaxType type)
+        public EMinMax(EMinMaxType type)
         {
             Min = 0;
             Max = 1;
             Type = type;
         }
-        public MinMax(float min, float max, MinMaxType type = MinMaxType.Field)
+        public EMinMax(float min, float max, EMinMaxType type = EMinMaxType.Field)
         {
             Min = min;
             Max = max;
@@ -34,8 +35,9 @@ namespace YNL.Editor.Extensions
         public bool InSegment(float number) => InRange(number, false, false);
     }
 
-    public enum MinMaxType
+    public enum EMinMaxType
     {
         Field, Slider
     }
 }
+#endif

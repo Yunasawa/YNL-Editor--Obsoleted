@@ -62,7 +62,7 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
         #region ▶ General Fields/Properties
         private bool _createdAllElements = false;
         private float _tagPanelWidth = 200;
-        private MinMax _propertyPanelWidth = new MinMax(100, 300);
+        private EMinMax _propertyPanelWidth = new EMinMax(100, 300);
 
         private WAnimationObjectRenamer_Main _main;
 
@@ -224,13 +224,13 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
                     _main.Handler.ReplaceRoot(_newRoot, _originalRoot, () => ChangeVisuals(_newRoot, _originalRoot));
                     _main.Handler.ReplaceRoot("Temporary Root", _newRoot, () => ChangeVisuals("Temporary Root", _newRoot));
 
-                    MDebug.Custom("Swap", $"{_originalRoot} ▶ {_newRoot}", CColor.Macaroon.ToHex());
+                    MDebug.Custom("Swap", $"{_originalRoot} ▶ {_newRoot}", EColor.Macaroon.ToHex());
                 }
                 else
                 {
                     _main.Handler.ReplaceRoot(_originalRoot, _newRoot, () => ChangeVisuals(_originalRoot, _newRoot));
 
-                    MDebug.Custom("Rename", $"{_originalRoot} ▶ {_newRoot}", CColor.Flamingo.ToHex());
+                    MDebug.Custom("Rename", $"{_originalRoot} ▶ {_newRoot}", EColor.Flamingo.ToHex());
                 }
             }
 

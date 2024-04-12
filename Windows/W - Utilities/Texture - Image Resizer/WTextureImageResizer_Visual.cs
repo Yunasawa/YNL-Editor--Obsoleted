@@ -17,7 +17,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
         #endregion
         #region ▶ Editor Properties
         private float _tagPanelWidth = 200;
-        private MinMax _propertyPanelWidth = new MinMax(100, 200);
+        private EMinMax _propertyPanelWidth = new EMinMax(100, 200);
         public float ImageWidth => _slider.Slider.value.Map(new(0, 10), _propertyPanelWidth);
         #endregion
         #region ▶ Style Sheets

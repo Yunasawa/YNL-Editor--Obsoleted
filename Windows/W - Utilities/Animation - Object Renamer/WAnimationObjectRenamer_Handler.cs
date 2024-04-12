@@ -63,7 +63,7 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
                 PathColors.Clear();
                 AnimationClips.Clear();
 
-                ClipColors.Add((AnimationClip)Selection.activeObject, CColor.MediumSpringGreen);
+                ClipColors.Add((AnimationClip)Selection.activeObject, EColor.MediumSpringGreen);
                 AnimationClips.Add((AnimationClip)Selection.activeObject);
 
                 _main.Visual.PresentAllClips(ClipColors);

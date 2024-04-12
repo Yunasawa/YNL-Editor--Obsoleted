@@ -12,11 +12,11 @@ namespace YNL.Editor.UIElement
 
         public Slider Slider;
 
-        private MinMax _range;
+        private EMinMax _range;
 
         public Action<float> OnValueChanged;
 
-        public ESlider(MinMax range) : base()
+        public ESlider(EMinMax range) : base()
         {
             _range = range;
 

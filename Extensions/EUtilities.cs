@@ -7,8 +7,12 @@ using UnityEngine;
 
 namespace YNL.Editor.Extensions
 {
-    public static class EEditorExtension
+    public static class EUtilities
     {
+        public static string Custom(this string uss, string custom) => $"{uss}__{custom}";
+        public static string Hover(this string uss) => $"{uss}__hover";
+        public static string Drag(this string uss) => $"{uss}__drag";
+
         public static T TryGet<T>(this T[] array, int index)
         {
             if (array.IsNullOrEmpty()) return default;
@@ -90,7 +94,7 @@ namespace YNL.Editor.Extensions
             if (!list.Contains(element)) list.Add(element);
             return list;
         }
-        public static float Map(this float value, MinMax origin, MinMax target)
+        public static float Map(this float value, EMinMax origin, EMinMax target)
         {
             float originRate = 100 / (origin.Max - origin.Min);
             float currentPercent = value * originRate;
@@ -110,6 +114,8 @@ namespace YNL.Editor.Extensions
         {
             return (T)Enum.Parse(typeof(T), value, true);
         }
+        public static Color Normalize(this Color color) => new Color(color.r / 255, color.g / 255, color.b / 255, 1);
+
     }
 
     public static class MDebug
