@@ -3,7 +3,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using YNL.Editor.Extensions;
+using YNL.Editor.Extension;
 
 namespace YNL.Editor.UIElement
 {

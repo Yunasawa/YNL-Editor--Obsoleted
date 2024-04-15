@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using YNL.Editor.Extensions;
+using YNL.Editor.Extension;
 
 namespace YNL.Editor.Window.Texture.ImageResizer
 {

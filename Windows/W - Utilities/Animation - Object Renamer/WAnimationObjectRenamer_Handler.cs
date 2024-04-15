@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
-using YNL.Editor.Extensions;
+using YNL.Editor.Extension;
 
 namespace YNL.Editor.Window.Animation.ObjectRenamer
 {

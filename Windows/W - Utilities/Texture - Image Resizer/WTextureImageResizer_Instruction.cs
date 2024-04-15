@@ -1,6 +1,6 @@
 #if UNITY_EDITOR
 using UnityEngine.UIElements;
-using YNL.Editor.Utilities;
+using YNL.Editor.Utility;
 using YNL.Editor.Window;
 
 public class WTextureImageResizer_Instruction : WPopupWindow<WTextureImageResizer_Instruction>

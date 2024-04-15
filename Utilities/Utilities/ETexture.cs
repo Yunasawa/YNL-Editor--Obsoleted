@@ -1,8 +1,8 @@
 ﻿#if UNITY_EDITOR
 using UnityEngine;
-using YNL.Editor.Extensions;
+using YNL.Editor.Extension;
 
-namespace YNL.Editor.Utilities
+namespace YNL.Editor.Utility
 {
     public static class ETexture
     {

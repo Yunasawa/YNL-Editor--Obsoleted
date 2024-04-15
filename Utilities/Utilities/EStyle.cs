@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-using YNL.Editor.Extensions;
+using YNL.Editor.Extension;
 
-namespace YNL.Editor.Utilities
+namespace YNL.Editor.Utility
 {
     public static class EStyle
     {

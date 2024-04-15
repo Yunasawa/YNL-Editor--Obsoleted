@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using YNL.Editor.Utilities;
+using YNL.Editor.Utility;
 using UnityEngine.UIElements;
 
 namespace YNL.Editor.Window

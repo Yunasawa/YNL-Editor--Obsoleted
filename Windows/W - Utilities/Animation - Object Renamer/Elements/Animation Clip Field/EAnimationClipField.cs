@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editor.UIElement;
-using YNL.Editor.Utilities;
+using YNL.Editor.Utility;
 
 namespace YNL.Editor.Window.Animation.ObjectRenamer
 {

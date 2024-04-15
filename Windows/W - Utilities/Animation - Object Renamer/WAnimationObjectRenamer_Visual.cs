@@ -4,11 +4,11 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEngine.UIElements;
-using YNL.Editor.Utilities;
+using YNL.Editor.Utility;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using YNL.Editor.Extensions;
+using YNL.Editor.Extension;
 using YNL.Editor.UIElement;
 
 namespace YNL.Editor.Window.Animation.ObjectRenamer

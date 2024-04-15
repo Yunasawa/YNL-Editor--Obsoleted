@@ -1,5 +1,5 @@
 #if UNITY_EDITOR
-namespace YNL.Editor.Extensions
+namespace YNL.Editor.Extension
 {
     [System.Serializable]
     public struct EMinMax

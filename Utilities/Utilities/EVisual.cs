@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UIElements;
 
-namespace YNL.Editor.Utilities
+namespace YNL.Editor.Utility
 {
     public static class EVisual
     {

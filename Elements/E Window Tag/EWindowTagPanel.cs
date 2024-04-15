@@ -2,8 +2,8 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
-using YNL.Editor.Extensions;
-using YNL.Editor.Utilities;
+using YNL.Editor.Extension;
+using YNL.Editor.Utility;
 
 namespace YNL.Editor.UIElement
 {

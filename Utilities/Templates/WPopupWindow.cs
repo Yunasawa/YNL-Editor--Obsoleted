@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-using YNL.Editor.Extensions;
+using YNL.Editor.Extension;
 
 namespace YNL.Editor.Window
 {

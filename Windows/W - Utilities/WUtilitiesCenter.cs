@@ -1,9 +1,9 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-using YNL.Editor.Extensions;
+using YNL.Editor.Extension;
 using YNL.Editor.UIElement;
-using YNL.Editor.Utilities;
+using YNL.Editor.Utility;
 using YNL.Editor.Window.Texture.ImageResizer;
 using YNL.Editor.Window.Animation.ObjectRenamer;
 using Unity.Plastic.Newtonsoft.Json.Bson;

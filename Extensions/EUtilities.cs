@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-namespace YNL.Editor.Extensions
+namespace YNL.Editor.Extension
 {
     public static class EUtilities
     {

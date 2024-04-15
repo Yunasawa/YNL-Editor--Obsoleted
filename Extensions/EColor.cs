@@ -1,7 +1,7 @@
 ﻿#if UNITY_EDITOR
 using UnityEngine;
 
-namespace YNL.Editor.Extensions
+namespace YNL.Editor.Extension
 {
     public static class EColor
     {
