@@ -81,10 +81,6 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
 
             _main.Root.Repaint();
         }
-        public void OnGUI()
-        {
-            GetReferencedAnimator();
-        }
 
         public void GetReferencedAnimator()
         {

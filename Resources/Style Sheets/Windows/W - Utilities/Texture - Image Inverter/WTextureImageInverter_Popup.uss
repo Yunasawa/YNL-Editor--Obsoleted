@@ -10,7 +10,7 @@
 
 .Image
 {
-	background-image: resource("Textures/Windows/Texture Center/Image Resizer/Instruction Popup");
+	background-image: resource("Textures/Windows/Texture Center/Image Inverter/Instruction Popup");
 
 	width: 100%;
 	height: 1123px;

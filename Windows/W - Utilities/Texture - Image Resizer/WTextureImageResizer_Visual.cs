@@ -11,7 +11,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
     public class WTextureImageResizer_Visual : VisualElement
     {
         #region ▶ Editor Constants
-        private const string _windowIcon = "Textures/Windows/Texture Center/Image Resizer Icon";
+        private const string _windowIcon = "Textures/Windows/Texture Center/Image Resizer/Image Resizer Icon";
         private const string _windowTitle = "Texture - Image Resizer";
         private const string _windowSubtitle = "Resize your images quickly and flexibly";
         #endregion

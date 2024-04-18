@@ -8,7 +8,6 @@ namespace YNL.Editor.Window.Texture.ImageResizer
     public class EResizeExecutePanel : Button
     {
         private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Texture - Image Resizer/EResizeExecutePanel";
-        private const string _texturePath = "Textures/Windows/Texture Center/";
 
         public Button Execute;
         public ESwitchToggle ReplaceOldImageSwitch;

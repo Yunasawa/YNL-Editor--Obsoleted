@@ -22,11 +22,6 @@ namespace YNL.Editor.Window.Texture.ImageResizer
             WTextureImageResizer_Main.OnRemoveImage += RemoveImage;
         }
 
-        public void OnGUI()
-        {
-
-        }
-
         #region Texture Displayer
         public void GetAllImage(UnityEngine.Object item)
         {

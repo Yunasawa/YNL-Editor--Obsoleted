@@ -6,8 +6,7 @@ using YNL.Editor.UIElement;
 using YNL.Editor.Utility;
 using YNL.Editor.Window.Texture.ImageResizer;
 using YNL.Editor.Window.Animation.ObjectRenamer;
-using Unity.Plastic.Newtonsoft.Json.Bson;
-using System;
+using YNL.Editor.Window.Texture.ImageInverter;
 
 namespace YNL.Editor.Window
 {
@@ -21,13 +20,14 @@ namespace YNL.Editor.Window
         public EWindowTagPanel WindowTagPanel;
 
         public WTextureImageResizer_Main ImageResizerWindow;
+        public WTextureImageInverter_Main ImageInverterWindow;
         public WAnimationObjectRenamer_Main ObjectRenamerWindow;
         #endregion
 
         #region ▶ General Fields/Properties
         private float _tagPanelWidth = 200;
 
-        private IWindow _selectedWindow;
+        private IMain _selectedWindow;
         #endregion
 
 
@@ -52,7 +52,8 @@ namespace YNL.Editor.Window
         {
             Texture2D windowIcon = Resources.Load<Texture2D>("Textures/Windows/Utilities Center/Editor Icon");
             
-            Texture2D textureImageResizerIcon = Resources.Load<Texture2D>("Textures/Windows/Texture Center/Image Resizer Icon");
+            Texture2D textureImageResizerIcon = Resources.Load<Texture2D>("Textures/Windows/Texture Center/Image Resizer/Image Resizer Icon");
+            Texture2D textureImageInverterIcon = Resources.Load<Texture2D>("Textures/Windows/Texture Center/Image Inverter/Image Inverter Icon");
             Texture2D animationObjectRenamerIcon = Resources.Load<Texture2D>("Textures/Windows/Animation Center/Cracking Bone");
             
             Texture2D waitIcon = Resources.Load<Texture2D>("Textures/Icons/Time1");
@@ -60,12 +61,14 @@ namespace YNL.Editor.Window
             WindowTagPanel = new(windowIcon, "Editor Utilities", "Center", _tagPanelWidth, new EWindowTag[]
             {
             new EWindowTag(textureImageResizerIcon, "Image Resizer", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.TextureImageResizer)),
+            new EWindowTag(textureImageInverterIcon, "Image Inverter", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.TextureImageInverter)),
             new EWindowTag(animationObjectRenamerIcon, "Object Renamer", "Animation", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.AnimationObjectRenamer)),
             new EWindowTag(waitIcon, "Coming Soon", "", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.C))
             });
 
             ImageResizerWindow = new WTextureImageResizer_Main(this, WindowTagPanel);
             ObjectRenamerWindow = new WAnimationObjectRenamer_Main(this, WindowTagPanel);
+            ImageInverterWindow = new WTextureImageInverter_Main(this, WindowTagPanel);
 
             SwitchWindow(WUtilitiesWindowType.TextureImageResizer);
         }
@@ -85,6 +88,10 @@ namespace YNL.Editor.Window
                     SwitchWindow(ImageResizerWindow);
                     rootVisualElement.Add(ImageResizerWindow.Visual);
                     break;
+                case WUtilitiesWindowType.TextureImageInverter:
+                    SwitchWindow(ImageInverterWindow);
+                    rootVisualElement.Add(ImageInverterWindow.Visual);
+                    break;
                 case WUtilitiesWindowType.AnimationObjectRenamer:
                     SwitchWindow(ObjectRenamerWindow);
                     rootVisualElement.Add(ObjectRenamerWindow.Visual);
@@ -93,7 +100,7 @@ namespace YNL.Editor.Window
             rootVisualElement.Add(WindowTagPanel);
         }
         
-        private void SwitchWindow(IWindow window)
+        private void SwitchWindow(IMain window)
         {
             if (!_selectedWindow.IsNull()) WindowTagPanel.Tutorial.clicked -= _selectedWindow.OpenInstruction;
             _selectedWindow = window;
@@ -103,7 +110,7 @@ namespace YNL.Editor.Window
 
     public enum WUtilitiesWindowType
     {
-        TextureImageResizer, AnimationObjectRenamer, C, D, E, F
+        TextureImageResizer, TextureImageInverter, AnimationObjectRenamer, C, D, E, F
     }
 }
 #endif

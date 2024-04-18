@@ -5,23 +5,23 @@ using UnityEngine;
 using YNL.Editor.Extension;
 using YNL.Editor.UIElement;
 
-namespace YNL.Editor.Window.Texture.ImageResizer
+namespace YNL.Editor.Window.Texture.ImageInverter
 {
     [System.Serializable]
-    public class WTextureImageResizer_Main : IMain
+    public class WTextureImageInverter_Main : IMain
     {
         #region ▶ Editor Properties
         public EditorWindow Root;
 
-        public WTextureImageResizer_Visual Visual;
-        public WTextureImageResizer_Handler Handler;
+        public WTextureImageInverter_Visual Visual;
+        public WTextureImageInverter_Handler Handler;
         #endregion
         #region ▶ Actions
         public static Action<UnityEngine.Object[]> OnAddImage;
         public static Action<Texture2D> OnRemoveImage;
         #endregion
 
-        public WTextureImageResizer_Main(EditorWindow root, EWindowTagPanel tagPanel)
+        public WTextureImageInverter_Main(EditorWindow root, EWindowTagPanel tagPanel)
         {
             Root = root;
 
@@ -31,8 +31,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
 
         public void OpenInstruction()
         {
-
-            WTextureImageResizer_Instruction.Open(660, 500, WPopupPivot.BottomLeft);
+            WTextureImageInverter_Instruction.Open(660, 500, WPopupPivot.BottomLeft);
         }
     }
 }

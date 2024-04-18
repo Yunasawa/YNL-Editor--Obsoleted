@@ -42,7 +42,7 @@
 	background-color: #282828;
 	border-width: 0px;
 
-	background-image: resource("Textures/Windows/Texture Center/X");
+	background-image: resource("Textures/Icons/X");
 	background-size: 75%;
 	-unity-background-image-tint-color: #ffffff;
 

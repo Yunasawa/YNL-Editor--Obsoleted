@@ -10,7 +10,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
     public class EResizeSettingPanel : Button
     {
         private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Texture - Image Resizer/EResizeSettingPanel";
-        private const string _texturePath = "Textures/Windows/Texture Center/";
+        private const string _texturePath = "Textures/Windows/Texture Center/Image Resizer/";
 
         public Image TagPanel;
         public Button PixelResizeTag;

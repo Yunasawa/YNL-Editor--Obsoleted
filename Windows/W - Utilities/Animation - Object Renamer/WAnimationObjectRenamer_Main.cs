@@ -6,7 +6,7 @@ using YNL.Editor.UIElement;
 namespace YNL.Editor.Window.Animation.ObjectRenamer
 {
     [System.Serializable]
-    public class WAnimationObjectRenamer_Main : IWindow
+    public class WAnimationObjectRenamer_Main : IMain
     {
         public EditorWindow Root;
 
@@ -19,11 +19,6 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
 
             Handler = new(this);
             Visual = new(tagPanel, this);
-        }
-
-        public void OnGUI()
-        {
-            Handler.OnGUI();
         }
 
         public void OnSelectionChange()
