@@ -53,7 +53,7 @@ namespace YNL.Editor.Window
             Texture2D windowIcon = Resources.Load<Texture2D>("Textures/Windows/Utilities Center/Editor Icon");
             
             Texture2D textureImageResizerIcon = Resources.Load<Texture2D>("Textures/Windows/Texture Center/Image Resizer/Image Resizer Icon");
-            Texture2D textureImageInverterIcon = Resources.Load<Texture2D>("Textures/Windows/Texture Center/Image Inverter/Image Inverter Icon");
+            Texture2D textureImageInverterIcon = Resources.Load<Texture2D>("Textures/Windows/Texture Center/Image Inverter/Image Inverter Icon 2");
             Texture2D animationObjectRenamerIcon = Resources.Load<Texture2D>("Textures/Windows/Animation Center/Cracking Bone");
             
             Texture2D waitIcon = Resources.Load<Texture2D>("Textures/Icons/Time1");

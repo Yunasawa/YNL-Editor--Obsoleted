@@ -21,9 +21,17 @@
 	transition-property: -unity-background-image-tint-color;
 	transition-duration: 0.25s;
 }
+.Background:hover
+{
+	-unity-background-image-tint-color: #141414; /*#008E57;*/
+}
 .Background_Enable
 {
 	-unity-background-image-tint-color: #5F5F5F; /*#008E57;*/
+}
+.Background_Enable:hover
+{
+	-unity-background-image-tint-color: #a1a1a1; /*#008E57;*/
 }
 
 .Toggle

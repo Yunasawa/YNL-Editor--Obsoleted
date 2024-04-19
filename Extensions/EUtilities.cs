@@ -94,7 +94,7 @@ namespace YNL.Editor.Extension
             if (!list.Contains(element)) list.Add(element);
             return list;
         }
-        public static float Map(this float value, EMinMax origin, EMinMax target)
+        public static float Remap(this float value, EMinMax origin, EMinMax target)
         {
             float originRate = 100 / (origin.Max - origin.Min);
             float currentPercent = value * originRate;

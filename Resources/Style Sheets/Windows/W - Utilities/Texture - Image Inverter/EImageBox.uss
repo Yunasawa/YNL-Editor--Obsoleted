@@ -1,0 +1,173 @@
+.Main
+{
+	width: 200px;
+	height: 300px;
+
+	margin: 5px;
+}
+
+.Background
+{
+	background-color: transparent;
+	border-color: #5F5F5F;
+	border-width: 1px;
+	border-radius: 5px;
+
+	flex-direction: column;
+}
+.Background:hover
+{
+	border-color: #ffffff;
+	border-width: 1px;
+}
+
+.ImageBackground
+{
+	background-size: contain;
+	border-color: #8fffad;
+	border-width: 0px;
+
+	width: 95%;
+	height: 70%;
+
+	margin-left: 0px;
+
+	bottom: 10px;
+
+	align-self: center;
+
+	position: absolute;
+}
+
+.Image
+{
+	background-size: contain;
+	border-color: #4d4d4d;
+	border-width: 1px;
+
+	width: 44%;
+	height: 100%;
+
+	margin-left: 0px;
+
+	align-self: flex-start;
+
+	position: absolute;
+}
+
+.OriginalImage
+{
+	align-self: flex-start;
+}
+
+.InvertedImage
+{
+	align-self: flex-end;
+}
+
+.Arrow
+{
+	background-size: contain;
+	border-color: #4d4d4d;
+	border-width: 0px;
+
+	width: 12%;
+	height: 100%;
+
+	background-image: resource("Textures/Icons/Arrow2");
+	background-size: contain;
+
+	align-self: center;
+
+	position: absolute;
+}
+
+.Delete
+{
+	background-color: #282828;
+	border-width: 0px;
+
+	background-image: resource("Textures/Icons/X");
+	background-size: 75%;
+	-unity-background-image-tint-color: #ffffff;
+
+	width: 20px;
+	height: 20px;
+
+	margin-top: 3px;
+	right: 0px;
+
+	position: absolute;
+
+	top: 0px;
+
+	transition-property: background-color, -unity-background-image-tint-color;
+	transition-duration: 0.25s;
+}
+.Delete:hover
+{
+	background-color: #111111;
+	-unity-background-image-tint-color: #FF606F
+}
+
+.Name
+{
+	background-color: #2f2f2f;
+	border-width: 0px;
+
+	-unity-font-definition: var(--font-nightmare-pills);
+	-unity-font-style: bold;
+
+	height: 20px;
+
+	margin-left: -2.5px;
+	margin-right: 20px;
+	margin-top: 2.5px;
+
+	align-self: flex-start;
+
+	transition-property: background-color;
+	transition-duration: 0.25s;
+}
+.Name:hover
+{
+	background-color: #1f1f1f;
+}
+
+.Space
+{
+	background-color: #CD5C5C;
+
+	width: 0px;
+	height: 100%;
+}
+
+.SizeBox
+{
+	background-color: transparent;
+
+	height: 30px;
+
+	flex-direction: row;
+
+	justify-content: center;
+}
+
+.Size
+{
+	border-width: 0px;
+
+	height: 20px;
+
+	-unity-font-style: bold;
+
+
+}
+.OriginSize
+{
+	background-color: #585858;
+}
+.NewSize
+{
+	background-color: #156260;
+}

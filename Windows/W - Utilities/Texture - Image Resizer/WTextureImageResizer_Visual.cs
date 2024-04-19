@@ -8,20 +8,14 @@ using YNL.Editor.Utility;
 
 namespace YNL.Editor.Window.Texture.ImageResizer
 {
-    public class WTextureImageResizer_Visual : VisualElement
+    public class WTextureImageResizer_Visual : EVisual
     {
-        #region ▶ Editor Constants
-        private const string _windowIcon = "Textures/Windows/Texture Center/Image Resizer/Image Resizer Icon";
-        private const string _windowTitle = "Texture - Image Resizer";
-        private const string _windowSubtitle = "Resize your images quickly and flexibly";
-        #endregion
+        private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Texture - Image Resizer/WTextureImageResizer";
+
         #region ▶ Editor Properties
         private float _tagPanelWidth = 200;
         private EMinMax _propertyPanelWidth = new EMinMax(100, 200);
-        public float ImageWidth => _slider.Slider.value.Map(new(0, 10), _propertyPanelWidth);
-        #endregion
-        #region ▶ Style Sheets
-        private const string _uss_Main = "Style Sheets/Windows/W - Utilities/Texture - Image Resizer/WTextureImageResizer";
+        public float ImageWidth => _sizeSlider.Slider.value.Remap(new(0, 10), _propertyPanelWidth);
         #endregion
         #region ▶ Visual Elements
         private WTextureImageResizer_Main _main;
@@ -36,7 +30,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
         private EImageDisplayer _displayer;
 
         private Button _clearButton;
-        private ESlider _slider;
+        private ESlider _sizeSlider;
         public EResizeSettingPanel ResizeSettingPanel;
         public EResizeExecutePanel ResizeExecutePanel;
         #endregion
@@ -48,11 +42,19 @@ namespace YNL.Editor.Window.Texture.ImageResizer
 
         public WTextureImageResizer_Visual(EWindowTagPanel tagPanel, WTextureImageResizer_Main main)
         {
+            SetWindowTitle
+            (
+                "Textures/Windows/Texture Center/Image Resizer/Image Resizer Icon",
+                "Texture - Image Resizer",
+                "Resize with ease, preserve the quality!"
+            );
+
             _tagPanel = tagPanel;
             _main = main;
 
+            this.AddStyle(_styleSheet, EAddress.USSFont).AddClass(_class_root);
+
             CreateElements();
-            AddClasses();
 
             ResizingSetter();
             ResizingExecuter();
@@ -65,28 +67,24 @@ namespace YNL.Editor.Window.Texture.ImageResizer
         private void CreateElements()
         {
             _windowTitlePanel = new(_windowIcon.LoadAsset<Texture2D>(), _windowTitle, _windowSubtitle);
+            _windowTitlePanel.AddClass(_class_titlePanel);
 
-            _slider = new ESlider(_propertyPanelWidth).AddClass("slider");
-            _slider.Slider.value = 5;
-            _slider.OnValueChanged += ResizeImageBox;
+            _sizeSlider = new ESlider(_propertyPanelWidth).AddClass("slider");
+            _sizeSlider.Slider.value = 5;
+            _sizeSlider.OnValueChanged += ResizeImageBox;
 
             _clearButton = new Button(ClearItems).AddClass("clear-button");
             _clearButton.AddLabel("Clear all images", "clear-label");
 
             ResizeSettingPanel = new EResizeSettingPanel();
             ResizeExecutePanel = new EResizeExecutePanel();
-            _propertyPanel = new EInteractableImage().AddElements(_slider, _clearButton, ResizeSettingPanel, ResizeExecutePanel);
+            
+            _propertyPanel = new EInteractableImage().AddElements(_sizeSlider, _clearButton, ResizeSettingPanel, ResizeExecutePanel);
+            _propertyPanel.AddClass(_class_propertyPanel);
 
             _displayer = new EImageDisplayer().AddClass("main-window");
             _mainWindow = new Image().AddClass("main-window").AddElements(_displayer);
             _handlerWindow = new VisualElement().AddClass("handler-window").AddElements(_mainWindow);
-        }
-        private void AddClasses()
-        {
-            this.AddStyle(_uss_Main, EAddress.USSFont).AddClass(_class_root);
-
-            _windowTitlePanel.AddClass(_class_titlePanel);
-            _propertyPanel.AddClass(_class_propertyPanel);
         }
 
         public void GenerateImages(Texture2D[] textures, float width)

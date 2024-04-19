@@ -13,20 +13,10 @@ using YNL.Editor.UIElement;
 
 namespace YNL.Editor.Window.Animation.ObjectRenamer
 {
-    public class WAnimationObjectRenamer_Visual : VisualElement
+    public class WAnimationObjectRenamer_Visual : EVisual
     {
-        #region ▶ Editor Constants
-        private const string _windowPath = "Style Sheets/Windows";
-        private const string _texturePath = "Textures/Windows/Animation Center/";
-
-        private const string _crackingBonePNG = _texturePath + "Cracking Bone";
-
-        private const string _windowTitle = "Animation - Object Renamer";
-        private const string _windowSubtitle = "Quickly change or swap your animation objects' name";
-        #endregion
-        #region ▶ Style Sheets
-        private const string _uss_Main = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/WAnimationObjectRenamer";
-        #endregion
+        private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/WAnimationObjectRenamer";
+        
         #region ▶ Visual Elements
         private EWindowTitle _windowTitlePanel;
         private EWindowTagPanel _tagPanel;
@@ -70,10 +60,18 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
 
         public WAnimationObjectRenamer_Visual(EWindowTagPanel tagPanel, WAnimationObjectRenamer_Main main)
         {
+            SetWindowTitle
+            (
+                "Textures/Windows/Animation Center/Cracking Bone",
+                "Animation - Object Renamer",
+                "Easily change or swap your animation objects' name"
+            );
+
             _tagPanel = tagPanel;
             _main = main;
 
-            AddStyles();
+            this.AddStyle(_styleSheet, EAddress.USSFont);
+
             CreateElements();
             AddClasses();
 
@@ -92,10 +90,6 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
         }
 
         #region ▶ Editor Initializing
-        private void AddStyles()
-        {
-            this.AddStyle(_uss_Main, EAddress.USSFont);
-        }
         private void CreateElements()
         {
             _referencedClipsTitle = new Label("Animation Clips:").AddClass("ClipsTitle");
@@ -111,7 +105,7 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
 
             _propertyPanel = new EInteractableImage().AddElements(_animatorPanel, _clipsPanel);
 
-            _windowTitlePanel = new(_crackingBonePNG.LoadAsset<Texture2D>(), _windowTitle, _windowSubtitle);
+            _windowTitlePanel = new(_windowIcon.LoadAsset<Texture2D>(), _windowTitle, _windowSubtitle);
         }
         private void AddClasses()
         {

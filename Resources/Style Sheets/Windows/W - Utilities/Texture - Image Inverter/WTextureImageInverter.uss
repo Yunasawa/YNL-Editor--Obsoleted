@@ -1,10 +1,10 @@
-﻿.main-root
+.Main
 {
 	width: 100%;
 	height: 100%;
 }
 
-.title-panel
+.WindowTitle
 {
 	background-color: #2A2A2A;
 	border-color: transparent;
@@ -21,7 +21,7 @@
 	position: absolute;
 }
 
-.property-panel
+.PropertyPanel
 {
 	background-color: #333333;
 
@@ -35,12 +35,13 @@
 	transition-property: width, margin-left;
 	transition-duration: 0.25s;
 
-	padding-bottom: 75px;
-
 	flex-direction: column;
+
+	padding: 10px;
 }
 
-.handler-window
+
+.HandlerWindow
 {
 	-unity-background-image-tint-color: #565656;
 	background-image: resource("Textures/Backgrounds/Background 6");
@@ -55,7 +56,7 @@
 	padding-top: 77px;
 }
 
-.main-window
+.MainWindow
 {
 	background-color: transparent;
 	position: relative;
@@ -78,52 +79,17 @@
 	flex-direction: column;
 }
 
-.image-grid
-{
-	background-color: transparent;
-
-	height: 100%;
-}
-
-.image-box
-{
-	background-color: transparent;
-	background-size: contain;
-
-	border-color: #ffffff;
-	border-width: 1px;
-
-	width: 200px;
-	height: 200px;
-
-	margin: 5px;
-
-	transition-property: position;
-	transition-duration: 0.25s;
-}
-
-.slider
-{
-	background-color: transparent;
-
-	width: 100%;
-
-	position: absolute;
-
-	margin-top: 45px;
-
-	bottom: 0px;
-}
-
-.clear-button
+.ClearButton
 {
 	background-color: #1F1F1F;
 	border-color: transparent;
 
 	height: 30px;
 
-	margin: 10px;
-	margin-top: 7.5px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: -2.5px;
+	margin-bottom: 10px;
 
 	justify-content: center;
 
@@ -131,12 +97,12 @@
 	transition-duration: 0.25s;
 
 }
-.clear-button:hover
+.ClearButton:hover
 {
 	border-color: #5F5F5F;
 }
 
-.clear-label
+.ClearLabel
 {
 	-unity-font-definition: var(--font-nightmare-pills);
 	-unity-font-style: bold;
@@ -145,7 +111,21 @@
 	transition-property: font-size;
 	transition-duration: 0.25s;
 }
-.clear-label:hover
+.ClearLabel:hover
 {
 	font-size: 15px;
+}
+
+.SizeSlider
+{
+	background-color: transparent;
+
+	width: 100%;
+
+	position: absolute;
+
+	margin-top: 45px;
+	margin-left: -10px;
+
+	bottom: 0px;
 }
