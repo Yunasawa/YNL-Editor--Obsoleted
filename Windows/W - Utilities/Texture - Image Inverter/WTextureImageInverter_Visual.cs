@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 using YNL.Editor.Extension;
 using YNL.Editor.UIElement;
 using YNL.Editor.Utility;
-using YNL.Editor.Window.Texture.ImageResizer;
 
 namespace YNL.Editor.Window.Texture.ImageInverter
 {
