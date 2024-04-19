@@ -24,9 +24,9 @@ namespace YNL.Editor.Window.Texture.ImageInverter
 
         public EImageBox(Texture2D image) : base()
         {
-            if (image.IsNull())
+            if (image.EIsNull())
             {
-                MDebug.Notify("Image not found, something is wrong!");
+                EDebug.ENotify("Image not found, something is wrong!");
                 return;
             }
 
@@ -67,14 +67,14 @@ namespace YNL.Editor.Window.Texture.ImageInverter
         {
             if (originalTexture == null)
             {
-                MDebug.Error("<b>Original texture</b> is null. Cannot invert.");
+                EDebug.EError("<b>Original texture</b> is null. Cannot invert.");
                 return null;
             }
 
             // Ensure the texture is readable and writable
             if (!originalTexture.isReadable)
             {
-                MDebug.Warning($"Texture is not readable. Adjusting import settings to readable");
+                EDebug.EWarning($"Texture is not readable. Adjusting import settings to readable");
                 string assetPath = AssetDatabase.GetAssetPath(originalTexture);
                 TextureImporter textureImporter = (TextureImporter)AssetImporter.GetAtPath(assetPath);
                 textureImporter.isReadable = true;

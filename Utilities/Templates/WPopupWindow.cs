@@ -13,7 +13,7 @@ namespace YNL.Editor.Window
         public static void Open(int width = 300, int height = 200, WPopupPivot pivot = WPopupPivot.TopLeft, params object[] parameters)
         {
             T window = CreateInstance<T>();
-            if (!_instance.IsNull())
+            if (!_instance.EIsNull())
             {
                 if (!_instance != window) _instance.Close();
             }

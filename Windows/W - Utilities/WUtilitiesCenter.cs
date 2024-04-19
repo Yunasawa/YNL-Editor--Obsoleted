@@ -45,7 +45,7 @@ namespace YNL.Editor.Window
         #region ▶ Editor Messages
         private void OnSelectionChange()
         {
-            if (!_selectedWindow.IsNull()) _selectedWindow.OnSelectionChange();
+            if (!_selectedWindow.EIsNull()) _selectedWindow.OnSelectionChange();
         }
 
         public void CreateGUI()
@@ -75,7 +75,7 @@ namespace YNL.Editor.Window
 
         public void OnGUI()
         {
-            if (!_selectedWindow.IsNull()) _selectedWindow.OnGUI();
+            if (!_selectedWindow.EIsNull()) _selectedWindow.OnGUI();
         }
         #endregion
 
@@ -102,7 +102,7 @@ namespace YNL.Editor.Window
         
         private void SwitchWindow(IMain window)
         {
-            if (!_selectedWindow.IsNull()) WindowTagPanel.Tutorial.clicked -= _selectedWindow.OpenInstruction;
+            if (!_selectedWindow.EIsNull()) WindowTagPanel.Tutorial.clicked -= _selectedWindow.OpenInstruction;
             _selectedWindow = window;
             WindowTagPanel.Tutorial.clicked += _selectedWindow.OpenInstruction;
         }

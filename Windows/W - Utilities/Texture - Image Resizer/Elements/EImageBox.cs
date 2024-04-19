@@ -25,9 +25,9 @@ namespace YNL.Editor.Window.Texture.ImageResizer
 
         public EImageBox(Texture2D image, Vector2 newSize) : base()
         {
-            if (image.IsNull())
+            if (image.EIsNull())
             {
-                MDebug.Notify("Image not found, something is wrong!");
+                EDebug.ENotify("Image not found, something is wrong!");
                 return;
             }
 

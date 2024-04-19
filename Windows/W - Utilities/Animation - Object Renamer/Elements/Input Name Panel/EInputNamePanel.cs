@@ -54,8 +54,8 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
 
         private void HoverOnSwapButton(bool isHover)
         {
-            SwapButton.EnableClass(isHover, "SwapButton".Hover());
-            SwapIcon.EnableClass(isHover, "SwapIcon".Hover());
+            SwapButton.EnableClass(isHover, "SwapButton".EHover());
+            SwapIcon.EnableClass(isHover, "SwapIcon".EHover());
         }
     }
 }

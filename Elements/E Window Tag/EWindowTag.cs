@@ -42,7 +42,7 @@ namespace YNL.Editor.UIElement
             Icon.AddClass(USS_Icon);
 
             Title = new Label(title).AddClass(USS_Title);
-            if (subtitle.IsNullOrEmpty()) Title.SetTop(10);
+            if (subtitle.EIsNullOrEmpty()) Title.SetTop(10);
             Subtitle = new Label(subtitle).AddClass(USS_Subtitle);
 
             Background.AddElements(Icon, Title, Subtitle);
@@ -93,9 +93,9 @@ namespace YNL.Editor.UIElement
         public void PointerEnter()
         {
             Background.EnableClass(USS_BackgroundHover);
-            Icon.EnableClass(USS_Icon.Hover());
-            Title.EnableClass(USS_Title.Hover());
-            Subtitle.EnableClass(USS_Subtitle.Hover());
+            Icon.EnableClass(USS_Icon.EHover());
+            Title.EnableClass(USS_Title.EHover());
+            Subtitle.EnableClass(USS_Subtitle.EHover());
 
             if (!IsSelected)
             {
@@ -106,9 +106,9 @@ namespace YNL.Editor.UIElement
         public void PointerExit()
         {
             Background.DisableClass(USS_BackgroundHover);
-            Icon.DisableClass(USS_Icon.Hover());
-            Title.DisableClass(USS_Title.Hover());
-            Subtitle.DisableClass(USS_Subtitle.Hover());
+            Icon.DisableClass(USS_Icon.EHover());
+            Title.DisableClass(USS_Title.EHover());
+            Subtitle.DisableClass(USS_Subtitle.EHover());
 
             if (!IsSelected) SetDeselectStyle();
         }
@@ -148,7 +148,7 @@ namespace YNL.Editor.UIElement
         private void SetDeselectStyle()
         {
             Background.SetBackgroundColor(Color.clear);
-            Icon.SetBackgroundImageTintColor("#5E5E5E".ToColor());
+            Icon.SetBackgroundImageTintColor("#5E5E5E".EToColor());
             Title.SetColor("#5E5E5E");
         }
     }

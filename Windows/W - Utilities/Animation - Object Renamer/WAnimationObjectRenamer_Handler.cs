@@ -48,7 +48,7 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
                         }
                         if (!ClipColors.ContainsKey((AnimationClip)obj))
                         {
-                            Color bindedColor = new Color(UnityEngine.Random.Range(100, 255), UnityEngine.Random.Range(100, 255), UnityEngine.Random.Range(100, 255), 1).Normalize();
+                            Color bindedColor = new Color(UnityEngine.Random.Range(100, 255), UnityEngine.Random.Range(100, 255), UnityEngine.Random.Range(100, 255), 1).ENormalize();
                             ClipColors.Add((AnimationClip)obj, bindedColor);
                         }
                     }
@@ -84,7 +84,7 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
 
         public void GetReferencedAnimator()
         {
-            if (_main.Visual.IsNull()) return;
+            if (_main.Visual.EIsNull()) return;
 
             ReferencedAnimator = _main.Visual.ReferencedAnimator.ReferencedObject;
         }
@@ -122,7 +122,7 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
                 {
                     if (!PathColors[key].Contains(clip))
                     {
-                        PathColors[key] = PathColors[key].Add(clip);
+                        PathColors[key] = PathColors[key].EAdd(clip);
                     }
                 }
                 else

@@ -105,7 +105,7 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
 
             _propertyPanel = new EInteractableImage().AddElements(_animatorPanel, _clipsPanel);
 
-            _windowTitlePanel = new(_windowIcon.LoadAsset<Texture2D>(), _windowTitle, _windowSubtitle);
+            _windowTitlePanel = new(_windowIcon.ELoadAsset<Texture2D>(), _windowTitle, _windowSubtitle);
         }
         private void AddClasses()
         {
@@ -182,7 +182,7 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
             _main.Handler.GetReferencedAnimator();
             _main.Handler.FillModel();
             _rootNamePanel.ClearAllClipItem();
-            if (_main.Handler.Paths != null && !_main.Handler.AnimationClips.IsEmpty())
+            if (_main.Handler.Paths != null && !_main.Handler.AnimationClips.EIsEmpty())
             {
                 if (_main.Handler.PathsKeys.Count > 0)
                 {
@@ -206,7 +206,7 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
             string _originalRoot = _inputNamePanel.OriginField.text;
             string _newRoot = _inputNamePanel.NewField.text;
 
-            if (!_main.Handler.AnimationClips.IsEmpty() && _main.Handler.PathsKeys.Count > 0)
+            if (!_main.Handler.AnimationClips.EIsEmpty() && _main.Handler.PathsKeys.Count > 0)
             {
                 List<string> paths = new();
 
@@ -218,13 +218,13 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
                     _main.Handler.ReplaceRoot(_newRoot, _originalRoot, () => ChangeVisuals(_newRoot, _originalRoot));
                     _main.Handler.ReplaceRoot("Temporary Root", _newRoot, () => ChangeVisuals("Temporary Root", _newRoot));
 
-                    MDebug.Custom("Swap", $"{_originalRoot} ▶ {_newRoot}", EColor.Macaroon.ToHex());
+                    EDebug.ECustom("Swap", $"{_originalRoot} ▶ {_newRoot}", EColor.Macaroon.EToHex());
                 }
                 else
                 {
                     _main.Handler.ReplaceRoot(_originalRoot, _newRoot, () => ChangeVisuals(_originalRoot, _newRoot));
 
-                    MDebug.Custom("Rename", $"{_originalRoot} ▶ {_newRoot}", EColor.Flamingo.ToHex());
+                    EDebug.ECustom("Rename", $"{_originalRoot} ▶ {_newRoot}", EColor.Flamingo.EToHex());
                 }
             }
 
@@ -232,7 +232,7 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
             {
                 EClipNameField clipNameField = _rootNamePanel.ClipPanel.Query<EClipNameField>().ToList().FirstOrDefault(i => i.Name.text == originalRoot);
 
-                if (!clipNameField.IsNull())
+                if (!clipNameField.EIsNull())
                 {
                     clipNameField.Name.SetText(newRoot);
 
@@ -269,8 +269,8 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
                 }
             }
 
-            Color arrowColor = "#BF4040".ToColor();
-            if (!gameObject.IsNull()) arrowColor = "#40BF8F".ToColor();
+            Color arrowColor = "#BF4040".EToColor();
+            if (!gameObject.EIsNull()) arrowColor = "#40BF8F".EToColor();
 
             EClipNameField clipNameField = new(pathOverride, gameObject, referencedColor.ToArray(), arrowColor, null);
 
@@ -316,7 +316,7 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
             }
             catch (UnityException)
             {
-                MDebug.Caution($"<color=#c7ff96><b>{currentPath}</b></color> already exits in animation!");
+                EDebug.ECaution($"<color=#c7ff96><b>{currentPath}</b></color> already exits in animation!");
                 GameObject returnedObject = _main.Handler.FindObjectInRoot(clipNameField.Name.text);
                 clipNameField.Object.DragPerformOnField(returnedObject);
             }
@@ -348,7 +348,7 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
             }
             catch (UnityException)
             {
-                MDebug.Caution($"<color=#c7ff96><b>{currentPath}</b></color> already exits in animation!");
+                EDebug.ECaution($"<color=#c7ff96><b>{currentPath}</b></color> already exits in animation!");
                 clipNameField.Name.SetText(currentPath);
             }
         }

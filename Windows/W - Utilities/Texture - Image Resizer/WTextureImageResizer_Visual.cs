@@ -15,7 +15,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
         #region ▶ Editor Properties
         private float _tagPanelWidth = 200;
         private EMinMax _propertyPanelWidth = new EMinMax(100, 200);
-        public float ImageWidth => _sizeSlider.Slider.value.Remap(new(0, 10), _propertyPanelWidth);
+        public float ImageWidth => _sizeSlider.Slider.value.ERemap(new(0, 10), _propertyPanelWidth);
         #endregion
         #region ▶ Visual Elements
         private WTextureImageResizer_Main _main;
@@ -66,7 +66,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
 
         private void CreateElements()
         {
-            _windowTitlePanel = new(_windowIcon.LoadAsset<Texture2D>(), _windowTitle, _windowSubtitle);
+            _windowTitlePanel = new(_windowIcon.ELoadAsset<Texture2D>(), _windowTitle, _windowSubtitle);
             _windowTitlePanel.AddClass(_class_titlePanel);
 
             _sizeSlider = new ESlider(_propertyPanelWidth).AddClass("slider");
@@ -89,7 +89,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
 
         public void GenerateImages(Texture2D[] textures, float width)
         {
-            Vector2 newSize = new Vector2(ResizeSettingPanel.Width.value.ToInt(), ResizeSettingPanel.Height.value.ToInt());
+            Vector2 newSize = new Vector2(ResizeSettingPanel.Width.value.EToInt(), ResizeSettingPanel.Height.value.EToInt());
             _displayer.GenerateImages(textures, width, newSize, ResizeSettingPanel.KeepAspectRatioSwitch.Enable);
         }
         public void ClearItems()
@@ -128,7 +128,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
             ResizeSettingPanel.KeepAspectRatioSwitch.OnSwitch += (enable) =>
             {
                 if (!enable) return;
-                _displayer.SetAllNewAspectedSize(ResizeSettingPanel.Width.value.ToInt(), true);
+                _displayer.SetAllNewAspectedSize(ResizeSettingPanel.Width.value.EToInt(), true);
                 ResizeSettingPanel.Height.SetText("auto");
             };
         }

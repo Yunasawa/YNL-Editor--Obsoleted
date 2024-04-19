@@ -36,7 +36,7 @@ namespace YNL.Editor.UIElement
 
         public void ValueChanged(ChangeEvent<float> evt)
         {
-            OnValueChanged?.Invoke(Slider.value.Remap(new(0, 10), _range));
+            OnValueChanged?.Invoke(Slider.value.ERemap(new(0, 10), _range));
         }
     }
 }

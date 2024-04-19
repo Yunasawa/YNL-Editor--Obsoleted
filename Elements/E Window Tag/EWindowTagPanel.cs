@@ -78,9 +78,9 @@ namespace YNL.Editor.UIElement
             Title.EnableClass(true, _uss_titleHover);
             Subtitle.EnableClass(true, _uss_subtitleHover);
 
-            Tutorial.EnableClass(true, "Tutorial".Custom("Enter"));
-            TutorialIcon.EnableClass(true, "TutorialIcon".Custom("Enter"));
-            TutorialLabel.EnableClass(true, "TutorialLabel".Custom("Enter"));
+            Tutorial.EnableClass(true, "Tutorial".ECustom("Enter"));
+            TutorialIcon.EnableClass(true, "TutorialIcon".ECustom("Enter"));
+            TutorialLabel.EnableClass(true, "TutorialLabel".ECustom("Enter"));
 
             foreach (var tag in Tags) tag.OnExpand();
         }
@@ -92,9 +92,9 @@ namespace YNL.Editor.UIElement
             Title.EnableClass(false, _uss_titleHover);
             Subtitle.EnableClass(false, _uss_subtitleHover);
 
-            Tutorial.EnableClass(false, "Tutorial".Custom("Enter"));
-            TutorialIcon.EnableClass(false, "TutorialIcon".Custom("Enter"));
-            TutorialLabel.EnableClass(false, "TutorialLabel".Custom("Enter"));
+            Tutorial.EnableClass(false, "Tutorial".ECustom("Enter"));
+            TutorialIcon.EnableClass(false, "TutorialIcon".ECustom("Enter"));
+            TutorialLabel.EnableClass(false, "TutorialLabel".ECustom("Enter"));
 
             foreach (var tag in Tags) tag.OnCollape();
         }
@@ -103,7 +103,7 @@ namespace YNL.Editor.UIElement
         {
             if (!forceSelect && Tags[_selectedTag] == tag) return;
 
-            _selectedTag = Tags.IndexOf(tag);
+            _selectedTag = Tags.EIndexOf(tag);
 
             foreach (var item in Tags) item.OnDeselect();
             tag.OnSelect();

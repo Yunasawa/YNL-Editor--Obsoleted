@@ -76,11 +76,11 @@ namespace YNL.Editor.UIElement
         {
             var element = evt.currentTarget as EInteractableComponentField<T>;
 
-            if (DragAndDrop.objectReferences.TryGet(0) is GameObject)
+            if (DragAndDrop.objectReferences.ETryGet(0) is GameObject)
             {
-                T component = ((GameObject)DragAndDrop.objectReferences.TryGet(0)).GetComponent<T>();
+                T component = ((GameObject)DragAndDrop.objectReferences.ETryGet(0)).GetComponent<T>();
 
-                if (!component.IsNull() && component is T)
+                if (!component.EIsNull() && component is T)
                 {
                     element.DragEnter();
                     action?.Invoke();
@@ -94,11 +94,11 @@ namespace YNL.Editor.UIElement
         {
             var element = evt.currentTarget as EInteractableComponentField<T>;
 
-            if (DragAndDrop.objectReferences.TryGet(0) is GameObject)
+            if (DragAndDrop.objectReferences.ETryGet(0) is GameObject)
             {
-                T component = ((GameObject)DragAndDrop.objectReferences.TryGet(0)).GetComponent<T>();
+                T component = ((GameObject)DragAndDrop.objectReferences.ETryGet(0)).GetComponent<T>();
 
-                if (!component.IsNull() && component is T)
+                if (!component.EIsNull() && component is T)
                 {
                     element.DragLeave();
                     action?.Invoke();
@@ -111,11 +111,11 @@ namespace YNL.Editor.UIElement
         {
             var element = evt.currentTarget as EInteractableComponentField<T>;
 
-            if (DragAndDrop.objectReferences.TryGet(0) is GameObject)
+            if (DragAndDrop.objectReferences.ETryGet(0) is GameObject)
             {
-                T component = ((GameObject)DragAndDrop.objectReferences.TryGet(0)).GetComponent<T>();
+                T component = ((GameObject)DragAndDrop.objectReferences.ETryGet(0)).GetComponent<T>();
 
-                if (!component.IsNull() && component is T)
+                if (!component.EIsNull() && component is T)
                 {
                     DragAndDrop.visualMode = DragAndDropVisualMode.Link;
                     element.DragUpdate();
@@ -129,13 +129,13 @@ namespace YNL.Editor.UIElement
         {
             var element = evt.currentTarget as EInteractableComponentField<T>;
 
-            if (DragAndDrop.objectReferences.TryGet(0) is GameObject)
+            if (DragAndDrop.objectReferences.ETryGet(0) is GameObject)
             {
-                T component = ((GameObject)DragAndDrop.objectReferences.TryGet(0)).GetComponent<T>();
+                T component = ((GameObject)DragAndDrop.objectReferences.ETryGet(0)).GetComponent<T>();
 
-                if (!component.IsNull() && component is T)
+                if (!component.EIsNull() && component is T)
                 {
-                    element.ReferencedObject = ((GameObject)DragAndDrop.objectReferences.TryGet(0)).GetComponent<T>();
+                    element.ReferencedObject = ((GameObject)DragAndDrop.objectReferences.ETryGet(0)).GetComponent<T>();
                     element.DragUp();
                     action?.Invoke(element.ReferencedObject);
                 }

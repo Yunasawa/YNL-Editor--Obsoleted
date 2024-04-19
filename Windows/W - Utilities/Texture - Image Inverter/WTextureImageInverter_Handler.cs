@@ -39,12 +39,12 @@ namespace YNL.Editor.Window.Texture.ImageInverter
                 {
                     string getPath = AssetDatabase.GUIDToAssetPath(guid);
                     Texture2D texture = AssetDatabase.LoadAssetAtPath<Texture2D>(getPath);
-                    Textures.AddDistinct(texture);
+                    Textures.EAddDistinct(texture);
                 }
             }
             else if (item is Texture2D)
             {
-                Textures.AddDistinct(item as Texture2D);
+                Textures.EAddDistinct(item as Texture2D);
             }
         }
 
@@ -67,7 +67,7 @@ namespace YNL.Editor.Window.Texture.ImageInverter
             }
             catch (System.Exception e)
             {
-                MDebug.Error($"Error inverting image: {e.Message}");
+                EDebug.EError($"Error inverting image: {e.Message}");
             }
         }
 
@@ -75,14 +75,14 @@ namespace YNL.Editor.Window.Texture.ImageInverter
         {
             if (originalTexture == null)
             {
-                MDebug.Error("<b>Original texture</b> is null. Cannot invert.");
+                EDebug.EError("<b>Original texture</b> is null. Cannot invert.");
                 return null;
             }
 
             // Ensure the texture is readable and writable
             if (!originalTexture.isReadable)
             {
-                MDebug.Warning($"Texture is not readable. Adjusting import settings to readable");
+                EDebug.EWarning($"Texture is not readable. Adjusting import settings to readable");
                 string assetPath = AssetDatabase.GetAssetPath(originalTexture);
                 TextureImporter textureImporter = (TextureImporter)AssetImporter.GetAtPath(assetPath);
                 textureImporter.isReadable = true;

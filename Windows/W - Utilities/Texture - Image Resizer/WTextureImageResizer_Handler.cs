@@ -34,12 +34,12 @@ namespace YNL.Editor.Window.Texture.ImageResizer
                 {
                     string getPath = AssetDatabase.GUIDToAssetPath(guid);
                     Texture2D texture = AssetDatabase.LoadAssetAtPath<Texture2D>(getPath);
-                    Textures.AddDistinct(texture);
+                    Textures.EAddDistinct(texture);
                 }
             }
             else if (item is Texture2D)
             {
-                Textures.AddDistinct(item as Texture2D);
+                Textures.EAddDistinct(item as Texture2D);
             }
         }
         public void GetAllImages(UnityEngine.Object[] assets)
@@ -68,7 +68,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
             {
                 if (width <= 0 || height <= 0)
                 {
-                    MDebug.Error("Size must not be 0px");
+                    EDebug.EError("Size must not be 0px");
                     return;
                 }
                 if (width > inputTexture.width || height > inputTexture.height) return;
@@ -84,7 +84,7 @@ namespace YNL.Editor.Window.Texture.ImageResizer
             }
             catch (System.Exception e)
             {
-                MDebug.Error($"Error resizing image: {e.Message}");
+                EDebug.EError($"Error resizing image: {e.Message}");
             }
         }
 

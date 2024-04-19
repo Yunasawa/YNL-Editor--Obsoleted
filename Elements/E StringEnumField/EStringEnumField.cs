@@ -26,7 +26,7 @@ namespace YNL.Editor.UIElement
             Label = new Label(label).AddClass("Label");
 
             Popup = new PopupField<string>(options, 0).AddClass("Popup");
-            if (!options.Contains(defaultOption) || defaultOption.IsNullOrEmpty()) Popup.value = options[0];
+            if (!options.Contains(defaultOption) || defaultOption.EIsNullOrEmpty()) Popup.value = options[0];
             else Popup.value = options[options.IndexOf(defaultOption)];
             Popup.RegisterValueChangedCallback(OnValueChanged);
 

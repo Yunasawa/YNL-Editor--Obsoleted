@@ -17,7 +17,7 @@ namespace YNL.Editor.Window.Texture.ImageInverter
         private float _tagPanelWidth = 200;
         private EMinMax _propertyPanelWidth = new EMinMax(100, 200);
 
-        public float ImageWidth => _sizeSlider.Slider.value.Remap(new(0, 10), _propertyPanelWidth);
+        public float ImageWidth => _sizeSlider.Slider.value.ERemap(new(0, 10), _propertyPanelWidth);
         #endregion
         #region ▶ Visual Elements
         private WTextureImageInverter_Main _main;
@@ -60,7 +60,7 @@ namespace YNL.Editor.Window.Texture.ImageInverter
 
         private void CreateElements()
         {
-            _windowTitlePanel = new(_windowIcon.LoadAsset<Texture2D>(), _windowTitle, _windowSubtitle);
+            _windowTitlePanel = new(_windowIcon.ELoadAsset<Texture2D>(), _windowTitle, _windowSubtitle);
             _windowTitlePanel.AddClass("WindowTitle");
 
             _clearButton = new Button(ClearBoxes).AddClass("ClearButton");

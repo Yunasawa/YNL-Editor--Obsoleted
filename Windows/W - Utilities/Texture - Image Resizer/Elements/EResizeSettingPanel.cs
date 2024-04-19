@@ -82,12 +82,12 @@ namespace YNL.Editor.Window.Texture.ImageResizer
         public void WidthChanged(ChangeEvent<string> evt)
         {
             evt.StopPropagation();
-            OnWidthChaned?.Invoke(evt.newValue.ToInt());
+            OnWidthChaned?.Invoke(evt.newValue.EToInt());
         }
         public void HeightChanged(ChangeEvent<string> evt)
         {
             evt.StopPropagation();
-            OnHeightChaned?.Invoke(evt.newValue.ToInt());
+            OnHeightChaned?.Invoke(evt.newValue.EToInt());
         }
     }
 }

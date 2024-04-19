@@ -83,7 +83,7 @@ namespace YNL.Editor.UIElement
         {
             var element = evt.currentTarget as EInteractableAssetField<T>;
 
-            if (DragAndDrop.objectReferences.TryGet(0) is T)
+            if (DragAndDrop.objectReferences.ETryGet(0) is T)
             {
                 element.DragEnter();
                 action?.Invoke();
@@ -95,7 +95,7 @@ namespace YNL.Editor.UIElement
         {
             var element = evt.currentTarget as EInteractableAssetField<T>;
 
-            if (DragAndDrop.objectReferences.TryGet(0) is T)
+            if (DragAndDrop.objectReferences.ETryGet(0) is T)
             {
                 element.DragLeave();
                 action?.Invoke();
@@ -107,7 +107,7 @@ namespace YNL.Editor.UIElement
         {
             var element = evt.currentTarget as EInteractableAssetField<T>;
 
-            if (DragAndDrop.objectReferences.TryGet(0) is T)
+            if (DragAndDrop.objectReferences.ETryGet(0) is T)
             {
                 DragAndDrop.visualMode = DragAndDropVisualMode.Link;
                 element.DragUpdate();
@@ -120,9 +120,9 @@ namespace YNL.Editor.UIElement
         {
             var element = evt.currentTarget as EInteractableAssetField<T>;
 
-            if (DragAndDrop.objectReferences.TryGet(0) is T)
+            if (DragAndDrop.objectReferences.ETryGet(0) is T)
             {
-                element.BindedObject = (T)DragAndDrop.objectReferences.TryGet(0);
+                element.BindedObject = (T)DragAndDrop.objectReferences.ETryGet(0);
                 element.DragPerform();
                 action?.Invoke(element.BindedObject);
             }

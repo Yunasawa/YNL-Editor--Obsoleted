@@ -67,21 +67,21 @@ namespace YNL.Editor.Window.Animation.ObjectRenamer
 
         public void UpdateArrowColor()
         {
-            Color arrowColor = "#BF4040".ToColor();
-            if (!Object.ReferencedObject.IsNull()) arrowColor = "#40BF8F".ToColor();
+            Color arrowColor = "#BF4040".EToColor();
+            if (!Object.ReferencedObject.EIsNull()) arrowColor = "#40BF8F".EToColor();
 
             this.Arrow.SetBackgroundImageTintColor(arrowColor);
         }
 
         public void HoverOnChangeButton(bool isHover)
         {
-            ChangeButton.EnableClass(isHover, "ChangeButton".Hover());
-            ChangeIcon.EnableClass(isHover, "ChangeIcon".Hover());
+            ChangeButton.EnableClass(isHover, "ChangeButton".EHover());
+            ChangeIcon.EnableClass(isHover, "ChangeIcon".EHover());
         }
         public void HoverOnUndoButton(bool isHover)
         {
-            UndoButton.EnableClass(isHover, "UndoButton".Hover());
-            UndoIcon.EnableClass(isHover, "UndoIcon".Hover());
+            UndoButton.EnableClass(isHover, "UndoButton".EHover());
+            UndoIcon.EnableClass(isHover, "UndoIcon".EHover());
         }
     }
 }

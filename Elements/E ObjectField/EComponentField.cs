@@ -39,7 +39,7 @@ namespace YNL.Editor.UIElement
             Icon = new Image().SetBackgroundImage(objectIcon).AddClass(_uss_icon);
 
             Name = new Label().AddClass(_uss_name);
-            if (!ReferencedObject.IsNull()) HighlineField();
+            if (!ReferencedObject.EIsNull()) HighlineField();
             else LowlineField();
 
             Background = new EInteractableComponentField<T>().AddClass(_uss_background);
@@ -76,34 +76,34 @@ namespace YNL.Editor.UIElement
         }
         public void PointerEnterOnField()
         {
-            Background.EnableClass(_uss_background.Hover());
-            Icon.EnableClass(_uss_icon.Hover());
-            Name.EnableClass(_uss_name.Hover());
+            Background.EnableClass(_uss_background.EHover());
+            Icon.EnableClass(_uss_icon.EHover());
+            Name.EnableClass(_uss_name.EHover());
             Ping.EnableClass($"{_uss_ping}__field-hover");
         }
         public void PointerExitOnField()
         {
-            Background.DisableClass(_uss_background.Hover());
-            Icon.DisableClass(_uss_icon.Hover());
-            Name.DisableClass(_uss_name.Hover());
+            Background.DisableClass(_uss_background.EHover());
+            Icon.DisableClass(_uss_icon.EHover());
+            Name.DisableClass(_uss_name.EHover());
             Ping.DisableClass($"{_uss_ping}__field-hover");
         }
         public void DragEnterOnField()
         {
             Ping.DisableClass($"{_uss_ping}__field-hover");
-            Background.DisableClass(_uss_background.Hover());
-            Background.EnableClass(_uss_background.Drag());
-            Ping.EnableClass(_uss_ping.Drag());
+            Background.DisableClass(_uss_background.EHover());
+            Background.EnableClass(_uss_background.EDrag());
+            Ping.EnableClass(_uss_ping.EDrag());
         }
         public void DragExitOnField()
         {
-            Background.DisableClass(_uss_background.Drag());
-            Ping.DisableClass(_uss_ping.Drag());
+            Background.DisableClass(_uss_background.EDrag());
+            Ping.DisableClass(_uss_ping.EDrag());
         }
         public void DragPerformOnField(T referencedObject)
         {
-            Background.DisableClass(_uss_background.Drag());
-            Ping.DisableClass(_uss_ping.Drag());
+            Background.DisableClass(_uss_background.EDrag());
+            Ping.DisableClass(_uss_ping.EDrag());
 
             ReferencedObject = referencedObject;
 
@@ -116,26 +116,26 @@ namespace YNL.Editor.UIElement
         }
         public void PointerEnterOnSelection()
         {
-            Ping.EnableClass(_uss_ping.Hover());
-            PingIcon.EnableClass(_uss_pingicon.Hover());
+            Ping.EnableClass(_uss_ping.EHover());
+            PingIcon.EnableClass(_uss_pingicon.EHover());
         }
         public void PointerExitOnSelection()
         {
-            Ping.DisableClass(_uss_ping.Hover());
-            PingIcon.DisableClass(_uss_pingicon.Hover());
+            Ping.DisableClass(_uss_ping.EHover());
+            PingIcon.DisableClass(_uss_pingicon.EHover());
         }
 
         private void HighlineField()
         {
-            Name.text = $"{ReferencedObject.name} ({_typeName.AddSpaces()})";
+            Name.text = $"{ReferencedObject.name} ({_typeName.EAddSpaces()})";
             Name.SetColor("#FFFFFF");
-            Icon.SetBackgroundImageTintColor("#FFFFFF".ToColor());
+            Icon.SetBackgroundImageTintColor("#FFFFFF".EToColor());
         }
         private void LowlineField()
         {
-            Name.text = $"None ({_typeName.AddSpaces()})";
+            Name.text = $"None ({_typeName.EAddSpaces()})";
             Name.SetColor("#7D7D7D");
-            Icon.SetBackgroundImageTintColor("#7F7F7F".ToColor());
+            Icon.SetBackgroundImageTintColor("#7F7F7F".EToColor());
         }
     }
 }
