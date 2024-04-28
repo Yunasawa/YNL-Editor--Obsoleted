@@ -67,3 +67,8 @@ After you install the package, you can open the window like this:
 <h3><div id="texture-image-resizer"> 🌅 Texture - Image Resizer (Editor Window) </div></h3>
 <i> Description: A tool that helps you resize (upsize/downsize) image(s) right inside Unity editor. </i>
 <img src="https://github.com/Yunasawa/YNL-Editor/assets/113672166/146b7452-fdd2-4f37-aacb-5ea26eb65962" alt="version">
+
+<h3><div id="texture-image-resizer"> 🌅 Texture - Image Inverter (Editor Window) </div></h3>
+<i> Description: A tool that inverts your image(s) without using any specialized tool. </i>
+<img src="https://github.com/Yunasawa/YNL-Editor/assets/113672166/5bcaac83-339d-4a35-8f97-b62af9c14d16" alt="version">
+
