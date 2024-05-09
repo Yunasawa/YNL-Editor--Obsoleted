@@ -4,18 +4,18 @@
     "version": "1.3.3",
     "unity": "2022.3",
     "description": "YNL - Editor provides you tools to help you on your developing progress.",
-    "keywords": 
-    [
+    "keywords": [
         "yunasawa",
         "editor",
         "window"
     ],
     "category": "Editor",
-    "dependencies": {},
-    "author": 
-    {
+    "author": {
         "name": "Yunasawa",
         "email": "yunasawa200@gmail.com",
         "url": "https://github.com/Yunasawa"
+    },
+    "dependencies": {
+        "com.yunasawa.ynl.utilities": "1.3.4"
     }
 }
