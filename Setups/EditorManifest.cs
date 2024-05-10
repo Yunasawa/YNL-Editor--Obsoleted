@@ -7,7 +7,7 @@ using UnityEngine;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace YNL.Editors.Extensions
+namespace YNL.Editors.Setups
 {
     public static class EditorManifest
     {

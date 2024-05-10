@@ -1,13 +1,12 @@
 ﻿#if UNITY_EDITOR
+using System.Collections.Generic;
+using System;
 using UnityEditor.Build;
 using UnityEditor;
-using System.Collections.Generic;
 using System.Linq;
-using System;
 using UnityEngine;
-using UnityEditor.VersionControl;
 
-namespace YNL.Editors.Extensions
+namespace YNL.Editors.Setups
 {
     public static class EditorDefineSymbols
     {
@@ -70,9 +69,7 @@ namespace YNL.Editors.Extensions
             NotifySymbols(String.Join("; ", symbols), false);
         }
 
-        /// <summary>
-        /// Print a notification into Console panel.
-        /// </summary>
+        /// <summary>  Print a notification into Console panel </summary>
         public static void NotifySymbols(string message, bool isAdded)
         {
             if (isAdded) Debug.Log($"<color=#FFCD45><b>▶ Notification:</b></color> A new define symbol <color=#ffdb7a><b>{message}</b></color> is added.");

@@ -1,10 +1,13 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
+using System.Collections.Generic;
+using System;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Build;
 using UnityEngine;
 using YNL.Editors.Extensions;
 
-namespace YNL.Editors
+namespace YNL.Editors.Setups
 {
     public class YNLEditorSetup : AssetPostprocessor
     {
@@ -23,9 +26,8 @@ namespace YNL.Editors
 
         public static void InitializeOnLoad()
         {
-            Debug.Log("Initialize On Load");
             EditorManifest.AddRegistry("YunasawaStudio", "https://package.openupm.com", "com.yunasawa.ynl.utilities");
-            EditorManifest.AddDependency("com.yunasawa.ynl.utilities", "1.2.3");
+            EditorManifest.AddDependency("com.yunasawa.ynl.utilities", "1.3.0");
             EditorDefineSymbols.AddSymbols("YNL_UTILITIES");
         }
     }
