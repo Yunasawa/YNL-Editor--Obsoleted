@@ -1,5 +1,8 @@
+#if UNITY_EDITOR
 using UnityEditor;
+#if YNL_UTILITIES
 using YNL.Extensions.Methods;
+#endif
 
 namespace YNL.Editors.Extensions
 {
@@ -57,16 +60,25 @@ namespace YNL.Editors.Extensions
                     if (sp.stringValue == "")
                     {
                         sp.stringValue = layerName;
+#if YNL_UTILITIES
                         MDebug.Notify($"Layer <color=#7aff7a><b>{layerName}</b></color> has been added");
+#endif
                         _tagManager.ApplyModifiedProperties();
                         return true;
                     }
-                    if (i == j) MDebug.Notify("All allowed layers have been filled");
+                    if (i == j)
+                    {
+#if YNL_UTILITIES
+                        MDebug.Notify("All allowed layers have been filled");
+#endif
+                    }
                 }
             }
             else
             {
+#if YNL_UTILITIES
                 MDebug.Notify($"Layer <color=#7aff7a><b>{layerName}</b></color> already exists");
+#endif
             }
             return false;
         }
@@ -87,15 +99,17 @@ namespace YNL.Editors.Extensions
                     if (sp.stringValue == layerName)
                     {
                         sp.stringValue = "";
+#if YNL_UTILITIES
                         MDebug.Notify($"Layer <color=#7aff7a><b>{layerName}</b></color> has been removed");
+#endif
                         _tagManager.ApplyModifiedProperties();
                         return true;
                     }
 
                 }
             }
-
             return false;
         }
     }
 }
+#endif

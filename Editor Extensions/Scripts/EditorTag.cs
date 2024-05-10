@@ -1,6 +1,9 @@
+#if UNITY_EDITOR
 using System.Linq;
 using UnityEditorInternal;
+#if YNL_UTILITIES
 using YNL.Extensions.Methods;
+#endif
 
 namespace YNL.Editors.Extensions
 {
@@ -13,7 +16,9 @@ namespace YNL.Editors.Extensions
             if (!TagExists(name))
             {
                 InternalEditorUtility.AddTag(name);
+#if YNL_UTILITIES
                 MDebug.Notify($"Tag <color=#7aa6ff><b>{name}</b></color> has been added");
+#endif
             }
         }
 
@@ -22,8 +27,11 @@ namespace YNL.Editors.Extensions
             if (TagExists(name))
             {
                 InternalEditorUtility.RemoveTag(name);
+#if YNL_UTILITIES
                 MDebug.Notify($"Tag <color=#7aa6ff><b>{name}</b></color> has been removed");
+#endif
             }
         }
     }
 }
+#endif

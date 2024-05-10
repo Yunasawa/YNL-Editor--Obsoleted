@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System;
-using Unity.Plastic.Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
 using YNL.Utilities.Addons;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace YNL.Editors.Extensions
 {
