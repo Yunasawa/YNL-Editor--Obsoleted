@@ -20,7 +20,6 @@ namespace YNL.Editors
             }
         }
 
-        [InitializeOnLoadMethod]
         public static void InitializeOnLoad()
         {
             Debug.Log("Initialize On Load");
