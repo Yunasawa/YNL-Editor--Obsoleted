@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using System.Linq;
 using UnityEditor;
-using YNL.Extensions.Methods;
+using UnityEngine;
 
 namespace YNL.Editors
 {
@@ -23,7 +23,7 @@ namespace YNL.Editors
         [InitializeOnLoadMethod]
         public static void InitializeOnLoad()
         {
-            MDebug.Notify("InitializeOnLoad");
+            Debug.Log("Initialize On Load");
         }
     }
 }
