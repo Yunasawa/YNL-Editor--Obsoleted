@@ -1,9 +1,11 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor.Build;
 using UnityEditor;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using UnityEngine;
+using UnityEditor.VersionControl;
 
 namespace YNL.Editors.Extensions
 {
@@ -28,6 +30,7 @@ namespace YNL.Editors.Extensions
 
             _defineSymbols.Add(symbol);
             PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.Standalone, String.Join(";", _defineSymbols));
+            NotifySymbols(symbol, true);
         }
 
         /// <summary> Add multiple symbols </summary>
@@ -40,6 +43,7 @@ namespace YNL.Editors.Extensions
                 _defineSymbols.Add(symbol);
             }
             PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.Standalone, String.Join(";", _defineSymbols));
+            NotifySymbols(String.Join("; ", symbols), true);
         }
 
         /// <summary> Remove a single symbol </summary>
@@ -50,6 +54,7 @@ namespace YNL.Editors.Extensions
 
             _defineSymbols.Remove(symbol);
             PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.Standalone, String.Join(";", _defineSymbols));
+            NotifySymbols(symbol, false);
         }
 
         /// <summary> Remove multiple symbols </summary>
@@ -62,6 +67,16 @@ namespace YNL.Editors.Extensions
                 _defineSymbols.Add(symbol);
             }
             PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.Standalone, String.Join(";", _defineSymbols));
+            NotifySymbols(String.Join("; ", symbols), false);
+        }
+
+        /// <summary>
+        /// Print a notification into Console panel.
+        /// </summary>
+        public static void NotifySymbols(string message, bool isAdded)
+        {
+            if (isAdded) Debug.Log($"<color=#FFCD45><b>▶ Notification:</b></color> A new define symbol <color=#ffdb7a><b>{message}</b></color> is added.");
+            else Debug.Log($"<color=#FFCD45><b>▶ Notification:</b></color> A new define symbol <color=#ffdb7a><b>{message}</b></color> is removed.");
         }
     }
 }

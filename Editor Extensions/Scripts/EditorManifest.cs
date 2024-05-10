@@ -1,4 +1,4 @@
-#if false
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -11,74 +11,55 @@ namespace YNL.Editors.Extensions
 {
     public static class EditorManifest
     {
-        private static string _toJsonPath;
+        private static string _manifestPath;
+        private static ManifestRoot _manifestRoot = new();
 
-        private static ManifestRoot _root = new();
-
-        public static void Test()
+        private static void UpdateManifest()
         {
-            _toJsonPath = Application.dataPath.Replace("Assets", "Packages/manifest.json");
-
-            _root = JsonData.LoadNewtonJson<ManifestRoot>(_toJsonPath);
-
-            if (!_root.dependencies.ContainsKey("com.yunasawa.ynl.editor"))
-            {
-                _root.dependencies.Add("com.yunasawa.ynl.editor", "1.3.3");
-
-                Registry registry = _root.scopedRegistries.Find(i => i.name == "YunasawaStudio");
-                if (registry == null)
-                {
-                    _root.scopedRegistries.Add(new Registry
-                        (
-                            "YunasawaStudio",
-                            "https://package.openupm.com",
-                            "com.yunasawa.ynl.editor",
-                            "com.yunasawa.ynl.utilities"
-                        ));
-                }
-                else
-                {
-                    if (!registry.scopes.Contains("com.yunasawa.ynl.utilities"))
-                    {
-                        registry.scopes.Add("com.yunasawa.ynl.editor");
-                    }
-                }
-            }
-            if (!_root.dependencies.ContainsKey("com.yunasawa.ynl.utilities"))
-            {
-                _root.dependencies.Add("com.yunasawa.ynl.utilities", "1.2.1");
-
-                Registry registry = _root.scopedRegistries.Find(i => i.name == "YunasawaStudio");
-                if (registry == null)
-                {
-                    _root.scopedRegistries.Add(new Registry
-                        (
-                            "YunasawaStudio",
-                            "https://package.openupm.com",
-                            "com.yunasawa.ynl.editor",
-                            "com.yunasawa.ynl.utilities"
-                        ));
-                }
-                else
-                {
-                    if (!registry.scopes.Contains("com.yunasawa.ynl.utilities"))
-                    {
-                        registry.scopes.Add("com.yunasawa.ynl.utilities");
-                    }
-                }
-            }
-
-            JsonData.SaveNewtonJson(_root, _toJsonPath);
+            _manifestPath = Application.dataPath.Replace("Assets", "Packages/manifest.json");
+            _manifestRoot = JsonData.LoadNewtonJson<ManifestRoot>(_manifestPath);
         }
 
         public static void AddDependency(string name, string version)
         {
+            UpdateManifest();
 
+            if (!_manifestRoot.dependencies.ContainsKey(name))
+            {
+                _manifestRoot.dependencies.Add(name, version);
+            }
+            else
+            {
+                _manifestRoot.dependencies[name] = version;
+            }
+
+            JsonData.SaveNewtonJson(_manifestRoot, _manifestPath);
         }
 
-        public static void AddRegistry()
+        public static void AddRegistry(string name, string url, params string[] scopes)
         {
+            UpdateManifest();
 
+            Registry registry = _manifestRoot.scopedRegistries.Find(i => i.name == name);
+
+            if (registry == null)
+            {
+                _manifestRoot.scopedRegistries.Add(new Registry(name, url, scopes));
+            }
+            else
+            {
+                foreach (var scope in scopes) AddScope(scope);
+            }
+
+            JsonData.SaveNewtonJson(_manifestRoot, _manifestPath);
+
+            void AddScope(string scope)
+            {
+                if (!registry.scopes.Contains(scope))
+                {
+                    registry.scopes.Add(scope);
+                }
+            }
         }
     }
 

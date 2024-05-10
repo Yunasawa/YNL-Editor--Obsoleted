@@ -24,7 +24,9 @@ namespace YNL.Editors
         public static void InitializeOnLoad()
         {
             Debug.Log("Initialize On Load");
-            EditorDefineSymbols.AddSymbols("YNL_EDITOR");
+            EditorManifest.AddRegistry("YunasawaStudio", "https://package.openupm.com", "com.yunasawa.ynl.utilities");
+            EditorManifest.AddDependency("com.yunasawa.ynl.utilities", "1.2.3");
+            EditorDefineSymbols.AddSymbols("YNL_UTILITIES");
         }
     }
 }
