@@ -1,7 +1,7 @@
 {
     "name": "com.yunasawa.ynl.editor",
     "displayName": "YNL - Editor",
-    "version": "1.3.5",
+    "version": "1.3.6",
     "unity": "2022.3",
     "description": "YNL - Editor provides you tools to help you on your developing progress.",
     "keywords": [
@@ -15,7 +15,5 @@
         "email": "yunasawa200@gmail.com",
         "url": "https://github.com/Yunasawa"
     },
-    "dependencies": {
-        "com.yunasawa.ynl.utilities": "1.2.3"
-    }
+    "dependencies": {}
 }
