@@ -20,7 +20,7 @@ namespace YNL.Editors
             }
         }
 
-        //[InitializeOnLoadMethod]
+        [InitializeOnLoadMethod]
         public static void InitializeOnLoad()
         {
             MDebug.Notify("InitializeOnLoad");
