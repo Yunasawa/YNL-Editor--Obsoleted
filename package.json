@@ -15,7 +15,5 @@
         "email": "yunasawa200@gmail.com",
         "url": "https://github.com/Yunasawa"
     },
-    "dependencies": {
-        "com.yunasawa.ynl.utilities": "https://github.com/Yunasawa/YNL-Utilities.git"
-    }
+    "dependencies": {}
 }
