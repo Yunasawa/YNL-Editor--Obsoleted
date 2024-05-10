@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using YNL.Editors.Extensions;
 
 namespace YNL.Editors
 {
@@ -23,6 +24,7 @@ namespace YNL.Editors
         public static void InitializeOnLoad()
         {
             Debug.Log("Initialize On Load");
+            EditorDefineSymbols.AddSymbols("YNL_EDITOR");
         }
     }
 }

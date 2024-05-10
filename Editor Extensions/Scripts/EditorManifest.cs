@@ -9,15 +9,13 @@ using Newtonsoft.Json;
 
 namespace YNL.Editors.Extensions
 {
-    public class EditorManifest : MonoBehaviour
+    public static class EditorManifest
     {
-        private string _toJsonPath = @"C:\Users\yunas\Downloads\test.json";
-        TextAsset _asset;
+        private static string _toJsonPath;
 
-        [SerializeField] private ManifestRoot _root = new();
+        private static ManifestRoot _root = new();
 
-        [ContextMenu("Test")]
-        public void Test()
+        public static void Test()
         {
             _toJsonPath = Application.dataPath.Replace("Assets", "Packages/manifest.json");
 
@@ -71,6 +69,16 @@ namespace YNL.Editors.Extensions
             }
 
             JsonData.SaveNewtonJson(_root, _toJsonPath);
+        }
+
+        public static void AddDependency(string name, string version)
+        {
+
+        }
+
+        public static void AddRegistry()
+        {
+
         }
     }
 
