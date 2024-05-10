@@ -1,10 +1,9 @@
-#if UNITY_EDITOR
+#if false
 using System.Collections.Generic;
 using System.IO;
 using System;
 using UnityEditor;
 using UnityEngine;
-using YNL.Utilities.Addons;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -78,7 +77,7 @@ namespace YNL.Editors.Extensions
     [System.Serializable]
     public class ManifestRoot
     {
-        public SerializableDictionary<string, string> dependencies = new();
+        public Dictionary<string, string> dependencies = new();
         public List<Registry> scopedRegistries = new();
     }
 

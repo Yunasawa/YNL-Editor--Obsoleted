@@ -11,7 +11,9 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [
-        "YNL_EDITOR"
+        "UNITY_EDITOR",
+        "YNL_EDITOR",
+        "YNL_UTILITIES"
     ],
     "versionDefines": [],
     "noEngineReferences": false
