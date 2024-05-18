@@ -13,6 +13,11 @@
 A product made by Yunasawa Studio, those will be helpful tools that solve your several problems can appear in your developing progress. <br>
 Contact us: <kbd> yunasawa200@gmail.com </kbd>
 
+<details>
+  <summary><i> Repositiy Stats </i></summary>
+  <img width="100%" src="https://repobeats.axiom.co/api/embed/eb743223294ad1792c11c1a9cd98a0edc28ac76f.svg">
+</details>
+
 <h2> ★ Contents </h2>
 <ul>
 <li><a href="#installation"> ★ Installation </a></li>
@@ -20,6 +25,7 @@ Contact us: <kbd> yunasawa200@gmail.com </kbd>
   <ul>
     <li><a href="#animation-object-renamer"> 🎬 Animation - Object Renamer (Editor Window) </a></li>
     <li><a href="#texture-image-resizer"> 🌅 Texture - Image Resizer (Editor Window) </a></li>
+    <li><a href="#texture-image-inverter"> 🌅 Texture - Image Inverter (Editor Window) </a></li>
   </ul>
 </ul>
 <h2><div id="installation"> ★ Installation </div></h2>
@@ -38,7 +44,7 @@ Here is how you can do it: <a href="https://docs.unity3d.com/2019.3/Documentatio
 You can add UPM Scrope like this:
 
 ```
-Name: Yunasawa.Library.Editor
+Name: YunasawaStudio
 URL: https://package.openupm.com
 Scope(s): com.yunasawa.ynl.editor
 ```
@@ -68,7 +74,7 @@ After you install the package, you can open the window like this:
 <i> Description: A tool that helps you resize (upsize/downsize) image(s) right inside Unity editor. </i>
 <img src="https://github.com/Yunasawa/YNL-Editor/assets/113672166/146b7452-fdd2-4f37-aacb-5ea26eb65962" alt="version">
 
-<h3><div id="texture-image-resizer"> 🌅 Texture - Image Inverter (Editor Window) </div></h3>
+<h3><div id="texture-image-inverter"> 🌅 Texture - Image Inverter (Editor Window) </div></h3>
 <i> Description: A tool that inverts your image(s) without using any specialized tool. </i>
 <img src="https://github.com/Yunasawa/YNL-Editor/assets/113672166/5bcaac83-339d-4a35-8f97-b62af9c14d16" alt="version">
 
