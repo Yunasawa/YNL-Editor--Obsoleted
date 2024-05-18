@@ -1,11 +1,6 @@
 ﻿#if UNITY_EDITOR
-using System.Collections.Generic;
-using System;
 using System.Linq;
 using UnityEditor;
-using UnityEditor.Build;
-using UnityEngine;
-using YNL.Editors.Extensions;
 
 namespace YNL.Editors.Setups
 {

@@ -145,10 +145,10 @@ namespace YNL.Editors.Windows.Utilities
         public static T AddSpace<T>(this T target, float width, float height) where T : VisualElement =>
             target.AddElements(new VisualElement().SetName("Space").SetSize(width, height));
 
-        public static T AddHorizontalSpace<T>(this T target, float height) where T : VisualElement =>
+        public static T AddHSpace<T>(this T target, float height) where T : VisualElement =>
             target.AddElements(new VisualElement().SetName("HSpace").SetHeight(height));
 
-        public static T AddVerticalSpace<T>(this T target, float width) where T : VisualElement =>
+        public static T AddVSpace<T>(this T target, float width) where T : VisualElement =>
             target.AddElements(new VisualElement().SetName("VSpace").SetWidth(width));
 
         #endregion
