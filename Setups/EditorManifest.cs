@@ -30,7 +30,7 @@ namespace YNL.Editors.Setups
             }
             else
             {
-                _manifestRoot.dependencies[name] = version;
+                //_manifestRoot.dependencies[name] = version;
             }
 
             JsonData.SaveNewtonJson(_manifestRoot, _manifestPath);
