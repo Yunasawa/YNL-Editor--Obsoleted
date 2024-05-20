@@ -72,7 +72,13 @@ namespace YNL.Editors.UIElements
 
         public void OnGUI()
         {
-            if (Event.current.commandName == "ObjectSelectorUpdated")
+            string commandName = Event.current.commandName;
+
+            if (commandName == "ObjectSelectorUpdated")
+            {
+                ReferencedObject = (T)EditorGUIUtility.GetObjectPickerObject();
+            }
+            else if (commandName == "ObjectSelectorClosed")
             {
                 ReferencedObject = (T)EditorGUIUtility.GetObjectPickerObject();
             }
@@ -125,7 +131,9 @@ namespace YNL.Editors.UIElements
 
         public void PointerDownOnSelection()
         {
-            EditorGUIUtility.ShowObjectPicker<T>(ReferencedObject, false, "", 0);
+            int controlID = GUIUtility.GetControlID(FocusType.Passive);
+
+            EditorGUIUtility.ShowObjectPicker<T>(null, false, "", controlID);
         }
         public void PointerEnterOnSelection()
         {
