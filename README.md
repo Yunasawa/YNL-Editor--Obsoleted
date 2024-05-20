@@ -34,7 +34,7 @@ Contact us: <kbd> yunasawa200@gmail.com </kbd>
 Git URL:
 
 ```
-https://github.com/Yunasawa/YNL-Editor
+https://github.com/Yunasawa/YNL-Editor.git
 ```
 
 Here is how you can do it: <a href="https://docs.unity3d.com/2019.3/Documentation/Manual/upm-ui-giturl.html"> How to install a package via Git URL </a>
