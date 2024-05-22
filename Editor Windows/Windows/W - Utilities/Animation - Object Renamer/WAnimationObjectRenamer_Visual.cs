@@ -8,7 +8,7 @@ using YNL.Editors.Windows.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using YNL.Editors.UIElements;
+using YNL.Editors.UIElements.Styled;
 
 namespace YNL.Editors.Windows.Animation.ObjectRenamer
 {
@@ -69,7 +69,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             _tagPanel = tagPanel;
             _main = main;
 
-            this.AddStyle(_styleSheet, EAddress.USSFont);
+            this.AddStyle(_styleSheet, EStyleSheet.Font);
 
             CreateElements();
             AddClasses();

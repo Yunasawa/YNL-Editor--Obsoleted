@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class EStringEnumField : VisualElement
     {
-        private const string _styleSheet = "Style Sheets/Elements/EStringEnumField";
+        private const string _styleSheet = "Style Sheets/Elements/Styled/EStringEnumField";
 
         public Label Label;
         public PopupField<string> Popup;

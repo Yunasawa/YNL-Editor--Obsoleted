@@ -31,7 +31,7 @@ namespace YNL.Editors.Windows.Texture.ImageInverter
 
             AssignedImage = image;
 
-            this.AddStyle(_styleSheet, EAddress.USSFont).AddClass("Main");
+            this.AddStyle(_styleSheet, EStyleSheet.Font).AddClass("Main");
 
             OriginalImage = new Image().SetBackgroundImage(image).AddClass("Image", "OriginalImage");
             InvertedImage = new Image().SetBackgroundImage(WTextureImageInverter_Handler.InvertImage(image)).AddClass("Image", "InvertedImage");

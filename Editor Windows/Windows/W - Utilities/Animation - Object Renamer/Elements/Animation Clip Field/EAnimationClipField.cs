@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using YNL.Editors.UIElements;
+using YNL.Editors.UIElements.Styled;
 using YNL.Editors.Windows.Utilities;
 
 namespace YNL.Editors.Windows.Animation.ObjectRenamer

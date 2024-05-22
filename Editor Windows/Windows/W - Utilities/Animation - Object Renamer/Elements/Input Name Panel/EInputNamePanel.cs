@@ -1,7 +1,7 @@
 ﻿#if UNITY_EDITOR
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
-using YNL.Editors.UIElements;
+using YNL.Editors.UIElements.Styled;
 
 namespace YNL.Editors.Windows.Animation.ObjectRenamer
 {
@@ -24,7 +24,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
 
         public EInputNamePanel() : base()
         {
-            this.AddStyle(USS_StyleSheet, EAddress.USSFont).SetName("Root");
+            this.AddStyle(USS_StyleSheet, EStyleSheet.Font).SetName("Root");
 
             TagIcon = new Image().SetName("TagIcon");
             Line = new ELine(ELineMode.Vertical).AddClass("Line");

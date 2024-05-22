@@ -2,11 +2,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class ELabel : VisualElement
     {
-        private const string USS_StyleSheet = "Style Sheets/Elements/ELabel1";
+        private const string USS_StyleSheet = "Style Sheets/Elements/Styled/ELabel1";
 
         private static readonly string USS_Container = "Container";
         private static readonly string USS_Background = "Background";

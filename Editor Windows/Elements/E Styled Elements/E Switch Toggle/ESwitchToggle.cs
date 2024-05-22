@@ -3,11 +3,11 @@ using System;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class ESwitchToggle : Button
     {
-        public const string _styleSheet = "Style Sheets/Elements/ESwitchToggle";
+        public const string _styleSheet = "Style Sheets/Elements/Styled/ESwitchToggle";
 
         public bool Enable = false;
 
@@ -20,7 +20,7 @@ namespace YNL.Editors.UIElements
         {
             Enable = enable;
 
-            this.AddStyle(_styleSheet, EAddress.USSFont).AddClass("Main");
+            this.AddStyle(_styleSheet, EStyleSheet.Font).AddClass("Main");
 
             Toggle = new Image().AddClass("Toggle").EnableClass(Enable, "Toggle_Enable");
             Background = new Image().AddClass("Background").EnableClass(Enable, "Background_Enable").AddElements(Toggle);

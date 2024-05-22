@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class EWindowTag : VisualElement
     {
-        private const string USS_StyleSheet = "Style Sheets/Elements/EWindowTag";
+        private const string USS_StyleSheet = "Style Sheets/Elements/Styled/EWindowTag";
 
         private static readonly string USS_Background = "background";
         private static readonly string USS_BackgroundHover = "background__hover";
@@ -31,7 +31,7 @@ namespace YNL.Editors.UIElements
 
         public EWindowTag(Texture2D icon, string title, string subtitle, Color color, float maxWidth, Action action) : base()
         {
-            this.AddStyle(USS_StyleSheet, EAddress.USSFont);
+            this.AddStyle(USS_StyleSheet, EStyleSheet.Font);
 
             Background = new Button();
             Background.AddClass(USS_Background);

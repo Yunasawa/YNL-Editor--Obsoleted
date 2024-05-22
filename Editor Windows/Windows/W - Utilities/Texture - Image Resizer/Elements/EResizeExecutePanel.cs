@@ -1,6 +1,6 @@
 ﻿#if UNITY_EDITOR
 using UnityEngine.UIElements;
-using YNL.Editors.UIElements;
+using YNL.Editors.UIElements.Styled;
 using YNL.Editors.Windows.Utilities;
 
 namespace YNL.Editors.Windows.Texture.ImageResizer
@@ -19,7 +19,7 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
 
         public EResizeExecutePanel() : base()
         {
-            this.AddStyle(_styleSheet, EAddress.USSFont).AddClass("Main");
+            this.AddStyle(_styleSheet, EStyleSheet.Font).AddClass("Main");
 
             ReplaceOldImageSwitch = new ESwitchToggle(false).AddClass("ReplaceOldImageSwitch");
             ReplaceOldImageSwitch.OnSwitch += (enable) => SwitchSaveType(enable);

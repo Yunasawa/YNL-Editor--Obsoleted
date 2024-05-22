@@ -1,0 +1,72 @@
+.Main
+{
+	background-color: transparent;
+
+	width: 100%;
+	height: 40px;
+
+	margin: 0px;
+
+	flex-direction: row;
+}
+
+.Icon
+{
+	background-color: #2d2d2d;
+
+	border-radius: 5px;
+
+	background-image: resource("Textures/Audio Barrier Icon (White)");
+	-unity-background-image-tint-color: #FDC008;
+	background-size: 75%;
+
+	width: 30px;
+	height: 30px;
+}
+
+.TitleBackground
+{
+	background-color: #2d2d2d;
+
+	border-radius: 5px;
+
+	height: 30px;
+
+	flex-direction: row;
+	flex-grow: 1;
+
+	justify-content: center;
+}
+
+.Title
+{
+	background-color: transparent;
+
+	height: 100%;
+
+	margin-left: 7.5px;
+
+	font-size: 17.5px;
+	-unity-text-align: middle-left;
+
+	-unity-font-definition: var(--font-quantify);
+	color: #FDC008;
+
+	align-self: flex-start;
+
+	transition-property: margin-left;
+	transition-duration: 0.25s;
+}
+.Title:hover
+{
+	margin-left: 15px;
+}
+
+.ButtonContainer
+{
+	background-color: transparent;
+
+	flex-grow: 1;
+	flex-direction: row-reverse;
+	align-items: center;
+}

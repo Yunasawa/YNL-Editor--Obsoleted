@@ -1,0 +1,9 @@
+#FlexInspector
+{
+	background-color: transparent;
+
+	margin-top: 5px;
+	margin-right: 7.5px;
+
+	justify-content: center;
+}

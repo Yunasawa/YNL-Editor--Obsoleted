@@ -3,7 +3,7 @@ using System;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class EInteractableField : ObjectField
     {

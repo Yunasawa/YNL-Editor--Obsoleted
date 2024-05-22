@@ -3,11 +3,11 @@ using System;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class ESlider : VisualElement
     {
-        private const string _styleSheet = "Style Sheets/Elements/ESlider";
+        private const string _styleSheet = "Style Sheets/Elements/Styled/ESlider";
 
         public Slider Slider;
 
@@ -19,7 +19,7 @@ namespace YNL.Editors.UIElements
         {
             _range = range;
 
-            this.AddStyle(_styleSheet, EAddress.USSFont).AddClass("Main");
+            this.AddStyle(_styleSheet, EStyleSheet.Font).AddClass("Main");
 
             Slider = new Slider().AddClass("Slider");
             Slider.Q("unity-dragger").AddClass("Dragger");

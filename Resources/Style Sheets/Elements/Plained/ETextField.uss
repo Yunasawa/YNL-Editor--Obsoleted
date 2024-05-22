@@ -1,0 +1,54 @@
+.Main
+{
+	background-color: transparent;
+	border-color: transparent;
+
+	max-width: 200%;
+
+	margin-top: 0px;
+	margin-bottom: 1.5px;
+	margin-left: -2.5px;
+	margin-right: -2.5px;
+
+	justify-content: center;
+
+	flex-shrink: 1;
+
+	flex-direction: row;
+}
+
+.Label
+{
+	width: 40%;
+
+	margin: 0px;
+
+	padding-left: 7.5px;
+
+	-unity-text-align: middle-left; 
+}
+
+.Field
+{
+	width: auto;
+
+	margin: 0px;
+	margin-right: 2.5px;
+
+	flex-grow: 1;
+}
+
+.Input
+{
+	width: 100%;
+	height: 20px;
+
+	background-color: #282828;
+
+	border-radius: 2.5px;
+	border-width: 1.5px;
+	border-color: #282828;
+
+	border-right-color: #1a1a1a;
+	border-bottom-color: #1a1a1a;
+}

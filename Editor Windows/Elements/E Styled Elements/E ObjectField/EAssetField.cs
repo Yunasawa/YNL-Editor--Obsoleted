@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class EAssetField<T> : Button where T : Object
     {
-        private const string USS_StyleSheet = "Style Sheets/Elements/EObjectField";
+        private const string USS_StyleSheet = "Style Sheets/Elements/Styled/EObjectField";
 
         private const string _uss_root = "root";
         private const string _uss_background = "background";
@@ -31,7 +31,7 @@ namespace YNL.Editors.UIElements
             ReferencedObject = objectBinded;
             _typeName = typeof(T).Name;
 
-            this.AddStyle(USS_StyleSheet, EAddress.USSFont).AddClass(_uss_root);
+            this.AddStyle(USS_StyleSheet, EStyleSheet.Font).AddClass(_uss_root);
 
             Texture2D objectIcon = ETexture.Unity(_typeName);
             Icon = new Image().SetBackgroundImage(objectIcon).AddClass(_uss_icon);

@@ -4,11 +4,11 @@ using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class EWindowTagPanel : EInteractableImage
     {
-        private const string _uss_StyleSheet = "Style Sheets/Elements/EWindowTagPanel";
+        private const string _uss_StyleSheet = "Style Sheets/Elements/Styled/EWindowTagPanel";
 
         private static readonly string _uss_panelBackground = "panel-background";
         private static readonly string _uss_titleBackground = "title-background";
@@ -37,7 +37,7 @@ namespace YNL.Editors.UIElements
 
         public EWindowTagPanel(Texture2D icon, string title, string subtitle, float maxWidth, EWindowTag[] tags) : base()
         {
-            this.AddStyle(_uss_StyleSheet, EAddress.USSFont);
+            this.AddStyle(_uss_StyleSheet, EStyleSheet.Font);
 
             Icon.SetBackgroundImage(icon).AddClass(_uss_icon);
             Title.SetText(title).AddClass(_uss_title);

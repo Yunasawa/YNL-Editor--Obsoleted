@@ -1,0 +1,21 @@
+.Icon
+{
+	background-color: #2d2d2d;
+
+	border-radius: 5px;
+
+	background-size: 75%;
+
+	width: 30px;
+	height: 30px;
+
+	transition-property: rotate, margin-top;
+	transition-duration: 0.25s;
+}
+/*
+.Icon:hover
+{
+	margin-top: 5px;
+	rotate: -20deg;
+}
+*/

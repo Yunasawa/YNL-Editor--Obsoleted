@@ -2,22 +2,21 @@
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class ETextField : Image
     {
-        private const string USS_StyleSheet = "Style Sheets/Elements/ETextField";
+        private const string USS_StyleSheet = "Style Sheets/Elements/Styled/ETextField";
 
         private const string _uss_field = "field";
         private const string _uss_color = "color";
         private const string _uss_clip = "clip";
 
-
         public TextField Field;
 
         public ETextField(string label = "") : base()
         {
-            this.AddStyle(USS_StyleSheet, EAddress.USSFont).SetName("Root");
+            this.AddStyle(USS_StyleSheet, EStyleSheet.Font).SetName("Root");
 
             Field = new TextField(label).SetName("Field");
             this.AddElements(Field);

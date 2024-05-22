@@ -2,7 +2,7 @@
 using System;
 using UnityEngine.UIElements;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class EInteractableButton : Button
     {

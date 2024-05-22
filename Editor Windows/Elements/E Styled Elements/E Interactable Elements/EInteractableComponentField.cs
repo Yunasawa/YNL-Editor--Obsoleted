@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class EInteractableComponentField<T> : Button where T : UnityEngine.Object
     {

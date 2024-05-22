@@ -64,7 +64,7 @@ namespace YNL.Editors.Windows
         protected void CreateVirtual()
         {
             Message = new Label(_message).AddClass("Message");
-            this.rootVisualElement.AddStyle(_styleSheet, EAddress.USSFont).AddClass("Main").AddElements(Message);
+            this.rootVisualElement.AddStyle(_styleSheet, EStyleSheet.Font).AddClass("Main").AddElements(Message);
         }
 
         void OnEditorUpdate()

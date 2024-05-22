@@ -1,6 +1,6 @@
 using UnityEngine.UIElements;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class EInputVisualElement : VisualElement, INotifyValueChanged<object>
     {

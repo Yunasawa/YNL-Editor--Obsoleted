@@ -1,4 +1,9 @@
 ﻿:root
 {
 	--font-nightmare-pills: resource("Fonts/Font Assets/Nightmare Pills SDF");
+	--font-new-athletic: resource("Fonts/Font Assets/NewAthleticM54-31vz SDF");
+	--font-coffee-normal: resource("Fonts/Font Assets/Coffee Normal SDF");
+	--font-tweety: resource("Fonts/Font Assets/Tweety SDF");
+	--font-pearce: resource("Fonts/Font Assets/Pearce SDF");
+	--font-quantify: resource("Fonts/Font Assets/Quantify SDF");
 }

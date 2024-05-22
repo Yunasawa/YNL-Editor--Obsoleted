@@ -2,11 +2,11 @@
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class ELine : Image
     {
-        private const string USS_StyleSheet = "Style Sheets/Elements/ELine";
+        private const string USS_StyleSheet = "Style Sheets/Elements/Styled/ELine";
 
         public ELine(ELineMode mode) : base()
         {

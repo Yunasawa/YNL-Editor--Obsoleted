@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
-using YNL.Editors.UIElements;
+using YNL.Editors.UIElements.Styled;
 
 namespace YNL.Editors.Windows.Texture.ImageInverter
 {

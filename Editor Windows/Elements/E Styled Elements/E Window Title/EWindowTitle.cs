@@ -3,11 +3,11 @@ using UnityEngine.UIElements;
 using UnityEngine;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class EWindowTitle : VisualElement
     {
-        private const string USS_StyleSheet = "Style Sheets/Elements/EWindowTitle";
+        private const string USS_StyleSheet = "Style Sheets/Elements/Styled/EWindowTitle";
 
         private const string _uss_panel = "panel";
         private const string _uss_icon = "icon";
@@ -22,7 +22,7 @@ namespace YNL.Editors.UIElements
 
         public EWindowTitle(Texture2D icon, string title, string subtitle) : base()
         {
-            this.AddStyle(USS_StyleSheet, EAddress.USSFont);
+            this.AddStyle(USS_StyleSheet, EStyleSheet.Font);
 
             Icon = new Image();
             Icon.style.backgroundImage = icon;

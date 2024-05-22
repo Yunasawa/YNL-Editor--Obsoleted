@@ -1,6 +1,7 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -574,6 +575,21 @@ namespace YNL.Editors.Windows.Utilities
         public static T SetText<T>(this T element, string text) where T : TextField
         {
             element.value = text;
+            return element;
+        }
+
+        public static T AddLink<T>(this T element, string link) where T : Button
+        {
+            element.clicked += () => Application.OpenURL(link);
+            return element;
+        }
+    }
+
+    public static class EFlex
+    {
+        public static T SetAsFlexInsppector<T>(this T element) where T : VisualElement
+        {
+            element.AddStyle(EStyleSheet.FlexInspector).SetName("FlexInspector");
             return element;
         }
     }

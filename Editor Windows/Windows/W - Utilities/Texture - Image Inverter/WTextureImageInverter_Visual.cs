@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
-using YNL.Editors.UIElements;
+using YNL.Editors.UIElements.Styled;
 
 namespace YNL.Editors.Windows.Texture.ImageInverter
 {
@@ -48,7 +48,7 @@ namespace YNL.Editors.Windows.Texture.ImageInverter
             _main = main;
             _tagPanel = tagPanel;
 
-            this.AddStyle(_styleSheet, EAddress.USSFont).AddClass("Main");
+            this.AddStyle(_styleSheet, EStyleSheet.Font).AddClass("Main");
 
             CreateElements();
 

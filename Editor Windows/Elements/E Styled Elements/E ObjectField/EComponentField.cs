@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class EComponentField<T> : Button where T : Component
     {
-        private const string USS_StyleSheet = "Style Sheets/Elements/EObjectField";
+        private const string USS_StyleSheet = "Style Sheets/Elements/Styled/EObjectField";
 
         private const string _uss_root = "root";
         private const string _uss_background = "background";

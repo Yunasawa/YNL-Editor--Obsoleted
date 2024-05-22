@@ -33,7 +33,7 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
             AssignedImage = image;
             NewAssignedSize = newSize;
 
-            this.AddStyle(_styleSheet, EAddress.USSFont).AddClass("Main");
+            this.AddStyle(_styleSheet, EStyleSheet.Font).AddClass("Main");
 
             Image = new Image().SetBackgroundImage(image).AddClass("Image");
             Delete = new Button().AddClass("Delete");

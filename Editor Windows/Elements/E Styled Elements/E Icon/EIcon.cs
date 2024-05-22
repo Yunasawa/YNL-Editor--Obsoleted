@@ -2,11 +2,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class EIcon : VisualElement
     {
-        private const string USS_StyleSheet = "Style Sheets/Elements/EIcon1";
+        private const string USS_StyleSheet = "Style Sheets/Elements/Styled/EIcon1";
 
         private static readonly string USS_Background = "Background";
         private static readonly string USS_Image = "Image";

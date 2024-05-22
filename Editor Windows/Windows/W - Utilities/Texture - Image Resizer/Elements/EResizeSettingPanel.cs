@@ -2,7 +2,7 @@
 using System;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
-using YNL.Editors.UIElements;
+using YNL.Editors.UIElements.Styled;
 
 namespace YNL.Editors.Windows.Texture.ImageResizer
 {
@@ -32,7 +32,7 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
 
         public EResizeSettingPanel() : base()
         {
-            this.AddStyle(_styleSheet, EAddress.USSFont).AddClass("Main");
+            this.AddStyle(_styleSheet, EStyleSheet.Font).AddClass("Main");
 
             PixelResizeTag = new Button().AddClass("Tag").SetBackgroundImage(_texturePath + "Pixel Resize");
             PixelResizeTag.clicked += () => SwitchTag(true);

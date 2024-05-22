@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
-using YNL.Editors.UIElements;
+using YNL.Editors.UIElements.Styled;
 
 namespace YNL.Editors.Windows.Animation.ObjectRenamer
 {
@@ -29,7 +29,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
 
         public EClipNameField(string path, GameObject gameObject, Color[] colors, Color arrowColor, Action action) : base()
         {
-            this.AddStyle(USS_StyleSheet, EAddress.USSFont).AddClass("Root");
+            this.AddStyle(USS_StyleSheet, EStyleSheet.Font).AddClass("Root");
 
             ColorContainer = new VisualElement().AddClass("ColorContainer");
 

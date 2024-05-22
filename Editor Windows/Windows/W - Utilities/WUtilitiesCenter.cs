@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 using YNL.Editors.Windows.Utilities;
-using YNL.Editors.UIElements;
+using YNL.Editors.UIElements.Styled;
 using YNL.Editors.Windows.Texture.ImageResizer;
 using YNL.Editors.Windows.Animation.ObjectRenamer;
 using YNL.Editors.Windows.Texture.ImageInverter;

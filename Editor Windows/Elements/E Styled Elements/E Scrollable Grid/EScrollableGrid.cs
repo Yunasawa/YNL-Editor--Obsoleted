@@ -2,11 +2,11 @@
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.UIElements
+namespace YNL.Editors.UIElements.Styled
 {
     public class EScrollableGrid : VisualElement
     {
-        private const string _styleSheet = "Style Sheets/Elements/EScrollableGrid";
+        private const string _styleSheet = "Style Sheets/Elements/Styled/EScrollableGrid";
 
         public ScrollView Scroll;
         public VisualElement Grid;

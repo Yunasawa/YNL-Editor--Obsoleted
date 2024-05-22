@@ -1,0 +1,66 @@
+.Main
+{
+	background-color: transparent;
+	border-color: transparent;
+
+	max-width: 200%;
+
+	margin-top: 0px;
+	margin-bottom: 1.5px;
+	margin-left: 3px;
+	margin-right: -2.5px;
+
+	justify-content: center;
+
+	flex-shrink: 1;
+
+	flex-direction: row;
+}
+
+.Label
+{
+	/*
+	-unity-font-definition: var(--font-nightmare-pills);
+	-unity-font-style: bold;
+	font-size: 13px;
+	*/
+
+	-unity-text-align: middle-left; 
+}
+
+.Field
+{
+	width: auto;
+
+	margin: 0px;
+
+	flex-grow: 1;
+}
+
+.Checkmark
+{
+	background-color: #2A2A2A;
+	background-size: 85%;
+	background-image: none;
+	-unity-background-image-tint-color: #CFCFCF;
+
+	border-radius: 2.5px;
+	border-width: 1.5px;
+	border-color: #2A2A2A;
+
+	border-right-color: #1a1a1a;
+	border-bottom-color: #1a1a1a;
+
+	width: 17.5px;
+	height: 17.5px;
+}
+
+.Checkmark_Enter
+{
+	border-color: #5F5F5F;
+}
+
+.Checkmark_True
+{
+	background-image: resource("Textures/Icons/Checkmark");
+}
