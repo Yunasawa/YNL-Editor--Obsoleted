@@ -10,9 +10,9 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
         private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Texture - Image Resizer/EResizeExecutePanel";
 
         public Button Execute;
-        public ESwitchToggle ReplaceOldImageSwitch;
+        public StyledSwitchToggle ReplaceOldImageSwitch;
         public Image ReplaceOldImagePanel;
-        public ESwitchToggle SaveAsACopySwitch;
+        public StyledSwitchToggle SaveAsACopySwitch;
         public Image SaveAsACopyPanel;
 
         public bool IsReplaceOldImage = true;
@@ -21,11 +21,11 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
         {
             this.AddStyle(_styleSheet, EStyleSheet.Font).AddClass("Main");
 
-            ReplaceOldImageSwitch = new ESwitchToggle(false).AddClass("ReplaceOldImageSwitch");
+            ReplaceOldImageSwitch = new StyledSwitchToggle(false).AddClass("ReplaceOldImageSwitch");
             ReplaceOldImageSwitch.OnSwitch += (enable) => SwitchSaveType(enable);
             ReplaceOldImagePanel = new Image().AddClass("ReplaceOldImagePanel").AddElements(new Label("Replace old image").AddClass("Label"), ReplaceOldImageSwitch);
 
-            SaveAsACopySwitch = new ESwitchToggle(true).AddClass("SaveAsACopySwitch");
+            SaveAsACopySwitch = new StyledSwitchToggle(true).AddClass("SaveAsACopySwitch");
             SaveAsACopySwitch.OnSwitch += (enable) => SwitchSaveType(!enable);
             SaveAsACopyPanel = new Image().AddClass("SaveAsACopyPanel").AddElements(new Label("Save as a copy").AddClass("Label"), SaveAsACopySwitch);
 

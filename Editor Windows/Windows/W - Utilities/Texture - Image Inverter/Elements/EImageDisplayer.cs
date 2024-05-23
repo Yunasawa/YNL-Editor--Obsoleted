@@ -10,7 +10,7 @@ namespace YNL.Editors.Windows.Texture.ImageInverter
     {
         private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Texture - Image Resizer/EImageDisplayer";
 
-        public EInteractableAssetsField<Object> Background;
+        public StyledInteractableAssetsField<Object> Background;
         public Image Grid;
         public ScrollView Scroll;
 
@@ -21,7 +21,7 @@ namespace YNL.Editors.Windows.Texture.ImageInverter
 
             Grid = new Image().AddClass("Grid").SetName("Grid");
             Scroll = new ScrollView().AddClass("Scroll").AddElements(Grid);
-            Background = new EInteractableAssetsField<Object>().AddClass("Background").AddElements(Scroll).SetName("Background");
+            Background = new StyledInteractableAssetsField<Object>().AddClass("Background").AddElements(Scroll).SetName("Background");
             Background.OnDragPerform += TryGetAsset;
 
             this.AddElements(Background);

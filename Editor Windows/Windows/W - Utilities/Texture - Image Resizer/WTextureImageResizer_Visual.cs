@@ -19,9 +19,9 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
         #region ▶ Visual Elements
         private WTextureImageResizer_Main _main;
 
-        private EWindowTitle _windowTitlePanel;
-        private EWindowTagPanel _tagPanel;
-        private EInteractableImage _propertyPanel;
+        private StyledWindowTitle _windowTitlePanel;
+        private StyledWindowTagPanel _tagPanel;
+        private StyledInteractableImage _propertyPanel;
 
         private VisualElement _handlerWindow;
         private Image _mainWindow;
@@ -29,7 +29,7 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
         private EImageDisplayer _displayer;
 
         private Button _clearButton;
-        private ESlider _sizeSlider;
+        private StyledSlider _sizeSlider;
         public EResizeSettingPanel ResizeSettingPanel;
         public EResizeExecutePanel ResizeExecutePanel;
         #endregion
@@ -39,7 +39,7 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
         private const string _class_propertyPanel = "property-panel";
         #endregion
 
-        public WTextureImageResizer_Visual(EWindowTagPanel tagPanel, WTextureImageResizer_Main main)
+        public WTextureImageResizer_Visual(StyledWindowTagPanel tagPanel, WTextureImageResizer_Main main)
         {
             SetWindowTitle
             (
@@ -68,7 +68,7 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
             _windowTitlePanel = new(_windowIcon.ELoadAsset<Texture2D>(), _windowTitle, _windowSubtitle);
             _windowTitlePanel.AddClass(_class_titlePanel);
 
-            _sizeSlider = new ESlider(_propertyPanelWidth).AddClass("slider");
+            _sizeSlider = new StyledSlider(_propertyPanelWidth).AddClass("slider");
             _sizeSlider.Slider.value = 5;
             _sizeSlider.OnValueChanged += ResizeImageBox;
 
@@ -78,7 +78,7 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
             ResizeSettingPanel = new EResizeSettingPanel();
             ResizeExecutePanel = new EResizeExecutePanel();
             
-            _propertyPanel = new EInteractableImage().AddElements(_sizeSlider, _clearButton, ResizeSettingPanel, ResizeExecutePanel);
+            _propertyPanel = new StyledInteractableImage().AddElements(_sizeSlider, _clearButton, ResizeSettingPanel, ResizeExecutePanel);
             _propertyPanel.AddClass(_class_propertyPanel);
 
             _displayer = new EImageDisplayer().AddClass("main-window");

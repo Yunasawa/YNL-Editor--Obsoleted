@@ -11,7 +11,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
 
         public Image TitleBackground;
         public Image TagIcon;
-        public ELine Line;
+        public StyledLine Line;
         public Label Title;
         public ScrollView ClipPanel;
         public Label Board;
@@ -21,7 +21,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             this.AddStyle(USS_StyleSheet, EStyleSheet.Font).SetName("Root");
 
             TagIcon = new Image().SetName("TagIcon");
-            Line = new ELine(ELineMode.Vertical).AddClass("Line");
+            Line = new StyledLine(ELineMode.Vertical).AddClass("Line");
             Title = new Label("Referenced objects full path").SetName("Label");
             TitleBackground = new Image().SetName("TitleBackground").AddElements(TagIcon, Line, Title);
 

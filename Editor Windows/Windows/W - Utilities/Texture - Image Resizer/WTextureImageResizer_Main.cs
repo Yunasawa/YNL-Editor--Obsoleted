@@ -21,7 +21,7 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
         public static Action<Texture2D> OnRemoveImage;
         #endregion
 
-        public WTextureImageResizer_Main(EditorWindow root, EWindowTagPanel tagPanel)
+        public WTextureImageResizer_Main(EditorWindow root, StyledWindowTagPanel tagPanel)
         {
             Root = root;
 

@@ -17,9 +17,9 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
         private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/WAnimationObjectRenamer";
         
         #region ▶ Visual Elements
-        private EWindowTitle _windowTitlePanel;
-        private EWindowTagPanel _tagPanel;
-        private EInteractableImage _propertyPanel;
+        private StyledWindowTitle _windowTitlePanel;
+        private StyledWindowTagPanel _tagPanel;
+        private StyledInteractableImage _propertyPanel;
 
         private Button _animatorPanel;
         private Button _clipsPanel;
@@ -27,7 +27,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
 
         private Label _referencedAnimatorTitle;
         private Label _referencedClipsTitle;
-        public EComponentField<Animator> ReferencedAnimator;
+        public StyledComponentField<Animator> ReferencedAnimator;
 
         private VisualElement _handlerWindow;
         private Image _mainWindow;
@@ -57,7 +57,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
 
         #endregion
 
-        public WAnimationObjectRenamer_Visual(EWindowTagPanel tagPanel, WAnimationObjectRenamer_Main main)
+        public WAnimationObjectRenamer_Visual(StyledWindowTagPanel tagPanel, WAnimationObjectRenamer_Main main)
         {
             SetWindowTitle
             (
@@ -97,12 +97,12 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             _clipsPanel = new Button().AddClass(_class_clipsPanel).AddElements(_clipsScroll, _referencedClipsTitle);
 
             _referencedAnimatorTitle = new Label("Referenced Animator:").AddClass("AnimatorTitle");
-            ReferencedAnimator = new EComponentField<Animator>(_main.Handler.ReferencedAnimator);
+            ReferencedAnimator = new StyledComponentField<Animator>(_main.Handler.ReferencedAnimator);
             ReferencedAnimator.Background.OnDragPerform += (obj) => PresentAllPaths();
 
             _animatorPanel = new Button().AddSpace(0, 10).AddElements(_referencedAnimatorTitle, ReferencedAnimator);
 
-            _propertyPanel = new EInteractableImage().AddElements(_animatorPanel, _clipsPanel);
+            _propertyPanel = new StyledInteractableImage().AddElements(_animatorPanel, _clipsPanel);
 
             _windowTitlePanel = new(_windowIcon.ELoadAsset<Texture2D>(), _windowTitle, _windowSubtitle);
         }

@@ -16,10 +16,10 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
 
         public Image TitleBackground;
         public Image TagIcon;
-        public ELine Line;
+        public StyledLine Line;
         public Label Title;
 
-        public EInteractableButton SwapButton;
+        public StyledInteractableButton SwapButton;
         public Image SwapIcon;
 
         public EInputNamePanel() : base()
@@ -27,7 +27,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             this.AddStyle(USS_StyleSheet, EStyleSheet.Font).SetName("Root");
 
             TagIcon = new Image().SetName("TagIcon");
-            Line = new ELine(ELineMode.Vertical).AddClass("Line");
+            Line = new StyledLine(ELineMode.Vertical).AddClass("Line");
             Title = new Label("Rename/Swap [Original Root] with [New Root]").SetName("Label");
             TitleBackground = new Image().SetName("TitleBackground").AddElements(TagIcon, Line, Title);
 
@@ -37,7 +37,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             NewField = new TextField().AddClass("GeneralField").SetName("NewField");
 
             SwapIcon = new Image().AddClass("SwapIcon");
-            SwapButton = new EInteractableButton().AddClass("SwapButton").AddElements(SwapIcon);
+            SwapButton = new StyledInteractableButton().AddClass("SwapButton").AddElements(SwapIcon);
             SwapButton.OnPointerEnter += () => HoverOnSwapButton(true);
             SwapButton.OnPointerExit += () => HoverOnSwapButton(false);
 

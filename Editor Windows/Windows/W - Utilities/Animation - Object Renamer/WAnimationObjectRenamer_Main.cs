@@ -13,7 +13,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
         public WAnimationObjectRenamer_Visual Visual;
         public WAnimationObjectRenamer_Handler Handler;
 
-        public WAnimationObjectRenamer_Main(EditorWindow root, EWindowTagPanel tagPanel)
+        public WAnimationObjectRenamer_Main(EditorWindow root, StyledWindowTagPanel tagPanel)
         {
             Root = root;
 

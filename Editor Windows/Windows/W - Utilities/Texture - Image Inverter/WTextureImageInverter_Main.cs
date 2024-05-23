@@ -21,7 +21,7 @@ namespace YNL.Editors.Windows.Texture.ImageInverter
         public static Action<Texture2D> OnRemoveImage;
         #endregion
 
-        public WTextureImageInverter_Main(EditorWindow root, EWindowTagPanel tagPanel)
+        public WTextureImageInverter_Main(EditorWindow root, StyledWindowTagPanel tagPanel)
         {
             Root = root;
 

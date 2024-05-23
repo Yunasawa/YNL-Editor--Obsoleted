@@ -20,9 +20,9 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
         public TextField Width;
         public Image HeightPanel;
         public TextField Height;
-        public ESwitchToggle EnlargeIfSmallerSwitch;
+        public StyledSwitchToggle EnlargeIfSmallerSwitch;
         public Image EnlargeIfSmallerPanel;
-        public ESwitchToggle KeepAspectRatioSwitch;
+        public StyledSwitchToggle KeepAspectRatioSwitch;
         public Image KeepAspectRatioPanel;
 
         public VisualElement PercentSetting;
@@ -47,10 +47,10 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
             Height.RegisterValueChangedCallback(HeightChanged);
             HeightPanel = new Image().AddClass("SizePanel").AddElements(new Label("Height (px)").AddClass("SizeLabel"), Height);
 
-            EnlargeIfSmallerSwitch = new ESwitchToggle(false).AddClass("EnlargeIfSmallerSwitch");
+            EnlargeIfSmallerSwitch = new StyledSwitchToggle(false).AddClass("EnlargeIfSmallerSwitch");
             EnlargeIfSmallerPanel = new Image().AddClass("EnlargeIfSmallerPanel").AddElements(new Label("Enlarge if smaller").AddClass("SizeLabel"), EnlargeIfSmallerSwitch);
 
-            KeepAspectRatioSwitch = new ESwitchToggle(true).AddClass("KeepAspectRatioSwitch");
+            KeepAspectRatioSwitch = new StyledSwitchToggle(true).AddClass("KeepAspectRatioSwitch");
             KeepAspectRatioPanel = new Image().AddClass("KeepAspectRatioPanel").AddElements(new Label("Keep aspect ratio").AddClass("SizeLabel"), KeepAspectRatioSwitch);
 
             PixelSetting = new VisualElement().AddClass("PixelSetting").AddElements(WidthPanel, HeightPanel, EnlargeIfSmallerPanel, KeepAspectRatioPanel);

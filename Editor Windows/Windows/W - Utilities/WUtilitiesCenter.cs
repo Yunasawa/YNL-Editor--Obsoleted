@@ -16,7 +16,7 @@ namespace YNL.Editors.Windows
         #endregion
 
         #region ▶ Visual Elements
-        public EWindowTagPanel WindowTagPanel;
+        public StyledWindowTagPanel WindowTagPanel;
 
         public WTextureImageResizer_Main ImageResizerWindow;
         public WTextureImageInverter_Main ImageInverterWindow;
@@ -57,12 +57,12 @@ namespace YNL.Editors.Windows
             
             Texture2D waitIcon = Resources.Load<Texture2D>("Textures/Icons/Time1");
 
-            WindowTagPanel = new(windowIcon, "Editor Utilities", "Center", _tagPanelWidth, new EWindowTag[]
+            WindowTagPanel = new(windowIcon, "Editor Utilities", "Center", _tagPanelWidth, new StyledWindowTag[]
             {
-            new EWindowTag(textureImageResizerIcon, "Image Resizer", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.TextureImageResizer)),
-            new EWindowTag(textureImageInverterIcon, "Image Inverter", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.TextureImageInverter)),
-            new EWindowTag(animationObjectRenamerIcon, "Object Renamer", "Animation", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.AnimationObjectRenamer)),
-            new EWindowTag(waitIcon, "Coming Soon", "", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.C))
+            new StyledWindowTag(textureImageResizerIcon, "Image Resizer", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.TextureImageResizer)),
+            new StyledWindowTag(textureImageInverterIcon, "Image Inverter", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.TextureImageInverter)),
+            new StyledWindowTag(animationObjectRenamerIcon, "Object Renamer", "Animation", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.AnimationObjectRenamer)),
+            new StyledWindowTag(waitIcon, "Coming Soon", "", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.C))
             });
 
             ImageResizerWindow = new WTextureImageResizer_Main(this, WindowTagPanel);

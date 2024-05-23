@@ -17,12 +17,12 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
         public TextField Name;
         public Image Arrow;
         public Image ObjectField;
-        public EAssetField<GameObject> Object;
+        public StyledAssetField<GameObject> Object;
 
-        public EInteractableButton ChangeButton;
+        public StyledInteractableButton ChangeButton;
         public Image ChangeIcon;
 
-        public EInteractableButton UndoButton;
+        public StyledInteractableButton UndoButton;
         public Image UndoIcon;
 
         public string LastRoot = "";
@@ -44,17 +44,17 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
 
             Arrow = new Image().SetBackgroundImageTintColor(arrowColor).AddClass("Arrow");
 
-            Object = new EAssetField<GameObject>(gameObject).AddClass("Object");
+            Object = new StyledAssetField<GameObject>(gameObject).AddClass("Object");
             ObjectField = new Image().AddClass("ObjectField").AddElements(Object);
 
             ChangeIcon = new Image().AddClass("ChangeIcon");
-            ChangeButton = new EInteractableButton().AddClass("ChangeButton").AddElements(ChangeIcon);
+            ChangeButton = new StyledInteractableButton().AddClass("ChangeButton").AddElements(ChangeIcon);
             ChangeButton.OnPointerEnter += () => HoverOnChangeButton(true);
             ChangeButton.OnPointerExit += () => HoverOnChangeButton(false);
             ChangeButton.OnPointerDown += action;
 
             UndoIcon = new Image().AddClass("UndoIcon");
-            UndoButton = new EInteractableButton().AddClass("UndoButton").AddElements(UndoIcon);
+            UndoButton = new StyledInteractableButton().AddClass("UndoButton").AddElements(UndoIcon);
             UndoButton.OnPointerEnter += () => HoverOnUndoButton(true);
             UndoButton.OnPointerExit += () => HoverOnUndoButton(false);
             UndoButton.OnPointerDown += action;

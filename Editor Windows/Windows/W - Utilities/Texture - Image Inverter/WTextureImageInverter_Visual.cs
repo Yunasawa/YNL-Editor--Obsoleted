@@ -21,9 +21,9 @@ namespace YNL.Editors.Windows.Texture.ImageInverter
         #region ▶ Visual Elements
         private WTextureImageInverter_Main _main;
 
-        private EWindowTitle _windowTitlePanel;
-        private EWindowTagPanel _tagPanel;
-        private EInteractableImage _propertyPanel;
+        private StyledWindowTitle _windowTitlePanel;
+        private StyledWindowTagPanel _tagPanel;
+        private StyledInteractableImage _propertyPanel;
 
         private VisualElement _handlerWindow;
         private Image _mainWindow;
@@ -31,12 +31,12 @@ namespace YNL.Editors.Windows.Texture.ImageInverter
         private EImageDisplayer _displayer;
 
         private Button _clearButton;
-        private ESlider _sizeSlider;
+        private StyledSlider _sizeSlider;
 
         public EInvertExecutePanel InvertExecutePanel;
         #endregion
 
-        public WTextureImageInverter_Visual(EWindowTagPanel tagPanel, WTextureImageInverter_Main main)
+        public WTextureImageInverter_Visual(StyledWindowTagPanel tagPanel, WTextureImageInverter_Main main)
         {
             SetWindowTitle
             (
@@ -65,14 +65,14 @@ namespace YNL.Editors.Windows.Texture.ImageInverter
             _clearButton = new Button(ClearBoxes).AddClass("ClearButton");
             _clearButton.AddLabel("Clear all images", "ClearLabel");
 
-            _sizeSlider = new ESlider(_propertyPanelWidth).AddClass("SizeSlider");
+            _sizeSlider = new StyledSlider(_propertyPanelWidth).AddClass("SizeSlider");
             _sizeSlider.Slider.value = 0;
             _sizeSlider.OnValueChanged += ResizeImageBox;
 
             InvertExecutePanel = new EInvertExecutePanel();
             InvertExecutePanel.Execute.clicked += InvertImages;
 
-            _propertyPanel = new EInteractableImage().AddElements(_sizeSlider, _clearButton, InvertExecutePanel);
+            _propertyPanel = new StyledInteractableImage().AddElements(_sizeSlider, _clearButton, InvertExecutePanel);
             _propertyPanel.AddClass("PropertyPanel");
 
             _displayer = new EImageDisplayer().AddClass("MainWindow");
