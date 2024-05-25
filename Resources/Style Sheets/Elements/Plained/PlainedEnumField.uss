@@ -1,64 +1,53 @@
 .Main
 {
 	background-color: transparent;
+	
 	border-color: transparent;
 
-	max-width: 200%;
+	width: auto;
+	height: 20px;
 
 	margin-top: 0px;
 	margin-bottom: 1.5px;
 	margin-left: 3px;
-	margin-right: -2.5px;
 
 	justify-content: center;
 
 	flex-shrink: 1;
+	flex-grow: 1;
 
 	flex-direction: row;
 }
 
 .Label
 {
-	/*
-	-unity-font-definition: var(--font-nightmare-pills);
-	-unity-font-style: bold;
-	font-size: 13px;
-	*/
+	height: 20px;
 
 	-unity-text-align: middle-left; 
 }
 
 .Field
 {
-	width: auto;
+	width: 100%;
+	height: 40px;
 
 	margin: 0px;
-	margin-right: 2.5px;
 
 	flex-grow: 1;
 }
 
 .Input
 {
-	width: 100%;
 	height: 20px;
 
 	background-color: #515151;
 
 	border-radius: 2.5px;
-	border-width: 1.5px;
+	border-width: 1px;
 	border-color: #515151;
-
-	border-right-color: #303030;
-	border-bottom-color: #303030;
-
-	flex-grow: 1;
-
-	/*
-	-unity-font-definition: var(--font-nightmare-pills);
-	-unity-font-style: bold;
-	font-size: 13px;
-	*/
+	
+	border-left-color: #2a2a2a;
+	border-top-color: #2a2a2a;
 }
 
 .Input_Enter

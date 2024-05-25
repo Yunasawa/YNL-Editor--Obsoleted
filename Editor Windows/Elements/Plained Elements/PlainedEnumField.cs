@@ -1,10 +1,11 @@
+#if UNITY_EDITOR && YNL_UTILITIES
 using UnityEditor.UIElements;
 using UnityEditor;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 using System;
 using YNL.Extensions.Methods;
-using UnityEngine.UI;
+using UnityEngine;
 
 namespace YNL.Editors.UIElements.Plained
 {
@@ -12,9 +13,9 @@ namespace YNL.Editors.UIElements.Plained
     {
         private const string _styleSheet = "Style Sheets/Elements/Plained/PlainedEnumField";
 
-        public EnumField Field;
-        private VisualElement LabelField;
-        private VisualElement EnumField;
+        private EnumField _field;
+        private VisualElement _labelField;
+        private VisualElement _enumField;
 
         public PlainedEnumField(SerializedProperty serializedObject, string name) : base()
         {
@@ -22,13 +23,13 @@ namespace YNL.Editors.UIElements.Plained
 
             Type type = MType.GetType(name);
 
-            Field = new EnumField(serializedObject.name.AddSpaces(), (Enum)Activator.CreateInstance(type)).AddClass("Field", "unity-base-field__aligned");
-            EnumField = Field.Q(classes: "unity-enum-field__input").AddClass("Input");
-            LabelField = Field.Q(classes: "unity-label").AddClass("Label");
+            _field = new EnumField(serializedObject.name.AddSpaces(), (Enum)Activator.CreateInstance(type)).AddClass("Field", "unity-base-field__aligned");
+            _enumField = _field.Q(classes: "unity-enum-field__input").AddClass("Input");
+            _labelField = _field.Q(classes: "unity-label").AddClass("Label");
 
-            this.AddElements(Field);
+            this.AddElements(_field);
 
-            Field.BindProperty(serializedObject);
+            _field.BindProperty(serializedObject);
 
             this.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
             this.RegisterCallback<MouseLeaveEvent>(OnMouseLeave);
@@ -36,12 +37,30 @@ namespace YNL.Editors.UIElements.Plained
 
         private void OnMouseEnter(MouseEnterEvent e)
         {
-            EnumField.EnableClass("Input_Enter");
+            _enumField.EnableClass("Input_Enter");
         }
 
         private void OnMouseLeave(MouseLeaveEvent e)
         {
-            EnumField.DisableClass("Input_Enter");
+            _enumField.DisableClass("Input_Enter");
         }
+
+        #region Style
+        public PlainedEnumField SetAsBoxedField(float maxWidth = -1, bool isPercent = false)
+        {
+            this.SetPadding(5).SetPaddingTop(2.5f).SetBackgroundColor("#303030")
+                .SetBorderRadius(5).SetHeight(47.5f).SetMargin(0).SetMarginBottom(5);
+
+            if (maxWidth == -1) this.SetWidth(StyleKeyword.Auto);
+            else this.SetWidth(maxWidth, isPercent);
+
+            _labelField.SetTextAlign(TextAnchor.UpperLeft);
+
+            _field.SetFlexDirection(FlexDirection.Column);
+
+            return this;
+        }
+        #endregion
     }
 }
+#endif

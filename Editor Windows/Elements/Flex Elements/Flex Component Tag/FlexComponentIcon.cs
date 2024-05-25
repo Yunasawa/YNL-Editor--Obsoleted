@@ -1,3 +1,4 @@
+#if UNITY_EDITOR && YNL_UTILITIES
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
@@ -36,3 +37,4 @@ namespace YNL.Editors.UIElements.Flexs
         }
     }
 }
+#endif

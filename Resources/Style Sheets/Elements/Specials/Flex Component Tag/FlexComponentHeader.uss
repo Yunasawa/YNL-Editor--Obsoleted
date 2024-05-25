@@ -3,9 +3,7 @@
 	background-color: transparent;
 
 	width: 100%;
-	height: 40px;
-
-	margin: 0px;
+	height: 30px;
 
 	flex-direction: row;
 }

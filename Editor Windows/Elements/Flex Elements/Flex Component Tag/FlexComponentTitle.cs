@@ -1,3 +1,4 @@
+#if UNITY_EDITOR && YNL_UTILITIES
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
@@ -52,6 +53,7 @@ namespace YNL.Editors.UIElements.Flexs
             _documentation = new Button().AddClass("Documentation");
             _container.AddElements(_documentation);
 
+            _documentation.SetTooltip("Documentation");
             _documentation.AddLink(href);
             _documentation.RegisterCallback<MouseEnterEvent>((evt) => _documentation.SetBackgroundImageTintColor(_globalColor));
             _documentation.RegisterCallback<MouseLeaveEvent>((evt) => _documentation.SetBackgroundImageTintColor("#AFAFAF".ToColor()));
@@ -61,3 +63,4 @@ namespace YNL.Editors.UIElements.Flexs
         }
     }
 }
+#endif

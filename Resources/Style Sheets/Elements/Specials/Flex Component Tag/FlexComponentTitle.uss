@@ -11,7 +11,10 @@
 	flex-direction: row;
 	flex-grow: 1;
 
+	align-self: center;
 	justify-content: center;
+
+	overflow: hidden;
 }
 
 .Title

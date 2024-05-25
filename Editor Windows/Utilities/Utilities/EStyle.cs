@@ -1,8 +1,8 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
 namespace YNL.Editors.Windows.Utilities
@@ -200,7 +200,22 @@ namespace YNL.Editors.Windows.Utilities
 
         #endregion
 
-        #region X Element Style - Flex Direction
+        #region ▶ Element Style - Flex Direction
+
+        /// <summary> 
+        /// Set the direction of the main axis to layout children in a container
+        /// </summary>
+        public static T SetFlexDirection<T>(this T element, FlexDirection value) where T : VisualElement
+        {
+            element.style.flexDirection = new StyleEnum<FlexDirection>(value);
+            return element;
+        }
+
+        /// <summary> 
+        /// Get the direction of the main axis to layout children in a container
+        /// </summary>
+        public static FlexDirection GetFlexDirection<T>(this T element) where T : VisualElement
+            => element.style.flexDirection.value;
 
         #endregion
 
@@ -228,7 +243,49 @@ namespace YNL.Editors.Windows.Utilities
 
         #endregion
 
-        #region X Element Style - Border Radius
+        #region ▶ Element Style - Border Radius
+        public static T SetBorderRadius<T>(this T element, float topLeft, float topRight, float bottomRight, float bottomLeft) where T : VisualElement
+        {
+            element.style.borderTopLeftRadius = topLeft;
+            element.style.borderTopRightRadius = topRight;
+            element.style.borderBottomRightRadius = bottomRight;
+            element.style.borderBottomLeftRadius = bottomLeft;
+            return element;
+        }
+        public static T SetBorderRadius<T>(this T target, float value) where T : VisualElement =>
+            target.SetBorderRadius(value, value, value, value);
+
+        public static T SetBorderTopLeftRadius<T>(this T target, float value) where T : VisualElement
+        {
+            target.style.borderTopLeftRadius = value;
+            return target;
+        }
+        public static float GetBorderTopLeftRadius<T>(this T target) where T : VisualElement =>
+            target.style.borderTopLeftRadius.value.value;
+
+        public static T SetBorderTopRightRadius<T>(this T target, float value) where T : VisualElement
+        {
+            target.style.borderTopRightRadius = value;
+            return target;
+        }
+        public static float GetBorderTopRightRadius<T>(this T target) where T : VisualElement =>
+            target.style.borderTopRightRadius.value.value;
+
+        public static T SetBorderBottomRightRadius<T>(this T target, float value) where T : VisualElement
+        {
+            target.style.borderBottomRightRadius = value;
+            return target;
+        }
+        public static float GetBorderBottomRightRadius<T>(this T target) where T : VisualElement =>
+            target.style.borderBottomRightRadius.value.value;
+
+        public static T SetBorderBottomLeftRadius<T>(this T target, float value) where T : VisualElement
+        {
+            target.style.borderBottomLeftRadius = value;
+            return target;
+        }
+        public static float GetBorderBottomLeftRadius<T>(this T target) where T : VisualElement =>
+            target.style.borderBottomLeftRadius.value.value;
 
         #endregion
 
@@ -462,7 +519,15 @@ namespace YNL.Editors.Windows.Utilities
 
         #endregion
 
-        #region X Element Style - Unity Font
+        #region ▶ Element Style - Unity Font Definition
+        public static T SetFontDefinition<T>(this T target, FontAsset value) where T : VisualElement
+        {
+            target.style.unityFontDefinition = new FontDefinition { fontAsset = value };
+            return target;
+        }
+
+        public static FontDefinition GetFontDefinition<T>(this T target) where T : VisualElement =>
+            target.style.unityFontDefinition.value;
 
         #endregion
 
@@ -470,7 +535,22 @@ namespace YNL.Editors.Windows.Utilities
 
         #endregion
 
-        #region X Element Style - Unity Text Align
+        #region ▶ Element Style - Unity Text Align
+
+        /// <summary>
+        /// Set the horizontal and vertical text alignment in the element's box
+        /// </summary>
+        public static T SetTextAlign<T>(this T target, TextAnchor value) where T : VisualElement
+        {
+            target.style.unityTextAlign = value;
+            return target;
+        }
+
+        /// <summary>
+        /// Get the horizontal and vertical text alignment in the element's box
+        /// </summary>
+        public static TextAnchor GetTextAlign<T>(this T target) where T : VisualElement =>
+            target.style.unityTextAlign.value;
 
         #endregion
 
@@ -528,8 +608,56 @@ namespace YNL.Editors.Windows.Utilities
 
         #endregion
 
-        #region X Element Style - Padding
+        #region ▶ Element Style - Padding
+        public static T SetPaddingLeft<T>(this T element, float value) where T : VisualElement
+        {
+            element.style.paddingLeft = value;
+            return element;
+        }
+        public static float GetPaddingLeft<T>(this T element) where T : VisualElement
+            => element.resolvedStyle.paddingLeft;
+        public static T SetPaddingTop<T>(this T element, float value) where T : VisualElement
+        {
+            element.style.paddingTop = value;
+            return element;
+        }
+        public static float GetPaddingTop<T>(this T element) where T : VisualElement
+            => element.resolvedStyle.paddingTop;
+        public static T SetPaddingRight<T>(this T element, float value) where T : VisualElement
+        {
+            element.style.paddingRight = value;
+            return element;
+        }
+        public static float GetPaddingRight<T>(this T element) where T : VisualElement
+            => element.resolvedStyle.paddingRight;
+        public static T SetPaddingBottom<T>(this T element, float value) where T : VisualElement
+        {
+            element.style.paddingBottom = value;
+            return element;
+        }
+        public static float GetPaddingBottom<T>(this T element) where T : VisualElement
+            => element.resolvedStyle.paddingBottom;
 
+        /// <summary> 
+        /// Set all Paddings to 0 (zero) 
+        /// </summary>
+        public static T ClearPadding<T>(this T element) where T : VisualElement
+            => element.SetPadding(0);
+
+        /// <summary>
+        /// Set the space reserved for the all the edges Paddings during the layout phase (Left, Top, Right, Bottom)
+        /// </summary>
+        public static T SetPadding<T>(this T element, float left, float top, float right, float bottom) where T : VisualElement
+        {
+            element.SetPaddingLeft(left).SetPaddingTop(top).SetPaddingRight(right).SetPaddingBottom(bottom);
+            return element;
+        }
+
+        /// <summary>
+        /// Set the same space reserved for the all the edges Paddings during the layout phase (Left, Top, Right, Bottom).
+        /// </summary>
+        public static T SetPadding<T>(this T element, float value) where T : VisualElement =>
+            element.SetPadding(value, value, value, value);
         #endregion
 
         #region X Element Style - Resize
@@ -558,13 +686,13 @@ namespace YNL.Editors.Windows.Utilities
 
         #region ▶ Text Element Style - Text
 
-        public static T SetText<T>(this T element, string text) where T : TextElement
+        public static T SetText<T>(this T element, string text) where T : UnityEngine.UIElements.TextElement
         {
             element.text = text;
             return element;
         }
 
-        public static string GetText<T>(this T element, string text) where T : TextElement
+        public static string GetText<T>(this T element, string text) where T : UnityEngine.UIElements.TextElement
             => element.text;
 
         #endregion
@@ -575,6 +703,12 @@ namespace YNL.Editors.Windows.Utilities
         public static T SetText<T>(this T element, string text) where T : TextField
         {
             element.value = text;
+            return element;
+        }
+
+        public static T SetTooltip<T>(this T element, string text) where T : VisualElement
+        {
+            element.tooltip = text;
             return element;
         }
 

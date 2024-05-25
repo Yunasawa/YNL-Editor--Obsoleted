@@ -11,6 +11,8 @@
 
 	transition-property: rotate, margin-top;
 	transition-duration: 0.25s;
+
+	align-self: center;
 }
 /*
 .Icon:hover

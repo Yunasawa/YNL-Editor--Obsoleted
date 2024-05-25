@@ -1,43 +1,19 @@
+#if UNITY_EDITOR && YNL_UTILITIES
 using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 using YNL.Extensions.Methods;
 
 namespace YNL.Editors.UIElements.Plained
 {
-    public class PlainedFloatField : VisualElement
+    public class PlainedFloatField : PlainedInputField<float>
     {
-        private const string _styleSheet = "Style Sheets/Elements/Plained/PlainedFloatField";
-
-        public FloatField Field;
-        private VisualElement LabelField;
-        private VisualElement InputField;
-
-        public PlainedFloatField(SerializedProperty serializedObject) : base()
+        public PlainedFloatField(SerializedProperty serializedProperty) : base()
         {
-            this.AddStyle(_styleSheet, EStyleSheet.Font).AddClass("Main");
+            _field = new FloatField(serializedProperty.name.AddSpaces()).AddClass("Field", "unity-base-field__aligned");
 
-            Field = new FloatField(serializedObject.name.AddSpaces()).AddClass("Field", "unity-base-field__aligned");
-            InputField = Field.Q("unity-text-input").AddClass("Input");
-            LabelField = Field.Q(classes: "unity-label").AddClass("Label");
-
-            this.AddElements(Field);
-
-            Field.BindProperty(serializedObject);
-
-            this.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
-            this.RegisterCallback<MouseLeaveEvent>(OnMouseLeave);
-        }
-
-        private void OnMouseEnter(MouseEnterEvent e)
-        {
-            InputField.EnableClass("Input_Enter");
-        }
-
-        private void OnMouseLeave(MouseLeaveEvent e)
-        {
-            InputField.DisableClass("Input_Enter");
+            Initialize(serializedProperty);
         }
     }
 }
+#endif

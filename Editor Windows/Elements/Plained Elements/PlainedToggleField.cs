@@ -1,3 +1,4 @@
+#if UNITY_EDITOR && YNL_UTILITIES
 using UnityEditor.UIElements;
 using UnityEditor;
 using UnityEngine.UIElements;
@@ -49,3 +50,4 @@ namespace YNL.Editors.UIElements.Plained
         }
     }
 }
+#endif
