@@ -21,7 +21,7 @@ namespace YNL.Editors.UIElements.Plained
         {
             this.AddStyle(_styleSheet, EStyleSheet.Font).AddClass("Main");
 
-            Type type = MType.GetType(name);
+            Type type = MType.GetTypeIgnoreAssembly(name);
 
             _field = new EnumField(serializedObject.name.AddSpaces(), (Enum)Activator.CreateInstance(type)).AddClass("Field", "unity-base-field__aligned");
             _enumField = _field.Q(classes: "unity-enum-field__input").AddClass("Input");
