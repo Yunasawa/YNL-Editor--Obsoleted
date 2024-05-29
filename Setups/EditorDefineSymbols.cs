@@ -40,9 +40,9 @@ namespace YNL.Editors.Setups
             {
                 if (HasSymbol(symbol)) continue;
                 _defineSymbols.Add(symbol);
+                NotifySymbols(symbol, true);
             }
             PlayerSettings.SetScriptingDefineSymbols(NamedBuildTarget.Standalone, String.Join(";", _defineSymbols));
-            NotifySymbols(String.Join("; ", symbols), true);
         }
 
         /// <summary> Remove a single symbol </summary>
