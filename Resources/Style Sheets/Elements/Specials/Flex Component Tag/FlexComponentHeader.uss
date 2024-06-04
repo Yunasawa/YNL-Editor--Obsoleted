@@ -14,7 +14,6 @@
 
 	border-radius: 5px;
 
-	background-image: resource("Textures/Audio Barrier Icon (White)");
 	-unity-background-image-tint-color: #FDC008;
 	background-size: 75%;
 
