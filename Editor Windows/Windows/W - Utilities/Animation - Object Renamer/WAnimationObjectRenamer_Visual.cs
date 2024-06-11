@@ -1,7 +1,7 @@
 ﻿//Sourced: https://github.com/s-m-k/Unity-Animation-Hierarchy-Editor/tree/master
 //Remastered: Yunasawa
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR && YNL_UTILITIES
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
