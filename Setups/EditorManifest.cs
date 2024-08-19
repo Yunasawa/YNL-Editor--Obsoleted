@@ -1,3 +1,4 @@
+#if false
 #if UNITY_EDITOR
 using System.Collections.Generic;
 using System.IO;
@@ -123,4 +124,5 @@ namespace YNL.Editors.Setups
         }
     }
 }
+#endif
 #endif

@@ -1,6 +1,7 @@
 ﻿#if UNITY_EDITOR
 using System.Linq;
 using UnityEditor;
+using UnityEngine;
 
 namespace YNL.Editors.Setups
 {
@@ -21,9 +22,11 @@ namespace YNL.Editors.Setups
 
         public static void InitializeOnLoad()
         {
-            EditorManifest.AddRegistry("YunasawaStudio", "https://package.openupm.com", "com.yunasawa.ynl.utilities");
-            EditorManifest.AddDependency("com.yunasawa.ynl.utilities", "1.3.2");
-            EditorDefineSymbols.AddSymbols("YNL_UTILITIES");
+#if YNL_UTILITIES
+            Debug.Log($"<color=#FF983D><b>⚠ Caution:</b></color> <color=#fffc54><b>YNL - Editor</b></color> requires <a href=\"https://github.com/Yunasawa/YNL-Utilities\"><b>YNL - Utilities</b></a>");
+#else
+            EditorDefineSymbols.AddSymbols("YNL_EDITOR");
+#endif
         }
     }
 }
