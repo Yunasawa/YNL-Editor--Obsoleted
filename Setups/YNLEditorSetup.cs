@@ -22,7 +22,7 @@ namespace YNL.Editors.Setups
 
         public static void InitializeOnLoad()
         {
-#if YNL_UTILITIES
+#if !YNL_UTILITIES
             Debug.Log($"<color=#FF983D><b>⚠ Caution:</b></color> <color=#fffc54><b>YNL - Editor</b></color> requires <a href=\"https://github.com/Yunasawa/YNL-Utilities\"><b>YNL - Utilities</b></a>");
 #else
             EditorDefineSymbols.AddSymbols("YNL_EDITOR");
