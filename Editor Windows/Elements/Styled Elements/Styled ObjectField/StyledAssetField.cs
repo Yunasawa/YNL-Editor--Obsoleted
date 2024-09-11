@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 
 namespace YNL.Editors.UIElements.Styled
 {
@@ -39,7 +40,7 @@ namespace YNL.Editors.UIElements.Styled
             Name = new Label().AddClass(_uss_name);
             if (!ReferencedObject.EIsNull())
             {
-                Name.text = $"{ReferencedObject.name} ({ReferencedObject.GetType().Name.EAddSpaces()})";
+                Name.text = $"{ReferencedObject.name} ({ReferencedObject.GetType().Name.AddSpaces()})";
                 Name.SetColor("#FFFFFF");
                 Icon.SetBackgroundImageTintColor("#FFFFFF".EToColor());
             }

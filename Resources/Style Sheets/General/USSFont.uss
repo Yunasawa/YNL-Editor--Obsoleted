@@ -7,4 +7,5 @@
 	--font-pearce: resource("Fonts/Font Assets/Pearce SDF");
 	--font-quantify: resource("Fonts/Font Assets/Quantify SDF");
 	--font-somatic: resource("Fonts/Font Assets/Somatic-Rounded SDF");
+	--font-genshin: resource("Fonts/Font Assets/Genshin SDF");
 }
