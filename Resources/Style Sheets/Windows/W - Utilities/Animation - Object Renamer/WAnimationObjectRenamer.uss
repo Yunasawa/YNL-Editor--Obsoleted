@@ -18,7 +18,7 @@
 	transition-property: width, margin-left;
 	transition-duration: 0.25s;
 
-	padding-bottom: 75px;
+	padding-bottom: 9.5px;
 }
 
 .AnimatorPanel
@@ -33,14 +33,14 @@
 	margin-right: 5px;
 
 	max-width: 200%;
-	height: 53px;
+	height: 100%;
 }
 
 .ClipsScroll
 {
 	background-color: transparent;
 
-	margin-top: 25px;
+	margin-top: 85px;
 
 	position: absolute;
 
@@ -95,7 +95,7 @@
 	font-size: 13px;
 	-unity-font-definition: var(--font-genshin);
 
-	margin-top: 7.5px;
+	margin-top: 67.5px;
 
 	position: absolute;
 	align-self: flex-start;

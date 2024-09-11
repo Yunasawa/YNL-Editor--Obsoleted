@@ -24,7 +24,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
         private StyledInteractableImage _propertyPanel;
 
         private Button _animatorPanel;
-        private Button _clipsPanel;
+        //private Button _clipsPanel;
         private ScrollView _clipsScroll;
 
         private Label _referencedAnimatorTitle;
@@ -43,7 +43,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
         private const string _class_propertyPanel = "PropertyPanel";
         private const string _class_animatorPanel = "AnimatorPanel";
         private const string _class_clipsScroll = "ClipsScroll";
-        private const string _class_clipsPanel = "ClipsPanel";
+        //private const string _class_clipsPanel = "ClipsPanel";
 
         private const string _class_animatorField = "AnimatorField";
 
@@ -96,15 +96,15 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             _referencedClipsTitle = new Label("Animation Clips:").AddClass("ClipsTitle");
             _clipsScroll = new ScrollView().SetWidth(100, true).SetHeight(100, true);
 
-            _clipsPanel = new Button().AddClass(_class_clipsPanel).AddElements(_clipsScroll, _referencedClipsTitle);
+            //_clipsPanel = new Button().AddClass(_class_clipsPanel).AddElements(_clipsScroll, _referencedClipsTitle);
 
             _referencedAnimatorTitle = new Label("Referenced Animator:").AddClass("AnimatorTitle");
             ReferencedAnimator = new StyledComponentField<Animator>(_main.Handler.ReferencedAnimator);
             ReferencedAnimator.Background.OnDragPerform += (obj) => PresentAllPaths();
 
-            _animatorPanel = new Button().AddSpace(0, 10).AddElements(_referencedAnimatorTitle, ReferencedAnimator);
+            _animatorPanel = new Button().AddSpace(0, 10).AddElements(_referencedAnimatorTitle, ReferencedAnimator, _referencedClipsTitle, _clipsScroll);
 
-            _propertyPanel = new StyledInteractableImage().AddElements(_animatorPanel, _clipsPanel);
+            _propertyPanel = new StyledInteractableImage().AddElements(_animatorPanel);
 
             _windowTitlePanel = new(_windowIcon.ELoadAsset<Texture2D>(), _windowTitle, _windowSubtitle);
         }

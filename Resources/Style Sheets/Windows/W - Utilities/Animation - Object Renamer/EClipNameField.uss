@@ -68,7 +68,7 @@
 	-unity-font-definition: var(--font-genshin);
 	font-size: 12px;
 
-	padding-left: 7.5px;
+	padding-left: 5px;
 
 	align-self: center;
 }

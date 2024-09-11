@@ -11,6 +11,11 @@ using YNL.Editors.Windows.Utilities;
 
 namespace YNL.Editors.Windows.Animation.ObjectRenamer
 {
+    public class WAnimationObjectRenamer_Variable
+    {
+        public static bool IsAutomaticMode = false;
+    }
+
     public class WAnimationObjectRenamer_Handler
     {
         #region ▶ Fields/Properties
