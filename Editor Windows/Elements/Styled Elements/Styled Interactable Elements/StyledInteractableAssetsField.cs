@@ -2,7 +2,7 @@
 using System;
 using UnityEditor;
 using UnityEngine.UIElements;
-using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 
 namespace YNL.Editors.UIElements.Styled
 {
@@ -75,7 +75,7 @@ namespace YNL.Editors.UIElements.Styled
         {
             var element = evt.currentTarget as StyledInteractableAssetsField<T>;
 
-            if (DragAndDrop.objectReferences.ETryGet(0) is T)
+            if (DragAndDrop.objectReferences.TryGet(0) is T)
             {
                 element.DragEnter();
                 action?.Invoke();
@@ -87,7 +87,7 @@ namespace YNL.Editors.UIElements.Styled
         {
             var element = evt.currentTarget as StyledInteractableAssetsField<T>;
 
-            if (DragAndDrop.objectReferences.ETryGet(0) is T)
+            if (DragAndDrop.objectReferences.TryGet(0) is T)
             {
                 element.DragLeave();
                 action?.Invoke();
@@ -99,7 +99,7 @@ namespace YNL.Editors.UIElements.Styled
         {
             var element = evt.currentTarget as StyledInteractableAssetsField<T>;
 
-            if (DragAndDrop.objectReferences.ETryGet(0) is T)
+            if (DragAndDrop.objectReferences.TryGet(0) is T)
             {
                 DragAndDrop.visualMode = DragAndDropVisualMode.Link;
                 element.DragUpdate();

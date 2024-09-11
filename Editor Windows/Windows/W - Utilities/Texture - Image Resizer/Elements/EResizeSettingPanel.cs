@@ -1,8 +1,9 @@
 ﻿#if UNITY_EDITOR
 using System;
 using UnityEngine.UIElements;
-using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 using YNL.Editors.UIElements.Styled;
+using YNL.Editors.Windows.Utilities;
 
 namespace YNL.Editors.Windows.Texture.ImageResizer
 {
@@ -81,12 +82,12 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
         public void WidthChanged(ChangeEvent<string> evt)
         {
             evt.StopPropagation();
-            OnWidthChaned?.Invoke(evt.newValue.EToInt());
+            OnWidthChaned?.Invoke(evt.newValue.ToInt());
         }
         public void HeightChanged(ChangeEvent<string> evt)
         {
             evt.StopPropagation();
-            OnHeightChaned?.Invoke(evt.newValue.EToInt());
+            OnHeightChaned?.Invoke(evt.newValue.ToInt());
         }
     }
 }

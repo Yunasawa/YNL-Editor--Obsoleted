@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 
 namespace YNL.Editors.UIElements.Styled
 {
@@ -102,7 +103,7 @@ namespace YNL.Editors.UIElements.Styled
         {
             if (!forceSelect && Tags[_selectedTag] == tag) return;
 
-            _selectedTag = Tags.EIndexOf(tag);
+            _selectedTag = Tags.IndexOf(tag);
 
             foreach (var item in Tags) item.OnDeselect();
             tag.OnSelect();

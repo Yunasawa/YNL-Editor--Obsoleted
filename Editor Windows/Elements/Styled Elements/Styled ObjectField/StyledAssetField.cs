@@ -2,8 +2,8 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using YNL.Editors.Windows.Utilities;
 using YNL.Extensions.Methods;
+using YNL.Editors.Windows.Utilities;
 
 namespace YNL.Editors.UIElements.Styled
 {
@@ -38,17 +38,17 @@ namespace YNL.Editors.UIElements.Styled
             Icon = new Image().SetBackgroundImage(objectIcon).AddClass(_uss_icon);
 
             Name = new Label().AddClass(_uss_name);
-            if (!ReferencedObject.EIsNull())
+            if (!ReferencedObject.IsNull())
             {
                 Name.text = $"{ReferencedObject.name} ({ReferencedObject.GetType().Name.AddSpaces()})";
                 Name.SetColor("#FFFFFF");
-                Icon.SetBackgroundImageTintColor("#FFFFFF".EToColor());
+                Icon.SetBackgroundImageTintColor("#FFFFFF".ToColor());
             }
             else
             {
-                Name.text = $"None ({_typeName.EAddSpaces()})";
+                Name.text = $"None ({_typeName.AddSpaces()})";
                 Name.SetColor("#7D7D7D");
-                Icon.SetBackgroundImageTintColor("#B4B4B4".EToColor());
+                Icon.SetBackgroundImageTintColor("#B4B4B4".ToColor());
             }
 
             Background = new StyledInteractableAssetField<T>().AddClass(_uss_background);
@@ -123,11 +123,11 @@ namespace YNL.Editors.UIElements.Styled
 
             ReferencedObject = bindedObject;
 
-            if (!bindedObject.EIsNull()) Name.text = $"{ReferencedObject.name} ({_typeName.EAddSpaces()})";
-            else Name.text = $"None ({_typeName.EAddSpaces()})";
+            if (!bindedObject.IsNull()) Name.text = $"{ReferencedObject.name} ({_typeName.AddSpaces()})";
+            else Name.text = $"None ({_typeName.AddSpaces()})";
 
             Name.SetColor("#FFFFFF");
-            Icon.SetBackgroundImageTintColor("#FFFFFF".EToColor());
+            Icon.SetBackgroundImageTintColor("#FFFFFF".ToColor());
         }
 
         public void PointerDownOnSelection()

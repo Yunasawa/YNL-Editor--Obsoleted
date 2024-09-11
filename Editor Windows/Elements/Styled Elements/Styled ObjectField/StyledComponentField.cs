@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 
 namespace YNL.Editors.UIElements.Styled
 {
@@ -38,7 +39,7 @@ namespace YNL.Editors.UIElements.Styled
             Icon = new Image().SetBackgroundImage(objectIcon).AddClass(_uss_icon);
 
             Name = new Label().AddClass(_uss_name);
-            if (!ReferencedObject.EIsNull()) HighlineField();
+            if (!ReferencedObject.IsNull()) HighlineField();
             else LowlineField();
 
             Background = new StyledInteractableComponentField<T>().AddClass(_uss_background);
@@ -126,15 +127,15 @@ namespace YNL.Editors.UIElements.Styled
 
         private void HighlineField()
         {
-            Name.text = $"{ReferencedObject.name} ({_typeName.EAddSpaces()})";
+            Name.text = $"{ReferencedObject.name} ({_typeName.AddSpaces()})";
             Name.SetColor("#FFFFFF");
-            Icon.SetBackgroundImageTintColor("#FFFFFF".EToColor());
+            Icon.SetBackgroundImageTintColor("#FFFFFF".ToColor());
         }
         private void LowlineField()
         {
-            Name.text = $"None ({_typeName.EAddSpaces()})";
+            Name.text = $"None ({_typeName.AddSpaces()})";
             Name.SetColor("#7D7D7D");
-            Icon.SetBackgroundImageTintColor("#7F7F7F".EToColor());
+            Icon.SetBackgroundImageTintColor("#7F7F7F".ToColor());
         }
     }
 }

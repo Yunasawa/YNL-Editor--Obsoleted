@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 
 namespace YNL.Editors.Windows
 {
@@ -13,7 +13,7 @@ namespace YNL.Editors.Windows
         public static void Open(int width = 300, int height = 200, WPopupPivot pivot = WPopupPivot.TopLeft, params object[] parameters)
         {
             T window = CreateInstance<T>();
-            if (!_instance.EIsNull())
+            if (!_instance.IsNull())
             {
                 if (!_instance != window) _instance.Close();
             }

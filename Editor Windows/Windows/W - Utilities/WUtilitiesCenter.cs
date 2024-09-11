@@ -1,11 +1,12 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 using YNL.Editors.UIElements.Styled;
 using YNL.Editors.Windows.Texture.ImageResizer;
 using YNL.Editors.Windows.Animation.ObjectRenamer;
 using YNL.Editors.Windows.Texture.ImageInverter;
+using YNL.Editors.Windows.Utilities;
 
 namespace YNL.Editors.Windows
 {
@@ -30,10 +31,10 @@ namespace YNL.Editors.Windows
         #endregion
 
 
-        [MenuItem("🔗 YのL/🔗 Windows/🔗 Editor Utilities Center")]
+        [MenuItem("🔗 YのL/🔗 Windows/🔗 Editor Toolbox")]
         public static void ShowWindow()
         {
-            WUtilitiesCenter window = GetWindow<WUtilitiesCenter>("Editor Utilities Center");
+            WUtilitiesCenter window = GetWindow<WUtilitiesCenter>("Editor Toolbox");
             Texture2D texture = Resources.Load<Texture2D>(_windowIconPath);
 
             window.titleContent.image = texture;
@@ -44,7 +45,7 @@ namespace YNL.Editors.Windows
         #region ▶ Editor Messages
         private void OnSelectionChange()
         {
-            if (!_selectedWindow.EIsNull()) _selectedWindow.OnSelectionChange();
+            if (!_selectedWindow.IsNull()) _selectedWindow.OnSelectionChange();
         }
 
         public void CreateGUI()
@@ -57,7 +58,7 @@ namespace YNL.Editors.Windows
             
             Texture2D waitIcon = Resources.Load<Texture2D>("Textures/Icons/Time1");
 
-            WindowTagPanel = new(windowIcon, "Editor Utilities", "Center", _tagPanelWidth, new StyledWindowTag[]
+            WindowTagPanel = new(windowIcon, "Editor Toolbox", "Center", _tagPanelWidth, new StyledWindowTag[]
             {
             new StyledWindowTag(textureImageResizerIcon, "Image Resizer", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.TextureImageResizer)),
             new StyledWindowTag(textureImageInverterIcon, "Image Inverter", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.TextureImageInverter)),
@@ -74,7 +75,7 @@ namespace YNL.Editors.Windows
 
         public void OnGUI()
         {
-            if (!_selectedWindow.EIsNull()) _selectedWindow.OnGUI();
+            if (!_selectedWindow.IsNull()) _selectedWindow.OnGUI();
         }
         #endregion
 
@@ -101,7 +102,7 @@ namespace YNL.Editors.Windows
         
         private void SwitchWindow(IMain window)
         {
-            if (!_selectedWindow.EIsNull()) WindowTagPanel.Tutorial.clicked -= _selectedWindow.OpenInstruction;
+            if (!_selectedWindow.IsNull()) WindowTagPanel.Tutorial.clicked -= _selectedWindow.OpenInstruction;
             _selectedWindow = window;
             WindowTagPanel.Tutorial.clicked += _selectedWindow.OpenInstruction;
         }

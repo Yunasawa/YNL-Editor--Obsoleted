@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 
 namespace YNL.Editors.Windows.Texture.ImageInverter
 {
@@ -23,7 +24,7 @@ namespace YNL.Editors.Windows.Texture.ImageInverter
 
         public EImageBox(Texture2D image) : base()
         {
-            if (image.EIsNull())
+            if (image.IsNull())
             {
                 EDebug.ENotify("Image not found, something is wrong!");
                 return;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 
 namespace YNL.Editors.Windows.Texture.ImageInverter
 {
@@ -39,12 +40,12 @@ namespace YNL.Editors.Windows.Texture.ImageInverter
                 {
                     string getPath = AssetDatabase.GUIDToAssetPath(guid);
                     Texture2D texture = AssetDatabase.LoadAssetAtPath<Texture2D>(getPath);
-                    Textures.EAddDistinct(texture);
+                    Textures.AddDistinct(texture);
                 }
             }
             else if (item is Texture2D)
             {
-                Textures.EAddDistinct(item as Texture2D);
+                Textures.AddDistinct(item as Texture2D);
             }
         }
 

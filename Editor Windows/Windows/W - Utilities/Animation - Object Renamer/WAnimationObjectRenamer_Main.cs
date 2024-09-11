@@ -1,6 +1,6 @@
 #if UNITY_EDITOR
 using UnityEditor;
-using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 using YNL.Editors.UIElements.Styled;
 
 namespace YNL.Editors.Windows.Animation.ObjectRenamer

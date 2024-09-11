@@ -3,8 +3,10 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 using YNL.Editors.UIElements.Styled;
+using YNL.Extensions.Addons;
+using YNL.Editors.Windows.Utilities;
 
 namespace YNL.Editors.Windows.Texture.ImageInverter
 {
@@ -14,9 +16,9 @@ namespace YNL.Editors.Windows.Texture.ImageInverter
 
         #region ▶ Editor Properties
         private float _tagPanelWidth = 200;
-        private EMinMax _propertyPanelWidth = new EMinMax(100, 200);
+        private MRange _propertyPanelWidth = new MRange(100, 200);
 
-        public float ImageWidth => _sizeSlider.Slider.value.ERemap(new(0, 10), _propertyPanelWidth);
+        public float ImageWidth => _sizeSlider.Slider.value.Remap(new(0, 10), _propertyPanelWidth);
         #endregion
         #region ▶ Visual Elements
         private WTextureImageInverter_Main _main;

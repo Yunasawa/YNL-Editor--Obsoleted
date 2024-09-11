@@ -82,11 +82,10 @@
 {
 	color: #FFFFFF;
 	font-size: 12px;
-	-unity-font-style: bold;
 
-	-unity-font-definition: var(--font-nightmare-pills);
+	-unity-font-definition: var(--font-genshin);
 
-	top: 2.75px;
+	top: 1px;
 
 	margin-left: 20.5px;
 
@@ -99,7 +98,7 @@
 {
 	font-size: 13px;
 
-	top: 2.75px;
+	top: 0.75px;
 }
 
 .ping

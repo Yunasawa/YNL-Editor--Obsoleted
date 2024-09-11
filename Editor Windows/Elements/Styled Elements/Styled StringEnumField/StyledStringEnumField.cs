@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
+using YNL.Extensions.Methods;
 using YNL.Editors.Windows.Utilities;
 
 namespace YNL.Editors.UIElements.Styled
@@ -25,7 +26,7 @@ namespace YNL.Editors.UIElements.Styled
             Label = new Label(label).AddClass("Label");
 
             Popup = new PopupField<string>(options, 0).AddClass("Popup");
-            if (!options.Contains(defaultOption) || defaultOption.EIsNullOrEmpty()) Popup.value = options[0];
+            if (!options.Contains(defaultOption) || defaultOption.IsNullOrEmpty()) Popup.value = options[0];
             else Popup.value = options[options.IndexOf(defaultOption)];
             Popup.RegisterValueChangedCallback(OnValueChanged);
 

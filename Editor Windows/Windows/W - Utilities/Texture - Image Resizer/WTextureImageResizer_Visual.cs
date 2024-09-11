@@ -2,8 +2,10 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 using YNL.Editors.UIElements.Styled;
+using YNL.Extensions.Addons;
+using YNL.Editors.Windows.Utilities;
 
 namespace YNL.Editors.Windows.Texture.ImageResizer
 {
@@ -13,8 +15,8 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
 
         #region ▶ Editor Properties
         private float _tagPanelWidth = 200;
-        private EMinMax _propertyPanelWidth = new EMinMax(100, 200);
-        public float ImageWidth => _sizeSlider.Slider.value.ERemap(new(0, 10), _propertyPanelWidth);
+        private MRange _propertyPanelWidth = new MRange(100, 200);
+        public float ImageWidth => _sizeSlider.Slider.value.Remap(new(0, 10), _propertyPanelWidth);
         #endregion
         #region ▶ Visual Elements
         private WTextureImageResizer_Main _main;
@@ -88,7 +90,7 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
 
         public void GenerateImages(Texture2D[] textures, float width)
         {
-            Vector2 newSize = new Vector2(ResizeSettingPanel.Width.value.EToInt(), ResizeSettingPanel.Height.value.EToInt());
+            Vector2 newSize = new Vector2(ResizeSettingPanel.Width.value.ToInt(), ResizeSettingPanel.Height.value.ToInt());
             _displayer.GenerateImages(textures, width, newSize, ResizeSettingPanel.KeepAspectRatioSwitch.Enable);
         }
         public void ClearItems()
@@ -127,7 +129,7 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
             ResizeSettingPanel.KeepAspectRatioSwitch.OnSwitch += (enable) =>
             {
                 if (!enable) return;
-                _displayer.SetAllNewAspectedSize(ResizeSettingPanel.Width.value.EToInt(), true);
+                _displayer.SetAllNewAspectedSize(ResizeSettingPanel.Width.value.ToInt(), true);
                 ResizeSettingPanel.Height.SetText("auto");
             };
         }

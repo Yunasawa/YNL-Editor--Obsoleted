@@ -2,6 +2,8 @@
 using System;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Addons;
+using YNL.Extensions.Methods;
 
 namespace YNL.Editors.UIElements.Styled
 {
@@ -11,11 +13,11 @@ namespace YNL.Editors.UIElements.Styled
 
         public Slider Slider;
 
-        private EMinMax _range;
+        private MRange _range;
 
         public Action<float> OnValueChanged;
 
-        public StyledSlider(EMinMax range) : base()
+        public StyledSlider(MRange range) : base()
         {
             _range = range;
 
@@ -35,7 +37,7 @@ namespace YNL.Editors.UIElements.Styled
 
         public void ValueChanged(ChangeEvent<float> evt)
         {
-            OnValueChanged?.Invoke(Slider.value.ERemap(new(0, 10), _range));
+            OnValueChanged?.Invoke(Slider.value.Remap(new(0, 10), _range));
         }
     }
 }

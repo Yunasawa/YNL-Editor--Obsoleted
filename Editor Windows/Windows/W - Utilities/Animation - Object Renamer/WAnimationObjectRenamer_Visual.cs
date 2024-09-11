@@ -4,11 +4,13 @@
 #if UNITY_EDITOR && YNL_UTILITIES
 using UnityEngine;
 using UnityEngine.UIElements;
-using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 using System.Collections.Generic;
 using System.Linq;
 using System;
 using YNL.Editors.UIElements.Styled;
+using YNL.Extensions.Addons;
+using YNL.Editors.Windows.Utilities;
 
 namespace YNL.Editors.Windows.Animation.ObjectRenamer
 {
@@ -51,7 +53,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
         #region ▶ General Fields/Properties
         private bool _createdAllElements = false;
         private float _tagPanelWidth = 200;
-        private EMinMax _propertyPanelWidth = new EMinMax(100, 300);
+        private MRange _propertyPanelWidth = new MRange(100, 300);
 
         private WAnimationObjectRenamer_Main _main;
 
@@ -181,7 +183,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             _main.Handler.GetReferencedAnimator();
             _main.Handler.FillModel();
             _rootNamePanel.ClearAllClipItem();
-            if (_main.Handler.Paths != null && !_main.Handler.AnimationClips.EIsEmpty())
+            if (_main.Handler.Paths != null && !_main.Handler.AnimationClips.IsEmpty())
             {
                 if (_main.Handler.PathsKeys.Count > 0)
                 {
@@ -205,7 +207,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             string _originalRoot = _inputNamePanel.OriginField.text;
             string _newRoot = _inputNamePanel.NewField.text;
 
-            if (!_main.Handler.AnimationClips.EIsEmpty() && _main.Handler.PathsKeys.Count > 0)
+            if (!_main.Handler.AnimationClips.IsEmpty() && _main.Handler.PathsKeys.Count > 0)
             {
                 List<string> paths = new();
 
@@ -217,13 +219,13 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
                     _main.Handler.ReplaceRoot(_newRoot, _originalRoot, () => ChangeVisuals(_newRoot, _originalRoot));
                     _main.Handler.ReplaceRoot("Temporary Root", _newRoot, () => ChangeVisuals("Temporary Root", _newRoot));
 
-                    EDebug.ECustom("Swap", $"{_originalRoot} ▶ {_newRoot}", EColor.Macaroon.EToHex());
+                    EDebug.ECustom("Swap", $"{_originalRoot} ▶ {_newRoot}", EColor.Macaroon.ToHex());
                 }
                 else
                 {
                     _main.Handler.ReplaceRoot(_originalRoot, _newRoot, () => ChangeVisuals(_originalRoot, _newRoot));
 
-                    EDebug.ECustom("Rename", $"{_originalRoot} ▶ {_newRoot}", EColor.Flamingo.EToHex());
+                    EDebug.ECustom("Rename", $"{_originalRoot} ▶ {_newRoot}", EColor.Flamingo.ToHex());
                 }
             }
 
@@ -231,7 +233,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             {
                 EClipNameField clipNameField = _rootNamePanel.ClipPanel.Query<EClipNameField>().ToList().FirstOrDefault(i => i.Name.text == originalRoot);
 
-                if (!clipNameField.EIsNull())
+                if (!clipNameField.IsNull())
                 {
                     clipNameField.Name.SetText(newRoot);
 
@@ -268,8 +270,8 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
                 }
             }
 
-            Color arrowColor = "#BF4040".EToColor();
-            if (!gameObject.EIsNull()) arrowColor = "#40BF8F".EToColor();
+            Color arrowColor = "#BF4040".ToColor();
+            if (!gameObject.IsNull()) arrowColor = "#40BF8F".ToColor();
 
             EClipNameField clipNameField = new(pathOverride, gameObject, referencedColor.ToArray(), arrowColor, null);
 

@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 
 namespace YNL.Editors.UIElements.Styled
 {
@@ -41,7 +42,7 @@ namespace YNL.Editors.UIElements.Styled
             Icon.AddClass(USS_Icon);
 
             Title = new Label(title).AddClass(USS_Title);
-            if (subtitle.EIsNullOrEmpty()) Title.SetTop(10);
+            if (subtitle.IsNullOrEmpty()) Title.SetTop(10);
             Subtitle = new Label(subtitle).AddClass(USS_Subtitle);
 
             Background.AddElements(Icon, Title, Subtitle);
@@ -147,7 +148,7 @@ namespace YNL.Editors.UIElements.Styled
         private void SetDeselectStyle()
         {
             Background.SetBackgroundColor(Color.clear);
-            Icon.SetBackgroundImageTintColor("#5E5E5E".EToColor());
+            Icon.SetBackgroundImageTintColor("#5E5E5E".ToColor());
             Title.SetColor("#5E5E5E");
         }
     }

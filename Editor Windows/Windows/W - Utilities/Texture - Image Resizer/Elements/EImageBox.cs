@@ -2,6 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using YNL.Extensions.Methods;
 using YNL.Editors.Windows.Utilities;
 
 namespace YNL.Editors.Windows.Texture.ImageResizer
@@ -24,7 +25,7 @@ namespace YNL.Editors.Windows.Texture.ImageResizer
 
         public EImageBox(Texture2D image, Vector2 newSize) : base()
         {
-            if (image.EIsNull())
+            if (image.IsNull())
             {
                 EDebug.ENotify("Image not found, something is wrong!");
                 return;

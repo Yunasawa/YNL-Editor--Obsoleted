@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
+using YNL.Extensions.Methods;
 
 namespace YNL.Editors.Windows.Utilities
 {
@@ -292,7 +293,7 @@ namespace YNL.Editors.Windows.Utilities
         #region X Element Style - Background Color
 
         public static T SetBackgroundColor<T>(this T element, string hex) where T : VisualElement
-            => element.SetBackgroundColor(hex.EToColor());
+            => element.SetBackgroundColor(hex.ToColor());
         public static T SetBackgroundColor<T>(this T element, Color color) where T : VisualElement
         {
             element.style.backgroundColor = color;
@@ -505,7 +506,7 @@ namespace YNL.Editors.Windows.Utilities
             return element;
         }
         public static T SetColor<T>(this T element, string hex) where T : VisualElement
-            => element.SetColor(hex.EToColor());
+            => element.SetColor(hex.ToColor());
 
         /// <summary>
         /// Get the color used when drawing the text of an element

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
+using YNL.Extensions.Methods;
 using YNL.Editors.Windows.Utilities;
 
 namespace YNL.Editors.Windows.Animation.ObjectRenamer
@@ -48,7 +49,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
                         }
                         if (!ClipColors.ContainsKey((AnimationClip)obj))
                         {
-                            Color bindedColor = new Color(UnityEngine.Random.Range(100, 255), UnityEngine.Random.Range(100, 255), UnityEngine.Random.Range(100, 255), 1).ENormalize();
+                            Color bindedColor = new Color(UnityEngine.Random.Range(100, 255), UnityEngine.Random.Range(100, 255), UnityEngine.Random.Range(100, 255), 1).Normalize();
                             ClipColors.Add((AnimationClip)obj, bindedColor);
                         }
                     }
@@ -84,7 +85,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
 
         public void GetReferencedAnimator()
         {
-            if (_main.Visual.EIsNull()) return;
+            if (_main.Visual.IsNull()) return;
 
             ReferencedAnimator = _main.Visual.ReferencedAnimator.ReferencedObject;
         }
@@ -122,7 +123,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
                 {
                     if (!PathColors[key].Contains(clip))
                     {
-                        PathColors[key] = PathColors[key].EAdd(clip);
+                        PathColors[key] = PathColors[key].Add(clip);
                     }
                 }
                 else

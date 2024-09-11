@@ -2,8 +2,9 @@
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
-using YNL.Editors.Windows.Utilities;
+using YNL.Extensions.Methods;
 using YNL.Editors.UIElements.Styled;
+using YNL.Editors.Windows.Utilities;
 
 namespace YNL.Editors.Windows.Animation.ObjectRenamer
 {
@@ -66,8 +67,8 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
 
         public void UpdateArrowColor()
         {
-            Color arrowColor = "#BF4040".EToColor();
-            if (!Object.ReferencedObject.EIsNull()) arrowColor = "#40BF8F".EToColor();
+            Color arrowColor = "#BF4040".ToColor();
+            if (!Object.ReferencedObject.IsNull()) arrowColor = "#40BF8F".ToColor();
 
             this.Arrow.SetBackgroundImageTintColor(arrowColor);
         }
