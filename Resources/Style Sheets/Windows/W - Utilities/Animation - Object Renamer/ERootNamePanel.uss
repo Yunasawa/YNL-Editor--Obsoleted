@@ -63,8 +63,7 @@
 
 #Label
 {
-	-unity-font-definition: var(--font-nightmare-pills);
-	-unity-font-style: bold;
+	-unity-font-definition: var(--font-genshin);
 	color: #C4FDFF;
 	font-size: 13px;
 

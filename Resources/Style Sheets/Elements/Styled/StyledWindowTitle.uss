@@ -53,14 +53,13 @@
 	color: #B8B8B8;
 
 	font-size: 22.5px;
-	-unity-font-style: bold;
+	-unity-font-definition: var(--font-genshin);
 
 	margin-left: 280px;
 	margin-top: 15px;
 
 	position: absolute;
 
-	-unity-font-definition: var(--font-nightmare-pills);
 
 	transition-property: margin-left;
 	transition-duration: 0.25s;
@@ -70,15 +69,14 @@
 {
 	color: #6D6D6D;
 
-	font-size: 15px;
-	-unity-font-style: bold;
+	font-size: 12.5px;
+	-unity-font-definition: var(--font-genshin);
 
 	margin-left: 280px;
 	margin-top: 45px;
 
 	position: absolute;
 
-	-unity-font-definition: var(--font-nightmare-pills);
 
 	transition-property: margin-left;
 	transition-duration: 0.25s;

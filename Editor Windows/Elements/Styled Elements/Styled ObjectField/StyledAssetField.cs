@@ -41,7 +41,7 @@ namespace YNL.Editors.UIElements.Styled
             if (!ReferencedObject.IsNull())
             {
                 Name.text = $"{ReferencedObject.name} ({ReferencedObject.GetType().Name.AddSpaces()})";
-                Name.SetColor("#FFFFFF");
+                Name.SetColor("#DFDFDF");
                 Icon.SetBackgroundImageTintColor("#FFFFFF".ToColor());
             }
             else

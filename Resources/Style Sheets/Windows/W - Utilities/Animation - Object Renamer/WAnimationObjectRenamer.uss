@@ -92,9 +92,8 @@
 
 .ClipsTitle
 {
-	font-size: 15px;
-	-unity-font-style: bold;
-	-unity-font-definition: var(--font-nightmare-pills);
+	font-size: 13px;
+	-unity-font-definition: var(--font-genshin);
 
 	margin-top: 7.5px;
 
@@ -104,11 +103,10 @@
 
 .AnimatorTitle
 {
-	font-size: 15px;
-	-unity-font-style: bold;
-	-unity-font-definition: var(--font-nightmare-pills);
+	font-size: 13px;
+	-unity-font-definition: var(--font-genshin);
 
-	margin-top: 7.5px;
+	margin-top: 5px;
 
 	position: absolute;
 	align-self: flex-start;

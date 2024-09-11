@@ -80,7 +80,6 @@
 
 .name
 {
-	color: #FFFFFF;
 	font-size: 12px;
 
 	-unity-font-definition: var(--font-genshin);

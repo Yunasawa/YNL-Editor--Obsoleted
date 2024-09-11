@@ -100,8 +100,7 @@
 
 #Label
 {
-	-unity-font-definition: var(--font-nightmare-pills);
-	-unity-font-style: bold;
+	-unity-font-definition: var(--font-genshin);
 	color: #C4FDFF;
 	font-size: 13px;
 
@@ -121,9 +120,8 @@
 
 #OriginLabel
 {
-	-unity-font-definition: var(--font-nightmare-pills);
-	-unity-font-style: bold;
-	font-size: 13px;
+	-unity-font-definition: var(--font-genshin);
+	font-size: 12px;
 
 	position: absolute;
 
@@ -133,9 +131,8 @@
 
 #NewLabel
 {
-	-unity-font-definition: var(--font-nightmare-pills);
-	-unity-font-style: bold;
-	font-size: 13px;
+	-unity-font-definition: var(--font-genshin);
+	font-size: 12px;
 
 	position: absolute;
 
