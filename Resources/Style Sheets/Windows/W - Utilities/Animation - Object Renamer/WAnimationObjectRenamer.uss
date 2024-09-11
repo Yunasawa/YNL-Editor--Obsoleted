@@ -17,9 +17,75 @@
 
 	transition-property: width, margin-left;
 	transition-duration: 0.25s;
-
-	padding-bottom: 9.5px;
 }
+
+.ModePanel
+{
+	background-color: #2d2d2d;
+
+	border-color: transparent;
+	border-width: 0px;
+	border-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+
+	max-width: 200%;
+	height: 35px;
+
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 0px;
+
+	flex-direction: row;
+
+	padding: 0px;
+}
+
+/*------------------------------------------------*/
+#ModeButton
+{
+	border-color: transparent;
+	border-radius: 0px;
+	border-width: 0px;
+
+	width: 50%;
+	height: 100%;
+
+	margin: 0px;
+
+	flex-direction: row;
+
+	transition-property: background-color;
+	transition-duration: 0.25s;
+}
+
+/*------------------------------------------------*/
+#ModeIcon
+{
+	width: 25px;
+	height: 25px;
+
+	margin-top: 5px;
+	flex-shrink: 0;
+
+	transition-property: left, -unity-background-image-tint-color;
+	transition-duration: 0.25s;
+}
+
+/*------------------------------------------------*/
+#ModeLabel
+{
+	-unity-font-definition: var(--font-genshin);
+	font-size: 15px;
+
+	margin: 0px;
+	margin-left: 7.5px;
+
+	transition-property: color;
+	transition-duration: 0.25s;
+}
+
 
 .AnimatorPanel
 {
@@ -27,13 +93,20 @@
 
 	border-color: transparent;
 	border-radius: 5px;
+	border-width: 0px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
 
-	margin-top: 5px;
+	margin-top: 0px;
 	margin-left: 5px;
 	margin-right: 5px;
+	margin-bottom: 5px;
+
+	padding-top: 10px;
 
 	max-width: 200%;
-	height: 100%;
+
+	flex-grow: 1;
 }
 
 .ClipsScroll
@@ -52,22 +125,6 @@
 	padding-right: 5px;
 	padding-bottom: 30px;
 	padding-top: 5px;
-}
-
-.ClipsPanel
-{
-	background-color: #2d2d2d;
-
-	border-color: transparent;
-	border-radius: 5px;
-
-	margin-top: 10px;
-	margin-left: 5px;
-	margin-right: 5px;
-	bottom: 0px;
-
-	max-width: 200%;
-	min-height: 100%;
 }
 
 .AnimatorField

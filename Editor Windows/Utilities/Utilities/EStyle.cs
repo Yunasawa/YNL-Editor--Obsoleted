@@ -164,6 +164,11 @@ namespace YNL.Editors.Windows.Utilities
             target.style.top = value;
             return target;
         }
+        public static T SetLeft<T>(this T target, float value) where T : VisualElement
+        {
+            target.style.left = value;
+            return target;
+        }
         #endregion
 
         #region X Element Style - Overflow
@@ -484,6 +489,8 @@ namespace YNL.Editors.Windows.Utilities
             element.style.unityBackgroundImageTintColor = color;
             return element;
         }
+        public static T SetBackgroundImageTintColor<T>(this T element, string color) where T : VisualElement
+            => element.SetBackgroundImageTintColor(color.ToColor());
 
         public static Color GetBackgroundImageTintColor<T>(this T element) where T : VisualElement
         {

@@ -274,6 +274,12 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
 
             done?.Invoke();
         }
+
+        public void ChangeMode(bool toAutomatic)
+        {
+            WAnimationObjectRenamer_Variable.IsAutomaticMode = toAutomatic;
+            _main.Visual.UpdateMode();
+        }
     }
 }
 #endif
