@@ -2,9 +2,9 @@
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.Windows.Animation.ObjectRenamer
+namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
-    public class WAnimationObjectRenamer_Instruction : WPopupWindow<WAnimationObjectRenamer_Instruction>
+    public class Instruction : WPopupWindow<Instruction>
     {
         private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/WAnimationObjectRenamer_Popup";
 

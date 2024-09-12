@@ -9,18 +9,37 @@ using UnityEngine;
 using YNL.Extensions.Methods;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.Windows.Animation.ObjectRenamer
+namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
-    public class WAnimationObjectRenamer_Variable
+    public class Variable
     {
+        private static CenterData _centerData;
+
         public static bool IsAutomaticPanel = false;
-        public static bool IsAutomaticOn = false;
+        public static bool IsAutomaticOn
+        {
+            get
+            {
+                if (_centerData.IsNull()) _centerData = "Editor Toolbox Data".LoadResource<CenterData>();
+                return _centerData.AnimationObjectRenamer.IsAutomaticOn;
+            }
+            set
+            {
+                if (_centerData.IsNull()) _centerData = "Editor Toolbox Data".LoadResource<CenterData>();
+                _centerData.AnimationObjectRenamer.IsAutomaticOn = value;
+            }
+        }
+
+        public static Action<GameObject> OnGameObjectRenamed;
+        public static Action OnGameObjectCreated;
+        public static Action<GameObject> OnGameObjectDestroyed;
     }
 
-    public class WAnimationObjectRenamer_Handler
+    [InitializeOnLoad]
+    public class Handler
     {
         #region ▶ Fields/Properties
-        private WAnimationObjectRenamer_Main _main;
+        private Main _main;
 
         public Hashtable Paths;
         public Dictionary<string, string> TempPathOverrides = new();
@@ -35,12 +54,76 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
         private string _replacementOldRoot;
         private string _replacementNewRoot;
         #endregion
+        #region ▶ Static Fields/Properties
+        private static GameObject _selectedObject;
+        private static string _previousName;
+        #endregion
 
-        public WAnimationObjectRenamer_Handler(WAnimationObjectRenamer_Main main)
+        public Handler(Main main)
         {
             _main = main;
         }
+        static Handler()
+        {
+            EditorApplication.hierarchyChanged -= OnHierarchyChanged;
+            EditorApplication.hierarchyChanged += OnHierarchyChanged;
 
+            Selection.selectionChanged -= OnSelectionChanged;
+            Selection.selectionChanged += OnSelectionChanged;
+
+            Variable.OnGameObjectRenamed -= OnGameObjectRenamed;
+            Variable.OnGameObjectRenamed += OnGameObjectRenamed;
+        }
+
+        #region ▶ Automatic Functions
+        public static void OnHierarchyChanged()
+        {
+            if (Selection.activeGameObject != _selectedObject) return;
+            else if (_selectedObject.IsNullOrDestroyed())
+            {
+                Variable.OnGameObjectDestroyed?.Invoke(_selectedObject);
+                return;
+            }
+            else if (_selectedObject.name != _previousName)
+            {
+                Variable.OnGameObjectRenamed?.Invoke(_selectedObject);
+                _previousName = _selectedObject.name;
+            }
+        }
+
+        public static void OnSelectionChanged()
+        {
+            if (Selection.gameObjects.Length > 1) return;
+            else if (Selection.activeGameObject.IsNull()) return;
+            _selectedObject = Selection.activeGameObject;
+            _previousName = Selection.activeGameObject.name;
+        }
+
+        public static void OnGameObjectRenamed(GameObject obj)
+        {
+            MDebug.Log($"Renamed from {_previousName} to {obj.name}");
+            MDebug.Log($"Animator: {GetAnimatorsInParents(obj)[0].name}");
+        }
+
+        public static Animator[] GetAnimatorsInParents(GameObject obj)
+        {
+            List<Animator> animators = new();
+            GameObject currentObject = obj;
+
+            while (true)
+            {
+                if (currentObject.HasComponent(out Animator animator)) animators.Add(animator);
+
+                if (currentObject == obj.transform.root.gameObject) break;
+                currentObject = currentObject.transform.parent.gameObject;
+            }
+
+            return animators.ToArray();
+        }
+
+        public static AnimationClip[] GetAnimationClips(Animator animator) => animator.runtimeAnimatorController.animationClips;
+        #endregion
+        #region ▶ Manual Functions
         public void OnSelectionChange()
         {
             if (Selection.objects.Length > 1)
@@ -278,9 +361,15 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
 
         public void ChangeMode(bool toAutomatic)
         {
-            WAnimationObjectRenamer_Variable.IsAutomaticPanel = toAutomatic;
-            _main.Visual.UpdateMode();
+            Variable.IsAutomaticPanel = toAutomatic;
+            _main.Visual.UpdateMode(true);
         }
+        public void SwitchAutomaticMode()
+        {
+            Variable.IsAutomaticOn = !Variable.IsAutomaticOn;
+            _main.Visual.UpdateAutomatic();
+        }
+        #endregion
     }
 }
 #endif

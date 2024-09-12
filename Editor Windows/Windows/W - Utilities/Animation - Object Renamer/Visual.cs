@@ -12,9 +12,9 @@ using YNL.Editors.UIElements.Styled;
 using YNL.Extensions.Addons;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.Windows.Animation.ObjectRenamer
+namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
-    public class WAnimationObjectRenamer_Visual : EVisual
+    public class Visual : EVisual
     {
         private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/WAnimationObjectRenamer";
         
@@ -33,7 +33,8 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
         public StyledComponentField<Animator> ReferencedAnimator;
 
         private VisualElement _handlerWindow;
-        private Image _mainWindow;
+        private Image _animatorWindow;
+        private Image _automaticWindow;
 
         private EInputNamePanel _inputNamePanel;
         private ERootNamePanel _rootNamePanel;
@@ -45,6 +46,10 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
         private Button _manualButton;
         private Image _manualIcon;
         private Label _manualLabel;
+
+        private StyledInteractableButton _enableButton;
+        private Image _enableIcon;
+        private Label _enableLabel;
         #endregion
         #region ▶ Style Classes
         private const string _class_root = "RootWindow";
@@ -62,11 +67,11 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
         private float _tagPanelWidth = 200;
         private MRange _propertyPanelWidth = new MRange(100, 300);
 
-        private WAnimationObjectRenamer_Main _main;
+        private Main _main;
 
         #endregion
 
-        public WAnimationObjectRenamer_Visual(StyledWindowTagPanel tagPanel, WAnimationObjectRenamer_Main main)
+        public Visual(StyledWindowTagPanel tagPanel, Main main)
         {
             SetWindowTitle
             (
@@ -88,6 +93,9 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             HandlerWindowCreator();
 
             this.AddElements(_handlerWindow, _windowTitlePanel, _propertyPanel);
+
+            UpdateMode(false);
+            UpdateAutomatic();
 
             _createdAllElements = true;
         }
@@ -120,8 +128,24 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             #endregion
 
             #region Automatic Panel
+            _enableIcon = new Image().AddClass("AutomaticEnableIcon");
 
-            _automaticPanel = new Button().AddClass("AutomaticPanel");
+            _enableLabel = new Label().AddClass("AutomaticEnableLabel");
+
+            _enableButton = new StyledInteractableButton().AddClass("AutomaticEnableButton").AddElements(_enableLabel, _enableIcon);
+            _enableButton.clicked += _main.Handler.SwitchAutomaticMode;
+            _enableButton.OnPointerEnter += () =>
+            {
+                _enableButton.SetBackgroundColor("#1a1a1a");
+                _enableButton.SetBorderColor(Variable.IsAutomaticOn ? "#2e8c5a" : "#ab3e3e");
+            };
+            _enableButton.OnPointerExit += () =>
+            {
+                _enableButton.SetBackgroundColor("#1f1f1f");
+                _enableButton.SetBorderColor("#00000000");
+            };
+
+            _automaticPanel = new Button().AddClass("AutomaticPanel").AddElements(_enableButton);
             #endregion
 
             #region Animator Panel
@@ -138,8 +162,6 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             #endregion
 
             _propertyPanel = new StyledInteractableImage().AddElements(_modePanel);
-
-            UpdateMode();
 
             _windowTitlePanel = new(_windowIcon.ELoadAsset<Texture2D>(), _windowTitle, _windowSubtitle);
         }
@@ -162,13 +184,13 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             {
                 _propertyPanel.SetMarginLeft(_tagPanelWidth);
                 _windowTitlePanel.Panel.SetMarginLeft(_tagPanelWidth - 50);
-                _mainWindow.SetMarginLeft(_tagPanelWidth + 102);
+                _animatorWindow.SetMarginLeft(_tagPanelWidth + 102);
             };
             _tagPanel.OnPointerExit += () =>
             {
                 _propertyPanel.SetMarginLeft(50);
                 _windowTitlePanel.Panel.SetMarginLeft(0);
-                _mainWindow.SetMarginLeft(152);
+                _animatorWindow.SetMarginLeft(152);
             };
         }
         private void PropertyPanelHandler()
@@ -177,41 +199,49 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             {
                 _propertyPanel.SetWidth(_propertyPanelWidth.Max);
                 _windowTitlePanel.Panel.SetMarginLeft(_propertyPanelWidth.Max - 100);
-                _mainWindow.SetMarginLeft(_tagPanelWidth + 152);
+                _animatorWindow.SetMarginLeft(_tagPanelWidth + 152);
 
                 _autoIcon.SetLeft(0);
                 _manualIcon.SetLeft(0);
 
-                _autoLabel.SetColor(WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
-                _manualLabel.SetColor(!WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
+                _autoLabel.SetColor(Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
+                _manualLabel.SetColor(!Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
+
+                _enableLabel.SetColor(Variable.IsAutomaticOn ? "#52ffa3" : "#ff5252");
             };
             _propertyPanel.OnPointerExit = () =>
             {
                 _propertyPanel.SetWidth(_propertyPanelWidth.Min);
                 _windowTitlePanel.Panel.SetMarginLeft(_propertyPanelWidth.Min - 100);
-                _mainWindow.SetMarginLeft(_propertyPanelWidth.Min + 52);
+                _animatorWindow.SetMarginLeft(_propertyPanelWidth.Min + 52);
 
                 _autoIcon.SetLeft(-5);
                 _manualIcon.SetLeft(-15);
 
                 _autoLabel.SetColor("#00000000");
                 _manualLabel.SetColor("#00000000");
+
+                _enableLabel.SetColor("#00000000");
             };
         }
 
         private void HandlerWindowCreator()
         {
-            _handlerWindow = new VisualElement().AddClass(_class_handlerWindow);
-            _mainWindow = new Image().AddClass("MainWindow");
-
+            #region Animator Window
             _inputNamePanel = new EInputNamePanel();
-            _inputNamePanel.SwapButton.OnPointerDown += ReplaceClipPathItem;
+            _inputNamePanel.SwapButton.OnPointerDown += () => ReplaceClipPathItem(_inputNamePanel.OriginField.text, _inputNamePanel.NewField.text);
 
             _rootNamePanel = new ERootNamePanel();
 
-            _mainWindow.AddElements(_inputNamePanel, _rootNamePanel.SetMarginTop(0));
+            _animatorWindow = new Image().AddClass("MainWindow");
+            _animatorWindow.AddElements(_inputNamePanel, _rootNamePanel.SetMarginTop(0));
+            #endregion
 
-            _handlerWindow.AddElements(_mainWindow);
+            #region Automatic WIndow
+            _automaticWindow = new Image().AddClass("MainWindow");
+            #endregion
+
+            _handlerWindow = new VisualElement().AddClass(_class_handlerWindow);
         }
         #endregion
         #region ▶ Editor Functions Handlers
@@ -248,30 +278,27 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
                 _rootNamePanel.AddBoard("No animation clip found!");
             }
         }
-        public void ReplaceClipPathItem()
+        public void ReplaceClipPathItem(string originalRoot, string newRoot)
         {
-            string _originalRoot = _inputNamePanel.OriginField.text;
-            string _newRoot = _inputNamePanel.NewField.text;
-
             if (!_main.Handler.AnimationClips.IsEmpty() && _main.Handler.PathsKeys.Count > 0)
             {
                 List<string> paths = new();
 
                 foreach (var path in _main.Handler.PathsKeys) paths.Add((string)path);
 
-                if (paths.Contains(_originalRoot) && paths.Contains(_newRoot))
+                if (paths.Contains(originalRoot) && paths.Contains(newRoot))
                 {
-                    _main.Handler.ReplaceRoot(_originalRoot, "Temporary Root", () => ChangeVisuals(_originalRoot, "Temporary Root"));
-                    _main.Handler.ReplaceRoot(_newRoot, _originalRoot, () => ChangeVisuals(_newRoot, _originalRoot));
-                    _main.Handler.ReplaceRoot("Temporary Root", _newRoot, () => ChangeVisuals("Temporary Root", _newRoot));
+                    _main.Handler.ReplaceRoot(originalRoot, "Temporary Root", () => ChangeVisuals(originalRoot, "Temporary Root"));
+                    _main.Handler.ReplaceRoot(newRoot, originalRoot, () => ChangeVisuals(newRoot, originalRoot));
+                    _main.Handler.ReplaceRoot("Temporary Root", newRoot, () => ChangeVisuals("Temporary Root", newRoot));
 
-                    EDebug.ECustom("Swap", $"{_originalRoot} ▶ {_newRoot}", EColor.Macaroon.ToHex());
+                    EDebug.ECustom("Swap", $"{originalRoot} ▶ {newRoot}", EColor.Macaroon.ToHex());
                 }
                 else
                 {
-                    _main.Handler.ReplaceRoot(_originalRoot, _newRoot, () => ChangeVisuals(_originalRoot, _newRoot));
+                    _main.Handler.ReplaceRoot(originalRoot, newRoot, () => ChangeVisuals(originalRoot, newRoot));
 
-                    EDebug.ECustom("Rename", $"{_originalRoot} ▶ {_newRoot}", EColor.Flamingo.ToHex());
+                    EDebug.ECustom("Rename", $"{originalRoot} ▶ {newRoot}", EColor.Flamingo.ToHex());
                 }
             }
 
@@ -400,31 +427,47 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             }
         }
 
-        public void UpdateMode()
+        public void UpdateMode(bool updateModePanel)
         {
-            UpdateModePanel();
+            if (updateModePanel) UpdateModePanel();
 
-            if (WAnimationObjectRenamer_Variable.IsAutomaticPanel)
+            if (Variable.IsAutomaticPanel)
             {
                 _animatorPanel.RemoveFromHierarchy();
                 _propertyPanel.AddElements(_automaticPanel);
+
+                _animatorWindow.RemoveFromHierarchy();
+                _handlerWindow.AddElements(_automaticWindow);
             }
             else
             {
                 _automaticPanel.RemoveFromHierarchy();
                 _propertyPanel.AddElements(_animatorPanel);
+
+                _automaticWindow.RemoveFromHierarchy();
+                _handlerWindow.AddElements(_animatorWindow);
             }
         }
         public void UpdateModePanel()
         {
-            _autoLabel.SetColor(WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
-            _manualLabel.SetColor(!WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
+            _autoLabel.SetColor(Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
+            _manualLabel.SetColor(!Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
 
-            _autoIcon.SetBackgroundImageTintColor(WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
-            _manualIcon.SetBackgroundImageTintColor(!WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
+            _autoIcon.SetBackgroundImageTintColor(Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
+            _manualIcon.SetBackgroundImageTintColor(!Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
 
-            _autoButton.SetBackgroundColor(WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#2d2d2d" : "#1f1f1f");
-            _manualButton.SetBackgroundColor(!WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#2d2d2d" : "#1f1f1f");
+            _autoButton.SetBackgroundColor(Variable.IsAutomaticPanel ? "#2d2d2d" : "#1f1f1f");
+            _manualButton.SetBackgroundColor(!Variable.IsAutomaticPanel ? "#2d2d2d" : "#1f1f1f");
+        }
+
+        public void UpdateAutomatic()
+        {
+            _enableIcon.SetBackgroundImageTintColor(Variable.IsAutomaticOn ? "#52ffa3" : "#ff5252");
+
+            _enableLabel.SetColor(Variable.IsAutomaticOn ? "#52ffa3" : "#ff5252");
+            _enableLabel.SetText(Variable.IsAutomaticOn ? "Automatic Mode: On" : "Automatic Mode: Off");
+
+            _enableButton.SetBorderColor(Variable.IsAutomaticOn ? "#2e8c5a" : "#ab3e3e");
         }
         #endregion
     }

@@ -242,7 +242,16 @@ namespace YNL.Editors.Windows.Utilities
         #endregion
 
         #region X Element Style - Border Color
-
+        public static T SetBorderColor<T>(this T element, string hex) where T : VisualElement
+            => element.SetBorderColor(hex.ToColor());
+        public static T SetBorderColor<T>(this T element, Color color) where T : VisualElement
+        {
+            element.style.borderTopColor = color;
+            element.style.borderBottomColor = color;
+            element.style.borderLeftColor = color;
+            element.style.borderRightColor = color;
+            return element;
+        }
         #endregion
 
         #region X Element Style - Border Width

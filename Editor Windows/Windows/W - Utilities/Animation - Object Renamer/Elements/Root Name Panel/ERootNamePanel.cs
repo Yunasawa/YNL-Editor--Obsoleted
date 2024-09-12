@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 using YNL.Editors.UIElements.Styled;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.Windows.Animation.ObjectRenamer
+namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
     public class ERootNamePanel : Button
     {

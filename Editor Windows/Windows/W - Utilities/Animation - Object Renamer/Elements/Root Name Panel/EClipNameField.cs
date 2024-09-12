@@ -6,7 +6,7 @@ using YNL.Extensions.Methods;
 using YNL.Editors.UIElements.Styled;
 using YNL.Editors.Windows.Utilities;
 
-namespace YNL.Editors.Windows.Animation.ObjectRenamer
+namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
     public class EClipNameField : Button
     {

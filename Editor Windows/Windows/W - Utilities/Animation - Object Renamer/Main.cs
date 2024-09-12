@@ -3,17 +3,17 @@ using UnityEditor;
 using YNL.Extensions.Methods;
 using YNL.Editors.UIElements.Styled;
 
-namespace YNL.Editors.Windows.Animation.ObjectRenamer
+namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
     [System.Serializable]
-    public class WAnimationObjectRenamer_Main : IMain
+    public class Main : IMain
     {
         public EditorWindow Root;
 
-        public WAnimationObjectRenamer_Visual Visual;
-        public WAnimationObjectRenamer_Handler Handler;
+        public Visual Visual;
+        public Handler Handler;
 
-        public WAnimationObjectRenamer_Main(EditorWindow root, StyledWindowTagPanel tagPanel)
+        public Main(EditorWindow root, StyledWindowTagPanel tagPanel)
         {
             Root = root;
 
@@ -28,7 +28,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
 
         public void OpenInstruction()
         {
-            WAnimationObjectRenamer_Instruction.Open(660, 500, WPopupPivot.BottomLeft);
+            Instruction.Open(660, 500, WPopupPivot.BottomLeft);
         }
     }
 }

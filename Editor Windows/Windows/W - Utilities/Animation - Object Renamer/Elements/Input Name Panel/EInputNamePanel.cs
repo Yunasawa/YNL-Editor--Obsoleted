@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 using YNL.Editors.UIElements.Styled;
 
-namespace YNL.Editors.Windows.Animation.ObjectRenamer
+namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
     public class EInputNamePanel : Button
     {

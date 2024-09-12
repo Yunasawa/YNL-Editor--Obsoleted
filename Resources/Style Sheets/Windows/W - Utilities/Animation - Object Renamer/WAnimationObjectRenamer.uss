@@ -226,3 +226,58 @@
 
 	flex-direction: column;
 }
+
+.AutomaticEnableButton
+{
+	background-color: #1f1f1f;
+
+	border-width: 1.5px;
+	border-radius: 25px;
+
+	height: 50px;
+
+	margin: 5px;
+	margin-left: 12.5px;
+	margin-right: 12.5px;
+
+	flex-direction: row;
+
+	transition-property: background-color, border-color;
+	transition-duration: 0.25s;
+}
+
+.AutomaticEnableIcon
+{
+	background-color: transparent;
+
+	border-width: 0px;
+
+	background-image: resource("Textures/Windows/Animation Center/Power");
+	background-size: auto 75%;
+	background-position: center right;
+
+	height: 100%;
+	width: 100%;
+
+	right: 7.5px;
+
+	position: absolute;
+
+	transition-property: -unity-background-image-tint-color;
+	transition-duration: 0.2s;
+}
+
+.AutomaticEnableLabel
+{
+	font-size: 16.5px;
+	-unity-font-definition: var(--font-genshin);
+
+	margin-left: 10px;
+
+	transition-property: color;
+	transition-duration: 0.2s;
+
+	position: absolute;
+
+	align-self: center;
+}

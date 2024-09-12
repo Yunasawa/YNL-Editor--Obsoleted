@@ -4,13 +4,13 @@ using UnityEngine;
 using YNL.Extensions.Methods;
 using YNL.Editors.UIElements.Styled;
 using YNL.Editors.Windows.Texture.ImageResizer;
-using YNL.Editors.Windows.Animation.ObjectRenamer;
+using YNL.Editors.Windows.AnimationObjectRenamer;
 using YNL.Editors.Windows.Texture.ImageInverter;
 using YNL.Editors.Windows.Utilities;
 
 namespace YNL.Editors.Windows
 {
-    public class WUtilitiesCenter : EditorWindow
+    public class Center : EditorWindow
     {
         #region ▶ Editor Asset Fields/Properties
         private const string _windowIconPath = "Textures/Windows/Utilities Center/Editor Window Icon";
@@ -21,7 +21,7 @@ namespace YNL.Editors.Windows
 
         public WTextureImageResizer_Main ImageResizerWindow;
         public WTextureImageInverter_Main ImageInverterWindow;
-        public WAnimationObjectRenamer_Main ObjectRenamerWindow;
+        public Main ObjectRenamerWindow;
         #endregion
 
         #region ▶ General Fields/Properties
@@ -34,7 +34,7 @@ namespace YNL.Editors.Windows
         [MenuItem("🔗 YのL/🔗 Windows/🔗 Editor Toolbox")]
         public static void ShowWindow()
         {
-            WUtilitiesCenter window = GetWindow<WUtilitiesCenter>("Editor Toolbox");
+            Center window = GetWindow<Center>("Editor Toolbox");
             Texture2D texture = Resources.Load<Texture2D>(_windowIconPath);
 
             window.titleContent.image = texture;
@@ -60,17 +60,17 @@ namespace YNL.Editors.Windows
 
             WindowTagPanel = new(windowIcon, "Editor Toolbox", "Center", _tagPanelWidth, new StyledWindowTag[]
             {
-            new StyledWindowTag(textureImageResizerIcon, "Image Resizer", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.TextureImageResizer)),
-            new StyledWindowTag(textureImageInverterIcon, "Image Inverter", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.TextureImageInverter)),
-            new StyledWindowTag(animationObjectRenamerIcon, "Object Renamer", "Animation", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.AnimationObjectRenamer)),
-            new StyledWindowTag(waitIcon, "Coming Soon", "", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WUtilitiesWindowType.C))
+            new StyledWindowTag(textureImageResizerIcon, "Image Resizer", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WindowType.TextureImageResizer)),
+            new StyledWindowTag(textureImageInverterIcon, "Image Inverter", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WindowType.TextureImageInverter)),
+            new StyledWindowTag(animationObjectRenamerIcon, "Object Renamer", "Animation", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WindowType.AnimationObjectRenamer)),
+            new StyledWindowTag(waitIcon, "Coming Soon", "", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WindowType.C))
             });
 
             ImageResizerWindow = new WTextureImageResizer_Main(this, WindowTagPanel);
-            ObjectRenamerWindow = new WAnimationObjectRenamer_Main(this, WindowTagPanel);
+            ObjectRenamerWindow = new Main(this, WindowTagPanel);
             ImageInverterWindow = new WTextureImageInverter_Main(this, WindowTagPanel);
 
-            SwitchWindow(WUtilitiesWindowType.TextureImageResizer);
+            SwitchWindow(WindowType.TextureImageResizer);
         }
 
         public void OnGUI()
@@ -79,20 +79,20 @@ namespace YNL.Editors.Windows
         }
         #endregion
 
-        private void SwitchWindow(WUtilitiesWindowType windowTag)
+        private void SwitchWindow(WindowType windowTag)
         {
             rootVisualElement.RemoveAllElements();
             switch (windowTag)
             {
-                case WUtilitiesWindowType.TextureImageResizer:
+                case WindowType.TextureImageResizer:
                     SwitchWindow(ImageResizerWindow);
                     rootVisualElement.Add(ImageResizerWindow.Visual);
                     break;
-                case WUtilitiesWindowType.TextureImageInverter:
+                case WindowType.TextureImageInverter:
                     SwitchWindow(ImageInverterWindow);
                     rootVisualElement.Add(ImageInverterWindow.Visual);
                     break;
-                case WUtilitiesWindowType.AnimationObjectRenamer:
+                case WindowType.AnimationObjectRenamer:
                     SwitchWindow(ObjectRenamerWindow);
                     rootVisualElement.Add(ObjectRenamerWindow.Visual);
                     break;
@@ -108,7 +108,7 @@ namespace YNL.Editors.Windows
         }
     }
 
-    public enum WUtilitiesWindowType
+    public enum WindowType
     {
         TextureImageResizer, TextureImageInverter, AnimationObjectRenamer, C, D, E, F
     }
