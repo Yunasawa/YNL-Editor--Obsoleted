@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+﻿#if UNITY_EDITOR && YNL_UTILITIES
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +13,8 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
 {
     public class WAnimationObjectRenamer_Variable
     {
-        public static bool IsAutomaticMode = false;
+        public static bool IsAutomaticPanel = false;
+        public static bool IsAutomaticOn = false;
     }
 
     public class WAnimationObjectRenamer_Handler
@@ -277,7 +278,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
 
         public void ChangeMode(bool toAutomatic)
         {
-            WAnimationObjectRenamer_Variable.IsAutomaticMode = toAutomatic;
+            WAnimationObjectRenamer_Variable.IsAutomaticPanel = toAutomatic;
             _main.Visual.UpdateMode();
         }
     }

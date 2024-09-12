@@ -26,6 +26,8 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
         private Button _animatorPanel;
         private ScrollView _clipsScroll;
 
+        private Button _automaticPanel;
+
         private Label _referencedAnimatorTitle;
         private Label _referencedClipsTitle;
         public StyledComponentField<Animator> ReferencedAnimator;
@@ -98,6 +100,7 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
         #region ▶ Editor Initializing
         private void CreateElements()
         {
+            #region Mode Button Fields
             _autoIcon = new Image().SetName("ModeIcon").SetBackgroundImage("Textures/Windows/Animation Center/Auto").SetMarginLeft(10).SetLeft(-5);
             _autoLabel = new Label().SetName("ModeLabel").SetText("Automatic");
             _autoButton = new Button().SetName("ModeButton").AddElements(_autoIcon, _autoLabel);
@@ -108,14 +111,20 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             _manualButton = new Button().SetName("ModeButton").AddElements(_manualIcon, _manualLabel);
             _manualButton.clicked += () => _main.Handler.ChangeMode(false);
 
-            UpdateMode();
+            UpdateModePanel();
 
             _autoLabel.SetColor("#00000000");
             _manualLabel.SetColor("#00000000");
 
             _modePanel = new Button().AddClass("ModePanel").AddElements(_autoButton, _manualButton);
+            #endregion
 
+            #region Automatic Panel
 
+            _automaticPanel = new Button().AddClass("AutomaticPanel");
+            #endregion
+
+            #region Animator Panel
             _referencedClipsTitle = new Label("Animation Clips:").AddClass("ClipsTitle");
             _clipsScroll = new ScrollView().SetWidth(100, true).SetHeight(100, true);
 
@@ -126,9 +135,11 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
             _animatorPanel = new Button()
                 .AddSpace(0, 10).AddClass("AnimatorPanel")
                 .AddElements(_referencedAnimatorTitle, ReferencedAnimator, _referencedClipsTitle, _clipsScroll);
+            #endregion
 
+            _propertyPanel = new StyledInteractableImage().AddElements(_modePanel);
 
-            _propertyPanel = new StyledInteractableImage().AddElements(_modePanel, _animatorPanel);
+            UpdateMode();
 
             _windowTitlePanel = new(_windowIcon.ELoadAsset<Texture2D>(), _windowTitle, _windowSubtitle);
         }
@@ -171,8 +182,8 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
                 _autoIcon.SetLeft(0);
                 _manualIcon.SetLeft(0);
 
-                _autoLabel.SetColor(WAnimationObjectRenamer_Variable.IsAutomaticMode ? "#ffffff" : "#3d3d3d");
-                _manualLabel.SetColor(!WAnimationObjectRenamer_Variable.IsAutomaticMode ? "#ffffff" : "#3d3d3d");
+                _autoLabel.SetColor(WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
+                _manualLabel.SetColor(!WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
             };
             _propertyPanel.OnPointerExit = () =>
             {
@@ -388,17 +399,32 @@ namespace YNL.Editors.Windows.Animation.ObjectRenamer
                 clipNameField.Name.SetText(currentPath);
             }
         }
-        
+
         public void UpdateMode()
         {
-            _autoLabel.SetColor(WAnimationObjectRenamer_Variable.IsAutomaticMode ? "#ffffff" : "#3d3d3d");
-            _manualLabel.SetColor(!WAnimationObjectRenamer_Variable.IsAutomaticMode ? "#ffffff" : "#3d3d3d");
+            UpdateModePanel();
 
-            _autoIcon.SetBackgroundImageTintColor(WAnimationObjectRenamer_Variable.IsAutomaticMode ? "#ffffff" : "#3d3d3d");
-            _manualIcon.SetBackgroundImageTintColor(!WAnimationObjectRenamer_Variable.IsAutomaticMode ? "#ffffff" : "#3d3d3d");
+            if (WAnimationObjectRenamer_Variable.IsAutomaticPanel)
+            {
+                _animatorPanel.RemoveFromHierarchy();
+                _propertyPanel.AddElements(_automaticPanel);
+            }
+            else
+            {
+                _automaticPanel.RemoveFromHierarchy();
+                _propertyPanel.AddElements(_animatorPanel);
+            }
+        }
+        public void UpdateModePanel()
+        {
+            _autoLabel.SetColor(WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
+            _manualLabel.SetColor(!WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
 
-            _autoButton.SetBackgroundColor(WAnimationObjectRenamer_Variable.IsAutomaticMode ? "#2d2d2d" : "#1f1f1f");
-            _manualButton.SetBackgroundColor(!WAnimationObjectRenamer_Variable.IsAutomaticMode ? "#2d2d2d" : "#1f1f1f");
+            _autoIcon.SetBackgroundImageTintColor(WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
+            _manualIcon.SetBackgroundImageTintColor(!WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#ffffff" : "#3d3d3d");
+
+            _autoButton.SetBackgroundColor(WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#2d2d2d" : "#1f1f1f");
+            _manualButton.SetBackgroundColor(!WAnimationObjectRenamer_Variable.IsAutomaticPanel ? "#2d2d2d" : "#1f1f1f");
         }
         #endregion
     }

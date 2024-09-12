@@ -42,7 +42,6 @@
 	padding: 0px;
 }
 
-/*------------------------------------------------*/
 #ModeButton
 {
 	border-color: transparent;
@@ -60,7 +59,6 @@
 	transition-duration: 0.25s;
 }
 
-/*------------------------------------------------*/
 #ModeIcon
 {
 	width: 25px;
@@ -73,7 +71,6 @@
 	transition-duration: 0.25s;
 }
 
-/*------------------------------------------------*/
 #ModeLabel
 {
 	-unity-font-definition: var(--font-genshin);
@@ -88,6 +85,27 @@
 
 
 .AnimatorPanel
+{
+	background-color: #2d2d2d;
+
+	border-color: transparent;
+	border-radius: 5px;
+	border-width: 0px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+
+	margin-top: 0px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+
+	padding-top: 10px;
+
+	max-width: 200%;
+
+	flex-grow: 1;
+}
+.AutomaticPanel
 {
 	background-color: #2d2d2d;
 
