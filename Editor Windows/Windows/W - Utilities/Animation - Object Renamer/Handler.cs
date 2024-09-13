@@ -13,20 +13,29 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
     public class Variable
     {
-        private static CenterData _centerData;
+        private static CenterData _centerDataGetter;
+        private static CenterData _centerData
+        {
+            get
+            {
+                if (_centerDataGetter.IsNull())
+                {
+                    _centerDataGetter = "Editor Toolbox Data".LoadResource<CenterData>();
+                    return _centerDataGetter;
+                }
+                else return _centerDataGetter;
+            }
+        }
 
         public static bool IsAutomaticPanel = false;
         public static bool IsAutomaticOn
         {
-            get
-            {
-                if (_centerData.IsNull()) _centerData = "Editor Toolbox Data".LoadResource<CenterData>();
-                return _centerData.AnimationObjectRenamer.IsAutomaticOn;
-            }
-            set
-            {
-                if (_centerData.IsNull()) _centerData = "Editor Toolbox Data".LoadResource<CenterData>();
+            get => _centerData.AnimationObjectRenamer.IsAutomaticOn;
+            set 
+            { 
                 _centerData.AnimationObjectRenamer.IsAutomaticOn = value;
+                EditorUtility.SetDirty(_centerData);
+                AssetDatabase.SaveAssets();
             }
         }
 
@@ -41,18 +50,18 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         #region ▶ Fields/Properties
         private Main _main;
 
-        public Hashtable Paths;
-        public Dictionary<string, string> TempPathOverrides = new();
-        public ArrayList PathsKeys;
+        public static Hashtable Paths;
+        public static Dictionary<string, string> TempPathOverrides = new();
+        public static ArrayList PathsKeys = new();
 
-        public Animator ReferencedAnimator;
-        public List<AnimationClip> AnimationClips = new();
+        public static Animator ReferencedAnimator;
+        public static List<AnimationClip> AnimationClips = new();
 
-        public Dictionary<AnimationClip, Color> ClipColors = new();
-        public Dictionary<string, AnimationClip[]> PathColors = new();
+        public static Dictionary<AnimationClip, Color> ClipColors = new();
+        public static Dictionary<string, AnimationClip[]> PathColors = new();
 
-        private string _replacementOldRoot;
-        private string _replacementNewRoot;
+        private static string _replacementOldRoot;
+        private static string _replacementNewRoot;
         #endregion
         #region ▶ Static Fields/Properties
         private static GameObject _selectedObject;
@@ -78,6 +87,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         #region ▶ Automatic Functions
         public static void OnHierarchyChanged()
         {
+            if (!Variable.IsAutomaticOn) return;
             if (Selection.activeGameObject != _selectedObject) return;
             else if (_selectedObject.IsNullOrDestroyed())
             {
@@ -93,6 +103,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
         public static void OnSelectionChanged()
         {
+            if (!Variable.IsAutomaticOn) return;
             if (Selection.gameObjects.Length > 1) return;
             else if (Selection.activeGameObject.IsNull()) return;
             _selectedObject = Selection.activeGameObject;
@@ -101,8 +112,19 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
         public static void OnGameObjectRenamed(GameObject obj)
         {
-            MDebug.Log($"Renamed from {_previousName} to {obj.name}");
-            MDebug.Log($"Animator: {GetAnimatorsInParents(obj)[0].name}");
+            string newPath = GetPath(obj);
+            string oldPath = newPath.Replace(obj.name, _previousName);
+
+            foreach (var animator in GetAnimatorsInParents(obj))
+            {
+                AnimationClips = GetAnimationClips(animator).ToList();
+                FillModel();
+                Visual.ReplaceClipPathItem(oldPath, newPath);
+            }
+
+            AnimationClips.Clear();
+            Paths.Clear();
+            PathsKeys.Clear();
         }
 
         public static Animator[] GetAnimatorsInParents(GameObject obj)
@@ -144,8 +166,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                     }
                 }
 
-                _main.Visual.PresentAllClips(ClipColors);
-                _main.Visual.PresentAllPaths();
+                Visual.PresentAllClips(ClipColors);
+                Visual.PresentAllPaths();
             }
             else if (Selection.activeObject is AnimationClip)
             {
@@ -156,8 +178,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 ClipColors.Add((AnimationClip)Selection.activeObject, EColor.MediumSpringGreen);
                 AnimationClips.Add((AnimationClip)Selection.activeObject);
 
-                _main.Visual.PresentAllClips(ClipColors);
-                _main.Visual.PresentAllPaths();
+                Visual.PresentAllClips(ClipColors);
+                Visual.PresentAllPaths();
             }
             else if (Selection.activeObject == null)
             {
@@ -165,21 +187,21 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 ClipColors.Clear();
                 PathColors.Clear();
 
-                _main.Visual.PresentAllClips(ClipColors);
-                _main.Visual.PresentAllPaths();
+                Visual.PresentAllClips(ClipColors);
+                Visual.PresentAllPaths();
             }
 
             _main.Root.Repaint();
         }
 
-        public void GetReferencedAnimator()
+        public static void GetReferencedAnimator()
         {
-            if (_main.Visual.IsNull()) return;
+            //if (_main.Visual.IsNull()) return;
 
-            ReferencedAnimator = _main.Visual.ReferencedAnimator.ReferencedObject;
+            ReferencedAnimator = Visual.ReferencedAnimator.ReferencedObject;
         }
 
-        public void FillModel()
+        public static void FillModel()
         {
             Paths = new Hashtable();
             PathsKeys = new ArrayList();
@@ -190,7 +212,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 FillModelWithCurves(AnimationUtility.GetObjectReferenceCurveBindings(animationClip), animationClip);
             }
         }
-        private void FillModelWithCurves(EditorCurveBinding[] curves, AnimationClip clip)
+        private static void FillModelWithCurves(EditorCurveBinding[] curves, AnimationClip clip)
         {
             foreach (EditorCurveBinding curveData in curves)
             {
@@ -221,7 +243,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 }
             }
         }
-        public GameObject FindObjectInRoot(string path)
+        public static GameObject FindObjectInRoot(string path)
         {
             if (ReferencedAnimator == null) return null;
 
@@ -231,7 +253,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             else return null;
         }
 
-        public void UpdatePath(string oldPath, string newPath)
+        public static void UpdatePath(string oldPath, string newPath)
         {
             if (Paths[newPath] != null)
             {
@@ -273,13 +295,13 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             AssetDatabase.StopAssetEditing();
             EditorUtility.ClearProgressBar();
 
-            _main.Visual.PresentAllClips(ClipColors);
-            _main.Root.Repaint();
+            Visual.PresentAllClips(ClipColors);
+            //_main.Root.Repaint();
 
             //Paths.Add(newPath, Paths[oldPath]);
             //Paths.Remove(oldPath);
         }
-        public string ChildPath(GameObject obj, bool sep = false)
+        public static string ChildPath(GameObject obj, bool sep = false)
         {
             if (ReferencedAnimator == null)
             {
@@ -293,7 +315,12 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 else return ChildPath(obj.transform.parent.gameObject, true) + obj.name + (sep ? "/" : "");
             }
         }
-        public void ReplaceRoot(string oldRoot, string newRoot, Action done = null)
+        public static string GetPath(GameObject obj, bool sep = false)
+        {
+            if (obj.transform.parent == null) return "";
+            return GetPath(obj.transform.parent.gameObject, true) + obj.name + (sep ? "/" : "");
+        }
+        public static void ReplaceRoot(string oldRoot, string newRoot, Action done = null)
         {
             float fProgress = 0.0f;
             _replacementOldRoot = oldRoot;
@@ -353,8 +380,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             }
             AssetDatabase.StopAssetEditing();
             EditorUtility.ClearProgressBar();
-            _main.Visual.PresentAllClips(ClipColors);
-            _main.Root.Repaint();
+            Visual.PresentAllClips(ClipColors);
+            //_main.Root.Repaint();
 
             done?.Invoke();
         }

@@ -78,8 +78,9 @@
 	width: 20px;
 	height: 20px;
 
-	background-image: resource("Textures/Icons/Tag");
+	background-image: resource("Textures/Icons/Tag2");
 	-unity-background-image-tint-color: #C4FDFF;
+	background-size: 90%;
 
 	margin-left: 7.5px;
 

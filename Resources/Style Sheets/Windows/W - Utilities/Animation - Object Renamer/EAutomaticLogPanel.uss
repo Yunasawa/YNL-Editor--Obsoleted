@@ -10,6 +10,7 @@
 	padding: 0px;
 
 	flex-shrink: 1;
+	flex-grow: 1;
 }
 
 #TitleBackground
@@ -41,7 +42,7 @@
 	width: 20px;
 	height: 20px;
 
-	background-image: resource("Textures/Icons/Target");
+	background-image: resource("Textures/Icons/Log");
 	-unity-background-image-tint-color: #C4FDFF;
 	background-size: 90%;
 
@@ -93,24 +94,4 @@
 	margin-top: 40px;
 
 	justify-content: center;
-}
-
-.Board
-{
-	background-color: transparent;
-	color: #fda4ba;
-
-	width: 75%;
-	height: 30px;
-	
-	-unity-font-definition: var(--font-nightmare-pills);
-	font-size: 20px;
-	-unity-font-style: bold;
-
-	/*
-	background-image: url("project://database/Assets/Test/404_2");
-	background-size: 100%;
-	*/
-
-	align-self: center;
 }

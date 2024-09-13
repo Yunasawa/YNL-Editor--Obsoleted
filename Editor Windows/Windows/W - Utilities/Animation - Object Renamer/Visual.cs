@@ -1,7 +1,4 @@
-﻿//Sourced: https://github.com/s-m-k/Unity-Animation-Hierarchy-Editor/tree/master
-//Remastered: Yunasawa
-
-#if UNITY_EDITOR && YNL_UTILITIES
+﻿#if UNITY_EDITOR && YNL_UTILITIES
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Extensions.Methods;
@@ -24,20 +21,23 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         private StyledInteractableImage _propertyPanel;
 
         private Button _animatorPanel;
-        private ScrollView _clipsScroll;
+        private static ScrollView _clipsScroll;
 
         private Button _automaticPanel;
 
         private Label _referencedAnimatorTitle;
         private Label _referencedClipsTitle;
-        public StyledComponentField<Animator> ReferencedAnimator;
+        public static StyledComponentField<Animator> ReferencedAnimator;
 
         private VisualElement _handlerWindow;
+
         private Image _animatorWindow;
-        private Image _automaticWindow;
 
         private EInputNamePanel _inputNamePanel;
-        private ERootNamePanel _rootNamePanel;
+        private static ERootNamePanel _rootNamePanel;
+
+        private Image _automaticWindow;
+        private EAutomaticLogPanel _automaticLogPanel;
 
         private Button _modePanel;
         private Button _autoButton;
@@ -153,7 +153,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             _clipsScroll = new ScrollView().SetWidth(100, true).SetHeight(100, true);
 
             _referencedAnimatorTitle = new Label("Referenced Animator:").AddClass("AnimatorTitle");
-            ReferencedAnimator = new StyledComponentField<Animator>(_main.Handler.ReferencedAnimator);
+            ReferencedAnimator = new StyledComponentField<Animator>(Handler.ReferencedAnimator);
             ReferencedAnimator.Background.OnDragPerform += (obj) => PresentAllPaths();
 
             _animatorPanel = new Button()
@@ -185,12 +185,14 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 _propertyPanel.SetMarginLeft(_tagPanelWidth);
                 _windowTitlePanel.Panel.SetMarginLeft(_tagPanelWidth - 50);
                 _animatorWindow.SetMarginLeft(_tagPanelWidth + 102);
+                _automaticWindow.SetMarginLeft(_tagPanelWidth + 102);
             };
             _tagPanel.OnPointerExit += () =>
             {
                 _propertyPanel.SetMarginLeft(50);
                 _windowTitlePanel.Panel.SetMarginLeft(0);
                 _animatorWindow.SetMarginLeft(152);
+                _automaticWindow.SetMarginLeft(152);
             };
         }
         private void PropertyPanelHandler()
@@ -200,6 +202,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 _propertyPanel.SetWidth(_propertyPanelWidth.Max);
                 _windowTitlePanel.Panel.SetMarginLeft(_propertyPanelWidth.Max - 100);
                 _animatorWindow.SetMarginLeft(_tagPanelWidth + 152);
+                _automaticWindow.SetMarginLeft(_tagPanelWidth + 152);
 
                 _autoIcon.SetLeft(0);
                 _manualIcon.SetLeft(0);
@@ -214,6 +217,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 _propertyPanel.SetWidth(_propertyPanelWidth.Min);
                 _windowTitlePanel.Panel.SetMarginLeft(_propertyPanelWidth.Min - 100);
                 _animatorWindow.SetMarginLeft(_propertyPanelWidth.Min + 52);
+                _automaticWindow.SetMarginLeft(_propertyPanelWidth.Min + 52);
 
                 _autoIcon.SetLeft(-5);
                 _manualIcon.SetLeft(-15);
@@ -238,14 +242,17 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             #endregion
 
             #region Automatic WIndow
+            _automaticLogPanel = new EAutomaticLogPanel();
+
             _automaticWindow = new Image().AddClass("MainWindow");
+            _automaticWindow.AddElements(_automaticLogPanel);
             #endregion
 
             _handlerWindow = new VisualElement().AddClass(_class_handlerWindow);
         }
         #endregion
         #region ▶ Editor Functions Handlers
-        public void PresentAllClips(Dictionary<AnimationClip, Color> clips)
+        public static void PresentAllClips(Dictionary<AnimationClip, Color> clips)
         {
             _clipsScroll.RemoveAllElements();
 
@@ -254,16 +261,16 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 _clipsScroll.AddElements(new EAnimationClipField(clip));
             }
         }
-        public void PresentAllPaths()
+        public static void PresentAllPaths()
         {
-            _main.Handler.GetReferencedAnimator();
-            _main.Handler.FillModel();
+            Handler.GetReferencedAnimator();
+            Handler.FillModel();
             _rootNamePanel.ClearAllClipItem();
-            if (_main.Handler.Paths != null && !_main.Handler.AnimationClips.IsEmpty())
+            if (Handler.Paths != null && !Handler.AnimationClips.IsEmpty())
             {
-                if (_main.Handler.PathsKeys.Count > 0)
+                if (Handler.PathsKeys.Count > 0)
                 {
-                    foreach (string path in _main.Handler.PathsKeys)
+                    foreach (string path in Handler.PathsKeys)
                     {
                         CreateClipPathItem(path);
                     }
@@ -278,25 +285,26 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 _rootNamePanel.AddBoard("No animation clip found!");
             }
         }
-        public void ReplaceClipPathItem(string originalRoot, string newRoot)
+        public static void ReplaceClipPathItem(string originalRoot, string newRoot)
         {
-            if (!_main.Handler.AnimationClips.IsEmpty() && _main.Handler.PathsKeys.Count > 0)
+            if (!Handler.AnimationClips.IsEmpty() && Handler.PathsKeys.Count > 0)
             {
                 List<string> paths = new();
 
-                foreach (var path in _main.Handler.PathsKeys) paths.Add((string)path);
+                foreach (var path in Handler.PathsKeys) paths.Add((string)path);
 
                 if (paths.Contains(originalRoot) && paths.Contains(newRoot))
                 {
-                    _main.Handler.ReplaceRoot(originalRoot, "Temporary Root", () => ChangeVisuals(originalRoot, "Temporary Root"));
-                    _main.Handler.ReplaceRoot(newRoot, originalRoot, () => ChangeVisuals(newRoot, originalRoot));
-                    _main.Handler.ReplaceRoot("Temporary Root", newRoot, () => ChangeVisuals("Temporary Root", newRoot));
+                    Handler.ReplaceRoot(originalRoot, "Temporary Root", () => ChangeVisuals(originalRoot, "Temporary Root"));
+                    Handler.ReplaceRoot(newRoot, originalRoot, () => ChangeVisuals(newRoot, originalRoot));
+                    Handler.ReplaceRoot("Temporary Root", newRoot, () => ChangeVisuals("Temporary Root", newRoot));
 
                     EDebug.ECustom("Swap", $"{originalRoot} ▶ {newRoot}", EColor.Macaroon.ToHex());
                 }
                 else
                 {
-                    _main.Handler.ReplaceRoot(originalRoot, newRoot, () => ChangeVisuals(originalRoot, newRoot));
+                    MDebug.Log("Three");
+                    Handler.ReplaceRoot(originalRoot, newRoot, () => ChangeVisuals(originalRoot, newRoot));
 
                     EDebug.ECustom("Rename", $"{originalRoot} ▶ {newRoot}", EColor.Flamingo.ToHex());
                 }
@@ -310,33 +318,33 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 {
                     clipNameField.Name.SetText(newRoot);
 
-                    GameObject returnedObject = _main.Handler.FindObjectInRoot(newRoot);
+                    GameObject returnedObject = Handler.FindObjectInRoot(newRoot);
                     clipNameField.Object.DragPerformOnField(returnedObject);
 
                     clipNameField.UpdateArrowColor();
                 }
             }
         }
-        public void CreateClipPathItem(string path)
+        public static void CreateClipPathItem(string path)
         {
             string newPath = path;
-            GameObject gameObject = _main.Handler.FindObjectInRoot(path);
+            GameObject gameObject = Handler.FindObjectInRoot(path);
 
             string pathOverride = path;
             string currentPath = path;
 
             List<Color> referencedColor = new();
 
-            if (_main.Handler.TempPathOverrides.ContainsKey(path)) pathOverride = _main.Handler.TempPathOverrides[path];
-            if (pathOverride != path) _main.Handler.TempPathOverrides[path] = pathOverride;
+            if (Handler.TempPathOverrides.ContainsKey(path)) pathOverride = Handler.TempPathOverrides[path];
+            if (pathOverride != path) Handler.TempPathOverrides[path] = pathOverride;
 
-            if (_main.Handler.PathColors.ContainsKey(path))
+            if (Handler.PathColors.ContainsKey(path))
             {
-                foreach (var clip in _main.Handler.AnimationClips)
+                foreach (var clip in Handler.AnimationClips)
                 {
-                    if (_main.Handler.ClipColors.ContainsKey(clip))
+                    if (Handler.ClipColors.ContainsKey(clip))
                     {
-                        if (_main.Handler.PathColors[path].Contains(clip)) referencedColor.Add(_main.Handler.ClipColors[clip]);
+                        if (Handler.PathColors[path].Contains(clip)) referencedColor.Add(Handler.ClipColors[clip]);
                         else referencedColor.Add(Color.clear);
                     }
                     //else MDebug.Caution("Do nothing");
@@ -368,9 +376,9 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             _rootNamePanel.AddClipItem(clipNameField);
         }
-        public void ClipPathObjectChanged(EClipNameField clipNameField, GameObject gameObject, GameObject newObject, ref string currentPath)
+        public static void ClipPathObjectChanged(EClipNameField clipNameField, GameObject gameObject, GameObject newObject, ref string currentPath)
         {
-            gameObject = _main.Handler.FindObjectInRoot(currentPath);
+            gameObject = Handler.FindObjectInRoot(currentPath);
 
             try
             {
@@ -378,11 +386,11 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 {
                     //MDebug.Caution($"Start: {gameObject.CheckNull("gameObject")?.name} - {newObject.CheckNull("newObject")?.name} | {clipNameField.CheckNull("clipNameField")?.Name.text} - {currentPath.CheckNull("currentPath")}");
 
-                    currentPath = _main.Handler.ChildPath(newObject);
-                    _main.Handler.UpdatePath(clipNameField.Name.text, currentPath);
+                    currentPath = Handler.ChildPath(newObject);
+                    Handler.UpdatePath(clipNameField.Name.text, currentPath);
                     clipNameField.Name.SetText(currentPath);
                     gameObject = newObject;
-                    _main.Handler.FillModel();
+                    Handler.FillModel();
 
                     //MDebug.Caution($"End: {gameObject.CheckNull("gameObject")?.name} - {newObject.CheckNull("newObject")?.name} | {clipNameField.CheckNull("clipNameField")?.Name.text} - {currentPath.CheckNull("currentPath")}");
 
@@ -391,15 +399,15 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             catch (UnityException)
             {
                 EDebug.ECaution($"<color=#c7ff96><b>{currentPath}</b></color> already exits in animation!");
-                GameObject returnedObject = _main.Handler.FindObjectInRoot(clipNameField.Name.text);
+                GameObject returnedObject = Handler.FindObjectInRoot(clipNameField.Name.text);
                 clipNameField.Object.DragPerformOnField(returnedObject);
             }
             clipNameField.UpdateArrowColor();
         }
-        public void ClipPathRootChanged(EClipNameField clipNameField, ref string currentPath, ref string newPath, string setNewPath, Action additionAction)
+        public static void ClipPathRootChanged(EClipNameField clipNameField, ref string currentPath, ref string newPath, string setNewPath, Action additionAction)
         {
             newPath = setNewPath;
-            _main.Handler.TempPathOverrides.Remove(currentPath);
+            Handler.TempPathOverrides.Remove(currentPath);
 
             try
             {
@@ -407,17 +415,17 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 {
                     clipNameField.LastRoot = currentPath;
 
-                    _main.Handler.UpdatePath(currentPath, newPath);
+                    Handler.UpdatePath(currentPath, newPath);
                     currentPath = newPath;
 
-                    GameObject getObject = _main.Handler.FindObjectInRoot(currentPath);
+                    GameObject getObject = Handler.FindObjectInRoot(currentPath);
 
                     clipNameField.Object.DragPerformOnField(getObject);
                     clipNameField.UpdateArrowColor();
 
                     additionAction?.Invoke();
 
-                    _main.Handler.FillModel();
+                    Handler.FillModel();
                 }
             }
             catch (UnityException)

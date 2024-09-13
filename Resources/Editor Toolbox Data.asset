@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Editor Toolbox Data
   m_EditorClassIdentifier: 
   AnimationObjectRenamer:
-    IsAutomaticOn: 1
+    IsAutomaticOn: 0
