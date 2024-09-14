@@ -143,7 +143,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                     Visual.ReplaceClipPathItem(path, path.Replace(PreviousName, obj.name), out isSucceeded, true);
                 }
 
-                AnimationObjectRenamerSettings.AutomaticLog log = new(isSucceeded, PreviousName, objectName, oldPath, newPath);
+                AnimationObjectRenamerSettings.AutomaticLog log = new(isSucceeded, $"{PreviousName}|{objectName}", $"{oldPath}|{newPath}", 1, AnimationClips.Count);
                 Variable.AutomaticLogs.Add(log);
 
                 PreviousName = SelectedObject.name;
