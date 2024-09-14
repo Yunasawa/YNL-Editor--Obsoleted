@@ -236,7 +236,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         {
             #region Animator Window
             _inputNamePanel = new EInputNamePanel();
-            _inputNamePanel.SwapButton.OnPointerDown += () => ReplaceClipPathItem(_inputNamePanel.OriginField.text, _inputNamePanel.NewField.text);
+            _inputNamePanel.SwapButton.OnPointerDown += () => ReplaceClipPathItem(_inputNamePanel.OriginField.text, _inputNamePanel.NewField.text, out bool isSucceeded);
 
             _rootNamePanel = new ERootNamePanel();
 
@@ -288,15 +288,17 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 _rootNamePanel.AddBoard("No animation clip found!");
             }
         }
-        public static void ReplaceClipPathItem(string originalRoot, string newRoot, bool isAuto = false)
+        public static void ReplaceClipPathItem(string oldPath, string newPath, out bool isSucceeded, bool isAuto = false)
         {
+            isSucceeded = true;
+
             if (!Handler.AnimationClips.IsEmpty() && Handler.PathsKeys.Count > 0)
             {
                 List<string> paths = new();
 
                 foreach (var path in Handler.PathsKeys) paths.Add((string)path);
 
-                if (paths.Contains(originalRoot) && paths.Contains(newRoot))
+                if (paths.Contains(oldPath) && paths.Contains(newPath))
                 {
                     if (isAuto)
                     {
@@ -307,32 +309,34 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                             "Cancel"))
                         {
                             ReplaceRoot();
+                            isSucceeded = true;
                         }
                         else
                         {
                             Handler.SelectedObject.name = Handler.PreviousName;
+                            isSucceeded = false;
                         }
                     }
                     else
                     {
                         ReplaceRoot();
 
-                        if (!Variable.IsAutomaticPanel) EDebug.ECustom("Swap", $"{originalRoot} ▶ {newRoot}", EColor.Macaroon.ToHex());
+                        if (!Variable.IsAutomaticPanel) EDebug.ECustom("Swap", $"{oldPath} ▶ {newPath}", EColor.Macaroon.ToHex());
                     }
                 }
                 else
                 {
-                    Handler.ReplaceRoot(originalRoot, newRoot, () => ChangeVisuals(originalRoot, newRoot));
+                    Handler.ReplaceRoot(oldPath, newPath, () => ChangeVisuals(oldPath, newPath));
 
-                    if (!Variable.IsAutomaticPanel && !isAuto) EDebug.ECustom("Rename", $"{originalRoot} ▶ {newRoot}", EColor.Flamingo.ToHex());
+                    if (!Variable.IsAutomaticPanel && !isAuto) EDebug.ECustom("Rename", $"{oldPath} ▶ {newPath}", EColor.Flamingo.ToHex());
                 }
             }
 
             void ReplaceRoot()
             {
-                Handler.ReplaceRoot(originalRoot, "Temporary Root", () => ChangeVisuals(originalRoot, "Temporary Root"));
-                Handler.ReplaceRoot(newRoot, originalRoot, () => ChangeVisuals(newRoot, originalRoot));
-                Handler.ReplaceRoot("Temporary Root", newRoot, () => ChangeVisuals("Temporary Root", newRoot));
+                Handler.ReplaceRoot(oldPath, "Temporary Root", () => ChangeVisuals(oldPath, "Temporary Root"));
+                Handler.ReplaceRoot(newPath, oldPath, () => ChangeVisuals(newPath, oldPath));
+                Handler.ReplaceRoot("Temporary Root", newPath, () => ChangeVisuals("Temporary Root", newPath));
             }
 
             void ChangeVisuals(string originalRoot, string newRoot)
@@ -502,18 +506,26 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             _enableButton.SetBorderColor(Variable.IsAutomaticOn ? "#2e8c5a" : "#ab3e3e");
         }
+        public static void ClearLogPanel()
+        {
+            Variable.AutomaticLogs.Clear();
+            RefreshLogPanel();
+            Variable.SaveData();
+        }
         public static void RefreshLogPanel()
         {
+            _automaticLogPanel.ClearLogs();
+
             foreach (var line in Variable.AutomaticLogs)
             {
-                _automaticLogPanel.AddClipItem(new(line));
+                _automaticLogPanel.AddLogItem(new(line));
             }
         }
         public static void UpdateLogPanel()
         {
             EAutomaticLogLine line = new(Variable.AutomaticLogs[^1]);
 
-            _automaticLogPanel.AddClipItem(line);
+            _automaticLogPanel.AddLogItem(line);
         }
         #endregion
     }

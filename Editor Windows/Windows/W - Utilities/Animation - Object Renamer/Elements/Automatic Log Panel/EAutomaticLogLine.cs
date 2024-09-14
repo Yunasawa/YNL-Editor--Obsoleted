@@ -20,7 +20,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             this.AddStyle(USS_StyleSheet, EStyleSheet.Font).AddClass("Root");
 
             State = new Image().AddClass("State").SetBackgroundColor(log.IsSucceeded ? "#3da878" : "#a83d3d")
-                .SetBackgroundImage(log.IsSucceeded ? "Textures/Icons/V" : "Textures/Icons/X");
+                .SetBackgroundImage(log.IsSucceeded ? "Textures/Icons/V" : "Textures/Icons/X")
+                .SetTooltip("State of previous automatic action");
 
             Time = new Button().AddClass("Time").SetText(log.CurrentTime);
 
@@ -30,7 +31,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             OldPath = new Button().AddClass("Path").AddClass("OldPath")
                 .SetText($"{log.OldPath.HighlightDifferences(log.NewPath, true, header, footer)}");
             NewPath = new Button().AddClass("Path").AddClass("NewPath")
-                .SetText($"<color=#f8ff9c>▶ {log.NewPath.HighlightDifferences(log.OldPath, true, header, footer)}");
+                .SetText($"<color=#f8ff9c>{log.NewPath.HighlightDifferences(log.OldPath, true, header, footer)}");
             PathContainer = new VisualElement().AddClass("PathContainer").AddElements(OldPath, NewPath);
 
             this.AddElements(State, Time, PathContainer);

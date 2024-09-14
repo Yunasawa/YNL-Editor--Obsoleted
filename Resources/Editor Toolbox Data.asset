@@ -18,120 +18,18 @@ MonoBehaviour:
     - IsSucceeded: 1
       CurrentTime: '<color=#96ffdc>9/14/2024</color>
 
-        12:52:33 AM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Head 2.5
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:52:38 AM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Head 2.5
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:52:55 AM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
-      NewPath: Sample Root 2/Child Root 2.2/Foot El 2.2
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:53:05 AM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot El 2.2
+        4:28:16 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
       NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
     - IsSucceeded: 1
       CurrentTime: '<color=#96ffdc>9/14/2024</color>
 
-        12:53:21 AM'
-      OldPath: Sample Root 2/Child Root 2.2
-      NewPath: Sample Root 2/Child Root 2.3
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:53:24 AM'
-      OldPath: Sample Root 2/Child Root 2.3
-      NewPath: Sample Root 2/Child Root 2.2
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:55:33 AM'
-      OldPath: Sample Root 2/Child Root 2.2
-      NewPath: Sample Root 2/Child Root 2.3
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:56:12 AM'
-      OldPath: Sample Root 2/GameObject
-      NewPath: Sample Root 2/Child Root 2.3
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:57:58 AM'
+        4:28:17 PM'
       OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
       NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-    - IsSucceeded: 1
+    - IsSucceeded: 0
       CurrentTime: '<color=#96ffdc>9/14/2024</color>
 
-        12:58:09 AM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:00:53 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:01:01 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:01:23 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:01:30 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:01:40 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:01:57 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:04:15 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:05:26 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:05:40 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        12:05:51 PM'
+        4:28:53 PM'
       OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
       NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2

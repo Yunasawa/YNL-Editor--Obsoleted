@@ -95,3 +95,42 @@
 
 	justify-content: center;
 }
+
+.ClearLog
+{
+	height: 22.5px;
+
+	margin: 0px;
+	margin-left: 200px;
+	margin-right: 3.25px;
+
+	align-self: center;
+
+	padding: 0px;
+
+	flex-grow: 1;
+}
+
+.ClearLogButton
+{
+	background-color: #3a3a3a;
+
+	height: 100%;
+	width: 100px;
+
+	border-width: 0px;
+
+	margin: 0px;
+
+	align-self: flex-end;
+
+	-unity-font-definition: var(--font-genshin);
+	color: #ffffff;
+	font-size: 13px;
+
+	transition-duration: 0.2s;
+}
+.ClearLogButton:hover
+{
+	background-color: #4f4f4f;
+}

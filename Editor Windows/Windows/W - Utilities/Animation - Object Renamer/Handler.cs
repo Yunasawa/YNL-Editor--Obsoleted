@@ -8,6 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using YNL.Extensions.Methods;
 using YNL.Editors.Windows.Utilities;
+using System.IO;
 
 namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
@@ -75,6 +76,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         public static GameObject SelectedObject;
         public static string PreviousName;
         public static List<string> ValidPaths = new();
+        public static List<string> InvalidPaths = new();
         #endregion
 
         public Handler(Main main)
@@ -126,22 +128,54 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             foreach (var animator in GetAnimatorsInParents(obj))
             {
+                bool isSucceeded = true;
+
                 AnimationClips = GetAnimationClips(animator).ToList();
                 FillModel();
 
-                foreach (string path in PathsKeys) if (path.Contains(PreviousName)) ValidPaths.Add(path);
+                foreach (string path in PathsKeys)
+                {
+                    if (!path.Contains(PreviousName)) continue;
+                    if (FindObjectInRoot(animator, path) != obj) continue;
+                    ValidPaths.Add(path);
+                }
+                foreach (string path in PathsKeys) if (path.Contains(obj.name)) InvalidPaths.Add(path);
 
                 foreach (string path in ValidPaths)
                 {
-                    Visual.ReplaceClipPathItem(path, path.Replace(PreviousName, obj.name), true);
-                    //MDebug.Notify($"{path}\n{path.Replace(PreviousName, obj.name)}");
+                    Visual.ReplaceClipPathItem(path, path.Replace(PreviousName, obj.name), out isSucceeded, true);
                 }
-                
-                AnimationObjectRenamerSettings.AutomaticLog log = new(true, oldPath, newPath);
-                
+
+                //foreach (string path in InvalidPaths)
+                //{
+                //    MDebug.Notify($"{path.Replace(obj.name, PreviousName)} => {path}");
+                //}
+
+                if (!InvalidPaths.IsNullOrEmpty())
+                {
+                    MDebug.Log("Invalid");
+                    if (EditorUtility.DisplayDialog(
+                        "Duplicated GameObject's name",
+                        "You are trying to rename this GameObject into a new name, which may cause a duplication error in Animation Clips.",
+                        "Accept",
+                        "Cancel"))
+                    {
+                        isSucceeded = true;
+                    }
+                    else
+                    {
+                        Handler.SelectedObject.name = Handler.PreviousName;
+                        isSucceeded = false;
+                    }
+                }
+
+                AnimationObjectRenamerSettings.AutomaticLog log = new(isSucceeded, oldPath, newPath);
                 Variable.AutomaticLogs.Add(log);
+
                 Visual.UpdateLogPanel();
                 Variable.SaveData();
+
+                PreviousName = obj.name;
 #if false
                 string clipLog = "";
                 foreach (var clip in AnimationClips) clipLog += $"{clip.name}, ";
@@ -153,6 +187,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             AnimationClips.Clear();
             Paths.Clear();
             PathsKeys.Clear();
+            ValidPaths.Clear();
+            InvalidPaths.Clear();
         }
 
         public static Animator[] GetAnimatorsInParents(GameObject obj)
@@ -271,15 +307,16 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 }
             }
         }
-        public static GameObject FindObjectInRoot(string path)
+        public static GameObject FindObjectInRoot(Animator animator, string path)
         {
-            if (ReferencedAnimator == null) return null;
+            if (animator == null) return null;
 
-            Transform child = ReferencedAnimator.transform.Find(path);
+            Transform child = animator.transform.Find(path);
 
             if (child != null) return child.gameObject;
             else return null;
         }
+        public static GameObject FindObjectInRoot(string path) => FindObjectInRoot(ReferencedAnimator, path);
 
         public static void UpdatePath(string oldPath, string newPath)
         {
