@@ -74,6 +74,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         #endregion
         #region ▶ Static Fields/Properties
         public static GameObject SelectedObject;
+        public static string UndoName;
         public static string PreviousName;
         public static List<string> ValidPaths = new();
         public static List<string> InvalidPaths = new();
@@ -108,7 +109,6 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             else if (SelectedObject.name != PreviousName)
             {
                 Variable.OnGameObjectRenamed?.Invoke(SelectedObject);
-                PreviousName = SelectedObject.name;
             }
         }
 
@@ -119,6 +119,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             else if (Selection.activeGameObject.IsNull()) return;
             SelectedObject = Selection.activeGameObject;
             PreviousName = Selection.activeGameObject.name;
+            UndoName = PreviousName;
         }
 
         public static void OnGameObjectRenamed(GameObject obj)
@@ -135,59 +136,49 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
                 foreach (string path in PathsKeys)
                 {
-                    MDebug.Log($"Name: {PreviousName} - {obj.name}");
-
-                    if (path.Contains(PreviousName)) ValidPaths.Add(path);
-                    //if (FindObjectInRoot(animator, path) != obj) continue;
-                    //MDebug.Log($"Pass: {path}");
-                    else if (path.Contains(obj.name)) InvalidPaths.Add(path);
-
+                    if (path.Contains(PreviousName))
+                    {
+                        if (FindObjectInRoot(animator, path.Replace(PreviousName, obj.name)) == obj) ValidPaths.Add(path);
+                    }
+                    else if (path.Contains(obj.name) && obj.name != UndoName) InvalidPaths.Add(path);
                 }
-                MDebug.Log($"Count: {ValidPaths.Count} - {InvalidPaths.Count}");
-                foreach (var path in ValidPaths) MDebug.Notify($"Valid: {path}");
-                foreach (var path in InvalidPaths) MDebug.Notify($"Invalid: {path}");
+
+                MDebug.Log($"Path: {ValidPaths.Count} - {InvalidPaths.Count}");
+                MDebug.Log($"Name: {UndoName} - {PreviousName} - {obj.name}");
 
                 foreach (string path in ValidPaths)
                 {
                     Visual.ReplaceClipPathItem(path, path.Replace(PreviousName, obj.name), out isSucceeded, true);
                 }
 
-                //foreach (string path in InvalidPaths)
-                //{
-                //    MDebug.Notify($"{path.Replace(obj.name, PreviousName)} => {path}");
-                //}
+                UndoName = PreviousName;
 
-                if (!InvalidPaths.IsNullOrEmpty())
+                if (!InvalidPaths.IsNullOrEmpty() && ValidPaths.IsNullOrEmpty())
                 {
-                    MDebug.Log("Invalid");
-                    if (EditorUtility.DisplayDialog(
-                        "Duplicated GameObject's name",
-                        "You are trying to rename this GameObject into a new name, which may cause a duplication error in Animation Clips.",
-                        "Accept",
-                        "Cancel"))
-                    {
-                        isSucceeded = true;
-                    }
-                    else
-                    {
-                        Handler.SelectedObject.name = Handler.PreviousName;
-                        isSucceeded = false;
-                    }
+                    //MDebug.Log("Invalid");
+                    //if (EditorUtility.DisplayDialog(
+                    //    "Duplicated GameObject's name",
+                    //    "HAHA",
+                    //    "Accept",
+                    //    "Cancel"))
+                    //{
+                    //    isSucceeded = true;
+                    //    UndoName = obj.name;
+                    //}
+                    //else
+                    //{
+                    //    Handler.SelectedObject.name = Handler.PreviousName;
+                    //    isSucceeded = false;
+                    //}
                 }
+
+                PreviousName = SelectedObject.name;
 
                 AnimationObjectRenamerSettings.AutomaticLog log = new(isSucceeded, oldPath, newPath);
                 Variable.AutomaticLogs.Add(log);
 
                 Visual.UpdateLogPanel();
                 Variable.SaveData();
-
-                PreviousName = obj.name;
-#if false
-                string clipLog = "";
-                foreach (var clip in AnimationClips) clipLog += $"{clip.name}, ";
-
-                MDebug.Action($"{animator.name} - {clipLog}");
-#endif
             }
 
             AnimationClips.Clear();
