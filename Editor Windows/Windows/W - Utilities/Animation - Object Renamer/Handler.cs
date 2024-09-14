@@ -74,10 +74,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         #endregion
         #region ▶ Static Fields/Properties
         public static GameObject SelectedObject;
-        public static string UndoName;
         public static string PreviousName;
         public static List<string> ValidPaths = new();
-        public static List<string> InvalidPaths = new();
         #endregion
 
         public Handler(Main main)
@@ -119,7 +117,6 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             else if (Selection.activeGameObject.IsNull()) return;
             SelectedObject = Selection.activeGameObject;
             PreviousName = Selection.activeGameObject.name;
-            UndoName = PreviousName;
         }
 
         public static void OnGameObjectRenamed(GameObject obj)
@@ -136,51 +133,20 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
                 foreach (string path in PathsKeys)
                 {
-                    if (path.Contains(PreviousName))
-                    {
-                        ValidPaths.Add(path);
-                        //if (FindObjectInRoot(animator, path.Replace(PreviousName, obj.name)) == obj)
-                        //{
-                        //    ValidPaths.Add(path);
-                        //    MDebug.Log($"{obj.name} - {path.Replace(PreviousName, obj.name)}");
-                        //}
-                    }
-                    else if (path.Contains(obj.name) && obj.name != UndoName) InvalidPaths.Add(path);
+                    if (path.Contains(PreviousName)) ValidPaths.Add(path);
                 }
 
-                MDebug.Log($"Path: {ValidPaths.Count} - {InvalidPaths.Count}");
-                MDebug.Log($"Name: {UndoName} - {PreviousName} - {obj.name}");
+                string objectName = obj.name;
 
                 foreach (string path in ValidPaths)
                 {
                     Visual.ReplaceClipPathItem(path, path.Replace(PreviousName, obj.name), out isSucceeded, true);
                 }
 
-                UndoName = PreviousName;
-
-                if (!InvalidPaths.IsNullOrEmpty() && ValidPaths.IsNullOrEmpty())
-                {
-                    //MDebug.Log("Invalid");
-                    //if (EditorUtility.DisplayDialog(
-                    //    "Duplicated GameObject's name",
-                    //    "HAHA",
-                    //    "Accept",
-                    //    "Cancel"))
-                    //{
-                    //    isSucceeded = true;
-                    //    UndoName = obj.name;
-                    //}
-                    //else
-                    //{
-                    //    Handler.SelectedObject.name = Handler.PreviousName;
-                    //    isSucceeded = false;
-                    //}
-                }
+                AnimationObjectRenamerSettings.AutomaticLog log = new(isSucceeded, PreviousName, objectName, oldPath, newPath);
+                Variable.AutomaticLogs.Add(log);
 
                 PreviousName = SelectedObject.name;
-
-                AnimationObjectRenamerSettings.AutomaticLog log = new(isSucceeded, oldPath, newPath);
-                Variable.AutomaticLogs.Add(log);
 
                 Visual.UpdateLogPanel();
                 Variable.SaveData();
@@ -190,7 +156,6 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             Paths.Clear();
             PathsKeys.Clear();
             ValidPaths.Clear();
-            InvalidPaths.Clear();
         }
 
         public static Animator[] GetAnimatorsInParents(GameObject obj)

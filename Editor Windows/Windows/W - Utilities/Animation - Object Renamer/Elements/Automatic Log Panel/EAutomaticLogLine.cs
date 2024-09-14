@@ -25,13 +25,22 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             Time = new Button().AddClass("Time").SetText(log.CurrentTime);
 
-            string header = "<color=#ff6e6e>";
+            string header = log.IsSucceeded ? "<color=#3dffb5>" : "<color=#fa7373>";
             string footer = "</color>";
 
-            OldPath = new Button().AddClass("Path").AddClass("OldPath")
-                .SetText($"{log.OldPath.HighlightDifferences(log.NewPath, true, header, footer)}");
+            MDebug.Notify($"{log.OldName} - {log.NewName}");
+
+            string oldName = $"<color=#a6fff9>{log.OldName}</color>";
+            string newName = $"<color=#a6fff9>{log.NewName}</color>";
+
+            string oldPath = log.OldPath.Replace(log.OldName, oldName);
+            string newPath = log.NewPath.Replace(log.NewName, newName);
+
+            string pathText = $"{oldPath.HighlightDifferences(newPath, true, header, footer)} ▶ {newName.HighlightDifferences(oldName, true, header, footer)}";
+
+            OldPath = new Button().AddClass("Path").AddClass("OldPath").SetText($"<color=#f8ff9c>{pathText}</color>");
             NewPath = new Button().AddClass("Path").AddClass("NewPath")
-                .SetText($"<color=#f8ff9c>{log.NewPath.HighlightDifferences(log.OldPath, true, header, footer)}");
+                .SetText($"Changed: 1 <color=#17ffa6>Animator(s)</color> | 5 <color=#63ffff>Animation Clip(s)</color>");
             PathContainer = new VisualElement().AddClass("PathContainer").AddElements(OldPath, NewPath);
 
             this.AddElements(State, Time, PathContainer);

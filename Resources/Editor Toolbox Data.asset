@@ -19,24 +19,24 @@ MonoBehaviour:
     - IsSucceeded: 0
       CurrentTime: '<color=#96ffdc>9/14/2024</color>
 
-        5:39:12 PM'
+        7:32:48 PM'
+      OldName: Toe Root 2.6
+      NewName: Toe Root 2.2
       OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
       NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.2
-    - IsSucceeded: 0
+    - IsSucceeded: 1
       CurrentTime: '<color=#96ffdc>9/14/2024</color>
 
-        5:39:43 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
-    - IsSucceeded: 0
+        7:32:55 PM'
+      OldName: Toe Root 2.6
+      NewName: Toe Root 2.5
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+    - IsSucceeded: 1
       CurrentTime: '<color=#96ffdc>9/14/2024</color>
 
-        5:39:54 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
-    - IsSucceeded: 0
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        5:40:13 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
+        7:32:56 PM'
+      OldName: Toe Root 2.5
+      NewName: Toe Root 2.6
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6

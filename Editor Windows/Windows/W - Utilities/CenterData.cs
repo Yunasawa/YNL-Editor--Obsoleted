@@ -33,15 +33,19 @@ namespace YNL.Editors.Windows
         {
             public bool IsSucceeded;
             public string CurrentTime;
+            public string OldName;
+            public string NewName;
             public string OldPath;
             public string NewPath;
 
-            public AutomaticLog(bool isSucceeded, string oldPath, string newPath)
+            public AutomaticLog(bool isSucceeded, string oldName, string newName, string oldPath, string newPath)
             {
                 IsSucceeded = isSucceeded;
                 string original = DateTime.Now.ToString();
                 int spaceIndex = original.IndexOf(' ');
                 CurrentTime = $"<color=#96ffdc>{original.Substring(0, spaceIndex)}</color>" + "\n" + original.Substring(spaceIndex + 1);
+                OldName = oldName;
+                NewName = newName;
                 OldPath = oldPath;
                 NewPath = newPath;
             }
