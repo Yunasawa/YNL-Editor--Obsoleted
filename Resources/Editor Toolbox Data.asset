@@ -12,24 +12,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53530b6251d9e9745bd84c5c8a152ebf, type: 3}
   m_Name: Editor Toolbox Data
   m_EditorClassIdentifier: 
+  CurrentWindow: 2
   AnimationObjectRenamer:
     IsAutomaticOn: 1
     AutomaticLogs:
     - IsSucceeded: 1
       CurrentTime: '<color=#96ffdc>9/14/2024</color>
 
-        4:28:16 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
+        4:43:29 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
     - IsSucceeded: 1
       CurrentTime: '<color=#96ffdc>9/14/2024</color>
 
-        4:28:17 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
+        4:43:31 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+    - IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/14/2024</color>
+
+        4:44:35 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+    - IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/14/2024</color>
+
+        4:44:43 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+    - IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/14/2024</color>
+
+        4:45:08 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+    - IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/14/2024</color>
+
+        4:45:17 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+    - IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/14/2024</color>
+
+        4:45:29 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+    - IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/14/2024</color>
+
+        4:45:52 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+    - IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/14/2024</color>
+
+        4:46:49 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+    - IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/14/2024</color>
+
+        4:46:54 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+    - IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/14/2024</color>
+
+        4:47:41 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+    - IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/14/2024</color>
+
+        4:47:55 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+    - IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/14/2024</color>
+
+        4:48:08 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+    - IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/14/2024</color>
+
+        4:48:31 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
     - IsSucceeded: 0
       CurrentTime: '<color=#96ffdc>9/14/2024</color>
 
-        4:28:53 PM'
-      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.3
-      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2
+        4:48:36 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5
+    - IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/14/2024</color>
+
+        4:48:46 PM'
+      OldPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6
+      NewPath: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.5

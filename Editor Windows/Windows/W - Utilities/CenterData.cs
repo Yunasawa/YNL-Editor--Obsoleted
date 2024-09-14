@@ -9,6 +9,7 @@ namespace YNL.Editors.Windows
     [CreateAssetMenu(fileName = "Editor Toolbox Data", menuName = "🔗 YのL/🚧 Editor Toolbox/🚧 Toolbox Data")]
     public class CenterData : ScriptableObject
     {
+        public WindowType CurrentWindow;
         public AnimationObjectRenamerSettings AnimationObjectRenamer = new();
 
         [ContextMenu("Clear Logs")]

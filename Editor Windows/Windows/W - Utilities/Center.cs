@@ -25,6 +25,16 @@ namespace YNL.Editors.Windows
         #endregion
 
         #region ▶ General Fields/Properties
+        private static CenterData _staticCenterData;
+        private CenterData _centerData
+        {
+            get
+            {
+                if (_staticCenterData.IsNull()) _staticCenterData = "Editor Toolbox Data".LoadResource<CenterData>();
+                return _staticCenterData;
+            }
+        }
+
         private float _tagPanelWidth = 200;
 
         private IMain _selectedWindow;
@@ -70,7 +80,7 @@ namespace YNL.Editors.Windows
             ObjectRenamerWindow = new Main(this, WindowTagPanel);
             ImageInverterWindow = new WTextureImageInverter_Main(this, WindowTagPanel);
 
-            SwitchWindow(WindowType.TextureImageResizer);
+            SwitchWindow(_centerData.CurrentWindow);
         }
 
         public void OnGUI()
@@ -98,6 +108,9 @@ namespace YNL.Editors.Windows
                     break;
             }
             rootVisualElement.Add(WindowTagPanel);
+            _centerData.CurrentWindow = windowTag;
+            EditorUtility.SetDirty(_centerData);
+            AssetDatabase.SaveAssets();
         }
         
         private void SwitchWindow(IMain window)

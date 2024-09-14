@@ -135,11 +135,17 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
                 foreach (string path in PathsKeys)
                 {
-                    if (!path.Contains(PreviousName)) continue;
-                    if (FindObjectInRoot(animator, path) != obj) continue;
-                    ValidPaths.Add(path);
+                    MDebug.Log($"Name: {PreviousName} - {obj.name}");
+
+                    if (path.Contains(PreviousName)) ValidPaths.Add(path);
+                    //if (FindObjectInRoot(animator, path) != obj) continue;
+                    //MDebug.Log($"Pass: {path}");
+                    else if (path.Contains(obj.name)) InvalidPaths.Add(path);
+
                 }
-                foreach (string path in PathsKeys) if (path.Contains(obj.name)) InvalidPaths.Add(path);
+                MDebug.Log($"Count: {ValidPaths.Count} - {InvalidPaths.Count}");
+                foreach (var path in ValidPaths) MDebug.Notify($"Valid: {path}");
+                foreach (var path in InvalidPaths) MDebug.Notify($"Invalid: {path}");
 
                 foreach (string path in ValidPaths)
                 {
