@@ -42,7 +42,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             if (log.Event == AORSettings.Event.Destroy)
             {
-                State.SetBackgroundImage("Textures/Icons/Remove");
+                header = "<color=#ffdb4a>";
+                State.SetBackgroundImage("Textures/Icons/Remove").SetBackgroundColor("#ffdb4a");
             }
 
             string pathText = $"{oldPath.HighlightDifferences(newPath, true, header, footer)} ▶ {newName.HighlightDifferences(oldName, true, header, footer)}";

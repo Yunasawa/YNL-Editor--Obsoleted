@@ -9,6 +9,7 @@ using UnityEngine;
 using YNL.Extensions.Methods;
 using YNL.Editors.Windows.Utilities;
 using System.IO;
+using PlasticGui.Configuration.CloudEdition.Welcome;
 
 namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
@@ -43,7 +44,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             => CenterData.AnimationObjectRenamer?.AutomaticLogs;
 
         public static Action<GameObject> OnGameObjectRenamed;
-        public static Action OnGameObjectDestroyed;
+        public static Action<GameObject> OnGameObjectDestroyed;
         public static Action<GameObject> OnGameObjectMoved;
 
         public static void SaveData()
@@ -78,6 +79,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         public static string PreviousName;
         public static string OldPath;
         public static List<string> ValidPaths = new();
+        public static uint InvalidCount = 0;
         #endregion
 
         public Handler(Main main)
@@ -111,17 +113,13 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             {
                 if (!PreviousName.IsNullOrEmpty())
                 {
-                    Variable.OnGameObjectDestroyed?.Invoke();
+                    Variable.OnGameObjectDestroyed?.Invoke(SelectedObject);
                     return;
                 }
             }
             else if (SelectedObject?.name != PreviousName)
             {
-                if (PreviousName.IsNullOrEmpty())
-                {
-                    MDebug.Notify("IsNullOrEmpty");
-                    return;
-                }
+                if (PreviousName.IsNullOrEmpty()) return;
                 Variable.OnGameObjectRenamed?.Invoke(SelectedObject);
             }
         }
@@ -156,13 +154,34 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 foreach (string path in PathsKeys)
                 {
                     if (path.Contains(PreviousName)) ValidPaths.Add(path);
+                    else if (path.Contains(obj.name)) InvalidCount++;
                 }
 
                 objectName = obj.name;
 
-                foreach (string path in ValidPaths)
+                if (ValidPaths.Count == 0 && InvalidCount > 0)
                 {
-                    Visual.ReplaceClipPathItem(path, path.Replace(PreviousName, obj.name), out isSucceeded, true);
+                    if (EditorUtility.DisplayDialog(
+                        "Duplicated GameObject's name",
+                        "You are trying to rename this GameObject into a new name, which may cause a duplication error in Animation Clips.",
+                        "Understand",
+                        "Close"))
+                    {
+                        Handler.SelectedObject.name = Handler.PreviousName;
+                        isSucceeded = false;
+                    }
+                    else
+                    {
+                        Handler.SelectedObject.name = Handler.PreviousName;
+                        isSucceeded = false;
+                    }
+                }
+                else
+                {
+                    foreach (string path in ValidPaths)
+                    {
+                        Visual.ReplaceClipPathItem(path, path.Replace(PreviousName, obj.name), out isSucceeded, true);
+                    }
                 }
 
                 clipCount += AnimationClips.Count;
@@ -171,6 +190,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 Paths.Clear();
                 PathsKeys.Clear();
                 ValidPaths.Clear();
+                InvalidCount = 0;
             }
 
             string finalName = $"{PreviousName}|{objectName}";
@@ -183,20 +203,55 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             Visual.UpdateLogPanel();
             Variable.SaveData();
         }
-        public static void OnGameObjectDestroyed()
+        public static void OnGameObjectDestroyed(GameObject obj)
         {
-            string newPath = OldPath.Replace(PreviousName, "...");
+            bool pass = false;
+            int clipCount = 0;
 
-            string finalName = $"{PreviousName}|...";
-            string finalPath = $"{OldPath}|{newPath}";
+            Undo.PerformUndo();
 
-            AORSettings.AutomaticLog log = new(AORSettings.Event.Destroy, true, finalName, finalPath, 0, 0, null);
-            Variable.AutomaticLogs.Add(log);
+            Animator[] animators = GetAnimatorsInParents(obj);
 
-            PreviousName = "";
+            foreach (var animator in animators)
+            {
+                AnimationClips = GetAnimationClips(animator).ToList();
+                FillModel();
 
-            Visual.UpdateLogPanel();
-            Variable.SaveData();
+                foreach (string path in PathsKeys)
+                {
+                    if (path.Contains(obj.name))
+                    {
+                        pass = true;
+                    }
+                }
+
+                clipCount += AnimationClips.Count;
+            }
+
+            if (!pass) Undo.DestroyObjectImmediate(obj);
+
+            if (pass)
+            {
+
+                EditorUtility.DisplayDialog(
+                            "Remove animated GameObject",
+                            "You are trying to remove the GameObject which is animated in animation clip(s). This will cause a Missing Reference Exception.",
+                            "Understand",
+                            "Close");
+
+                string newPath = OldPath.Replace(PreviousName, "...");
+
+                string finalName = $"{PreviousName}|...";
+                string finalPath = $"{OldPath}|{newPath}";
+
+                AORSettings.AutomaticLog log = new(AORSettings.Event.Destroy, false, finalName, finalPath, animators.Length, clipCount, obj);
+                Variable.AutomaticLogs.Add(log);
+
+                PreviousName = "";
+
+                Visual.UpdateLogPanel();
+                Variable.SaveData();
+            }
         }
         public static void OnGameObjectMoved(GameObject obj)
         {
