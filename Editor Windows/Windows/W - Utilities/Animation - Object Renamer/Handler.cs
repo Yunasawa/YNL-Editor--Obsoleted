@@ -164,37 +164,40 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 //MDebug.Notify($"{PreviousName} - {obj.name}");
                 //MDebug.Notify($"{ValidPaths.Count} - {InvalidCount}");
 
-                if ((ValidPaths.Count == 0 && InvalidCount > 0 && duplicated) ||
-                    (ValidPaths.Count != 0 && duplicated))
+                if (isSucceeded)
                 {
-                    if (EditorUtility.DisplayDialog(
-                        "Duplicated GameObject's name",
-                        "You are trying to rename this GameObject into a new name, which may cause a duplication error in Animation Clips.",
-                        "Understand",
-                        "Close"))
+                    if ((ValidPaths.Count == 0 && InvalidCount > 0 && duplicated) ||
+                        (ValidPaths.Count != 0 && duplicated))
                     {
-                        obj.name = Handler.PreviousName;
-                        isSucceeded = false;
+                        if (EditorUtility.DisplayDialog(
+                            "Duplicated GameObject's name",
+                            "You are trying to rename this GameObject into a new name, which may cause a duplication error in Animation Clips.",
+                            "Understand",
+                            "Close"))
+                        {
+                            obj.name = Handler.PreviousName;
+                            isSucceeded = false;
+                            isShowLog = true;
+                        }
+                        else
+                        {
+                            obj.name = Handler.PreviousName;
+                            isSucceeded = false;
+                            isShowLog = true;
+                        }
+                    }
+                    else if (ValidPaths.Count != 0)
+                    {
+                        foreach (string path in ValidPaths)
+                        {
+                            Visual.ReplaceClipPathItem(path, path.Replace(PreviousName, obj.name), out isSucceeded, true);
+                        }
+
                         isShowLog = true;
                     }
-                    else
-                    {
-                        obj.name = Handler.PreviousName;
-                        isSucceeded = false;
-                        isShowLog = true;
-                    }
-                }
-                else if (ValidPaths.Count != 0)
-                {
-                    foreach (string path in ValidPaths)
-                    {
-                        Visual.ReplaceClipPathItem(path, path.Replace(PreviousName, obj.name), out isSucceeded, true);
-                    }
 
-                    isShowLog = true;
+                    if (ValidPaths.Count == 0 && InvalidCount == 0) isShowLog = false;
                 }
-
-                if (ValidPaths.Count == 0 && InvalidCount == 0 && isSucceeded) isShowLog = false;
 
                 clipCount += AnimationClips.Count;
 
