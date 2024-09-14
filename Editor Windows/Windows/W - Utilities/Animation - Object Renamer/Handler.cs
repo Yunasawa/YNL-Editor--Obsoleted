@@ -14,7 +14,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
     public class Variable
     {
         private static CenterData _centerDataGetter;
-        private static CenterData _centerData
+        public static CenterData CenterData
         {
             get
             {
@@ -30,18 +30,26 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         public static bool IsAutomaticPanel = false;
         public static bool IsAutomaticOn
         {
-            get => _centerData.AnimationObjectRenamer.IsAutomaticOn;
+            get => CenterData.AnimationObjectRenamer.IsAutomaticOn;
             set 
             { 
-                _centerData.AnimationObjectRenamer.IsAutomaticOn = value;
-                EditorUtility.SetDirty(_centerData);
+                CenterData.AnimationObjectRenamer.IsAutomaticOn = value;
+                EditorUtility.SetDirty(CenterData);
                 AssetDatabase.SaveAssets();
             }
         }
+        public static List<AnimationObjectRenamerSettings.AutomaticLog> AutomaticLogs
+            => CenterData.AnimationObjectRenamer?.AutomaticLogs;
 
         public static Action<GameObject> OnGameObjectRenamed;
         public static Action OnGameObjectCreated;
         public static Action<GameObject> OnGameObjectDestroyed;
+
+        public static void SaveData()
+        {
+            EditorUtility.SetDirty(CenterData);
+            AssetDatabase.SaveAssets();
+        }
     }
 
     [InitializeOnLoad]
@@ -64,8 +72,9 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         private static string _replacementNewRoot;
         #endregion
         #region ▶ Static Fields/Properties
-        private static GameObject _selectedObject;
-        private static string _previousName;
+        public static GameObject SelectedObject;
+        public static string PreviousName;
+        public static List<string> ValidPaths = new();
         #endregion
 
         public Handler(Main main)
@@ -88,16 +97,16 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         public static void OnHierarchyChanged()
         {
             if (!Variable.IsAutomaticOn) return;
-            if (Selection.activeGameObject != _selectedObject) return;
-            else if (_selectedObject.IsNullOrDestroyed())
+            if (Selection.activeGameObject != SelectedObject) return;
+            else if (SelectedObject.IsNullOrDestroyed())
             {
-                Variable.OnGameObjectDestroyed?.Invoke(_selectedObject);
+                Variable.OnGameObjectDestroyed?.Invoke(SelectedObject);
                 return;
             }
-            else if (_selectedObject.name != _previousName)
+            else if (SelectedObject.name != PreviousName)
             {
-                Variable.OnGameObjectRenamed?.Invoke(_selectedObject);
-                _previousName = _selectedObject.name;
+                Variable.OnGameObjectRenamed?.Invoke(SelectedObject);
+                PreviousName = SelectedObject.name;
             }
         }
 
@@ -106,20 +115,39 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             if (!Variable.IsAutomaticOn) return;
             if (Selection.gameObjects.Length > 1) return;
             else if (Selection.activeGameObject.IsNull()) return;
-            _selectedObject = Selection.activeGameObject;
-            _previousName = Selection.activeGameObject.name;
+            SelectedObject = Selection.activeGameObject;
+            PreviousName = Selection.activeGameObject.name;
         }
 
         public static void OnGameObjectRenamed(GameObject obj)
         {
             string newPath = GetPath(obj);
-            string oldPath = newPath.Replace(obj.name, _previousName);
+            string oldPath = newPath.Replace(obj.name, PreviousName);
 
             foreach (var animator in GetAnimatorsInParents(obj))
             {
                 AnimationClips = GetAnimationClips(animator).ToList();
                 FillModel();
-                Visual.ReplaceClipPathItem(oldPath, newPath);
+
+                foreach (string path in PathsKeys) if (path.Contains(PreviousName)) ValidPaths.Add(path);
+
+                foreach (string path in ValidPaths)
+                {
+                    Visual.ReplaceClipPathItem(path, path.Replace(PreviousName, obj.name), true);
+                    //MDebug.Notify($"{path}\n{path.Replace(PreviousName, obj.name)}");
+                }
+                
+                AnimationObjectRenamerSettings.AutomaticLog log = new(true, oldPath, newPath);
+                
+                Variable.AutomaticLogs.Add(log);
+                Visual.UpdateLogPanel();
+                Variable.SaveData();
+#if false
+                string clipLog = "";
+                foreach (var clip in AnimationClips) clipLog += $"{clip.name}, ";
+
+                MDebug.Action($"{animator.name} - {clipLog}");
+#endif
             }
 
             AnimationClips.Clear();
@@ -144,7 +172,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         }
 
         public static AnimationClip[] GetAnimationClips(Animator animator) => animator.runtimeAnimatorController.animationClips;
-        #endregion
+#endregion
         #region ▶ Manual Functions
         public void OnSelectionChange()
         {

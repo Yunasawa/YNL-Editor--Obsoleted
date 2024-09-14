@@ -83,7 +83,7 @@
 	font-size: 14px;
 }
 
-#ClipPanel
+#LogScroll
 {
 	background-color: transparent;
 
@@ -91,7 +91,7 @@
 
 	margin-left: 0px;
 	margin: 5px;
-	margin-top: 40px;
+	margin-top: 35px;
 
 	justify-content: center;
 }

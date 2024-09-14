@@ -8,6 +8,7 @@ using System;
 using YNL.Editors.UIElements.Styled;
 using YNL.Extensions.Addons;
 using YNL.Editors.Windows.Utilities;
+using UnityEditor;
 
 namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
@@ -37,7 +38,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         private static ERootNamePanel _rootNamePanel;
 
         private Image _automaticWindow;
-        private EAutomaticLogPanel _automaticLogPanel;
+        private static EAutomaticLogPanel _automaticLogPanel;
 
         private Button _modePanel;
         private Button _autoButton;
@@ -96,6 +97,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             UpdateMode(false);
             UpdateAutomatic();
+
+            RefreshLogPanel();
 
             _createdAllElements = true;
         }
@@ -285,7 +288,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 _rootNamePanel.AddBoard("No animation clip found!");
             }
         }
-        public static void ReplaceClipPathItem(string originalRoot, string newRoot)
+        public static void ReplaceClipPathItem(string originalRoot, string newRoot, bool isAuto = false)
         {
             if (!Handler.AnimationClips.IsEmpty() && Handler.PathsKeys.Count > 0)
             {
@@ -295,19 +298,41 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
                 if (paths.Contains(originalRoot) && paths.Contains(newRoot))
                 {
-                    Handler.ReplaceRoot(originalRoot, "Temporary Root", () => ChangeVisuals(originalRoot, "Temporary Root"));
-                    Handler.ReplaceRoot(newRoot, originalRoot, () => ChangeVisuals(newRoot, originalRoot));
-                    Handler.ReplaceRoot("Temporary Root", newRoot, () => ChangeVisuals("Temporary Root", newRoot));
+                    if (isAuto)
+                    {
+                        if (EditorUtility.DisplayDialog(
+                            "Duplicated GameObject's name",
+                            "You are trying to rename this GameObject into a new name, which may cause a duplication error in Animation Clips.",
+                            "Accept",
+                            "Cancel"))
+                        {
+                            ReplaceRoot();
+                        }
+                        else
+                        {
+                            Handler.SelectedObject.name = Handler.PreviousName;
+                        }
+                    }
+                    else
+                    {
+                        ReplaceRoot();
 
-                    EDebug.ECustom("Swap", $"{originalRoot} ▶ {newRoot}", EColor.Macaroon.ToHex());
+                        if (!Variable.IsAutomaticPanel) EDebug.ECustom("Swap", $"{originalRoot} ▶ {newRoot}", EColor.Macaroon.ToHex());
+                    }
                 }
                 else
                 {
-                    MDebug.Log("Three");
                     Handler.ReplaceRoot(originalRoot, newRoot, () => ChangeVisuals(originalRoot, newRoot));
 
-                    EDebug.ECustom("Rename", $"{originalRoot} ▶ {newRoot}", EColor.Flamingo.ToHex());
+                    if (!Variable.IsAutomaticPanel && !isAuto) EDebug.ECustom("Rename", $"{originalRoot} ▶ {newRoot}", EColor.Flamingo.ToHex());
                 }
+            }
+
+            void ReplaceRoot()
+            {
+                Handler.ReplaceRoot(originalRoot, "Temporary Root", () => ChangeVisuals(originalRoot, "Temporary Root"));
+                Handler.ReplaceRoot(newRoot, originalRoot, () => ChangeVisuals(newRoot, originalRoot));
+                Handler.ReplaceRoot("Temporary Root", newRoot, () => ChangeVisuals("Temporary Root", newRoot));
             }
 
             void ChangeVisuals(string originalRoot, string newRoot)
@@ -476,6 +501,19 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             _enableLabel.SetText(Variable.IsAutomaticOn ? "Automatic Mode: On" : "Automatic Mode: Off");
 
             _enableButton.SetBorderColor(Variable.IsAutomaticOn ? "#2e8c5a" : "#ab3e3e");
+        }
+        public static void RefreshLogPanel()
+        {
+            foreach (var line in Variable.AutomaticLogs)
+            {
+                _automaticLogPanel.AddClipItem(new(line));
+            }
+        }
+        public static void UpdateLogPanel()
+        {
+            EAutomaticLogLine line = new(Variable.AutomaticLogs[^1]);
+
+            _automaticLogPanel.AddClipItem(line);
         }
         #endregion
     }

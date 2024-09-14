@@ -13,7 +13,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         public Image TagIcon;
         public StyledLine Line;
         public Label Title;
-        public ScrollView ClipPanel;
+
+        public ScrollView LogScroll;
 
         public EAutomaticLogPanel() : base()
         {
@@ -24,17 +25,17 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             Title = new Label("Automatic log panel").SetName("Label");
             TitleBackground = new Image().SetName("TitleBackground").AddElements(TagIcon, Line, Title);
 
-            ClipPanel = new ScrollView().SetName("ClipPanel");
+            LogScroll = new ScrollView().SetName("LogScroll");
 
-            this.AddElements(TitleBackground, ClipPanel);
+            this.AddElements(TitleBackground, LogScroll);
         }
 
-        public void AddClipItem(EClipNameField field)
+        public void AddClipItem(EAutomaticLogLine line)
         {
-            ClipPanel.AddElements(field);
+            LogScroll.InsertElements(0, line);
         }
 
-        public void ClearAllClipItem() => ClipPanel.RemoveAllElements();
+        public void ClearAllClipItem() => LogScroll.RemoveAllElements();
     }
 }
 #endif

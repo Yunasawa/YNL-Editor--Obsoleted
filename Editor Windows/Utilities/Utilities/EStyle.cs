@@ -22,6 +22,15 @@ namespace YNL.Editors.Windows.Utilities
         }
 
         /// <summary>
+        /// Insert elements to a container element.
+        /// </summary>
+        public static T InsertElements<T>(this T container, int index = 0, params VisualElement[] elements) where T : VisualElement
+        {
+            foreach (var element in elements) container.Insert(index, element);
+            return container;
+        }
+
+        /// <summary>
         /// Remove all child elements from a container element.
         /// </summary>
         public static T RemoveAllElements<T>(this T container) where T : VisualElement

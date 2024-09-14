@@ -1,0 +1,111 @@
+.Root
+{
+	background-color: transparent;
+
+	border-color: transparent;
+	border-width: 0px;
+	border-radius: 0px;
+
+	height: 40px;
+
+	margin-bottom: 5px;
+
+	padding: 0px;
+
+	flex-direction: row;
+}
+
+.State
+{
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+
+	width: 40px;
+	height: 40px;
+
+	background-size: 60%;
+	-unity-background-image-tint-color: #1f1f1f;
+}
+
+.Time
+{
+	background-color: #282828;
+
+	width: 90px;
+	height: 40px;
+
+	border-color: transparent;
+	border-width: 1.5px;
+	border-radius: 0px;
+
+	-unity-font-definition: var(--font-genshin);
+	font-size: 12px;
+
+	margin: 0px;
+	margin-left: 40px;
+
+	padding-left: 5px;
+	padding-right: 5px;
+
+	align-self: center;
+
+	-unity-text-align: middle-center;
+
+	transition-property: background-color, color;
+	transition-duration: 0.2s;
+
+	position: absolute;
+}
+.Time:hover
+{
+	background-color: #181818;
+
+	color: #f8ff9c;
+}
+
+.Path
+{
+	background-color: transparent;
+
+	border-width: 0px;
+	border-radius: 0px;
+
+	height: 20px;
+
+	margin: 0px;
+
+	-unity-font-definition: var(--font-genshin);
+	font-size: 12px;
+
+	-unity-text-align: middle-left;
+}
+.Path:hover
+{
+	background-color: #152626;
+}
+.OldPath
+{
+	border-top-right-radius: 5px;
+
+	padding-top: 5px;
+}
+.NewPath
+{
+	border-bottom-right-radius: 5px;
+
+	padding-bottom: 5px;
+}
+
+.PathContainer
+{
+	background-color: #1a1a1a;
+
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+	margin-left: 87.5px;
+
+	padding: 0px;
+
+	flex-grow: 1;
+}
