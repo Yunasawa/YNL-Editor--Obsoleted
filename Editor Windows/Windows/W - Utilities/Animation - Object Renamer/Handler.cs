@@ -39,12 +39,12 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 AssetDatabase.SaveAssets();
             }
         }
-        public static List<AnimationObjectRenamerSettings.AutomaticLog> AutomaticLogs
+        public static List<AORSettings.AutomaticLog> AutomaticLogs
             => CenterData.AnimationObjectRenamer?.AutomaticLogs;
 
         public static Action<GameObject> OnGameObjectRenamed;
-        public static Action OnGameObjectCreated;
-        public static Action<GameObject> OnGameObjectDestroyed;
+        public static Action OnGameObjectDestroyed;
+        public static Action<GameObject> OnGameObjectMoved;
 
         public static void SaveData()
         {
@@ -74,7 +74,9 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         #endregion
         #region ▶ Static Fields/Properties
         public static GameObject SelectedObject;
+        public static bool DoubleTrigger = false;
         public static string PreviousName;
+        public static string OldPath;
         public static List<string> ValidPaths = new();
         #endregion
 
@@ -92,24 +94,37 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             Variable.OnGameObjectRenamed -= OnGameObjectRenamed;
             Variable.OnGameObjectRenamed += OnGameObjectRenamed;
+
+            Variable.OnGameObjectDestroyed -= OnGameObjectDestroyed;
+            Variable.OnGameObjectDestroyed += OnGameObjectDestroyed;
+            
+            Variable.OnGameObjectMoved -= OnGameObjectMoved;
+            Variable.OnGameObjectMoved += OnGameObjectMoved;
         }
 
-        #region ▶ Automatic Functions
+        #region ▶ Event Functions
         public static void OnHierarchyChanged()
         {
             if (!Variable.IsAutomaticOn) return;
             if (Selection.activeGameObject != SelectedObject) return;
-            else if (SelectedObject.IsNullOrDestroyed())
+            if (SelectedObject.IsNullOrDestroyed())
             {
-                Variable.OnGameObjectDestroyed?.Invoke(SelectedObject);
-                return;
+                if (!PreviousName.IsNullOrEmpty())
+                {
+                    Variable.OnGameObjectDestroyed?.Invoke();
+                    return;
+                }
             }
-            else if (SelectedObject.name != PreviousName)
+            else if (SelectedObject?.name != PreviousName)
             {
+                if (PreviousName.IsNullOrEmpty())
+                {
+                    MDebug.Notify("IsNullOrEmpty");
+                    return;
+                }
                 Variable.OnGameObjectRenamed?.Invoke(SelectedObject);
             }
         }
-
         public static void OnSelectionChanged()
         {
             if (!Variable.IsAutomaticOn) return;
@@ -117,6 +132,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             else if (Selection.activeGameObject.IsNull()) return;
             SelectedObject = Selection.activeGameObject;
             PreviousName = Selection.activeGameObject.name;
+            OldPath = GetPath(SelectedObject);
         }
 
         public static void OnGameObjectRenamed(GameObject obj)
@@ -157,7 +173,9 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 ValidPaths.Clear();
             }
 
-            AnimationObjectRenamerSettings.AutomaticLog log = new(isSucceeded, $"{PreviousName}|{objectName}", $"{oldPath}|{newPath}", animators.Length, clipCount, gameObject);
+            string finalName = $"{PreviousName}|{objectName}";
+            string finalPath = $"{oldPath}|{newPath}";
+            AORSettings.AutomaticLog log = new(AORSettings.Event.Rename, isSucceeded, finalName, finalPath, animators.Length, clipCount, gameObject);
             Variable.AutomaticLogs.Add(log);
 
             PreviousName = SelectedObject.name;
@@ -165,7 +183,28 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             Visual.UpdateLogPanel();
             Variable.SaveData();
         }
+        public static void OnGameObjectDestroyed()
+        {
+            string newPath = OldPath.Replace(PreviousName, "...");
 
+            string finalName = $"{PreviousName}|...";
+            string finalPath = $"{OldPath}|{newPath}";
+
+            AORSettings.AutomaticLog log = new(AORSettings.Event.Destroy, true, finalName, finalPath, 0, 0, null);
+            Variable.AutomaticLogs.Add(log);
+
+            PreviousName = "";
+
+            Visual.UpdateLogPanel();
+            Variable.SaveData();
+        }
+        public static void OnGameObjectMoved(GameObject obj)
+        {
+            
+        }
+
+        #endregion
+        #region ▶ Handle Functions
         public static Animator[] GetAnimatorsInParents(GameObject obj)
         {
             List<Animator> animators = new();
@@ -183,8 +222,6 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         }
 
         public static AnimationClip[] GetAnimationClips(Animator animator) => animator.runtimeAnimatorController.animationClips;
-#endregion
-        #region ▶ Manual Functions
         public void OnSelectionChange()
         {
             if (Selection.objects.Length > 1)
@@ -235,8 +272,6 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
         public static void GetReferencedAnimator()
         {
-            //if (_main.Visual.IsNull()) return;
-
             ReferencedAnimator = Visual.ReferencedAnimator.ReferencedObject;
         }
 

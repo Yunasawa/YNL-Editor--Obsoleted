@@ -18,35 +18,45 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         public Button Count;
         public VisualElement PathContainer;
 
-        public EAutomaticLogLine(AnimationObjectRenamerSettings.AutomaticLog log) : base()
+        public EAutomaticLogLine(AORSettings.AutomaticLog log) : base()
         {
             this.AddStyle(USS_StyleSheet, EStyleSheet.Font).AddClass("Root");
 
-            State = new Image().AddClass("State").SetBackgroundColor(log.IsSucceeded ? "#3da878" : "#a83d3d")
-                .SetBackgroundImage(log.IsSucceeded ? "Textures/Icons/V" : "Textures/Icons/X")
+            State = new Image().AddClass("State").SetBackgroundColor(log.IsSucceeded ? "#3dffa8" : "#ff4a4a")
+                .SetBackgroundImage(log.Event == AORSettings.Event.Rename ? "Textures/Icons/Rename" : "Textures/Icons/Move")
                 .SetTooltip("State of previous automatic action");
 
             Time = new Button().AddClass("Time").SetText(log.CurrentTime);
 
-            string header = log.IsSucceeded ? "<color=#3dffb5>" : "<color=#fa7373>";
+            string header = log.IsSucceeded ? "<color=#3dffa8>" : "<color=#ff4a4a>";
             string footer = "</color>";
 
-            string oldName = $"<color=#a6fff9>{log.Name.Split("|")[0]}</color>";
-            string newName = $"<color=#a6fff9>{log.Name.Split("|")[1]}</color>";
+            string logOldName = log.Name.Split("|")[0];
+            string logNewName = log.Name.Split("|")[1];
 
-            string oldPath = log.Path.Split("|")[0].Replace(log.Name.Split("|")[0], oldName);
-            string newPath = log.Path.Split("|")[1].Replace(log.Name.Split("|")[1], newName);
+            string oldName = $"<color=#a6fff9>{logOldName.FillSpace(logNewName.Length)}</color>";
+            string newName = $"<color=#a6fff9>{logNewName.FillSpace(logOldName.Length)}</color>";
+
+            string oldPath = log.Path.Split("|")[0].Replace(logOldName, oldName);
+            string newPath = log.Path.Split("|")[1].Replace(logNewName, newName);
+
+            if (log.Event == AORSettings.Event.Destroy)
+            {
+                State.SetBackgroundImage("Textures/Icons/Remove");
+            }
 
             string pathText = $"{oldPath.HighlightDifferences(newPath, true, header, footer)} ▶ {newName.HighlightDifferences(oldName, true, header, footer)}";
 
             BindedObject = log.BindedObject;
-            Path = new Button().AddClass("Path").AddClass("OldPath").SetText($"<color=#ffffff>{pathText}</color>"); //f8ff9c
-            Path.clicked += () => EditorGUIUtility.PingObject(BindedObject);
-
-            string state = log.IsSucceeded ? "Succeeded" : "Failed";
+            Path = new Button().AddClass("Path").AddClass("OldPath").SetText(pathText); //f8ff9c
+            Path.clicked += () =>
+            {
+                if (BindedObject.IsNull()) return;
+                EditorGUIUtility.PingObject(BindedObject);
+            };
 
             Count = new Button().AddClass("Path").AddClass("NewPath")
-                .SetText($"{header}{state}{footer}: {log.AnimatorAmount} <color=#d6ffb3>Animator(s)</color> | {log.ClipAmount} <color=#d6ffb3>Clip(s)</color>");
+                .SetText($"{header}{log.Event}{footer}: {log.AnimatorAmount} <color=#d6ffb3>Animator(s)</color> | {log.ClipAmount} <color=#d6ffb3>Clip(s)</color>");
             PathContainer = new VisualElement().AddClass("PathContainer").AddElements(Path, Count);
 
             this.AddElements(State, Time, PathContainer);

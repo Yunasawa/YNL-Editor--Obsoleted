@@ -10,7 +10,7 @@ namespace YNL.Editors.Windows
     public class CenterData : ScriptableObject
     {
         public WindowType CurrentWindow;
-        public AnimationObjectRenamerSettings AnimationObjectRenamer = new();
+        public AORSettings AnimationObjectRenamer = new();
 
         [ContextMenu("Clear Logs")]
         public void ClearLogs()
@@ -21,7 +21,7 @@ namespace YNL.Editors.Windows
     }
 
     [System.Serializable]
-    public class AnimationObjectRenamerSettings
+    public class AORSettings
     {
         private static CenterData _centerData;
 
@@ -29,8 +29,12 @@ namespace YNL.Editors.Windows
         public List<AutomaticLog> AutomaticLogs = new();
 
         [System.Serializable]
+        public enum Event { Rename, Move, Destroy }
+
+        [System.Serializable]
         public struct AutomaticLog
         {
+            public Event Event;
             public bool IsSucceeded;
             public string CurrentTime;
             public string Name;
@@ -40,8 +44,9 @@ namespace YNL.Editors.Windows
 
             public GameObject BindedObject;
 
-            public AutomaticLog(bool isSucceeded, string name, string path, int animatorAmount, int clipAmount, GameObject bindedObject)    
+            public AutomaticLog(Event @event, bool isSucceeded, string name, string path, int animatorAmount, int clipAmount, GameObject bindedObject)    
             {
+                Event = @event;
                 IsSucceeded = isSucceeded;
                 string original = DateTime.Now.ToString();
                 int spaceIndex = original.IndexOf(' ');
