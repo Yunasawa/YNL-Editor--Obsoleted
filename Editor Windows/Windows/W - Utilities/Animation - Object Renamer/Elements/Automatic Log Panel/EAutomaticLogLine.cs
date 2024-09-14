@@ -40,11 +40,13 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             string pathText = $"{oldPath.HighlightDifferences(newPath, true, header, footer)} ▶ {newName.HighlightDifferences(oldName, true, header, footer)}";
 
             BindedObject = log.BindedObject;
-            Path = new Button().AddClass("Path").AddClass("OldPath").SetText($"<color=#f8ff9c>{pathText}</color>");
+            Path = new Button().AddClass("Path").AddClass("OldPath").SetText($"<color=#ffffff>{pathText}</color>"); //f8ff9c
             Path.clicked += () => EditorGUIUtility.PingObject(BindedObject);
 
+            string state = log.IsSucceeded ? "Succeeded" : "Failed";
+
             Count = new Button().AddClass("Path").AddClass("NewPath")
-                .SetText($"Changed: {log.AnimatorAmount} <color=#17ffa6>Animator(s)</color> | {log.ClipAmount} <color=#63ffff>Animation Clip(s)</color>");
+                .SetText($"{header}{state}{footer}: {log.AnimatorAmount} <color=#d6ffb3>Animator(s)</color> | {log.ClipAmount} <color=#d6ffb3>Clip(s)</color>");
             PathContainer = new VisualElement().AddClass("PathContainer").AddElements(Path, Count);
 
             this.AddElements(State, Time, PathContainer);

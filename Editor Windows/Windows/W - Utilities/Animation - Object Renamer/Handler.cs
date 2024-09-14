@@ -157,10 +157,10 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 ValidPaths.Clear();
             }
 
-            PreviousName = SelectedObject.name;
-
             AnimationObjectRenamerSettings.AutomaticLog log = new(isSucceeded, $"{PreviousName}|{objectName}", $"{oldPath}|{newPath}", animators.Length, clipCount, gameObject);
             Variable.AutomaticLogs.Add(log);
+
+            PreviousName = SelectedObject.name;
 
             Visual.UpdateLogPanel();
             Variable.SaveData();

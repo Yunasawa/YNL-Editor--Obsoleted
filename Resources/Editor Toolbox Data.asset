@@ -14,15 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentWindow: 2
   AnimationObjectRenamer:
-    IsAutomaticOn: 1
-    AutomaticLogs:
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        9:40:29 PM'
-      Name: Toe Root 2.5|Toe Root 2.5
-      Path: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6|Sample Root 2/Child
-        Root 2.2/Foot Root 2.2/Toe Root 2.5
-      AnimatorAmount: 1
-      ClipAmount: 8
-      BindedObject: {fileID: 0}
+    IsAutomaticOn: 0
+    AutomaticLogs: []

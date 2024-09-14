@@ -137,16 +137,16 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             _enableButton = new StyledInteractableButton().AddClass("AutomaticEnableButton").AddElements(_enableLabel, _enableIcon);
             _enableButton.clicked += _main.Handler.SwitchAutomaticMode;
-            _enableButton.OnPointerEnter += () =>
-            {
-                _enableButton.SetBackgroundColor("#1a1a1a");
-                _enableButton.SetBorderColor(Variable.IsAutomaticOn ? "#2e8c5a" : "#ab3e3e");
-            };
-            _enableButton.OnPointerExit += () =>
-            {
-                _enableButton.SetBackgroundColor("#1f1f1f");
-                _enableButton.SetBorderColor("#00000000");
-            };
+            //_enableButton.OnPointerEnter += () =>
+            //{
+            //    _enableButton.SetBackgroundColor("#1a1a1a");
+            //    _enableButton.SetBorderColor(Variable.IsAutomaticOn ? "#2e8c5a" : "#ab3e3e");
+            //};
+            //_enableButton.OnPointerExit += () =>
+            //{
+            //    _enableButton.SetBackgroundColor("#1f1f1f");
+            //    _enableButton.SetBorderColor("#00000000");
+            //};
 
             _automaticPanel = new Button().AddClass("AutomaticPanel").AddElements(_enableButton);
             #endregion
@@ -504,7 +504,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             _enableLabel.SetColor(Variable.IsAutomaticOn ? "#52ffa3" : "#ff5252");
             _enableLabel.SetText(Variable.IsAutomaticOn ? "Automatic Mode: On" : "Automatic Mode: Off");
 
-            _enableButton.SetBorderColor(Variable.IsAutomaticOn ? "#2e8c5a" : "#ab3e3e");
+            //_enableButton.SetBorderColor(Variable.IsAutomaticOn ? "#2e8c5a" : "#ab3e3e");
+            _enableButton.SetBorderColor(Variable.IsAutomaticOn ? "#52ffa3" : "#ff5252");
         }
         public static void ClearLogPanel()
         {
