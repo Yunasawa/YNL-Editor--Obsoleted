@@ -305,11 +305,11 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                         if (EditorUtility.DisplayDialog(
                             "Duplicated GameObject's name",
                             "You are trying to rename this GameObject into a new name, which may cause a duplication error in Animation Clips.",
-                            "Accept",
-                            "Cancel"))
+                            "Understand",
+                            "Close"))
                         {
-                            ReplaceRoot();
-                            isSucceeded = true;
+                            Handler.SelectedObject.name = Handler.PreviousName;
+                            isSucceeded = false;
                         }
                         else
                         {

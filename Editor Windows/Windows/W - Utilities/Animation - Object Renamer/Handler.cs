@@ -138,7 +138,12 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 {
                     if (path.Contains(PreviousName))
                     {
-                        if (FindObjectInRoot(animator, path.Replace(PreviousName, obj.name)) == obj) ValidPaths.Add(path);
+                        ValidPaths.Add(path);
+                        //if (FindObjectInRoot(animator, path.Replace(PreviousName, obj.name)) == obj)
+                        //{
+                        //    ValidPaths.Add(path);
+                        //    MDebug.Log($"{obj.name} - {path.Replace(PreviousName, obj.name)}");
+                        //}
                     }
                     else if (path.Contains(obj.name) && obj.name != UndoName) InvalidPaths.Add(path);
                 }
