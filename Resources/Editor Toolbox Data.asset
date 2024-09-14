@@ -19,32 +19,10 @@ MonoBehaviour:
     - IsSucceeded: 1
       CurrentTime: '<color=#96ffdc>9/14/2024</color>
 
-        7:45:58 PM'
-      Name: 2.1.3|2.1.4
-      Path: 2/2.1/2.1.3|2/2.1/2.1.4
+        9:40:29 PM'
+      Name: Toe Root 2.5|Toe Root 2.5
+      Path: Sample Root 2/Child Root 2.2/Foot Root 2.2/Toe Root 2.6|Sample Root 2/Child
+        Root 2.2/Foot Root 2.2/Toe Root 2.5
       AnimatorAmount: 1
-      ClipAmount: 1
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        7:45:58 PM'
-      Name: 2.1.4|2.1.4
-      Path: 2/2.1/2.1.3|2/2.1/2.1.4
-      AnimatorAmount: 1
-      ClipAmount: 1
-    - IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        7:46:17 PM'
-      Name: 2.1.4|2.1.3
-      Path: 2/2.1/2.1.4|2/2.1/2.1.3
-      AnimatorAmount: 1
-      ClipAmount: 1
-    - IsSucceeded: 0
-      CurrentTime: '<color=#96ffdc>9/14/2024</color>
-
-        7:46:18 PM'
-      Name: 2.1.3|2.1.3
-      Path: 2/2.1/2.1.4|2/2.1/2.1.3
-      AnimatorAmount: 1
-      ClipAmount: 1
+      ClipAmount: 8
+      BindedObject: {fileID: 0}

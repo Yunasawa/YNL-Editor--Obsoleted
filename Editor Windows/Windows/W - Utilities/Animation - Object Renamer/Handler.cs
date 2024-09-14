@@ -124,10 +124,16 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             string newPath = GetPath(obj);
             string oldPath = newPath.Replace(obj.name, PreviousName);
 
-            foreach (var animator in GetAnimatorsInParents(obj))
-            {
-                bool isSucceeded = true;
+            bool isSucceeded = true;
+            string objectName = "";
 
+            int clipCount = 0;
+            GameObject gameObject = obj;
+
+            Animator[] animators = GetAnimatorsInParents(obj);
+
+            foreach (var animator in animators)
+            {
                 AnimationClips = GetAnimationClips(animator).ToList();
                 FillModel();
 
@@ -136,26 +142,28 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                     if (path.Contains(PreviousName)) ValidPaths.Add(path);
                 }
 
-                string objectName = obj.name;
+                objectName = obj.name;
 
                 foreach (string path in ValidPaths)
                 {
                     Visual.ReplaceClipPathItem(path, path.Replace(PreviousName, obj.name), out isSucceeded, true);
                 }
 
-                AnimationObjectRenamerSettings.AutomaticLog log = new(isSucceeded, $"{PreviousName}|{objectName}", $"{oldPath}|{newPath}", 1, AnimationClips.Count);
-                Variable.AutomaticLogs.Add(log);
+                clipCount += AnimationClips.Count;
 
-                PreviousName = SelectedObject.name;
-
-                Visual.UpdateLogPanel();
-                Variable.SaveData();
+                AnimationClips.Clear();
+                Paths.Clear();
+                PathsKeys.Clear();
+                ValidPaths.Clear();
             }
 
-            AnimationClips.Clear();
-            Paths.Clear();
-            PathsKeys.Clear();
-            ValidPaths.Clear();
+            PreviousName = SelectedObject.name;
+
+            AnimationObjectRenamerSettings.AutomaticLog log = new(isSucceeded, $"{PreviousName}|{objectName}", $"{oldPath}|{newPath}", animators.Length, clipCount, gameObject);
+            Variable.AutomaticLogs.Add(log);
+
+            Visual.UpdateLogPanel();
+            Variable.SaveData();
         }
 
         public static Animator[] GetAnimatorsInParents(GameObject obj)

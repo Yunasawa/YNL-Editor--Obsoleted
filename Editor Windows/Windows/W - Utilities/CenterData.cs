@@ -38,7 +38,9 @@ namespace YNL.Editors.Windows
             public int AnimatorAmount;
             public int ClipAmount;
 
-            public AutomaticLog(bool isSucceeded, string name, string path, int animatorAmount, int clipAmount)
+            public GameObject BindedObject;
+
+            public AutomaticLog(bool isSucceeded, string name, string path, int animatorAmount, int clipAmount, GameObject bindedObject)    
             {
                 IsSucceeded = isSucceeded;
                 string original = DateTime.Now.ToString();
@@ -48,6 +50,7 @@ namespace YNL.Editors.Windows
                 Path = path;
                 AnimatorAmount = animatorAmount;
                 ClipAmount = clipAmount;
+                BindedObject = bindedObject;
             }
         }
     }

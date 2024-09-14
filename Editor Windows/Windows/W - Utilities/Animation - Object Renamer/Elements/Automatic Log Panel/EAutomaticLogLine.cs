@@ -1,4 +1,6 @@
 ﻿#if UNITY_EDITOR && YNL_UTILITIES
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Editors.Windows.Utilities;
 using YNL.Extensions.Methods;
@@ -11,8 +13,9 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
         public Image State;
         public Button Time;
-        public Button OldPath;
-        public Button NewPath;
+        public Button Path;
+        public GameObject BindedObject;
+        public Button Count;
         public VisualElement PathContainer;
 
         public EAutomaticLogLine(AnimationObjectRenamerSettings.AutomaticLog log) : base()
@@ -36,10 +39,13 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             string pathText = $"{oldPath.HighlightDifferences(newPath, true, header, footer)} ▶ {newName.HighlightDifferences(oldName, true, header, footer)}";
 
-            OldPath = new Button().AddClass("Path").AddClass("OldPath").SetText($"<color=#f8ff9c>{pathText}</color>");
-            NewPath = new Button().AddClass("Path").AddClass("NewPath")
+            BindedObject = log.BindedObject;
+            Path = new Button().AddClass("Path").AddClass("OldPath").SetText($"<color=#f8ff9c>{pathText}</color>");
+            Path.clicked += () => EditorGUIUtility.PingObject(BindedObject);
+
+            Count = new Button().AddClass("Path").AddClass("NewPath")
                 .SetText($"Changed: {log.AnimatorAmount} <color=#17ffa6>Animator(s)</color> | {log.ClipAmount} <color=#63ffff>Animation Clip(s)</color>");
-            PathContainer = new VisualElement().AddClass("PathContainer").AddElements(OldPath, NewPath);
+            PathContainer = new VisualElement().AddClass("PathContainer").AddElements(Path, Count);
 
             this.AddElements(State, Time, PathContainer);
         }
