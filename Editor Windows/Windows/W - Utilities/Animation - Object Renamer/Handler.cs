@@ -148,7 +148,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             Animator[] animators = GetAnimatorsInParents(obj);
 
-            bool duplicated = obj.HasSameNameWithOtherChildren();
+            bool duplicated = obj.HasDuplicatedNameInSamePath();
 
             foreach (var animator in animators)
             {

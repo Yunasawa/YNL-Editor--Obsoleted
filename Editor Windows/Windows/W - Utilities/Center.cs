@@ -41,10 +41,10 @@ namespace YNL.Editors.Windows
         #endregion
 
 
-        [MenuItem("🔗 YのL/🔗 Windows/🔗 Editor Toolbox")]
+        [MenuItem("🔗 YのL/🔗 Windows/🔗 General Toolbox")]
         public static void ShowWindow()
         {
-            Center window = GetWindow<Center>("Editor Toolbox");
+            Center window = GetWindow<Center>("General Toolbox");
             Texture2D texture = Resources.Load<Texture2D>(_windowIconPath);
 
             window.titleContent.image = texture;
@@ -68,7 +68,7 @@ namespace YNL.Editors.Windows
             
             Texture2D waitIcon = Resources.Load<Texture2D>("Textures/Icons/Time1");
 
-            WindowTagPanel = new(windowIcon, "Editor Toolbox", "Center", _tagPanelWidth, new StyledWindowTag[]
+            WindowTagPanel = new(windowIcon, "General Toolbox", "Center", _tagPanelWidth, new StyledWindowTag[]
             {
             new StyledWindowTag(textureImageResizerIcon, "Image Resizer", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WindowType.TextureImageResizer)),
             new StyledWindowTag(textureImageInverterIcon, "Image Inverter", "Texture", Color.white, _tagPanelWidth - 25, () => SwitchWindow(WindowType.TextureImageInverter)),

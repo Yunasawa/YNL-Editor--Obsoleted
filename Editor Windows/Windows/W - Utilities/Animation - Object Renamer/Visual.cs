@@ -133,20 +133,10 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             #region Automatic Panel
             _enableIcon = new Image().AddClass("AutomaticEnableIcon");
 
-            _enableLabel = new Label().AddClass("AutomaticEnableLabel");
+            _enableLabel = new Label().AddClass("AutomaticEnableLabel").SetColor("#00000000");
 
             _enableButton = new StyledInteractableButton().AddClass("AutomaticEnableButton").AddElements(_enableLabel, _enableIcon);
             _enableButton.clicked += _main.Handler.SwitchAutomaticMode;
-            //_enableButton.OnPointerEnter += () =>
-            //{
-            //    _enableButton.SetBackgroundColor("#1a1a1a");
-            //    _enableButton.SetBorderColor(Variable.IsAutomaticOn ? "#2e8c5a" : "#ab3e3e");
-            //};
-            //_enableButton.OnPointerExit += () =>
-            //{
-            //    _enableButton.SetBackgroundColor("#1f1f1f");
-            //    _enableButton.SetBorderColor("#00000000");
-            //};
 
             _automaticPanel = new Button().AddClass("AutomaticPanel").AddElements(_enableButton);
             #endregion

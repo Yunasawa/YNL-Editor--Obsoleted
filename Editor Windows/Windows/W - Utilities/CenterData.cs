@@ -43,6 +43,7 @@ namespace YNL.Editors.Windows
             public int ClipAmount;
 
             public GameObject BindedObject;
+            public int BindedObjectID;
 
             public AutomaticLog(Event @event, bool isSucceeded, string name, string path, int animatorAmount, int clipAmount, GameObject bindedObject)    
             {
@@ -56,6 +57,7 @@ namespace YNL.Editors.Windows
                 AnimatorAmount = animatorAmount;
                 ClipAmount = clipAmount;
                 BindedObject = bindedObject;
+                BindedObjectID = bindedObject.GetInstanceID();
             }
         }
     }
