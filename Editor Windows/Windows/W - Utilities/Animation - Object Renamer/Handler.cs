@@ -11,6 +11,8 @@ using YNL.Editors.Windows.Utilities;
 using System.IO;
 using PlasticGui.Configuration.CloudEdition.Welcome;
 using UnityEngine.UIElements;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
@@ -103,6 +105,12 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             
             Variable.OnGameObjectMoved -= OnGameObjectMoved;
             Variable.OnGameObjectMoved += OnGameObjectMoved;
+
+            EditorSceneManager.sceneOpened -= OnOpenScene;
+            EditorSceneManager.sceneOpened += OnOpenScene;
+
+            PrefabStage.prefabStageOpened -= OnOpenPrefab;
+            PrefabStage.prefabStageOpened += OnOpenPrefab;
         }
 
         #region ▶ Event Functions
@@ -123,9 +131,15 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 if (PreviousName.IsNullOrEmpty()) return;
                 Variable.OnGameObjectRenamed?.Invoke(SelectedObject);
             }
+            else if (true)
+            {
+            }
         }
         public static void OnSelectionChanged()
         {
+            //Animator[] animators = GameObject.FindObjectsOfType<Animator>();
+            //foreach (var animator in animators) MDebug.Log(animator.name);
+
             if (!Variable.IsAutomaticOn) return;
             if (Selection.gameObjects.Length > 1) return;
             else if (Selection.activeGameObject.IsNull()) return;
@@ -283,6 +297,17 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         {
             
         }
+
+        public static void OnOpenScene(Scene scene, OpenSceneMode mode)
+        {
+            MDebug.Log($"Open: {scene.name}");
+        }
+
+        public static void OnOpenPrefab(PrefabStage stage)
+        {
+            MDebug.Log($"Prefab: {stage.assetPath} | {stage.prefabContentsRoot.name}");
+        }
+
 
         #endregion
         #region ▶ Handle Functions
