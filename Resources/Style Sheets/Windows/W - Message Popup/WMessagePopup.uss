@@ -13,9 +13,8 @@
 	border-radius: 5px;
 	border-color: transparent;
 
-	-unity-font-definition: var(--font-nightmare-pills);
-	-unity-font-style: bold;
-	font-size: 15px;
+	-unity-font-definition: var(--font-genshin);
+	font-size: 12.5px;
 
 	align-self: center;
 }
