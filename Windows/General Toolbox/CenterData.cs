@@ -38,14 +38,13 @@ namespace YNL.Editors.Windows
             public bool IsSucceeded;
             public string CurrentTime;
             public string Name;
-            public string Path;
             public int AnimatorAmount;
             public int ClipAmount;
 
             public GameObject BindedObject;
             public int BindedObjectID;
 
-            public AutomaticLog(Event @event, bool isSucceeded, string name, string path, int animatorAmount, int clipAmount, GameObject bindedObject)    
+            public AutomaticLog(Event @event, bool isSucceeded, string name, int animatorAmount, int clipAmount, GameObject bindedObject)    
             {
                 Event = @event;
                 IsSucceeded = isSucceeded;
@@ -53,7 +52,6 @@ namespace YNL.Editors.Windows
                 int spaceIndex = original.IndexOf(' ');
                 CurrentTime = $"<color=#96ffdc>{original.Substring(0, spaceIndex)}</color>" + "\n" + original.Substring(spaceIndex + 1);
                 Name = name;
-                Path = path;
                 AnimatorAmount = animatorAmount;
                 ClipAmount = clipAmount;
                 BindedObject = bindedObject;

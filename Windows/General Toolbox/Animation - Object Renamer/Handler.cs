@@ -107,12 +107,9 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                             "Understand",
                             "Close");
 
-                string newPath = oldPath.Replace(PreviousName, "...");
-
                 string finalName = $"{PreviousName}|...";
-                string finalPath = $"{oldPath}|{newPath}";
 
-                AORSettings.AutomaticLog log = new(AORSettings.Event.Destroy, false, finalName, finalPath, animators.Length, clipCount, obj);
+                AORSettings.AutomaticLog log = new(AORSettings.Event.Destroy, false, finalName, animators.Length, clipCount, obj);
                 Variable.AutomaticLogs.Add(log);
 
                 PreviousName = "";
@@ -131,9 +128,6 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             PreviousName = tuples[0].Item2;
             SelectedObject = obj;
 
-            string newPath = GetPath(obj);
-            string oldPath = newPath.Replace(obj.name, PreviousName);
-
             bool isSucceeded = true;
             bool isShowLog = true;
             string objectName = obj.name;
@@ -145,11 +139,12 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             bool duplicated = obj.HasDuplicatedNameInSamePath();
             string parentPath = "";
-            (string oldPath, string newPath) animationPath = new($"{parentPath}/{PreviousName}", $"{parentPath}/{obj.name}");
+            (string oldPath, string newPath) animationPath = new();
 
             foreach (var animator in animators)
             {
                 parentPath = obj.GetAnimationPath(animator, false);
+                animationPath = new($"{parentPath}/{PreviousName}", $"{parentPath}/{obj.name}");
 
                 AnimationClips = GetAnimationClips(animator).ToList();
                 FillModel();
@@ -190,7 +185,6 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                     {
                         foreach (string path in ValidPaths)
                         {
-                            MDebug.Log($"{path}\n{path.Replace(animationPath.oldPath, animationPath.newPath)}");
                             Visual.ReplaceClipPathItem(path, path.Replace(animationPath.oldPath, animationPath.newPath), out isSucceeded, true);
                         }
 
@@ -211,9 +205,10 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             if (isShowLog)
             {
+                MDebug.Warning($"{animationPath.oldPath}\n{animationPath.newPath}");
+
                 string finalName = $"{PreviousName}|{objectName}";
-                string finalPath = $"{oldPath}|{newPath}";
-                AORSettings.AutomaticLog log = new(AORSettings.Event.Rename, isSucceeded, finalName, finalPath, animators.Length, clipCount, gameObject);
+                AORSettings.AutomaticLog log = new(AORSettings.Event.Rename, isSucceeded, finalName, animators.Length, clipCount, gameObject);
                 Variable.AutomaticLogs.Add(log);
 
                 Visual.UpdateLogPanel();

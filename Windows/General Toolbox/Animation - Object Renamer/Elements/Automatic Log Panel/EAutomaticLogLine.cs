@@ -37,8 +37,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             string oldName = $"<color=#a6fff9>{logOldName.FillSpace(logNewName.Length)}</color>";
             string newName = $"<color=#a6fff9>{logNewName.FillSpace(logOldName.Length)}</color>";
 
-            string oldPath = log.Path.Split("|")[0].Replace(logOldName, oldName);
-            string newPath = log.Path.Split("|")[1].Replace(logNewName, newName);
+            string oldPath = $"{log.BindedObject.GetPath(false)}/{oldName}";
+            string newPath = $"{log.BindedObject.GetPath(false)}/{newName}";
 
             if (log.Event == AORSettings.Event.Destroy)
             {
