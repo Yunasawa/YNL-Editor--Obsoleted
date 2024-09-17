@@ -37,9 +37,14 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             string oldName = $"<color=#a6fff9>{logOldName.FillSpace(logNewName.Length)}</color>";
             string newName = $"<color=#a6fff9>{logNewName.FillSpace(logOldName.Length)}</color>";
 
-            string oldPath = $"{log.BindedObject.GetPath(false)}/{oldName}";
-            string newPath = $"{log.BindedObject.GetPath(false)}/{newName}";
+            string oldPath = ""; 
+            string newPath = "";
 
+            if (!log.BindedObject.IsNullOrDestroyed())
+            {
+                oldPath = $"{log.BindedObject.GetPath(false)}/{oldName}";
+                newPath = $"{log.BindedObject?.GetPath(false)}/{newName}";
+            }
             if (log.Event == AORSettings.Event.Destroy)
             {
                 header = "<color=#ffdb4a>";

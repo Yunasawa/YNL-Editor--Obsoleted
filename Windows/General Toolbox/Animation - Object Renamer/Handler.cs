@@ -20,7 +20,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
         public static Hashtable Paths;
         public static Dictionary<string, string> TempPathOverrides = new();
-        public static ArrayList PathsKeys = new();
+        public static ArrayList PathKeys = new();
 
         public static Animator ReferencedAnimator;
         public static List<AnimationClip> AnimationClips = new();
@@ -63,43 +63,56 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             
         }
 
-        private static void OnGameObjectDestroyed(string oldPath, GameObject obj)
+        private static void OnGameObjectDestroyed((string path, GameObject obj)[] removedPaths)
         {
             if (!Variable.IsAutomaticOn) return;
 
-            PreviousName = oldPath.Split('/')[^1];
-
-            bool pass = false;
+            Animator[] animators = new Animator[0];
+            bool isExistingInClips = false;
+            bool anyExistingInClips = false;
             int clipCount = 0;
 
             Undo.PerformUndo();
 
-            Animator[] animators = new Animator[0];
-            if (!obj.IsNullOrDestroyed()) animators = GetAnimatorsInParents(obj);
+            PreviousName = removedPaths[0].obj.name;
 
-            foreach (var animator in animators)
+            foreach (var removedPath in removedPaths)
             {
-                AnimationClips = GetAnimationClips(animator).ToList();
-                FillModel();
+                isExistingInClips = false;
 
-                foreach (string path in PathsKeys)
+                if (!removedPath.obj.IsNullOrDestroyed()) animators = GetAnimatorsInParents(removedPath.obj);
+
+                foreach (var animator in animators)
                 {
-                    if (path.Contains(obj.GetAnimationPath(animator)))
+                    AnimationClips = GetAnimationClips(animator).ToList();
+                    FillModel();
+
+                    foreach (string path in PathKeys)
                     {
-                        pass = true;
-                        break;
+                        //if (path.Contains(removedPath.obj.GetAnimationPath(animator))) MDebug.Action($"{path}\n{removedPath.obj.GetAnimationPath(animator)}");
+                        //else MDebug.Log($"{path}\n{removedPath.obj.GetAnimationPath(animator)}");
+
+                        if (path.Contains(removedPath.obj.GetAnimationPath(animator)))
+                        {
+                            isExistingInClips = true;
+                            anyExistingInClips = true;
+                            break;
+                        }
                     }
+
+                    clipCount += AnimationClips.Count;
                 }
 
-                clipCount += AnimationClips.Count;
+                //s MDebug.Log($"{removedPath.obj.name} - {isExistingInClips}");
+
+                if (!isExistingInClips)
+                {
+                    if (!removedPath.obj.IsNullOrDestroyed()) Undo.DestroyObjectImmediate(removedPath.obj);
+                    HierarchyChangeCatcher.RefreshPreviousKeys();
+                }
             }
 
-            if (!pass)
-            {
-                if (!obj.IsNullOrDestroyed()) Undo.DestroyObjectImmediate(obj);
-                return;
-            }
-            else
+            if (anyExistingInClips)
             {
                 EditorUtility.DisplayDialog(
                             "Remove animated GameObject",
@@ -109,7 +122,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
                 string finalName = $"{PreviousName}|...";
 
-                AORSettings.AutomaticLog log = new(AORSettings.Event.Destroy, false, finalName, animators.Length, clipCount, obj);
+                AORSettings.AutomaticLog log = new(AORSettings.Event.Destroy, false, finalName, animators.Length, clipCount, removedPaths[0].obj);
                 Variable.AutomaticLogs.Add(log);
 
                 PreviousName = "";
@@ -149,7 +162,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 AnimationClips = GetAnimationClips(animator).ToList();
                 FillModel();
 
-                foreach (string path in PathsKeys)
+                foreach (string path in PathKeys)
                 {
                     if (path.Contains(animationPath.oldPath)) ValidPaths.Add(path);
                     else if (path.Contains(animationPath.newPath)) InvalidCount++;
@@ -198,7 +211,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
                 AnimationClips.Clear();
                 Paths.Clear();
-                PathsKeys.Clear();
+                PathKeys.Clear();
                 ValidPaths.Clear();
                 InvalidCount = 0;
             }
@@ -295,7 +308,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         public static void FillModel()
         {
             Paths = new Hashtable();
-            PathsKeys = new ArrayList();
+            PathKeys = new ArrayList();
 
             foreach (AnimationClip animationClip in AnimationClips)
             {
@@ -318,7 +331,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                     ArrayList newProperties = new ArrayList();
                     newProperties.Add(curveData);
                     Paths.Add(key, newProperties);
-                    PathsKeys.Add(key);
+                    PathKeys.Add(key);
                 }
 
                 if (PathColors.ContainsKey(key))
@@ -358,9 +371,9 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 Undo.RecordObject(animationClip, "Animation Hierarchy Change");
 
                 // Recreating all curves one by one to maintain proper order in the editor - slower than just removing old curve and adding a corrected one, but it's more user-friendly
-                for (int iCurrentPath = 0; iCurrentPath < PathsKeys.Count; iCurrentPath++)
+                for (int iCurrentPath = 0; iCurrentPath < PathKeys.Count; iCurrentPath++)
                 {
-                    string path = PathsKeys[iCurrentPath] as string;
+                    string path = PathKeys[iCurrentPath] as string;
                     ArrayList curves = (ArrayList)Paths[path];
 
                     for (int i = 0; i < curves.Count; i++)
@@ -378,7 +391,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                         else AnimationUtility.SetObjectReferenceCurve(animationClip, binding, objectReferenceCurve);
 
                         float fChunk = 1f / AnimationClips.Count;
-                        float fProgress = (iCurrentClip * fChunk) + fChunk * ((float)iCurrentPath / (float)PathsKeys.Count);
+                        float fProgress = (iCurrentClip * fChunk) + fChunk * ((float)iCurrentPath / (float)PathKeys.Count);
 
                         EditorUtility.DisplayProgressBar("Animation Hierarchy Progress", "How far along the animation editing has progressed.", fProgress);
                     }
@@ -425,9 +438,9 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 AnimationClip animationClip = AnimationClips[iCurrentClip];
                 Undo.RecordObject(animationClip, "Animation Hierarchy Root Change");
 
-                for (int iCurrentPath = 0; iCurrentPath < PathsKeys.Count; iCurrentPath++)
+                for (int iCurrentPath = 0; iCurrentPath < PathKeys.Count; iCurrentPath++)
                 {
-                    string path = PathsKeys[iCurrentPath] as string;
+                    string path = PathKeys[iCurrentPath] as string;
                     ArrayList curves = (ArrayList)Paths[path];
 
                     for (int i = 0; i < curves.Count; i++)
@@ -461,7 +474,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                     }
 
                     float fChunk = 1f / AnimationClips.Count;
-                    fProgress = (iCurrentClip * fChunk) + fChunk * ((float)iCurrentPath / (float)PathsKeys.Count);
+                    fProgress = (iCurrentClip * fChunk) + fChunk * ((float)iCurrentPath / (float)PathKeys.Count);
 
                     EditorUtility.DisplayProgressBar(
                         "Animation Hierarchy Progress",

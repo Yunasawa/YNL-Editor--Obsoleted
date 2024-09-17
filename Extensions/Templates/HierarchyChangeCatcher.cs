@@ -75,9 +75,7 @@ namespace YNL.Editors.Extensions
             if (IsInPrefabMode) GetAllObjectsOnPrefab(CurrentKeys, PrefabStageUtility.GetCurrentPrefabStage());
             else GetAllObjectsOnScene(CurrentKeys);
 
-            //MDebug.Log($"PreviousKeys: {PreviousKeys.Count} - CurrentKeys: {CurrentKeys.Count}");//
-
-            if (PreviousKeys.Count == CurrentKeys.Count - 1)
+            if (PreviousKeys.Count == CurrentKeys.Count - 1) // Create multiple object
             {
                 for (int i = 0; i < CurrentKeys.Count; i++)
                 {
@@ -89,26 +87,19 @@ namespace YNL.Editors.Extensions
                     }
                 }
             }
-            else if (PreviousKeys.Count < CurrentKeys.Count - 1)
+            else if (PreviousKeys.Count < CurrentKeys.Count - 1) // Create multiple objects
             {
                 MDebug.Warning("Created multiple objects");
+
+                RefreshPreviousKeys();
             }
-            else if (PreviousKeys.Count == CurrentKeys.Count + 1)
+            else if (PreviousKeys.Count > CurrentKeys.Count) // Destroy multiple objects
             {
-                for (int i = 0; i < CurrentKeys.Count; i++)
-                {
-                    if (i == CurrentKeys.Count || PreviousKeys[i] != CurrentKeys[i])
-                    {
-                        EEditor.Event.OnHierarchyObjectDestroyed?.Invoke(PreviousKeys[i].Path, PreviousKeys[i].Object);
-                        MDebug.Log(PreviousKeys[i].Object);
-                        RefreshPreviousKeys();
-                        break;
-                    }
-                }
-            }
-            else if (PreviousKeys.Count > CurrentKeys.Count + 1)
-            {
-                MDebug.Warning("Destroyed multiple objects");
+                (string previousPath, GameObject previousObject)[] removedPaths = PreviousKeys
+                    .Except(CurrentKeys, new GameObjectKeyComparer())
+                    .Select(e => (e.Path, e.Object)).ToArray();
+
+                EEditor.Event.OnHierarchyObjectDestroyed?.Invoke(removedPaths);
             }
             else
             {
@@ -168,12 +159,9 @@ namespace YNL.Editors.Extensions
         {
             if (IsInPrefabMode) OnPrefabOpened(PrefabStageUtility.GetCurrentPrefabStage());
             else OnSceneOpened(SceneManager.GetActiveScene(), OpenSceneMode.Single);
-        }
 
-        protected virtual void OnGameObjectCreated(GameObject gameObject) { }
-        protected virtual void OnGameObjectDestroyed(GameObject gameObject) { }
-        protected virtual void OnGameObjectRenamed(GameObject gameObject) { }
-        protected virtual void OnGameObjectMoved(GameObject gameObject) { }
+            MDebug.Log($"PreviousKeys: {PreviousKeys.Count} - CurrentKeys: {CurrentKeys.Count}");
+        }
     }
 
     [System.Serializable]
@@ -197,12 +185,11 @@ namespace YNL.Editors.Extensions
         public static bool operator !=(GameObjectKey key1, GameObjectKey key2) => key1.Path != key2.Path; 
     }
 
-    public class Singleton<T> where T : class, new()
+    public class GameObjectKeyComparer : IEqualityComparer<GameObjectKey>
     {
-        private static readonly Lazy<T> _instance = new Lazy<T>(() => new T());
-        public static T Instance => _instance.Value;
+        public bool Equals(GameObjectKey x, GameObjectKey y) => x.Path == y.Path;
 
-        public Singleton() { }
+        public int GetHashCode(GameObjectKey obj) => obj.Path.GetHashCode();
     }
 }
 #endif

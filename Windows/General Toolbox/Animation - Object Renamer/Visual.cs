@@ -262,9 +262,9 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             _rootNamePanel.ClearAllClipItem();
             if (Handler.Paths != null && !Handler.AnimationClips.IsEmpty())
             {
-                if (Handler.PathsKeys.Count > 0)
+                if (Handler.PathKeys.Count > 0)
                 {
-                    foreach (string path in Handler.PathsKeys)
+                    foreach (string path in Handler.PathKeys)
                     {
                         CreateClipPathItem(path);
                     }
@@ -283,11 +283,11 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         {
             isSucceeded = true;
 
-            if (!Handler.AnimationClips.IsEmpty() && Handler.PathsKeys.Count > 0)
+            if (!Handler.AnimationClips.IsEmpty() && Handler.PathKeys.Count > 0)
             {
                 List<string> paths = new();
 
-                foreach (var path in Handler.PathsKeys) paths.Add((string)path);
+                foreach (var path in Handler.PathKeys) paths.Add((string)path);
 
                 if (paths.Contains(oldPath) && paths.Contains(newPath))
                 {
