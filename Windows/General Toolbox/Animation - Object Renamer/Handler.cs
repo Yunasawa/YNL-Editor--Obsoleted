@@ -7,9 +7,7 @@ using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 using YNL.Extensions.Methods;
-using YNL.Utilities.Extensions;
 using YNL.Editors.Extensions;
-using UnityEngine.Pool;
 
 namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
@@ -140,6 +138,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             int clipCount = 0;
             bool newPathExisted = false;
 
+            string preOldPath = "";
+
             foreach (var renamedObject in renamedObjects)
             {
                 isDuplicated = renamedObject.obj.HasDuplicatedNameInSamePath();
@@ -150,8 +150,13 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 {
                     newPathExisted = false;
 
-                    oldPath = $"{renamedObject.obj.GetAnimationPath(animator, false)}/{renamedObject.name}";
+                    preOldPath = renamedObject.obj.GetAnimationPath(animator, false);
+                    if (preOldPath != "") preOldPath += "/";
+
+                    oldPath = $"{preOldPath}{renamedObject.name}";
                     newPath = renamedObject.obj.GetAnimationPath(animator);
+
+                    MDebug.Notify($"{renamedObject.obj.name} | {animator.name}: {oldPath}\n{newPath}");
 
                     AnimationClips = GetAnimationClips(animator).ToList();
                     FillModel();

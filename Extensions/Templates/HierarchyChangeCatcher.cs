@@ -93,7 +93,7 @@ namespace YNL.Editors.Extensions
 
                 RefreshPreviousKeys();
             }
-            else if (PreviousKeys.Count > CurrentKeys.Count) // Destroy multiple objects
+            else if (PreviousKeys.Count > CurrentKeys.Count) // Destroy single & multiple objects
             {
                 (string previousPath, GameObject previousObject)[] removedPaths = PreviousKeys
                     .Except(CurrentKeys, new GameObjectKeyComparer())
@@ -110,7 +110,7 @@ namespace YNL.Editors.Extensions
 
                 for (int i = 0; i < PreviousKeys.Count; i++)
                 {
-                    if (PreviousKeys[i] != CurrentKeys[i])
+                    if (PreviousKeys[i].Path.HasBeenRenamed(CurrentKeys[i].Path))
                     {
                         if (PreviousKeys[i].Object == CurrentKeys[i].Object)
                         {

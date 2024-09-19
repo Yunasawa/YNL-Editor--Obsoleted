@@ -20,129 +20,169 @@ MonoBehaviour:
       IsSucceeded: 1
       CurrentTime: '<color=#96ffdc>9/19/2024</color>
 
-        5:09:40 PM'
-      Name: Toe Root 5-|Toe Root 5-a
-      AnimatorAmount: 1
-      ClipAmount: 2
-      BindedObject: {fileID: 0}
-      BindedObjectID: 30160
-    - Event: 0
-      IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/19/2024</color>
-
-        5:09:55 PM'
-      Name: Foot Root 2.2|a
-      AnimatorAmount: 1
-      ClipAmount: 12
-      BindedObject: {fileID: 0}
-      BindedObjectID: 30164
-    - Event: 0
-      IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/19/2024</color>
-
-        5:09:57 PM'
-      Name: a|Foot Root 2.2
-      AnimatorAmount: 1
-      ClipAmount: 12
-      BindedObject: {fileID: 0}
-      BindedObjectID: 30164
-    - Event: 0
-      IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/19/2024</color>
-
-        5:10:10 PM'
-      Name: Hand Root 2.1|a
-      AnimatorAmount: 1
-      ClipAmount: 4
-      BindedObject: {fileID: 0}
-      BindedObjectID: 30162
-    - Event: 0
-      IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/19/2024</color>
-
-        5:10:11 PM'
-      Name: a|Hand Root 2.1
-      AnimatorAmount: 1
-      ClipAmount: 4
-      BindedObject: {fileID: 0}
-      BindedObjectID: 30162
-    - Event: 0
-      IsSucceeded: 0
-      CurrentTime: '<color=#96ffdc>9/19/2024</color>
-
-        5:10:25 PM'
-      Name: Toe Root 5-|Toe Root 4
-      AnimatorAmount: 1
-      ClipAmount: 2
-      BindedObject: {fileID: 0}
-      BindedObjectID: 30160
-    - Event: 0
-      IsSucceeded: 0
-      CurrentTime: '<color=#96ffdc>9/19/2024</color>
-
-        5:10:32 PM'
-      Name: Toe Root 5-|Toe Root 2-
-      AnimatorAmount: 1
-      ClipAmount: 2
-      BindedObject: {fileID: 0}
-      BindedObjectID: 30160
-    - Event: 0
-      IsSucceeded: 0
-      CurrentTime: '<color=#96ffdc>9/19/2024</color>
-
-        5:10:36 PM'
-      Name: Toe Root 4|Toe Root 5-
-      AnimatorAmount: 1
-      ClipAmount: 2
-      BindedObject: {fileID: 0}
-      BindedObjectID: 30238
-    - Event: 0
-      IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/19/2024</color>
-
-        5:11:00 PM'
-      Name: Foot Root 2.2|a
-      AnimatorAmount: 1
-      ClipAmount: 12
-      BindedObject: {fileID: 0}
-      BindedObjectID: 30164
-    - Event: 0
-      IsSucceeded: 1
-      CurrentTime: '<color=#96ffdc>9/19/2024</color>
-
-        5:11:01 PM'
-      Name: a|Foot Root 2.2
-      AnimatorAmount: 1
-      ClipAmount: 12
-      BindedObject: {fileID: 0}
-      BindedObjectID: 30164
-    - Event: 0
-      IsSucceeded: 0
-      CurrentTime: '<color=#96ffdc>9/19/2024</color>
-
-        5:11:17 PM'
-      Name: Toe Root 2-|a
-      AnimatorAmount: 1
+        11:26:14 PM'
+      Name: Second 1aa|Second 1
+      AnimatorAmount: 2
       ClipAmount: 6
       BindedObject: {fileID: 0}
-      BindedObjectID: 30198
+      BindedObjectID: 28776
     - Event: 0
       IsSucceeded: 1
       CurrentTime: '<color=#96ffdc>9/19/2024</color>
 
-        5:11:29 PM'
-      Name: Foot Root 2.2|a
-      AnimatorAmount: 1
-      ClipAmount: 12
+        11:29:56 PM'
+      Name: 2.2.2|2.2.2a
+      AnimatorAmount: 2
+      ClipAmount: 2
       BindedObject: {fileID: 0}
-      BindedObjectID: 30164
+      BindedObjectID: 28872
     - Event: 0
       IsSucceeded: 1
       CurrentTime: '<color=#96ffdc>9/19/2024</color>
 
-        5:11:30 PM'
-      Name: a|Foot Root 2.2
-      AnimatorAmount: 1
-      ClipAmount: 12
+        11:30:10 PM'
+      Name: 2.1.2|2.1.2aa
+      AnimatorAmount: 2
+      ClipAmount: 2
       BindedObject: {fileID: 0}
-      BindedObjectID: 30164
+      BindedObjectID: 28770
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        11:30:27 PM'
+      Name: Second 1|Second 1a
+      AnimatorAmount: 2
+      ClipAmount: 6
+      BindedObject: {fileID: 0}
+      BindedObjectID: 28776
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        11:30:33 PM'
+      Name: Second 1a|Second 1
+      AnimatorAmount: 2
+      ClipAmount: 6
+      BindedObject: {fileID: 0}
+      BindedObjectID: 28776
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        11:30:39 PM'
+      Name: Second 1|Second 1a
+      AnimatorAmount: 2
+      ClipAmount: 6
+      BindedObject: {fileID: 0}
+      BindedObjectID: 28776
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        11:32:54 PM'
+      Name: Second 1a|Second 1
+      AnimatorAmount: 2
+      ClipAmount: 6
+      BindedObject: {fileID: 0}
+      BindedObjectID: 28776
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        11:32:58 PM'
+      Name: Second 1|Second 1a
+      AnimatorAmount: 2
+      ClipAmount: 6
+      BindedObject: {fileID: 0}
+      BindedObjectID: 28776
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        11:33:26 PM'
+      Name: Second 1a|Second 1
+      AnimatorAmount: 2
+      ClipAmount: 6
+      BindedObject: {fileID: 0}
+      BindedObjectID: 28776
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        11:33:46 PM'
+      Name: Second 1|Second 1a
+      AnimatorAmount: 2
+      ClipAmount: 6
+      BindedObject: {fileID: 0}
+      BindedObjectID: 28776
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        11:34:06 PM'
+      Name: Second 1a|Second 1
+      AnimatorAmount: 2
+      ClipAmount: 6
+      BindedObject: {fileID: 0}
+      BindedObjectID: 28776
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        11:35:24 PM'
+      Name: Second 1|Second 1a
+      AnimatorAmount: 2
+      ClipAmount: 6
+      BindedObject: {fileID: 0}
+      BindedObjectID: 28776
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        11:35:32 PM'
+      Name: Second 1a|Second 1
+      AnimatorAmount: 2
+      ClipAmount: 6
+      BindedObject: {fileID: 0}
+      BindedObjectID: 28776
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        11:38:35 PM'
+      Name: Second 1|Second 1a
+      AnimatorAmount: 2
+      ClipAmount: 2
+      BindedObject: {fileID: 0}
+      BindedObjectID: 28776
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        11:40:34 PM'
+      Name: Second 1|aaa
+      AnimatorAmount: 2
+      ClipAmount: 2
+      BindedObject: {fileID: 0}
+      BindedObjectID: 28776
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        11:45:51 PM'
+      Name: Second 1|aa
+      AnimatorAmount: 2
+      ClipAmount: 2
+      BindedObject: {fileID: 0}
+      BindedObjectID: 28776
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        11:53:44 PM'
+      Name: Second 1|aaa
+      AnimatorAmount: 2
+      ClipAmount: 2
+      BindedObject: {fileID: 0}
+      BindedObjectID: 28776
