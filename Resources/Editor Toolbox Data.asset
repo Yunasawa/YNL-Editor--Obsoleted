@@ -15,4 +15,24 @@ MonoBehaviour:
   CurrentWindow: 2
   AnimationObjectRenamer:
     IsAutomaticOn: 1
-    AutomaticLogs: []
+    AutomaticLogs:
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        8:49:13 AM'
+      Name: Toe Root 3|aaa
+      AnimatorAmount: 1
+      ClipAmount: 0
+      BindedObject: {fileID: 0}
+      BindedObjectID: 30194
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        8:49:14 AM'
+      Name: aaa|Toe Root 4
+      AnimatorAmount: 1
+      ClipAmount: 0
+      BindedObject: {fileID: 0}
+      BindedObjectID: 30238

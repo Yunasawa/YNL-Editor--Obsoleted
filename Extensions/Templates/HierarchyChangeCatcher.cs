@@ -160,7 +160,7 @@ namespace YNL.Editors.Extensions
             if (IsInPrefabMode) OnPrefabOpened(PrefabStageUtility.GetCurrentPrefabStage());
             else OnSceneOpened(SceneManager.GetActiveScene(), OpenSceneMode.Single);
 
-            MDebug.Log($"PreviousKeys: {PreviousKeys.Count} - CurrentKeys: {CurrentKeys.Count}");
+            //MDebug.Log($"PreviousKeys: {PreviousKeys.Count} - CurrentKeys: {CurrentKeys.Count}");
         }
     }
 

@@ -89,9 +89,6 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
                     foreach (string path in PathKeys)
                     {
-                        //if (path.Contains(removedPath.obj.GetAnimationPath(animator))) MDebug.Action($"{path}\n{removedPath.obj.GetAnimationPath(animator)}");
-                        //else MDebug.Log($"{path}\n{removedPath.obj.GetAnimationPath(animator)}");
-
                         if (path.Contains(removedPath.obj.GetAnimationPath(animator)))
                         {
                             isExistingInClips = true;
@@ -102,8 +99,6 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
                     clipCount += AnimationClips.Count;
                 }
-
-                //s MDebug.Log($"{removedPath.obj.name} - {isExistingInClips}");
 
                 if (!isExistingInClips)
                 {
@@ -125,103 +120,165 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 AORSettings.AutomaticLog log = new(AORSettings.Event.Destroy, false, finalName, animators.Length, clipCount, removedPaths[0].obj);
                 Variable.AutomaticLogs.Add(log);
 
-                PreviousName = "";
-
                 Visual.UpdateLogPanel();
                 Variable.SaveData();
             }
         }
 
-        private static void OnGameObjectRenamed((GameObject, string)[] tuples)
+        private static void OnGameObjectRenamed((GameObject obj, string name)[] renamedObjects)
         {
             if (!Variable.IsAutomaticOn) return;
 
-            GameObject obj = tuples[0].Item1;
-
-            PreviousName = tuples[0].Item2;
-            SelectedObject = obj;
-
-            bool isSucceeded = true;
+            Animator[] animators = new Animator[0];
+            bool isDuplicated = false;
+            string newName = renamedObjects[0].obj.name;
+            string oldPath = "";
+            string newPath = "";
             bool isShowLog = true;
-            string objectName = obj.name;
-
+            bool ableToRename = true;
+            bool isSucceeded = true;
             int clipCount = 0;
-            GameObject gameObject = obj;
-
-            Animator[] animators = GetAnimatorsInParents(obj);
-
-            bool duplicated = obj.HasDuplicatedNameInSamePath();
-            string parentPath = "";
-            (string oldPath, string newPath) animationPath = new();
-
-            foreach (var animator in animators)
+            bool newPathExisted = false;
+#if false
+            foreach (var renamedObject in renamedObjects)
             {
-                parentPath = obj.GetAnimationPath(animator, false);
-                animationPath = new($"{parentPath}/{PreviousName}", $"{parentPath}/{obj.name}");
+                isDuplicated = renamedObject.obj.HasDuplicatedNameInSamePath();
 
-                AnimationClips = GetAnimationClips(animator).ToList();
-                FillModel();
+                if (!renamedObject.obj.IsNullOrDestroyed()) animators = GetAnimatorsInParents(renamedObject.obj);
 
-                foreach (string path in PathKeys)
+                foreach (var animator in animators)
                 {
-                    if (path.Contains(animationPath.oldPath)) ValidPaths.Add(path);
-                    else if (path.Contains(animationPath.newPath)) InvalidCount++;
-                }
+                    oldPath = $"{renamedObject.obj.GetAnimationPath(animator, false)}/{renamedObject.name}";
+                    newPath = renamedObject.obj.GetAnimationPath(animator);
 
-                if (isSucceeded)
-                {
-                    if ((ValidPaths.Count == 0 && InvalidCount > 0 && duplicated) ||
-                        (ValidPaths.Count != 0 && duplicated))
+                    AnimationClips = GetAnimationClips(animator).ToList();
+                    FillModel();
+
+                    foreach (string path in PathKeys)
                     {
-                        if (EditorUtility.DisplayDialog(
-                            "Duplicated GameObject's name",
-                            "You are trying to rename this GameObject into a new name, which may cause a duplication error in Animation Clips.",
-                            "Understand",
-                            "Close"))
-                        {
-                            foreach (var pair in tuples) pair.Item1.name = pair.Item2;
-                            isSucceeded = false;
-                            isShowLog = true;
-
-                            //HierarchyChangeCatcher.RefreshPreviousKeys();
-                        }
-                        else
-                        {
-                            foreach (var pair in tuples) pair.Item1.name = pair.Item2;
-                            isSucceeded = false;
-                            isShowLog = true;
-
-                            //HierarchyChangeCatcher.RefreshPreviousKeys();
-                        }
+                        if (path.Contains(oldPath)) ValidPaths.Add(path);
+                        else if (path.Contains(newPath)) InvalidCount++;
                     }
-                    else if (ValidPaths.Count != 0)
+
+                    bool oldNameExisted = !ValidPaths.IsEmpty();
+                    bool newNameExisted = InvalidCount != 0;
+
+                    if (!oldNameExisted && !newNameExisted) isShowLog = false;
+
+                    if (isDuplicated && (!oldNameExisted ? newNameExisted : !newNameExisted || newNameExisted)) ableToRename = false; 
+                
+                    if (renamedObjects.Length == 1 && oldNameExisted)
                     {
                         foreach (string path in ValidPaths)
                         {
-                            Visual.ReplaceClipPathItem(path, path.Replace(animationPath.oldPath, animationPath.newPath), out isSucceeded, true);
+                            MDebug.Warning($"{path}\n{path.Replace(oldPath, newPath)}");
+                            Visual.ReplaceClipPathItem(path, path.Replace(oldPath, newPath), out isSucceeded, true);
                         }
+                    }
 
+                    if (!ableToRename)
+                    {
+                        EditorUtility.DisplayDialog(
+                            "Duplicated GameObject's name",
+                            "You are trying to rename this GameObject into a new name, which may cause a duplication error in Animation Clips.",
+                            "Understand",
+                            "Close");
+
+                        isSucceeded = false;
                         isShowLog = true;
                     }
 
-                    if (ValidPaths.Count == 0 && InvalidCount == 0) isShowLog = false;
+                    renamedObject.obj.name = renamedObject.name;
+
+                    clipCount += AnimationClips.Count;
+
+                    AnimationClips.Clear();
+                    Paths.Clear();
+                    PathKeys.Clear();
+                    ValidPaths.Clear();
+                    InvalidCount = 0;
                 }
+            }
 
-                clipCount += AnimationClips.Count;
+            if (ableToRename)
+            {
+                foreach (var renamedObject in renamedObjects)
+                {
+                    renamedObject.obj.name = newName;
 
-                AnimationClips.Clear();
-                Paths.Clear();
-                PathKeys.Clear();
-                ValidPaths.Clear();
-                InvalidCount = 0;
+                    if (!renamedObject.obj.IsNullOrDestroyed()) animators = GetAnimatorsInParents(renamedObject.obj);
+
+                    foreach (var animator in animators)
+                    {
+                        oldPath = $"{renamedObject.obj.GetAnimationPath(animator, false)}/{renamedObject.name}";
+                        newPath = renamedObject.obj.GetAnimationPath(animator);
+
+                        AnimationClips = GetAnimationClips(animator).ToList();
+                        FillModel();
+
+                        foreach (string path in PathKeys)
+                        {
+                            if (path.Contains(oldPath))
+                            {
+                                Visual.ReplaceClipPathItem(path, path.Replace(oldPath, newPath), out isSucceeded, true);
+                            }
+                        }
+                    }
+                }
+            }
+#endif
+
+            foreach (var renamedObject in renamedObjects)
+            {
+                isDuplicated = renamedObject.obj.HasDuplicatedNameInSamePath();
+
+                if (!renamedObject.obj.IsNullOrDestroyed()) animators = GetAnimatorsInParents(renamedObject.obj);
+
+                foreach (var animator in animators)
+                {
+                    newPathExisted = false;
+
+                    oldPath = $"{renamedObject.obj.GetAnimationPath(animator, false)}/{renamedObject.name}";
+                    newPath = renamedObject.obj.GetAnimationPath(animator);
+
+                    AnimationClips = GetAnimationClips(animator).ToList();
+                    FillModel();
+
+                    foreach (string path in PathKeys)
+                    {
+                        if (path.Contains(oldPath)) ValidPaths.Add(path);
+                        else if (path.Contains(newPath)) newPathExisted = true;
+                    }
+
+                    if (isDuplicated && (newPathExisted || !ValidPaths.IsEmpty()))
+                    {
+                        EditorUtility.DisplayDialog(
+                            "Duplicated GameObject's name",
+                            "You are trying to rename this GameObject into a new name, which may cause a duplication error in Animation Clips.",
+                            "Understand",
+                            "Close");
+
+                        renamedObject.obj.name = renamedObject.name;
+
+                        EditorApplication.RepaintAnimationWindow();
+
+                        isSucceeded = false;
+                        isShowLog = true;
+                    }
+                    else
+                    {
+                        foreach (var path in ValidPaths)
+                        {
+                            Visual.ReplaceClipPathItem(path, path.Replace(oldPath, newPath), out isSucceeded, true);
+                        }
+                    }
+                }
             }
 
             if (isShowLog)
             {
-                MDebug.Warning($"{animationPath.oldPath}\n{animationPath.newPath}");
-
-                string finalName = $"{PreviousName}|{objectName}";
-                AORSettings.AutomaticLog log = new(AORSettings.Event.Rename, isSucceeded, finalName, animators.Length, clipCount, gameObject);
+                string finalName = $"{renamedObjects[0].name}|{newName}";
+                AORSettings.AutomaticLog log = new(AORSettings.Event.Rename, isSucceeded, finalName, animators.Length, clipCount, renamedObjects[0].obj);
                 Variable.AutomaticLogs.Add(log);
 
                 Visual.UpdateLogPanel();
@@ -233,7 +290,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         {
 
         }
-        #endregion
+#endregion
         #region ▶ Handle Functions
         public static Animator[] GetAnimatorsInParents(GameObject obj)
         {
@@ -266,7 +323,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                         }
                         if (!ClipColors.ContainsKey((AnimationClip)obj))
                         {
-                            Color bindedColor = new Color(UnityEngine.Random.Range(100, 255), UnityEngine.Random.Range(100, 255), UnityEngine.Random.Range(100, 255), 1).Normalize();
+                            Color bindedColor = MColor.RandomColor(100, 255);
                             ClipColors.Add((AnimationClip)obj, bindedColor);
                         }
                     }
@@ -281,7 +338,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 PathColors.Clear();
                 AnimationClips.Clear();
 
-                ClipColors.Add((AnimationClip)Selection.activeObject, CColor.MediumSpringGreen);
+                ClipColors.Add((AnimationClip)Selection.activeObject, MColor.RandomColor(100, 255));
                 AnimationClips.Add((AnimationClip)Selection.activeObject);
 
                 Visual.PresentAllClips(ClipColors);
