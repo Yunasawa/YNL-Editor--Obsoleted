@@ -293,7 +293,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 {
                     ReplaceRoot();
 
-                    if (!Variable.IsAutomaticPanel) MDebug.Custom("Swap", $"{oldPath} ▶ {newPath}", CColor.Macaroon.ToHex());
+                    if (!Variable.IsAutomaticPanel && !isAuto) MDebug.Custom("Swap", $"{oldPath} ▶ {newPath}", CColor.Macaroon.ToHex());
                 }
                 else
                 {

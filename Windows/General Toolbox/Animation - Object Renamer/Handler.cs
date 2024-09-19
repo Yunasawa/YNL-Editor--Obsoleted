@@ -139,7 +139,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             bool isSucceeded = true;
             int clipCount = 0;
             bool newPathExisted = false;
-#if false
+
             foreach (var renamedObject in renamedObjects)
             {
                 isDuplicated = renamedObject.obj.HasDuplicatedNameInSamePath();
@@ -148,6 +148,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
                 foreach (var animator in animators)
                 {
+                    newPathExisted = false;
+
                     oldPath = $"{renamedObject.obj.GetAnimationPath(animator, false)}/{renamedObject.name}";
                     newPath = renamedObject.obj.GetAnimationPath(animator);
 
@@ -157,38 +159,28 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                     foreach (string path in PathKeys)
                     {
                         if (path.Contains(oldPath)) ValidPaths.Add(path);
-                        else if (path.Contains(newPath)) InvalidCount++;
+                        else if (path.Contains(newPath)) newPathExisted = true;
                     }
 
-                    bool oldNameExisted = !ValidPaths.IsEmpty();
-                    bool newNameExisted = InvalidCount != 0;
-
-                    if (!oldNameExisted && !newNameExisted) isShowLog = false;
-
-                    if (isDuplicated && (!oldNameExisted ? newNameExisted : !newNameExisted || newNameExisted)) ableToRename = false; 
-                
-                    if (renamedObjects.Length == 1 && oldNameExisted)
+                    if (isDuplicated && (newPathExisted || !ValidPaths.IsEmpty()))
                     {
-                        foreach (string path in ValidPaths)
-                        {
-                            MDebug.Warning($"{path}\n{path.Replace(oldPath, newPath)}");
-                            Visual.ReplaceClipPathItem(path, path.Replace(oldPath, newPath), out isSucceeded, true);
-                        }
-                    }
+                        MDebug.Caution("Failed");
 
-                    if (!ableToRename)
-                    {
-                        EditorUtility.DisplayDialog(
-                            "Duplicated GameObject's name",
-                            "You are trying to rename this GameObject into a new name, which may cause a duplication error in Animation Clips.",
-                            "Understand",
-                            "Close");
+                        if (renamedObjects.Length == 1) renamedObject.obj.name = renamedObject.name;
+
+                        EditorApplication.RepaintAnimationWindow();
 
                         isSucceeded = false;
                         isShowLog = true;
                     }
-
-                    renamedObject.obj.name = renamedObject.name;
+                    else
+                    {
+                        foreach (var path in ValidPaths)
+                        {
+                            Visual.ReplaceClipPathItem(path, path.Replace(oldPath, newPath), out isSucceeded, true);
+                            isShowLog = true;
+                        }
+                    }
 
                     clipCount += AnimationClips.Count;
 
@@ -200,152 +192,9 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 }
             }
 
-            if (ableToRename)
+            if (!isSucceeded)
             {
-                foreach (var renamedObject in renamedObjects)
-                {
-                    renamedObject.obj.name = newName;
-
-                    if (!renamedObject.obj.IsNullOrDestroyed()) animators = GetAnimatorsInParents(renamedObject.obj);
-
-                    foreach (var animator in animators)
-                    {
-                        oldPath = $"{renamedObject.obj.GetAnimationPath(animator, false)}/{renamedObject.name}";
-                        newPath = renamedObject.obj.GetAnimationPath(animator);
-
-                        AnimationClips = GetAnimationClips(animator).ToList();
-                        FillModel();
-
-                        foreach (string path in PathKeys)
-                        {
-                            if (path.Contains(oldPath))
-                            {
-                                Visual.ReplaceClipPathItem(path, path.Replace(oldPath, newPath), out isSucceeded, true);
-                            }
-                        }
-                    }
-                }
-            }
-#endif
-            if (renamedObjects.Length == 1)
-            {
-                foreach (var renamedObject in renamedObjects)
-                {
-                    isDuplicated = renamedObject.obj.HasDuplicatedNameInSamePath();
-
-                    if (!renamedObject.obj.IsNullOrDestroyed()) animators = GetAnimatorsInParents(renamedObject.obj);
-
-                    foreach (var animator in animators)
-                    {
-                        newPathExisted = false;
-
-                        oldPath = $"{renamedObject.obj.GetAnimationPath(animator, false)}/{renamedObject.name}";
-                        newPath = renamedObject.obj.GetAnimationPath(animator);
-
-                        AnimationClips = GetAnimationClips(animator).ToList();
-                        FillModel();
-
-                        foreach (string path in PathKeys)
-                        {
-                            if (path.Contains(oldPath)) ValidPaths.Add(path);
-                            else if (path.Contains(newPath)) newPathExisted = true;
-                        }
-
-                        if (isDuplicated && (newPathExisted || !ValidPaths.IsEmpty()))
-                        {
-                            EditorUtility.DisplayDialog(
-                                "Duplicated GameObject's name",
-                                "You are trying to rename this GameObject into a new name, which may cause a duplication error in Animation Clips.",
-                                "Understand",
-                                "Close");
-
-                            renamedObject.obj.name = renamedObject.name;
-
-                            EditorApplication.RepaintAnimationWindow();
-
-                            isSucceeded = false;
-                            isShowLog = true;
-                        }
-                        else
-                        {
-                            foreach (var path in ValidPaths)
-                            {
-                                Visual.ReplaceClipPathItem(path, path.Replace(oldPath, newPath), out isSucceeded, true);
-                                isShowLog = true;
-                            }
-                        }
-
-                        clipCount += AnimationClips.Count;
-
-                        AnimationClips.Clear();
-                        Paths.Clear();
-                        PathKeys.Clear();
-                        ValidPaths.Clear();
-                        InvalidCount = 0;
-                    }
-                }
-            }
-            else
-            {
-                bool isAllSamePath = false;
-                HashSet<string> duplicatedPath = new();
-                foreach (var renamedObject in renamedObjects)
-                {
-                    if (!duplicatedPath.Add(renamedObject.obj.GetPath(false))) isAllSamePath = true;
-                }
-
-                foreach (var renamedObject in renamedObjects)
-                {
-                    if (!renamedObject.obj.IsNullOrDestroyed()) animators = GetAnimatorsInParents(renamedObject.obj);
-
-                    foreach (var animator in animators)
-                    {
-                        newPathExisted = false;
-
-                        oldPath = $"{renamedObject.obj.GetAnimationPath(animator, false)}/{renamedObject.name}";
-                        newPath = renamedObject.obj.GetAnimationPath(animator);
-
-                        AnimationClips = GetAnimationClips(animator).ToList();
-                        FillModel();
-
-                        foreach (string path in PathKeys)
-                        {
-                            if (path.Contains(oldPath)) ValidPaths.Add(path);
-                            else if (path.Contains(newPath)) newPathExisted = true;
-                        }
-
-                        if (isAllSamePath && (newPathExisted || !ValidPaths.IsEmpty()))
-                        {
-                            //EditorUtility.DisplayDialog(
-                            //    "Duplicated GameObject's name",
-                            //    "You are trying to rename this GameObject into a new name, which may cause a duplication error in Animation Clips.",
-                            //    "Understand",
-                            //    "Close");
-
-                            MDebug.Log("Failed");
-
-                            EditorApplication.RepaintAnimationWindow();
-
-                            isSucceeded = false;
-                            isShowLog = true;
-
-                            break;
-                        }
-                        else
-                        {
-                            foreach (var path in ValidPaths)
-                            {
-                                Visual.ReplaceClipPathItem(path, path.Replace(oldPath, newPath), out isSucceeded, true);
-                                isShowLog = true;
-                            }
-                        }
-                    }
-                }
-
-                if (!isSucceeded)
-                {
-                    foreach (var renamedObject in renamedObjects) renamedObject.obj.name = renamedObject.name;
-                }
+                foreach (var renamedObject in renamedObjects) renamedObject.obj.name = renamedObject.name;
             }
 
             if (isShowLog)
