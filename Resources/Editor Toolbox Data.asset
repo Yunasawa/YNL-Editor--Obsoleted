@@ -20,8 +20,38 @@ MonoBehaviour:
       IsSucceeded: 1
       CurrentTime: '<color=#96ffdc>9/19/2024</color>
 
-        8:49:13 AM'
-      Name: Toe Root 3|aaa
+        1:13:12 PM'
+      Name: Toe Root 5-|Toe Root 5-aaa
+      AnimatorAmount: 1
+      ClipAmount: 8
+      BindedObject: {fileID: 0}
+      BindedObjectID: 30160
+    - Event: 0
+      IsSucceeded: 0
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        1:13:17 PM'
+      Name: Foot Root 2.3|asdasd
+      AnimatorAmount: 1
+      ClipAmount: 0
+      BindedObject: {fileID: 0}
+      BindedObjectID: 30150
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        1:13:38 PM'
+      Name: Foot Root 2.4 (1)|Foot Root 2.5
+      AnimatorAmount: 1
+      ClipAmount: 8
+      BindedObject: {fileID: 0}
+      BindedObjectID: -24418
+    - Event: 0
+      IsSucceeded: 0
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        1:13:59 PM'
+      Name: Toe Root 3|asd
       AnimatorAmount: 1
       ClipAmount: 0
       BindedObject: {fileID: 0}
@@ -30,8 +60,68 @@ MonoBehaviour:
       IsSucceeded: 1
       CurrentTime: '<color=#96ffdc>9/19/2024</color>
 
-        8:49:14 AM'
-      Name: aaa|Toe Root 4
+        1:14:04 PM'
+      Name: Toe Root 4|asd
+      AnimatorAmount: 1
+      ClipAmount: 0
+      BindedObject: {fileID: 0}
+      BindedObjectID: 30238
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        1:14:05 PM'
+      Name: asd|Toe Root 4
+      AnimatorAmount: 1
+      ClipAmount: 0
+      BindedObject: {fileID: 0}
+      BindedObjectID: 30238
+    - Event: 0
+      IsSucceeded: 0
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        1:14:08 PM'
+      Name: Foot Root 2.2|asd
+      AnimatorAmount: 1
+      ClipAmount: 0
+      BindedObject: {fileID: 0}
+      BindedObjectID: 30164
+    - Event: 0
+      IsSucceeded: 0
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        1:14:11 PM'
+      Name: Foot Root 2.2|asd
+      AnimatorAmount: 1
+      ClipAmount: 0
+      BindedObject: {fileID: 0}
+      BindedObjectID: 30164
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        1:14:36 PM'
+      Name: Toe Root 5-|aaa
+      AnimatorAmount: 1
+      ClipAmount: 0
+      BindedObject: {fileID: 0}
+      BindedObjectID: 30160
+    - Event: 0
+      IsSucceeded: 1
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        1:14:41 PM'
+      Name: aaa|Toe Root 5-
+      AnimatorAmount: 1
+      ClipAmount: 0
+      BindedObject: {fileID: 0}
+      BindedObjectID: 30160
+    - Event: 0
+      IsSucceeded: 0
+      CurrentTime: '<color=#96ffdc>9/19/2024</color>
+
+        1:14:54 PM'
+      Name: Toe Root 4|aaa
       AnimatorAmount: 1
       ClipAmount: 0
       BindedObject: {fileID: 0}

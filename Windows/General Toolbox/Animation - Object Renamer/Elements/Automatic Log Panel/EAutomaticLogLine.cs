@@ -34,8 +34,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             string logOldName = log.Name.Split("|")[0];
             string logNewName = log.Name.Split("|")[1];
 
-            string oldName = $"<color=#a6fff9>{logOldName.FillSpace(logNewName.Length)}</color>";
-            string newName = $"<color=#a6fff9>{logNewName.FillSpace(logOldName.Length)}</color>";
+            string oldName = $"<color=#fff5a8>{logOldName.FillSpace(logNewName.Length, '`')}</color>";
+            string newName = $"<color=#fff5a8>{logNewName.FillSpace(logOldName.Length, '`')}</color>";
 
             string oldPath = ""; 
             string newPath = "";
@@ -54,7 +54,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             string pathText = $"{oldPath.HighlightDifferences(newPath, true, header, footer)} ▶ {newName.HighlightDifferences(oldName, true, header, footer)}";
 
             BindedObject = log.BindedObject;
-            Path = new Button().AddClass("Path").AddClass("OldPath").SetText(pathText); //f8ff9c
+            Path = new Button().AddClass("Path").AddClass("OldPath").SetText(pathText.Replace("`", "")); //f8ff9c
             Path.clicked += () =>
             {
                 if (BindedObject.IsNull()) return;
