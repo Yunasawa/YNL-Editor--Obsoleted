@@ -8,6 +8,8 @@ using UnityEditor;
 using UnityEngine;
 using YNL.Extensions.Methods;
 using YNL.Editors.Extensions;
+using UnityEngine.XR.WSA;
+using System.IO;
 
 namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
@@ -156,8 +158,6 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                     oldPath = $"{preOldPath}{renamedObject.name}";
                     newPath = renamedObject.obj.GetAnimationPath(animator);
 
-                    MDebug.Notify($"{renamedObject.obj.name} | {animator.name}: {oldPath}\n{newPath}");
-
                     AnimationClips = GetAnimationClips(animator).ToList();
                     FillModel();
 
@@ -213,9 +213,76 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             }
         }
 
-        private static void OnGameObjectMoved((GameObject, string, string)[] gameObject)
+        private static void OnGameObjectMoved((GameObject obj, string previous, string current)[] movedObjects)
         {
+            if (!Variable.IsAutomaticOn) return;
 
+            Animator[] animators = new Animator[0];
+            string oldPath = "";
+            string newPath = "";
+            bool isValidAnimator = false;
+            bool newPathExisted = false;
+            bool isSucceeded = true;
+
+            foreach (var movedObject in movedObjects)
+            {
+                GameObject parent = movedObject.previous.GetParent();
+
+                if (!parent.IsNull()) animators = GetAnimatorsInParents(parent);
+
+                foreach (var animator in animators)
+                {
+                    isValidAnimator = movedObject.current.Contains(animator.GetPath());
+                    if (!isValidAnimator) break;
+                }
+
+                foreach (var animator in animators)
+                {
+                    if (isValidAnimator)
+                    {
+                        AnimationClips = GetAnimationClips(animator).ToList();
+                        FillModel();
+
+                        oldPath = movedObject.previous.RemoveAll(animator.gameObject.GetPath()).Substring(1);
+                        newPath = movedObject.current.RemoveAll(animator.gameObject.GetPath()).Substring(1);
+
+                        //MDebug.Log($"SUP1: {oldPath}\n{newPath}");
+
+                        foreach (string path in PathKeys)
+                        {
+                            if (path.Contains(oldPath)) ValidPaths.Add(path);
+                            else if (path.Contains(newPath)) newPathExisted = true;
+                        }
+
+                        if (ValidPaths.IsEmpty() && newPathExisted)
+                        {
+                            MDebug.Caution("Failed");
+                            movedObject.obj.transform.SetParent(parent.transform, true);
+                            HierarchyChangeCatcher.RefreshPreviousKeys();
+                        }
+                        else
+                        {
+                            foreach (var path in ValidPaths)
+                            {
+                                //MDebug.Log($"SUP2: {path}\n{path.Replace(oldPath, newPath)    }");
+                                Visual.ReplaceClipPathItem(path, path.Replace(oldPath, newPath), out isSucceeded, true);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MDebug.Caution("Failed");
+                        movedObject.obj.transform.SetParent(parent.transform, true);
+                        HierarchyChangeCatcher.RefreshPreviousKeys();
+                    }
+                }
+
+                AnimationClips.Clear();
+                Paths.Clear();
+                PathKeys.Clear();
+                ValidPaths.Clear();
+                InvalidCount = 0;
+            }
         }
 #endregion
         #region ▶ Handle Functions
@@ -385,10 +452,6 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             EditorUtility.ClearProgressBar();
 
             Visual.PresentAllClips(ClipColors);
-            //_main.Root.Repaint();
-
-            //Paths.Add(newPath, Paths[oldPath]);
-            //Paths.Remove(oldPath);
         }
         public static string ChildPath(GameObject obj, bool sep = false)
         {
@@ -420,7 +483,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             for (int iCurrentClip = 0; iCurrentClip < AnimationClips.Count; iCurrentClip++)
             {
                 AnimationClip animationClip = AnimationClips[iCurrentClip];
-                Undo.RecordObject(animationClip, "Animation Hierarchy Root Change");
+                if (!Variable.IsAutomaticOn) Undo.RecordObject(animationClip, "Animation Hierarchy Root Change");
 
                 for (int iCurrentPath = 0; iCurrentPath < PathKeys.Count; iCurrentPath++)
                 {

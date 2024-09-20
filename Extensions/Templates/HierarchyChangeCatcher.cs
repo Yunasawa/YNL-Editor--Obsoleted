@@ -107,6 +107,7 @@ namespace YNL.Editors.Extensions
                 currentPaths.Clear();
 
                 List<(GameObject, string)> renamedObjects = new();
+                List<GameObject> changedObjects = new();
 
                 for (int i = 0; i < PreviousKeys.Count; i++)
                 {
@@ -121,9 +122,18 @@ namespace YNL.Editors.Extensions
                         }
                         else
                         {
+                            //Move
                             previousPaths.Add(PreviousKeys[i].Path);
                             currentPaths.Add(CurrentKeys[i].Path);
+                            changedObjects.Add(PreviousKeys[i].Object);
                         }
+                    }
+                    else if (PreviousKeys[i].Path.HasParentChanged(CurrentKeys[i].Path))
+                    {
+                        //Move
+                        previousPaths.Add(PreviousKeys[i].Path);
+                        currentPaths.Add(CurrentKeys[i].Path);
+                        changedObjects.Add(PreviousKeys[i].Object);
                     }
                 }
 
@@ -138,19 +148,33 @@ namespace YNL.Editors.Extensions
                 // Moved
                 if (previousPaths.IsEmpty() || currentPaths.IsEmpty()) return;
 
-                previousPaths.RemoveAll(path => currentPaths.Remove(path));
+                for (int i = previousPaths.Count - 1; i >= 0; i--)
+                {
+                    if (currentPaths.Remove(previousPaths[i]))
+                    {
+                        previousPaths.RemoveAt(i);
+                        changedObjects.RemoveAt(i);
+                    }
+                }
 
                 for (int i = 0; i < currentPaths.Count; i++)
                 {
                     if (!previousPaths[i].HasParentChanged(currentPaths[i]))
                     {
                         previousPaths.RemoveAt(i);
+                        changedObjects.RemoveAt(i);
                         currentPaths.RemoveAt(i--);
                     }
                 }
 
-                foreach (var path in previousPaths) MDebug.Action(path);
-                foreach (var path in currentPaths) MDebug.Notify(path);
+                (GameObject, string, string)[] movedObjects = changedObjects.Select((obj, i) => (obj, previousPaths[i], currentPaths[i])).ToArray();
+
+                if (movedObjects.Length > 0)
+                {
+                    EEditor.Event.OnHierarchyObjectMoved?.Invoke(movedObjects);
+                    RefreshPreviousKeys();
+                    return;
+                }
 
                 RefreshPreviousKeys();
             }
