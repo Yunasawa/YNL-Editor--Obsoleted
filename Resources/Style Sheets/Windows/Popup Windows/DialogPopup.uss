@@ -1,0 +1,105 @@
+.Main
+{
+	background-color: #1f1f1f;
+	border-width: 1.1px;
+	border-color: #6f6f6f;
+
+	width: 100%;
+	height: 100%;
+}
+
+.Label
+{
+	background-color: #151515;
+
+	width: 100%;
+	height: 25px;
+
+	color: #ffffff;
+	
+	-unity-font-definition: var(--font-genshin);
+	font-size: 12px;
+
+	-unity-text-align: middle-left;
+
+	padding-left: 7.5px;
+}
+
+.IconSide
+{
+	width: 75px;
+	height: 100%;
+
+	background-image: resource("Textures/Windows/Animation Center/Cracking Bone");
+	background-size: 75%;
+	background-position: 10px 10px;
+
+	padding: 0px;
+}
+
+.Message
+{
+	width: 100%;
+	height: 150px;
+
+	padding: 0px;
+
+	flex-wrap: wrap;
+	white-space: normal;
+
+	-unity-font-definition: var(--font-genshin);
+	font-size: 12px;
+
+	padding-top: 7.5px;
+	padding-right: 5px;
+}
+.Button
+{
+	background-color: #3f3f3f;
+	border-color: #6f6f6f;
+	border-radius: 0px;
+
+	height: 20px;
+
+	bottom: 7.5px;
+	right: 10px;
+
+	-unity-font-definition: var(--font-genshin);
+	font-size: 12px;
+
+	align-self: flex-end;
+}
+.Button:hover
+{
+	background-color: #4f4f4f;
+}
+.Button:active
+{
+	background-color: #5f5f5f;
+}
+.Button:focus
+{
+	background-color: #334040;
+	border-color: #24848c;
+}
+
+.TextSide
+{
+	height: 100%;
+
+	flex-grow: 1;
+
+	padding: 0px;
+}
+
+.Background
+{
+	background-color: #2f2f2f;
+
+	width: 100%;
+	height: 175px;
+
+	flex-direction: row;
+
+	padding: 0px;
+}

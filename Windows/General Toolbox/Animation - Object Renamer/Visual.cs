@@ -8,14 +8,13 @@ using System;
 using YNL.Editors.UIElements.Styled;
 using YNL.Extensions.Addons;
 using YNL.Editors.Extensions;
-using UnityEditor;
 using YNL.Utilities.Extensions;
 
 namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
     public class Visual : EVisual
     {
-        private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/WAnimationObjectRenamer";
+        private const string _styleSheet = "Style Sheets/Windows/General Toolbox/Animation - Object Renamer/Visual";
         
         #region ▶ Visual Elements
         private StyledWindowTitle _windowTitlePanel;
@@ -97,17 +96,36 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             this.AddElements(_handlerWindow, _windowTitlePanel, _propertyPanel);
 
             UpdateMode(false);
-            UpdateAutomatic();
+            UpdateAutomatic(false);
 
             RefreshLogPanel();
 
+            //_enableLabel.SetColor("#00000000");
+
             _createdAllElements = true;
+
+            this.RegisterCallback<DetachFromPanelEvent>(OnDetechFromPanel);
+
+            Variable.OnModeChanged += UpdateAutomatic;
         }
 
         public void OnGUI()
         {
             if (!_createdAllElements) return;
         }
+
+        private void OnDetechFromPanel(DetachFromPanelEvent evt)
+        {
+            Variable.OnModeChanged -= UpdateAutomatic;
+
+            evt.StopPropagation();
+        }
+
+        ~Visual()
+        {
+            Variable.OnModeChanged -= UpdateAutomatic;
+        }
+        
 
         #region ▶ Editor Initializing
         private void CreateElements()
@@ -468,14 +486,15 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             _manualButton.SetBackgroundColor(!Variable.IsAutomaticPanel ? "#2d2d2d" : "#1f1f1f");
         }
 
-        public void UpdateAutomatic()
+        public void UpdateAutomatic() => UpdateAutomatic(false);
+        public void UpdateAutomatic(bool isFocus = true)
         {
             _enableIcon.SetBackgroundImageTintColor(Variable.IsAutomaticOn ? "#52ffa3" : "#ff5252");
 
-            _enableLabel.SetColor(Variable.IsAutomaticOn ? "#52ffa3" : "#ff5252");
+            if (isFocus) _enableLabel.SetColor(Variable.IsAutomaticOn ? "#52ffa3" : "#ff5252");
+            //else _enableLabel.SetColor(Variable.IsAutomaticOn ? "#52ffa300" : "#ff525200");
             _enableLabel.SetText(Variable.IsAutomaticOn ? "Automatic Mode: On" : "Automatic Mode: Off");
 
-            //_enableButton.SetBorderColor(Variable.IsAutomaticOn ? "#2e8c5a" : "#ab3e3e");
             _enableButton.SetBorderColor(Variable.IsAutomaticOn ? "#52ffa3" : "#ff5252");
         }
         public static void ClearLogPanel()

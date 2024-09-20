@@ -7,7 +7,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
     public class EAutomaticLogPanel : Button
     {
-        private const string USS_StyleSheet = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/EAutomaticLogPanel";
+        private const string USS_StyleSheet = "Style Sheets/Windows/General Toolbox/Animation - Object Renamer/EAutomaticLogPanel";
 
         public Image TitleBackground;
         public Image TagIcon;

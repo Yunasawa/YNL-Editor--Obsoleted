@@ -7,7 +7,7 @@ namespace YNL.Editors.Windows.TextureImageInverter
 {
     public class EInvertExecutePanel : Button
     {
-        private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Texture - Image Inverter/EInvertExecutePanel";
+        private const string _styleSheet = "Style Sheets/Windows/General Toolbox/Texture - Image Inverter/EInvertExecutePanel";
 
         public StyledSwitchToggle ReplaceOldImageSwitch;
         public Image ReplaceOldImagePanel;

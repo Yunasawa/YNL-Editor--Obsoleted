@@ -9,7 +9,7 @@ namespace YNL.Editors.Windows.TextureImageResizer
 {
     public class EImageBox : VisualElement
     {
-        private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Texture - Image Resizer/EImageBox";
+        private const string _styleSheet = "Style Sheets/Windows/General Toolbox/Texture - Image Resizer/EImageBox";
 
         public Texture2D AssignedImage;
         public Vector2 NewAssignedSize;

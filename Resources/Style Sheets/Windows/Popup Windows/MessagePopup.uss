@@ -1,7 +1,7 @@
 .Main
 {
 	background-color: #1f1f1f;
-	border-radius: 5px;
+	border-radius: 2.5px;
 	border-color: transparent;
 
 	justify-content: center;
@@ -14,7 +14,7 @@
 	border-color: transparent;
 
 	-unity-font-definition: var(--font-genshin);
-	font-size: 12.5px;
+	font-size: 12px;
 
 	align-self: center;
 }

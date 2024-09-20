@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 using YNL.Editors.UIElements.Styled;
 
@@ -27,7 +27,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
         public void OpenInstruction()
         {
-            Instruction.Open(660, 500, WPopupPivot.BottomLeft);
+            Instruction.Open();
         }
     }
 }

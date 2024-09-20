@@ -7,7 +7,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
     public class EInputNamePanel : Button
     {
-        private const string USS_StyleSheet = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/EInputNamePanel";
+        private const string USS_StyleSheet = "Style Sheets/Windows/General Toolbox/Animation - Object Renamer/EInputNamePanel";
 
         public Label OriginLabel;
         public TextField OriginField;

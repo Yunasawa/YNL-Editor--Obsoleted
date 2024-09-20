@@ -36,6 +36,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         public static List<AORSettings.AutomaticLog> AutomaticLogs
             => CenterData.AnimationObjectRenamer?.AutomaticLogs;
 
+        public static Action OnModeChanged;
+
         public static void SaveData()
         {
             EditorUtility.SetDirty(CenterData);

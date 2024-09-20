@@ -12,7 +12,7 @@ namespace YNL.Editors.Windows.TextureImageInverter
 {
     public class Visual : EVisual
     {
-        private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Texture - Image Inverter/WTextureImageInverter";
+        private const string _styleSheet = "Style Sheets/Windows/General Toolbox/Texture - Image Inverter/WTextureImageInverter";
 
         #region ▶ Editor Properties
         private float _tagPanelWidth = 200;

@@ -13,7 +13,7 @@ namespace YNL.Editors.Windows
 {
     public class MessagePopup : EditorWindow
     {
-        private const string _styleSheet = "Style Sheets/Windows/W - Message Popup/WMessagePopup";
+        private const string _styleSheet = "Style Sheets/Windows/Popup Windows/MessagePopup";
 
         private static string _message = "This is not available";
         private static GUIStyle messageStyle = null;
@@ -26,7 +26,6 @@ namespace YNL.Editors.Windows
 
         public static void Show(params object[] parameters)
         {
-            //WMessagePopup window = CreateInstance<WMessagePopup>();
             if (!_instance.IsNull()) _instance.Close();
             _instance = CreateInstance<MessagePopup>();
 
@@ -45,13 +44,15 @@ namespace YNL.Editors.Windows
                 messageStyle = new GUIStyle(EditorStyles.label)
                 {
                     wordWrap = true,
-                    alignment = TextAnchor.MiddleCenter
+                    alignment = TextAnchor.MiddleCenter,
+                    font = "Fonts/Font Assets/Genshin SDF".LoadResource<Font>(),
+                    fontSize = 12
                 };
             }
 
             Vector2 contentSize = messageStyle.CalcSize(new GUIContent(_message));
 
-            this.minSize = this.maxSize = new Vector2(contentSize.x + 50, contentSize.y + 10);
+            this.minSize = this.maxSize = new Vector2(contentSize.x + 60, contentSize.y + 10);
 
             Rect mainUnityWindowRect = EWindowExtensions.GetEditorMainWindowPos();
             this.position = new Rect(

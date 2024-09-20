@@ -10,7 +10,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
     public class EClipNameField : Button
     {
-        private const string USS_StyleSheet = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/EClipNameField";
+        private const string USS_StyleSheet = "Style Sheets/Windows/General Toolbox/Animation - Object Renamer/EClipNameField";
 
         public VisualElement ColorContainer;
         public VisualElement ObjectContainer;

@@ -9,7 +9,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
     public class EAnimationClipField : Button
     {
-        private const string USS_StyleSheet = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/EAnimationClipField";
+        private const string USS_StyleSheet = "Style Sheets/Windows/General Toolbox/Animation - Object Renamer/EAnimationClipField";
 
         private const string _uss_field = "e-animation-clip-field__field";
         private const string _uss_color = "e-animation-clip-field__color";

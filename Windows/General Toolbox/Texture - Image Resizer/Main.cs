@@ -32,7 +32,7 @@ namespace YNL.Editors.Windows.TextureImageResizer
         public void OpenInstruction()
         {
 
-            Instruction.Open(660, 500, WPopupPivot.BottomLeft);
+            Instruction.Open();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace YNL.Editors.Windows.TextureImageInverter
 {
     public class EImageDisplayer : Image
     {
-        private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Texture - Image Resizer/EImageDisplayer";
+        private const string _styleSheet = "Style Sheets/Windows/General Toolbox/Texture - Image Resizer/EImageDisplayer";
 
         public StyledInteractableAssetsField<Object> Background;
         public Image Grid;

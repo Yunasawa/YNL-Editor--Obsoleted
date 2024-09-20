@@ -1,14 +1,11 @@
 #if UNITY_EDITOR
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YNL.Extensions.Methods;
-using static PlasticPipe.Server.MonitorStats;
 
 namespace YNL.Editors.Extensions
 {
@@ -183,8 +180,6 @@ namespace YNL.Editors.Extensions
         {
             if (IsInPrefabMode) OnPrefabOpened(PrefabStageUtility.GetCurrentPrefabStage());
             else OnSceneOpened(SceneManager.GetActiveScene(), OpenSceneMode.Single);
-
-            //MDebug.Log($"PreviousKeys: {PreviousKeys.Count} - CurrentKeys: {CurrentKeys.Count}");
         }
     }
 

@@ -1,0 +1,26 @@
+.Button
+{
+	background-color: #383838;
+
+	background-image: resource("Textures/Windows/Animation Center/Cracking Bone");
+	background-size: 50%;
+
+	border-color: #383838;
+	border-width: 2px;
+	border-radius: 2.5px;
+
+	max-width: 20px;
+	height: 20px;
+
+	margin-right: 20px;
+	
+	align-self: center;
+
+	transition-property: -unity-background-image-tint-color;
+	transition-duration: 0.2s;
+}
+.Button:hover
+{
+	background-color: #484848;
+	border-color: #484848;
+}

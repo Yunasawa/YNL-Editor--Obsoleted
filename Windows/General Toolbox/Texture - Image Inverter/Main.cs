@@ -31,7 +31,7 @@ namespace YNL.Editors.Windows.TextureImageInverter
 
         public void OpenInstruction()
         {
-            Instruction.Open(660, 500, WPopupPivot.BottomLeft);
+            Instruction.Open();
         }
     }
 }

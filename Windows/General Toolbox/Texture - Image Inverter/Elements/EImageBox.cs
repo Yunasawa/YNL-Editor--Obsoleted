@@ -9,7 +9,7 @@ namespace YNL.Editors.Windows.TextureImageInverter
 {
     public class EImageBox : VisualElement
     {
-        private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Texture - Image Inverter/EImageBox";
+        private const string _styleSheet = "Style Sheets/Windows/General Toolbox/Texture - Image Inverter/EImageBox";
 
         public Texture2D AssignedImage;
 

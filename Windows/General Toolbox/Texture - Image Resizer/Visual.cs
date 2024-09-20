@@ -11,7 +11,7 @@ namespace YNL.Editors.Windows.TextureImageResizer
 {
     public class Visual : EVisual
     {
-        private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Texture - Image Resizer/WTextureImageResizer";
+        private const string _styleSheet = "Style Sheets/Windows/General Toolbox/Texture - Image Resizer/WTextureImageResizer";
 
         #region ▶ Editor Properties
         private float _tagPanelWidth = 200;

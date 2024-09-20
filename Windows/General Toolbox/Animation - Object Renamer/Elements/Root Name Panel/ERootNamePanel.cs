@@ -7,7 +7,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
     public class ERootNamePanel : Button
     {
-        private const string USS_StyleSheet = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/ERootNamePanel";
+        private const string USS_StyleSheet = "Style Sheets/Windows/General Toolbox/Animation - Object Renamer/ERootNamePanel";
 
         public Image TitleBackground;
         public Image TagIcon;

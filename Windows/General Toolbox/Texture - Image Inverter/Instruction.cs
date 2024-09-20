@@ -6,10 +6,15 @@ namespace YNL.Editors.Windows.TextureImageInverter
 {
     public class Instruction : PopupWindow<Instruction>
     {
-        private const string _styleSheet = "Style Sheets/Windows/W - Utilities/Texture - Image Inverter/WTextureImageInverter_Popup";
+        private const string _styleSheet = "Style Sheets/Windows/General Toolbox/Texture - Image Inverter/WTextureImageInverter_Popup";
 
         public ScrollView Scroll;
         public Image Image;
+
+        public static void Open()
+        {
+            Show().CloseOnLostFocus().SetSize(660, 500).SetAnchor(true, PopupPivot.BottomLeft);
+        }
 
         protected override void CreateUI()
         {

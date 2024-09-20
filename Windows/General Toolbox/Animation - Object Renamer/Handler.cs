@@ -8,8 +8,6 @@ using UnityEditor;
 using UnityEngine;
 using YNL.Extensions.Methods;
 using YNL.Editors.Extensions;
-using UnityEngine.XR.WSA;
-using System.IO;
 
 namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
@@ -72,6 +70,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             bool isExistingInClips = false;
             bool anyExistingInClips = false;
             int clipCount = 0;
+            string anyNameMissing = "";
 
             Undo.PerformUndo();
 
@@ -94,6 +93,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                         {
                             isExistingInClips = true;
                             anyExistingInClips = true;
+
+                            if (anyNameMissing.IsNullOrEmpty()) anyNameMissing = removedPath.obj.name;
                             break;
                         }
                     }
@@ -110,16 +111,19 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             if (anyExistingInClips)
             {
-                EditorUtility.DisplayDialog(
-                            "Remove animated GameObject",
-                            "You are trying to remove the GameObject which is animated in animation clip(s). This will cause a Missing Reference Exception.",
-                            "Understand",
-                            "Close");
+                DialogPopup.Open(
+                            "ⓘ Missing reference on destroyed objects",
+                            $"Attempted to destroy object <color=#d5ff78>{anyNameMissing}</color>, which are animated objects. This can " +
+                            $"cause a missing reference error on several animation clips." +
+                            $"\n\nDestruction aborted to prevent potential path missing issues and animation disruptions.",
+                            "Understand");
 
                 string finalName = $"{PreviousName}|...";
 
                 AORSettings.AutomaticLog log = new(AORSettings.Event.Destroy, false, finalName, animators.Length, clipCount, removedPaths[0].obj);
                 Variable.AutomaticLogs.Add(log);
+
+                EditorApplication.RepaintAnimationWindow();
 
                 Visual.UpdateLogPanel();
                 Variable.SaveData();
@@ -169,7 +173,13 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
                     if (isDuplicated && (newPathExisted || !ValidPaths.IsEmpty()))
                     {
-                        MDebug.Caution("Failed");
+                        DialogPopup.Open(
+                            "ⓘ Conflict names in the same path",
+                            $"Attempted to rename object <color=#d5ff78>{renamedObject.name}</color> " +
+                            $"to <color=#d5ff78>{renamedObject.obj.name}</color>, but the name is already " +
+                            $"in use by another object at the same path." +
+                            $"\n\nRename operation aborted to prevent naming conflicts.", 
+                            "Understand");
 
                         if (renamedObjects.Length == 1) renamedObject.obj.name = renamedObject.name;
 
@@ -218,6 +228,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             if (!Variable.IsAutomaticOn) return;
 
             Animator[] animators = new Animator[0];
+            string oldName = "";
             string oldPath = "";
             string newPath = "";
             bool isValidAnimator = false;
@@ -226,6 +237,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             foreach (var movedObject in movedObjects)
             {
+                oldName = movedObject.obj.name;
+
                 GameObject parent = movedObject.previous.GetParent();
 
                 if (!parent.IsNull()) animators = GetAnimatorsInParents(parent);
@@ -246,8 +259,6 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                         oldPath = movedObject.previous.RemoveAll(animator.gameObject.GetPath()).Substring(1);
                         newPath = movedObject.current.RemoveAll(animator.gameObject.GetPath()).Substring(1);
 
-                        //MDebug.Log($"SUP1: {oldPath}\n{newPath}");
-
                         foreach (string path in PathKeys)
                         {
                             if (path.Contains(oldPath)) ValidPaths.Add(path);
@@ -256,23 +267,38 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
                         if (ValidPaths.IsEmpty() && newPathExisted)
                         {
-                            MDebug.Caution("Failed");
+                            DialogPopup.Open(
+                                "ⓘ Another object with the same path exists",
+                                $"Attempted to move object <color=#d5ff78>{oldName}</color>, " +
+                                $"but the destination already contains another object with the same name." +
+                                $"\n\nMoving operation aborted to prevent duplicating conflicts.",
+                                "Understand");
+
                             movedObject.obj.transform.SetParent(parent.transform, true);
+
+                            EditorApplication.RepaintAnimationWindow();
                             HierarchyChangeCatcher.RefreshPreviousKeys();
                         }
                         else
                         {
                             foreach (var path in ValidPaths)
                             {
-                                //MDebug.Log($"SUP2: {path}\n{path.Replace(oldPath, newPath)    }");
                                 Visual.ReplaceClipPathItem(path, path.Replace(oldPath, newPath), out isSucceeded, true);
                             }
                         }
                     }
                     else
                     {
-                        MDebug.Caution("Failed");
+                        DialogPopup.Open(
+                                "ⓘ Another object with the same path exists",
+                                $"Attempted to move object <color=#d5ff78>{oldName}</color>, " +
+                                $"but the destination is outside of the previous animator object." +
+                                $"\n\nMoving operation aborted to prevent missing errors.",
+                                "Understand");
+
                         movedObject.obj.transform.SetParent(parent.transform, true);
+
+                        EditorApplication.RepaintAnimationWindow();
                         HierarchyChangeCatcher.RefreshPreviousKeys();
                     }
                 }
@@ -546,7 +572,8 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         public void SwitchAutomaticMode()
         {
             Variable.IsAutomaticOn = !Variable.IsAutomaticOn;
-            _main.Visual.UpdateAutomatic();
+            _main.Visual.UpdateAutomatic(true);
+            Variable.OnModeChanged?.Invoke();
         }
         #endregion
     }

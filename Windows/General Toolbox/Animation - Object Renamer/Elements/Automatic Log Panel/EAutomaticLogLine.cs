@@ -9,7 +9,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 {
     public class EAutomaticLogLine : Button
     {
-        private const string USS_StyleSheet = "Style Sheets/Windows/W - Utilities/Animation - Object Renamer/EAutomaticLogLine";
+        private const string USS_StyleSheet = "Style Sheets/Windows/General Toolbox/Animation - Object Renamer/EAutomaticLogLine";
 
         public Image State;
         public Button Time;
