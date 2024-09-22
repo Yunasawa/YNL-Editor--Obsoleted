@@ -8,6 +8,13 @@
  <img src="https://img.shields.io/badge/Version-2022.3-orange.svg" alt="version">
 </p>
 
+> [!Important]
+> <b>This package is now obsolete and not be updated any more. You can still use this old version if you want.
+>
+> Now it is separated into 2 individual packages: YNL - Editor and YNL - Toolbox
+>
+> In case you want to use those new 2 packages, you have to remove the obsoleted YNL - Editor before importing them to make sure no error will appear.</b>
+
 <h2> ★ About </h2>
 
 A product made by Yunasawa Studio, those will be helpful tools that solve your several problems can appear in your developing progress. <br>
