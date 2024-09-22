@@ -6,7 +6,7 @@
 	border-width: 0px;
 	border-radius: 0px;
 
-	height: 40px;
+	height: 30px;
 
 	margin-bottom: 5px;
 
@@ -20,8 +20,8 @@
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 
-	width: 40px;
-	height: 40px;
+	width: 30px;
+	height: 30px;
 
 	background-size: 60%;
 	-unity-background-image-tint-color: #1f1f1f;
@@ -31,7 +31,7 @@
 {
 	background-color: #282828;
 
-	width: 90px;
+	width: 75px;
 	height: 40px;
 
 	border-color: transparent;
@@ -39,10 +39,10 @@
 	border-radius: 0px;
 
 	-unity-font-definition: var(--font-genshin);
-	font-size: 12px;
+	font-size: 10px;
 
 	margin: 0px;
-	margin-left: 40px;
+	margin-left: 30px;
 
 	padding-left: 5px;
 	padding-right: 5px;
@@ -70,18 +70,15 @@
 	border-width: 0px;
 	border-radius: 0px;
 
-	height: 20px;
+	height: 27.5px;
 
 	margin: 0px;
+	margin-left: 5px;
 
 	-unity-font-definition: var(--font-genshin);
 	font-size: 12px;
 
 	-unity-text-align: middle-left;
-}
-.Path:hover
-{
-	background-color: #152626;
 }
 .OldPath
 {
@@ -107,9 +104,16 @@
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
 
-	margin-left: 87.5px;
+	margin-left: 72.5px;
 
 	padding: 0px;
 
 	flex-grow: 1;
+
+	transition-property: background-color;
+	transition-duration: 0.2s;
+}
+.PathContainer:hover
+{
+	background-color: #1b3133;
 }

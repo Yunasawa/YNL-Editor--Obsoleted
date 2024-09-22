@@ -8,7 +8,7 @@ namespace YNL.Editors.UIElements.Flex
 {
     public class FlexComponentTitle : VisualElement
     {
-        private const string _styleSheet = "Style Sheets/Elements/Specials/Flex Component Tag/FlexComponentTitle";
+        private const string _styleSheet = "Style Sheets/Elements/Flex/Flex Component Tag/FlexComponentTitle";
 
         private Color _globalColor = "#AFAFAF".ToColor();
 

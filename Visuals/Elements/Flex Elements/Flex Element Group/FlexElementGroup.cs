@@ -7,7 +7,7 @@ namespace YNL.Editors.UIElements.Flex
 {
     public class FlexElementGroup : VisualElement
     {
-        private const string _styleSheet = "Style Sheets/Elements/Specials/Flex Element Group/FlexElementGroup";
+        private const string _styleSheet = "Style Sheets/Elements/Flex/Flex Element Group/FlexElementGroup";
 
         public FlexElementGroup(params VisualElement[] elements)
         {

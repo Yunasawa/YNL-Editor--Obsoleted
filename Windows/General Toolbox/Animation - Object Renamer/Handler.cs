@@ -59,7 +59,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         #region ▶ Event Functions
         private static void OnGameObjectCreated(GameObject obj)
         {
-            
+
         }
 
         private static void OnGameObjectDestroyed((string path, GameObject obj)[] removedPaths)
@@ -118,9 +118,9 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                             $"\n\nDestruction aborted to prevent potential path missing issues and animation disruptions.",
                             "Understand");
 
-                string finalName = $"{PreviousName}|...";
+                string[] paths = removedPaths.Select(i => i.path.Split('/')[^1]).ToArray();
 
-                AORSettings.AutomaticLog log = new(AORSettings.Event.Destroy, false, finalName, animators.Length, clipCount, removedPaths[0].obj);
+                AORSettings.AutomaticLog log = new(AORSettings.Event.Destroy, false, paths, paths);
                 Variable.AutomaticLogs.Add(log);
 
                 EditorApplication.RepaintAnimationWindow();
@@ -136,7 +136,6 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             Animator[] animators = new Animator[0];
             bool isDuplicated = false;
-            string newName = renamedObjects[0].obj.name;
             string oldPath = "";
             string newPath = "";
             bool isShowLog = false;
@@ -145,6 +144,9 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             bool newPathExisted = false;
 
             string preOldPath = "";
+
+            string[] oldNames = renamedObjects.Select(o => o.name).ToArray();
+            string[] newNames = renamedObjects.Select(n => n.obj.name).ToArray();
 
             foreach (var renamedObject in renamedObjects)
             {
@@ -171,15 +173,29 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                         else if (path.Contains(newPath)) newPathExisted = true;
                     }
 
-                    if (isDuplicated && (newPathExisted || !ValidPaths.IsEmpty()))
+                    bool oldPathExisted = !ValidPaths.IsEmpty();
+
+                    if (isDuplicated && (newPathExisted || oldPathExisted))
                     {
-                        DialogPopup.Open(
-                            "ⓘ Conflict names in the same path",
-                            $"Attempted to rename object <color=#d5ff78>{renamedObject.name}</color> " +
-                            $"to <color=#d5ff78>{renamedObject.obj.name}</color>, but the name is already " +
-                            $"in use by another object at the same path." +
-                            $"\n\nRename operation aborted to prevent naming conflicts.", 
-                            "Understand");
+                        if (renamedObjects.Length == 1)
+                        {
+                            DialogPopup.Open(
+                                "ⓘ Conflict names in the same path",
+                                $"Attempted to rename object <color=#d5ff78>{renamedObject.name}</color> " +
+                                $"to <color=#d5ff78>{renamedObject.obj.name}</color>, but the name is already " +
+                                $"in use by another object at the same path." +
+                                $"\n\nRename operation aborted to prevent naming conflicts.",
+                                "Understand");
+                        }
+                        else
+                        {
+                            DialogPopup.Open(
+                                "ⓘ Conflict names in the same path",
+                                $"Attempted to rename object <color=#d5ff78>{renamedObject.name}</color> " +
+                                $"to <color=#d5ff78>{renamedObject.obj.name}</color>, but one of them is an animted object." +
+                                $"\n\nRename operation aborted to prevent naming conflicts.",
+                                "Understand");
+                        }
 
                         if (renamedObjects.Length == 1) renamedObject.obj.name = renamedObject.name;
 
@@ -214,8 +230,9 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
             if (isShowLog)
             {
-                string finalName = $"{renamedObjects[0].name}|{newName}";
-                AORSettings.AutomaticLog log = new(AORSettings.Event.Rename, isSucceeded, finalName, animators.Length, clipCount, renamedObjects[0].obj);
+                AORSettings.Event @event = renamedObjects.Length == 1 ? AORSettings.Event.RenameSingle : AORSettings.Event.RenameMultiple;
+
+                AORSettings.AutomaticLog log = new(@event, isSucceeded, oldNames, newNames);
                 Variable.AutomaticLogs.Add(log);
 
                 Visual.UpdateLogPanel();
@@ -234,6 +251,9 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
             bool isValidAnimator = false;
             bool newPathExisted = false;
             bool isSucceeded = true;
+            bool isShowLog = false;
+            AORSettings.Event @event = AORSettings.Event.MoveSucceed;
+            List<string> failedNames = new();
 
             foreach (var movedObject in movedObjects)
             {
@@ -276,6 +296,12 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
                             movedObject.obj.transform.SetParent(parent.transform, true);
 
+                            isShowLog = true;
+                            isSucceeded = false;
+
+                            @event = AORSettings.Event.MoveConflict;
+                            failedNames.AddDistinct(movedObject.obj.name);
+
                             EditorApplication.RepaintAnimationWindow();
                             HierarchyChangeCatcher.RefreshPreviousKeys();
                         }
@@ -284,6 +310,13 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                             foreach (var path in ValidPaths)
                             {
                                 Visual.ReplaceClipPathItem(path, path.Replace(oldPath, newPath), out isSucceeded, true);
+
+                                isShowLog = true;
+                                isSucceeded = true;
+
+                                @event = AORSettings.Event.MoveSucceed;
+
+                                failedNames.AddDistinct(movedObject.obj.name);
                             }
                         }
                     }
@@ -298,6 +331,12 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
 
                         movedObject.obj.transform.SetParent(parent.transform, true);
 
+                        isShowLog = true;
+                        isSucceeded = false;
+
+                        @event = AORSettings.Event.MoveOutbound;
+                        failedNames.AddDistinct(movedObject.obj.name);
+
                         EditorApplication.RepaintAnimationWindow();
                         HierarchyChangeCatcher.RefreshPreviousKeys();
                     }
@@ -309,8 +348,17 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
                 ValidPaths.Clear();
                 InvalidCount = 0;
             }
+
+            if (isShowLog)
+            {
+                AORSettings.AutomaticLog log = new(@event, isSucceeded, failedNames.ToArray(), failedNames.ToArray());
+                Variable.AutomaticLogs.Add(log);
+
+                Visual.UpdateLogPanel();
+                Variable.SaveData();
+            }
         }
-#endregion
+        #endregion
         #region ▶ Handle Functions
         public static Animator[] GetAnimatorsInParents(GameObject obj)
         {

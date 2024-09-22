@@ -1,0 +1,6 @@
+.Main
+{
+	white-space: normal;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

@@ -40,6 +40,7 @@ namespace YNL.Editors.Windows.AnimationObjectRenamer
         public void AddLogItem(EAutomaticLogLine line)
         {
             LogScroll.InsertElements(0, line);
+            if (LogScroll.childCount > 10) LogScroll.Remove(LogScroll.ElementAt(LogScroll.childCount - 1));
         }
 
         public void ClearLogs() => LogScroll.Clear();

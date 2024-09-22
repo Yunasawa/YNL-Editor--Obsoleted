@@ -9,7 +9,7 @@ namespace YNL.Editors.UIElements.Flex
 {
     public class FlexComponentIcon : VisualElement
     {
-        private const string _styleSheet = "Style Sheets/Elements/Specials/Flex Component Tag/FlexComponentIcon";
+        private const string _styleSheet = "Style Sheets/Elements/Flex/Flex Component Tag/FlexComponentIcon";
 
         private Image _icon;
 

@@ -29,7 +29,7 @@ namespace YNL.Editors.Windows
         public List<AutomaticLog> AutomaticLogs = new();
 
         [System.Serializable]
-        public enum Event { Rename, Move, Destroy }
+        public enum Event { RenameSingle, RenameMultiple, MoveSucceed, MoveConflict, MoveOutbound, Destroy }
 
         [System.Serializable]
         public struct AutomaticLog
@@ -37,25 +37,18 @@ namespace YNL.Editors.Windows
             public Event Event;
             public bool IsSucceeded;
             public string CurrentTime;
-            public string Name;
-            public int AnimatorAmount;
-            public int ClipAmount;
+            public string[] OldNames;
+            public string[] NewNames;
 
-            public GameObject BindedObject;
-            public int BindedObjectID;
-
-            public AutomaticLog(Event @event, bool isSucceeded, string name, int animatorAmount, int clipAmount, GameObject bindedObject)    
+            public AutomaticLog(Event @event, bool isSucceeded, string[] oldNames, string[] newNames)    
             {
                 Event = @event;
                 IsSucceeded = isSucceeded;
                 string original = DateTime.Now.ToString();
                 int spaceIndex = original.IndexOf(' ');
                 CurrentTime = $"<color=#96ffdc>{original.Substring(0, spaceIndex)}</color>" + "\n" + original.Substring(spaceIndex + 1);
-                Name = name;
-                AnimatorAmount = animatorAmount;
-                ClipAmount = clipAmount;
-                BindedObject = bindedObject;
-                BindedObjectID = bindedObject.GetInstanceID();
+                OldNames = oldNames;
+                NewNames = newNames;
             }
         }
     }
