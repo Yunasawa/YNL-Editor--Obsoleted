@@ -15,7 +15,7 @@ namespace YNL.EditorsObsoleted.Windows.AnimationObjectRenamer
             {
                 if (_centerDataGetter.IsNull())
                 {
-                    _centerDataGetter = "Editor Toolbox Data".LoadResource<CenterData>();
+                    _centerDataGetter = "Editor Toolbox Data (Obsoleted)".LoadResource<CenterData>();
                     return _centerDataGetter;
                 }
                 else return _centerDataGetter;

@@ -6,7 +6,7 @@ using YNL.EditorsObsoleted.Windows.AnimationObjectRenamer;
 
 namespace YNL.EditorsObsoleted.Windows
 {
-    [CreateAssetMenu(fileName = "Editor Toolbox Data", menuName = "🔗 YのL/🚧 Editor Toolbox/🚧 Toolbox Data")]
+    [CreateAssetMenu(fileName = "Editor Toolbox Data (Obsoleted)", menuName = "🔗 YのL/🚧 Editor Toolbox/🚧 Toolbox Data")]
     public class CenterData : ScriptableObject
     {
         public WindowType CurrentWindow;

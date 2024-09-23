@@ -1,9 +1,9 @@
 {
-    "name": "com.yunasawa.ynl.editor",
-    "displayName": "YNL - Editor",
-    "version": "1.5.2",
+    "name": "com.yunasawa.ynl.editor-obsoleted",
+    "displayName": "YNL - Editor (Obsoleted)",
+    "version": "2.0.0",
     "unity": "2022.3",
-    "description": "YNL - Editor provides you tools to help you on your developing progress.",
+    "description": "YNL - Editor (Obsoleted) provides you tools to help you on your developing progress.",
     "keywords": [
         "yunasawa",
         "editor",

@@ -30,7 +30,7 @@ namespace YNL.EditorsObsoleted.Windows
         {
             get
             {
-                if (_staticCenterData.IsNull()) _staticCenterData = "Editor Toolbox Data".LoadResource<CenterData>();
+                if (_staticCenterData.IsNull()) _staticCenterData = "Editor Toolbox Data (Obsoleted)".LoadResource<CenterData>();
                 return _staticCenterData;
             }
         }
