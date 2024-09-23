@@ -5,11 +5,11 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 using UnityEngine.UIElements;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.Windows
+namespace YNL.EditorsObsoleted.Windows
 {
     public class MessagePopup : EditorWindow
     {

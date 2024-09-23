@@ -3,7 +3,7 @@
 using UnityEngine;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.Extensions
+namespace YNL.EditorsObsoleted.Extensions
 {
     public static class ETexture
     {

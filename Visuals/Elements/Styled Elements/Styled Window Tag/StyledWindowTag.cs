@@ -2,10 +2,10 @@
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.UIElements.Styled
+namespace YNL.EditorsObsoleted.UIElements.Styled
 {
     public class StyledWindowTag : VisualElement
     {

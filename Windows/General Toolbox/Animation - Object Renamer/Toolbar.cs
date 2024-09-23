@@ -1,9 +1,9 @@
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Toolbars;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 
-namespace YNL.Editors.Windows.AnimationObjectRenamer
+namespace YNL.EditorsObsoleted.Windows.AnimationObjectRenamer
 {
     [InitializeOnLoad]
     public static class Toolbar

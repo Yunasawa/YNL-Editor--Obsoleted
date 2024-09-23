@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.Windows.AnimationObjectRenamer
+namespace YNL.EditorsObsoleted.Windows.AnimationObjectRenamer
 {
     public class Variable
     {

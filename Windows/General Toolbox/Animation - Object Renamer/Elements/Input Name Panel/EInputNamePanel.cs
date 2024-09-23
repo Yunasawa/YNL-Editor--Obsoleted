@@ -1,9 +1,9 @@
 ﻿#if UNITY_EDITOR
 using UnityEngine.UIElements;
-using YNL.Editors.Extensions;
-using YNL.Editors.UIElements.Styled;
+using YNL.EditorsObsoleted.Extensions;
+using YNL.EditorsObsoleted.UIElements.Styled;
 
-namespace YNL.Editors.Windows.AnimationObjectRenamer
+namespace YNL.EditorsObsoleted.Windows.AnimationObjectRenamer
 {
     public class EInputNamePanel : Button
     {

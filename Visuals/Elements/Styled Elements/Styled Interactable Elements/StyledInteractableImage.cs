@@ -2,7 +2,7 @@
 using System;
 using UnityEngine.UIElements;
 
-namespace YNL.Editors.UIElements.Styled
+namespace YNL.EditorsObsoleted.UIElements.Styled
 {
     public class StyledInteractableImage : Image
     {

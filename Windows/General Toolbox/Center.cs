@@ -2,13 +2,13 @@
 using UnityEditor;
 using UnityEngine;
 using YNL.Extensions.Methods;
-using YNL.Editors.UIElements.Styled;
-using YNL.Editors.Windows.TextureImageResizer;
-using YNL.Editors.Windows.AnimationObjectRenamer;
-using YNL.Editors.Windows.TextureImageInverter;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.UIElements.Styled;
+using YNL.EditorsObsoleted.Windows.TextureImageResizer;
+using YNL.EditorsObsoleted.Windows.AnimationObjectRenamer;
+using YNL.EditorsObsoleted.Windows.TextureImageInverter;
+using YNL.EditorsObsoleted.Extensions;
 
-namespace YNL.Editors.Windows
+namespace YNL.EditorsObsoleted.Windows
 {
     public class Center : EditorWindow
     {

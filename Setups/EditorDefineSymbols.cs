@@ -6,7 +6,7 @@ using UnityEditor;
 using System.Linq;
 using UnityEngine;
 
-namespace YNL.Editors.Setups
+namespace YNL.EditorsObsoleted.Setups
 {
     public static class EditorDefineSymbols
     {

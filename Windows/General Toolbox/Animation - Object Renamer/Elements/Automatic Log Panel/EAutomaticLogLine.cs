@@ -2,11 +2,11 @@
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
-using YNL.Editors.Extensions;
-using YNL.Editors.UIElements.Plained;
+using YNL.EditorsObsoleted.Extensions;
+using YNL.EditorsObsoleted.UIElements.Plained;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.Windows.AnimationObjectRenamer
+namespace YNL.EditorsObsoleted.Windows.AnimationObjectRenamer
 {
     public class EAutomaticLogLine : Button
     {

@@ -3,10 +3,10 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Extensions.Methods;
-using YNL.Editors.UIElements.Styled;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.UIElements.Styled;
+using YNL.EditorsObsoleted.Extensions;
 
-namespace YNL.Editors.Windows.AnimationObjectRenamer
+namespace YNL.EditorsObsoleted.Windows.AnimationObjectRenamer
 {
     public class EClipNameField : Button
     {

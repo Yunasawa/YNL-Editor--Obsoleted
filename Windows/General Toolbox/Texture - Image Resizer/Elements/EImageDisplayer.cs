@@ -2,10 +2,10 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-using YNL.Editors.Extensions;
-using YNL.Editors.UIElements.Styled;
+using YNL.EditorsObsoleted.Extensions;
+using YNL.EditorsObsoleted.UIElements.Styled;
 
-namespace YNL.Editors.Windows.TextureImageResizer
+namespace YNL.EditorsObsoleted.Windows.TextureImageResizer
 {
     public class EImageDisplayer : Image
     {

@@ -1,4 +1,4 @@
-namespace YNL.Editors.Windows
+namespace YNL.EditorsObsoleted.Windows
 {
     public interface IMain
     {

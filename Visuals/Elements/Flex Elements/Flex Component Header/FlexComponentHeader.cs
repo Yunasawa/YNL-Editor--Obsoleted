@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Extensions.Methods;
 using YNL.Extensions.Addons;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 
-namespace YNL.Editors.UIElements.Flex
+namespace YNL.EditorsObsoleted.UIElements.Flex
 {
     public class FlexComponentHeader : VisualElement
     {

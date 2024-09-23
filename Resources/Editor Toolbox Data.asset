@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentWindow: 2
   AnimationObjectRenamer:
-    IsAutomaticOn: 1
+    IsAutomaticOn: 0
     AutomaticLogs: []

@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.Extensions
+namespace YNL.EditorsObsoleted.Extensions
 {
     [InitializeOnLoad]
     public class HierarchyChangeCatcher
@@ -86,7 +86,7 @@ namespace YNL.Editors.Extensions
             }
             else if (PreviousKeys.Count < CurrentKeys.Count - 1) // Create multiple objects
             {
-                MDebug.Warning("Created multiple objects");
+                //MDebug.Warning("Created multiple objects");
 
                 RefreshPreviousKeys();
             }

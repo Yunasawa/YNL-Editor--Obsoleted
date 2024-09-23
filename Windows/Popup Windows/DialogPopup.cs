@@ -2,8 +2,8 @@ using UnityEditor;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UIElements;
-using YNL.Editors.Extensions;
-using YNL.Editors.Windows;
+using YNL.EditorsObsoleted.Extensions;
+using YNL.EditorsObsoleted.Windows;
 using YNL.Extensions.Methods;
 
 public class DialogPopup : PopupWindow<DialogPopup>

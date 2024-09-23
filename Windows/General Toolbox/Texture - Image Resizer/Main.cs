@@ -3,9 +3,9 @@ using System;
 using UnityEditor;
 using UnityEngine;
 using YNL.Extensions.Methods;
-using YNL.Editors.UIElements.Styled;
+using YNL.EditorsObsoleted.UIElements.Styled;
 
-namespace YNL.Editors.Windows.TextureImageResizer
+namespace YNL.EditorsObsoleted.Windows.TextureImageResizer
 {
     [System.Serializable]
     public class Main : IMain

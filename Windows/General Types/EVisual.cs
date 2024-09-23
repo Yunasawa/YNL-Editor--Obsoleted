@@ -1,6 +1,6 @@
 using UnityEngine.UIElements;
 
-namespace YNL.Editors.Windows
+namespace YNL.EditorsObsoleted.Windows
 {
     public abstract class EVisual : VisualElement
     {

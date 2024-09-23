@@ -1,10 +1,10 @@
 #if UNITY_EDITOR && YNL_UTILITIES
 using UnityEngine;
 using UnityEngine.UIElements;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.UIElements.Flex
+namespace YNL.EditorsObsoleted.UIElements.Flex
 {
     public class FlexComponentTitle : VisualElement
     {

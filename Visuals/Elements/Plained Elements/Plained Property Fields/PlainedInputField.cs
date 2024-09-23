@@ -4,9 +4,9 @@ using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 
-namespace YNL.Editors.UIElements.Plained
+namespace YNL.EditorsObsoleted.UIElements.Plained
 {
     public class PlainedInputField<T> : VisualElement
     {

@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using YNL.Editors.Windows.AnimationObjectRenamer;
+using YNL.EditorsObsoleted.Windows.AnimationObjectRenamer;
 
-namespace YNL.Editors.Windows
+namespace YNL.EditorsObsoleted.Windows
 {
     [CreateAssetMenu(fileName = "Editor Toolbox Data", menuName = "🔗 YのL/🚧 Editor Toolbox/🚧 Toolbox Data")]
     public class CenterData : ScriptableObject

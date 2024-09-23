@@ -1,8 +1,8 @@
 #if UNITY_EDITOR
 using UnityEngine.UIElements;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 
-namespace YNL.Editors.Windows.AnimationObjectRenamer
+namespace YNL.EditorsObsoleted.Windows.AnimationObjectRenamer
 {
     public class Instruction : PopupWindow<Instruction>
     {

@@ -1,9 +1,9 @@
 #if UNITY_EDITOR
 using UnityEngine.UIElements;
-using YNL.Editors.UIElements.Styled;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.UIElements.Styled;
+using YNL.EditorsObsoleted.Extensions;
 
-namespace YNL.Editors.Windows.TextureImageInverter
+namespace YNL.EditorsObsoleted.Windows.TextureImageInverter
 {
     public class EInvertExecutePanel : Button
     {

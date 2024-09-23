@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace YNL.Editors.Extensions
+namespace YNL.EditorsObsoleted.Extensions
 {
     public static partial class EEditor
     {

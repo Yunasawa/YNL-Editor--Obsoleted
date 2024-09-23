@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEditorInternal;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.Extensions
+namespace YNL.EditorsObsoleted.Extensions
 {
     public static partial class EEditor
     {

@@ -1,8 +1,8 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
-using YNL.Editors.UIElements.Styled;
+using YNL.EditorsObsoleted.UIElements.Styled;
 
-namespace YNL.Editors.Windows.AnimationObjectRenamer
+namespace YNL.EditorsObsoleted.Windows.AnimationObjectRenamer
 {
     [System.Serializable]
     public class Main : IMain

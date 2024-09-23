@@ -5,12 +5,12 @@ using YNL.Extensions.Methods;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using YNL.Editors.UIElements.Styled;
+using YNL.EditorsObsoleted.UIElements.Styled;
 using YNL.Extensions.Addons;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 using YNL.Utilities.Extensions;
 
-namespace YNL.Editors.Windows.AnimationObjectRenamer
+namespace YNL.EditorsObsoleted.Windows.AnimationObjectRenamer
 {
     public class Visual : EVisual
     {

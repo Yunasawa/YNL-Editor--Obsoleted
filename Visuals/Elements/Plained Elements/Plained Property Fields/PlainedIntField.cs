@@ -2,9 +2,9 @@
 using UnityEditor;
 using UnityEngine.UIElements;
 using YNL.Extensions.Methods;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 
-namespace YNL.Editors.UIElements.Plained
+namespace YNL.EditorsObsoleted.UIElements.Plained
 {
     public class PlainedIntField : PlainedInputField<int>
     {

@@ -1,7 +1,7 @@
 #if UNITY_EDITOR && YNL_UTILITIES
 using UnityEngine.UIElements;
 
-namespace YNL.Editors.UIElements.Flex
+namespace YNL.EditorsObsoleted.UIElements.Flex
 {
     public class FlexToggle : VisualElement
     {

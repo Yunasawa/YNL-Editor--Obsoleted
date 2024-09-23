@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace YNL.Editors.Setups
+namespace YNL.EditorsObsoleted.Setups
 {
     public class YNLEditorSetup : AssetPostprocessor
     {

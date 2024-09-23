@@ -6,7 +6,7 @@ using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.Extensions
+namespace YNL.EditorsObsoleted.Extensions
 {
     public static class EStyle
     {

@@ -2,7 +2,7 @@
 using UnityEditor;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.Extensions
+namespace YNL.EditorsObsoleted.Extensions
 {
     public static partial class EEditor
     {

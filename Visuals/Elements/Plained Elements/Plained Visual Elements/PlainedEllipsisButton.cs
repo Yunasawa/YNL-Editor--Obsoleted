@@ -1,9 +1,9 @@
 #if UNITY_EDITOR && YNL_UTILITIES
 using UnityEngine.UIElements;
 using System;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 
-namespace YNL.Editors.UIElements.Plained
+namespace YNL.EditorsObsoleted.UIElements.Plained
 {
     public class PlainedEllipsisButton : Button
     {

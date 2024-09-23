@@ -7,9 +7,9 @@ using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 using YNL.Extensions.Methods;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 
-namespace YNL.Editors.Windows.AnimationObjectRenamer
+namespace YNL.EditorsObsoleted.Windows.AnimationObjectRenamer
 {
     [InitializeOnLoad]
     public class Handler

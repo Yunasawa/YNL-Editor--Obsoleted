@@ -3,9 +3,9 @@ using System;
 using UnityEditor;
 using UnityEngine;
 using YNL.Extensions.Methods;
-using YNL.Editors.UIElements.Styled;
+using YNL.EditorsObsoleted.UIElements.Styled;
 
-namespace YNL.Editors.Windows.TextureImageInverter
+namespace YNL.EditorsObsoleted.Windows.TextureImageInverter
 {
     [System.Serializable]
     public class Main : IMain

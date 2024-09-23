@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.Windows.TextureImageResizer
+namespace YNL.EditorsObsoleted.Windows.TextureImageResizer
 {
     public class Handler
     {

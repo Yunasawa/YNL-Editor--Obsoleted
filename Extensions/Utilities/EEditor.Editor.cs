@@ -1,7 +1,7 @@
 using System.Reflection;
 using UnityEngine.UIElements;
 
-namespace YNL.Editors.Extensions
+namespace YNL.EditorsObsoleted.Extensions
 {
     public static partial class EEditor
     {

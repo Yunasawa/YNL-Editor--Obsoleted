@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.UIElements.Styled
+namespace YNL.EditorsObsoleted.UIElements.Styled
 {
     public class StyledInteractableComponentField<T> : Button where T : UnityEngine.Object
     {

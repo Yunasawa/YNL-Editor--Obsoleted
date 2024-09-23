@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.Windows.TextureImageInverter
+namespace YNL.EditorsObsoleted.Windows.TextureImageInverter
 {
     public class Handler
     {

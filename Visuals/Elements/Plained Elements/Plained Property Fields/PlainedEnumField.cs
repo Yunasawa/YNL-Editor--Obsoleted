@@ -4,10 +4,10 @@ using UnityEditor;
 using UnityEngine.UIElements;
 using YNL.Extensions.Methods;
 using System;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 using UnityEngine;
 
-namespace YNL.Editors.UIElements.Plained
+namespace YNL.EditorsObsoleted.UIElements.Plained
 {
     public class PlainedEnumField : VisualElement
     {

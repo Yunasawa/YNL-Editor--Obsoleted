@@ -1,10 +1,10 @@
 ﻿#if UNITY_EDITOR
 using UnityEngine.UIElements;
-using YNL.Editors.UIElements.Styled;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.UIElements.Styled;
+using YNL.EditorsObsoleted.Extensions;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.Windows.TextureImageResizer
+namespace YNL.EditorsObsoleted.Windows.TextureImageResizer
 {
     public class EResizeExecutePanel : Button
     {

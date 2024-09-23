@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using YNL.Extensions.Methods;
 
-namespace YNL.Editors.Windows
+namespace YNL.EditorsObsoleted.Windows
 {
 
     public class PopupWindow<T> : EditorWindow where T : PopupWindow<T>

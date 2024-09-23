@@ -1,4 +1,4 @@
-﻿namespace YNL.Editors.Extensions
+﻿namespace YNL.EditorsObsoleted.Extensions
 {
     public static class ESheet
     {

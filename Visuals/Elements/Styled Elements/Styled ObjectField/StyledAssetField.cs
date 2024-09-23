@@ -3,9 +3,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Extensions.Methods;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 
-namespace YNL.Editors.UIElements.Styled
+namespace YNL.EditorsObsoleted.UIElements.Styled
 {
     public class StyledAssetField<T> : Button where T : Object
     {

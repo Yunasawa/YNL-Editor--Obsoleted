@@ -4,11 +4,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using YNL.Extensions.Methods;
-using YNL.Editors.UIElements.Styled;
+using YNL.EditorsObsoleted.UIElements.Styled;
 using YNL.Extensions.Addons;
-using YNL.Editors.Extensions;
+using YNL.EditorsObsoleted.Extensions;
 
-namespace YNL.Editors.Windows.TextureImageInverter
+namespace YNL.EditorsObsoleted.Windows.TextureImageInverter
 {
     public class Visual : EVisual
     {
