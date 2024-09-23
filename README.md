@@ -38,10 +38,10 @@ Contact us: <kbd> yunasawa200@gmail.com </kbd>
 <h2><div id="installation"> ★ Installation </div></h2>
 
 <h3><i>Install from Git URL</i></h3>
-Git URL:
+Git URL: 
 
 ```
-https://github.com/Yunasawa/YNL-Editor.git
+https://github.com/Yunasawa/YNL-Editor--Obsoleted.git
 ```
 
 Here is how you can do it: <a href="https://docs.unity3d.com/2019.3/Documentation/Manual/upm-ui-giturl.html"> How to install a package via Git URL </a>
@@ -53,14 +53,14 @@ You can add UPM Scrope like this:
 ```
 Name: YunasawaStudio
 URL: https://package.openupm.com
-Scope(s): com.yunasawa.ynl.editor
+Scope(s): com.yunasawa.ynl.editor-obsoleted
 ```
 
 Here is how you can do it: <a href="https://openupm.com/docs/getting-started.html#installing-a-upm-package"> How to register a UPM scope(s) </a>
 
 After you register the scope, you can add the package by name: 
 ```
-com.yunasawa.ynl.editor
+com.yunasawa.ynl.editor-obsoleted
 ```
 
 <h3><i>Install done </i></h3>
