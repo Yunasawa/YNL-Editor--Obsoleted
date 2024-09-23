@@ -1,4 +1,4 @@
-<h1><div align="center"> Yunasawa の Library - Editor </div></h1>
+<h1><div align="center"> Yunasawa の Library - Editor (Obsoleted) </div></h1>
 <h4><div align="center"><i> Enhance your Unity Editor experience with this toolkit. It provides essential extensions and interfaces specifically designed for the Editor environment. </i></div></h4>
 
 <p align="center">
