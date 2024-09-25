@@ -24,11 +24,6 @@ namespace YNL.EditorsObsoleted.Windows.AnimationObjectRenamer
         {
             Handler.OnSelectionChange();
         }
-
-        public void OpenInstruction()
-        {
-            Instruction.Open();
-        }
     }
 }
 #endif

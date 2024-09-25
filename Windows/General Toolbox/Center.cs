@@ -25,26 +25,16 @@ namespace YNL.EditorsObsoleted.Windows
         #endregion
 
         #region ▶ General Fields/Properties
-        private static CenterData _staticCenterData;
-        private CenterData _centerData
-        {
-            get
-            {
-                if (_staticCenterData.IsNull()) _staticCenterData = "Editor Toolbox Data (Obsoleted)".LoadResource<CenterData>();
-                return _staticCenterData;
-            }
-        }
-
         private float _tagPanelWidth = 200;
 
         private IMain _selectedWindow;
         #endregion
 
 
-        [MenuItem("🔗 YのL/🔗 Windows/🔗 General Toolbox")]
+        [MenuItem("🔗 YのL/🔗 Windows/🔗 General Toolbox (Obsoleted)")]
         public static void ShowWindow()
         {
-            Center window = GetWindow<Center>("General Toolbox");
+            Center window = GetWindow<Center>("General Toolbox (Obs)");
             Texture2D texture = Resources.Load<Texture2D>(_windowIconPath);
 
             window.titleContent.image = texture;
@@ -80,7 +70,7 @@ namespace YNL.EditorsObsoleted.Windows
             ObjectRenamerWindow = new AnimationObjectRenamer.Main(this, WindowTagPanel);
             ImageInverterWindow = new TextureImageInverter.Main(this, WindowTagPanel);
 
-            SwitchWindow(_centerData.CurrentWindow);
+            SwitchWindow(WindowType.TextureImageResizer);
         }
 
         public void OnGUI()
@@ -108,9 +98,6 @@ namespace YNL.EditorsObsoleted.Windows
                     break;
             }
             rootVisualElement.Add(WindowTagPanel);
-            _centerData.CurrentWindow = windowTag;
-            EditorUtility.SetDirty(_centerData);
-            AssetDatabase.SaveAssets();
         }
         
         private void SwitchWindow(IMain window)
