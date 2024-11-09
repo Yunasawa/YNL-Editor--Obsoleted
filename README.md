@@ -11,7 +11,7 @@
 > [!Important]
 > <b>This package is now obsolete and not be updated any more. You can still use this old version if you want.
 >
-> Currently, it is separated into 2 individual packages: YNL - Editor and YNL - Toolbox
+> Currently, it is separated into 2 individual packages: <a href="https://github.com/Yunasawa-Studio/YNL-Editor">YNL - Editor</a> and <a href="https://github.com/Yunasawa-Studio/YNL-General-Toolbox">YNL - General Toolbox</a>
 >
 > In case you want to use those new 2 packages, you have to remove the obsoleted YNL - Editor before importing them to make sure no error will appear.</b>
 
